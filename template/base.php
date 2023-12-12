@@ -4,43 +4,21 @@
         <title><?php echo $templateParams["titolo"]; ?></title>
         <meta charset="UTF-8"/>
         <link href="css/style.css" type="text/css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     </head>    
-    <body>
-        <header>
-            <h1>Blog di Tecnologie Web</h1>
+    <body class="bg-light">
+        <header class="bg-dark">
+            <h1 class="text-light">SoundRift</h1>
         </header>
         <nav>
             <ul>
-                <li><a href="index.php">Home</a></li><li><a href="archivio.html">Archivio</a></li><li><a href="contatti.php">Contatti</a></li><li><a href="login.html">Login</a></li>
+                <li><a href="#">Opzione 1</a></li><li><a href="#">Opzione 2</a></li>
             </ul>
         </nav>
         <main>
-            <?php
-                require($templateParams["nome"]);
-            ?>
-        </main><aside>
-            <section>
-                <h2>Post Casuali</h2>
-                <ul>
-                <?php foreach($templateParams["articolicasuali"] as $articolocasuale): ?>
-                    <li>
-                        <img src="<?php echo UPLOAD_DIR.$articolocasuale["imgarticolo"]; ?>" alt="" />
-                        <a href="#"><?php echo $articolocasuale["titoloarticolo"]; ?></a>
-                    </li>
-                <?php endforeach; ?>                    
-                </ul>
-            </section>
-            <section>
-                <h2>Categorie</h2>
-                <ul>
-                <?php foreach($templateParams["categorie"] as $categoria): ?>
-                    <li><a href="#"><?php echo $categoria["nomecategoria"]; ?></a></li>
-                <?php endforeach; ?>
-                </ul>
-            </section>
-        </aside>
-        <footer>
-            <p>Tecnologie Web - A.A. 2023-2024</p>
+        </main>
+        <footer class="bg-dark">
+            <p>SoundRift - A.A. 2023-2024</p>
         </footer>
     </body>
 </html>
