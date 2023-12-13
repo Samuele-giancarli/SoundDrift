@@ -1,7 +1,7 @@
 <?php
 require_once("bootstrap.php");
 
-$templateParams["titolo"] = "SoundRift - Home";
+$templateParams["titolo"] = "SoundDrift - Home";
 
 require("template/base.php");
 

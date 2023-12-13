@@ -7,10 +7,10 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-  </head>    
+    </head>    
     <body class="bg-light">
         <header class="bg-dark d-flex justify-content-between align-items-center p-4">
-            <h1 class="text-light">SoundRift</h1>
+            <h1 class="text-light">SoundDrift</h1>
             <div>
                 <button type="button" class="btn btn-primary">
                     <i class="bi bi-bell"></i>
