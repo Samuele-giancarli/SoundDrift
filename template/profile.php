@@ -1,3 +1,11 @@
-<div>
-    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" alt="Avatar" />
-</div>
+<article>
+            <header>
+                ciao
+            </header>
+            <section>
+                ciao2
+            </section>
+            <footer>
+                ciao3
+            </footer>
+</article>
