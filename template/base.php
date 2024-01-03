@@ -4,6 +4,7 @@
         <title><?php echo $templateParams["titolo"]; ?></title>
         <meta charset="UTF-8"/>
         <link href="css/style.css" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Major Mono Display">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -29,6 +30,17 @@
 
         main {
             flex: 1;
+            margin: 100px 5% 0;
+        }
+
+        a:link{
+         text-decoration:none;
+         color:white;
+        }
+
+        a:visited{
+         text-decoration:none;
+         color:white;
         }
 
         footer {
@@ -73,22 +85,16 @@
     </head>
 
     <body class="bg-light">
-        <header class="bg-dark fixed-top d-flex justify-content-between align-items-center">
-            <h1 class="text-light"><button><a href="index.php" style="text-decoration:none"> <img src="images\logo.png" width=70>SoundDrift </a></button></h1>
-            <div>
-                <button type="button" class="btn btn-light"> <a href="https://www.voiceevolutioninstitute.it/teams/view/aisja-baglioni" style="text-decoration:none">
-                    <i class="bi bi-bell"></i></a>
-                </button>
-                <button type="button" class="btn btn-light"> <a href="profile.php" style="text-decoration:none">
-                    <i class="bi bi-person"></i></a>
-                </button>
-            </div> -->
+        <header class="bg-black fixed-top d-flex justify-content-between align-items-center">
+            <!--<h1 class="text-light"><button><a href="index.php" style="text-decoration:none"> <img src="images\logo.png" width=70>SoundDrift </a></button></h1>
+            -->
 
-            <a href="base.html">
+            <a href="index.php">
                 <!-- da rivedere per il discorso del percorso assoluto -->
-                <img src="http://localhost/SoundDrift/images/logo3.jpg" width="70" style="display:inline-block">
-                <h1 class="text-white" style="display:inline-block; font-size:27px" >SoundDrift</h1>
+                    <img src="http://localhost/SoundDrift/images/logo3.jpg" width="70" style="display:inline-block">
+                    <h1 class="text-white" style="display:inline-block; font-size:27px" >SoundDrift</h1>
             </a>
+
             <div>
                 <button type="button" class="btn btn-light bg-black"> <a href="#" style="text-decoration:none">
                     <i class="bi bi-bell" style="font-size: 20px"></i></a>
@@ -142,18 +148,18 @@
         
         <footer id="second-footer" class="bg-black text-center">
             <div class="container">
-            <button type="button" class="btn btn-dark"><a href="https://www.voiceevolutioninstitute.it/teams/view/aisja-baglioni" style="text-decoration:none">
-                    <i class="bi bi-search"></i> Cerca
-    </a></button>
-            <button type="button" class="btn btn-dark"><a href="https://www.voiceevolutioninstitute.it/teams/view/aisja-baglioni"style="text-decoration:none">
-                    <i class="bi bi-collection"></i> Libreria
-    </a></button>
-            <button type="button" class="btn btn-dark"><a href="https://www.voiceevolutioninstitute.it/teams/view/aisja-baglioni"style="text-decoration:none">
-                    <i class="bi bi-plus-square"></i> Carica
-    </a></button>
-            <button type="button" class="btn btn-dark"><a href="https://www.voiceevolutioninstitute.it/teams/view/aisja-baglioni"style="text-decoration:none">
-                    <i class="bi bi-gear"></i> Impostazioni
-    </a></button>
+                <a href="#" class="btn btn-dark" style="text-decoration:none">
+                        <i class="bi bi-search"></i> Cerca
+                </a>
+                <a href="#" class="btn btn-dark" style="text-decoration:none">
+                        <i class="bi bi-collection"></i> Libreria
+                </a>
+                <a href="#" class="btn btn-dark" style="text-decoration:none">
+                        <i class="bi bi-plus-square"></i> Carica
+                </a>
+                <a href="#" class="btn btn-dark" style="text-decoration:none">
+                        <i class="bi bi-gear"></i> Impostazioni
+                </a>
             </div>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
