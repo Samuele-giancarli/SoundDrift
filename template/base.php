@@ -59,6 +59,7 @@
                 </button>
             </div>
         </header>
+        
         <main>
             <?php 
                 if(isset($templateParams["nome"])){
@@ -66,6 +67,7 @@
                 }
             ?>
         </main>
+
         <footer class="bg-secondary text-center">
         <button type="button" class="btn btn-primary">
                     <i class="bi bi-skip-backward"></i>

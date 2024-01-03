@@ -10,7 +10,7 @@ body {
 header {
     background-color: #343a40;
     color: #fff;
-    padding: 1rem;
+    padding: 0.5rem;
     text-align: center;
 }
 
@@ -22,11 +22,11 @@ footer {
     background-color: #343a40;
     color: #fff;
     text-align: center;
-    padding: 1rem;
+    padding: 0.5rem;
 }
 
 #second-footer {
     position: relative; /* Modifica qui */
     bottom: 0;
-    width: 100%;
+    width:100%;
 }

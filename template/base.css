@@ -1,0 +1,11 @@
+footer{
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container{
+    flex-grow: 1;
+    margin: 0 auto;
+}
+
