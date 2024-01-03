@@ -31,6 +31,7 @@
         main {
             flex: 1;
             margin: 100px 5% 0;
+<<<<<<< HEAD
         }
 
         a:link{
@@ -41,6 +42,8 @@
         a:visited{
          text-decoration:none;
          color:white;
+=======
+>>>>>>> adca71f6dae7baa50f4857c3d83ff7951136e8c1
         }
 
         footer {
@@ -85,6 +88,7 @@
     </head>
 
     <body class="bg-light">
+<<<<<<< HEAD
         <header class="bg-black fixed-top d-flex justify-content-between align-items-center">
             <!--<h1 class="text-light"><button><a href="index.php" style="text-decoration:none"> <img src="images\logo.png" width=70>SoundDrift </a></button></h1>
             -->
@@ -93,15 +97,36 @@
                 <!-- da rivedere per il discorso del percorso assoluto -->
                     <img src="http://localhost/SoundDrift/images/logo3.jpg" width="70" style="display:inline-block">
                     <h1 class="text-white" style="display:inline-block; font-size:27px" >SoundDrift</h1>
+=======
+        <header class="bg-dark fixed-top d-flex justify-content-between align-items-center">
+            <a href="index.php" style="text-decoration:none">
+                <img src="http://localhost/SoundDrift/images/logo3.jpg" width="70" style="display:inline-block">
+                <h1 class="text-white" style="display:inline-block; font-size:27px" >SoundDrift</h1>
+>>>>>>> adca71f6dae7baa50f4857c3d83ff7951136e8c1
             </a>
 
             <div>
-                <button type="button" class="btn btn-light bg-black"> <a href="#" style="text-decoration:none">
+                <button type="button" class="btn btn-light"> <a href="https://www.voiceevolutioninstitute.it/teams/view/aisja-baglioni" style="text-decoration:none">
                     <i class="bi bi-bell" style="font-size: 20px"></i></a>
                 </button>
-                <button type="button" class="btn btn-light bg-black"> <a href="#" style="text-decoration:none">
+                <?php
+                if(isset($_SESSION["email"])) {
+                ?>
+                <button type="button" class="btn btn-light"> <a href="profile.php" style="text-decoration:none">
                     <i class="bi bi-person" style="font-size: 20px"></i></a>
                 </button>
+                <button type="button" class="btn btn-light"> <a href="logout.php" style="text-decoration:none">
+                    <i class="bi bi-bell" style="font-size: 20px"></i></a>
+                </button>
+                <?php
+                } else {
+                ?>
+                <button type="button" class="btn btn-light"> <a href="login.php" style="text-decoration:none">
+                    <i class="bi bi-bell" style="font-size: 20px"></i></a>
+                </button>
+                <?php
+                }
+                ?>
             </div>
         </header>
         
