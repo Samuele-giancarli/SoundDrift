@@ -85,7 +85,6 @@
     </head>
 
     <body class="bg-light">
-<<<<<<< HEAD
         <header class="bg-black fixed-top d-flex justify-content-between align-items-center">
             <!--<h1 class="text-light"><button><a href="index.php" style="text-decoration:none"> <img src="images\logo.png" width=70>SoundDrift </a></button></h1>
             -->
@@ -94,12 +93,6 @@
                 <!-- da rivedere per il discorso del percorso assoluto -->
                     <img src="http://localhost/SoundDrift/images/logo3.jpg" width="70" style="display:inline-block">
                     <h1 class="text-white" style="display:inline-block; font-size:27px" >SoundDrift</h1>
-=======
-        <header class="bg-dark fixed-top d-flex justify-content-between align-items-center">
-            <a href="index.php" style="text-decoration:none">
-                <img src="http://localhost/SoundDrift/images/logo3.jpg" width="70" style="display:inline-block">
-                <h1 class="text-white" style="display:inline-block; font-size:27px" >SoundDrift</h1>
->>>>>>> adca71f6dae7baa50f4857c3d83ff7951136e8c1
             </a>
 
             <div>
