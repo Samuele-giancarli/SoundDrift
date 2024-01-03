@@ -1,0 +1,11 @@
+<article>
+            <header>
+                ciao
+            </header>
+            <section>
+                ciao2
+            </section>
+            <footer>
+                ciao3
+            </footer>
+</article>

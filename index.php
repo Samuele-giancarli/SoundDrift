@@ -2,7 +2,7 @@
 require_once("bootstrap.php");
 
 $templateParams["titolo"] = "SoundDrift - Home";
-$templateParams["main"] = "SoundDrift - Main";
+$templateParams["nome"] = "feed.php";
 
 require("template/base.php");
 

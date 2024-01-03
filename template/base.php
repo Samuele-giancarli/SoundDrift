@@ -27,6 +27,7 @@
 
         main {
             flex: 1;
+            margin: 100px 5% 0;
         }
 
         footer {
@@ -48,19 +49,23 @@
     </head>    
     <body class="bg-light">
         <header class="bg-dark fixed-top d-flex justify-content-between align-items-center">
-            <h1 class="text-light"><button><a href="https://www.voiceevolutioninstitute.it/teams/view/aisja-baglioni" style="text-decoration:none"> <img src="images\logo.png" width=70>SoundDrift </a></button></h1>
+            <h1 class="text-light"><button><a href="index.php" style="text-decoration:none"> <img src="images\logo.png" width=70>SoundDrift </a></button></h1>
             <div>
                 <button type="button" class="btn btn-light"> <a href="https://www.voiceevolutioninstitute.it/teams/view/aisja-baglioni" style="text-decoration:none">
                     <i class="bi bi-bell"></i></a>
                 </button>
-                <button type="button" class="btn btn-light"> <a href="https://www.voiceevolutioninstitute.it/teams/view/aisja-baglioni" style="text-decoration:none">
+                <button type="button" class="btn btn-light"> <a href="profile.php" style="text-decoration:none">
                     <i class="bi bi-person"></i></a>
                 </button>
             </div>
         </header>
         
         <main>
-        <?php echo $templateParams["main"]; ?>
+            <?php 
+                if(isset($templateParams["nome"])){
+                    require($templateParams["nome"]);
+                }
+            ?>
         </main>
 
         <footer class="bg-secondary text-center">
