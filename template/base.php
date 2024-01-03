@@ -31,7 +31,6 @@
         main {
             flex: 1;
             margin: 100px 5% 0;
-<<<<<<< HEAD
         }
 
         a:link{
@@ -42,8 +41,6 @@
         a:visited{
          text-decoration:none;
          color:white;
-=======
->>>>>>> adca71f6dae7baa50f4857c3d83ff7951136e8c1
         }
 
         footer {
