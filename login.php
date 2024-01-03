@@ -5,10 +5,9 @@ session_start();
 require_once("bootstrap.php");
 
 $templateParams["titolo"] = "SoundDrift - Home";
-$templateParams["nome"] = "feed.php";
+$templateParams["nome"] = "loginForm.php";
 
 require("template/base.php");
-
 
 ?>
 

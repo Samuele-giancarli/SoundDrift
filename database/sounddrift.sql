@@ -160,7 +160,7 @@ CREATE TABLE `testuale` (
 
 CREATE TABLE `utente` (
   `Email` char(50) NOT NULL,
-  `Password` char(50) NOT NULL,
+  `Password` char(100) NOT NULL,
   `Username` char(50) NOT NULL,
   `DataNascita` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

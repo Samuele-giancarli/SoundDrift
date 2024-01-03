@@ -54,9 +54,24 @@
                 <button type="button" class="btn btn-light"> <a href="https://www.voiceevolutioninstitute.it/teams/view/aisja-baglioni" style="text-decoration:none">
                     <i class="bi bi-bell"></i></a>
                 </button>
+                <?php
+                if(isset($_SESSION["email"])) {
+                ?>
                 <button type="button" class="btn btn-light"> <a href="profile.php" style="text-decoration:none">
                     <i class="bi bi-person"></i></a>
                 </button>
+                <button type="button" class="btn btn-light"> <a href="logout.php" style="text-decoration:none">
+                    <i class="bi bi-bell"></i></a>
+                </button>
+                <?php
+                } else {
+                ?>
+                <button type="button" class="btn btn-light"> <a href="login.php" style="text-decoration:none">
+                    <i class="bi bi-bell"></i></a>
+                </button>
+                <?php
+                }
+                ?>
             </div>
         </header>
         
