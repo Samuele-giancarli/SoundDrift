@@ -59,7 +59,12 @@
             </div>
         </header>
         <main>
-
+            <?php 
+            //Qui ci sarà la pagina php lista-post.php che conterrà tutti i post del 
+                //if(isset($templateParams["nome"])){
+                //    require($templateParams["nome"]);
+                //}
+            ?>
         </main>
         <footer class="bg-secondary text-center">
         <button type="button" class="btn btn-primary">
