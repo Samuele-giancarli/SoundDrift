@@ -58,9 +58,11 @@
                 </button>
             </div>
         </header>
+        
         <main>
-
+        <?php echo $templateParams["main"]; ?>
         </main>
+
         <footer class="bg-secondary text-center">
         <button type="button" class="btn btn-primary">
                     <i class="bi bi-skip-backward"></i>
