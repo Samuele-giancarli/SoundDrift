@@ -29,6 +29,7 @@
 
         main {
             flex: 1;
+            margin: 100px 5% 0;
         }
 
         footer {
