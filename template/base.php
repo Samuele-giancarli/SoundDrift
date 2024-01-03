@@ -60,7 +60,7 @@
         </header>
         <main>
             <?php 
-            //Qui ci sarà la pagina php lista-post.php che conterrà tutti i post del 
+            //Qui ci sarà la pagina php feed.php che conterrà tutti i post del 
                 //if(isset($templateParams["nome"])){
                 //    require($templateParams["nome"]);
                 //}
