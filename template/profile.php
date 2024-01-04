@@ -1,7 +1,20 @@
 <div id="profile-page" class="container-fluid p-0 overflow-hidden">
     <div id="profile-section" class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3 d-flex align-items-center">
-        <img id="profile-picture" src="images/ImageUpload.png" class="img-thumbnail" alt="" style="width: 150px; height: 150px;">
-        
+      
+    <div class="bg-image ripple d-flex flex-column align-items-center" data-mdb-ripple-color="light">
+        <img src="images/ImageUpload.png" id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" />
+        <label class="btn btn-dark mt-2" for="formFile">Update Image</label>
+        <input class="d-none" type="file" id="formFile">
+    </div>
+        <script>
+            let profilePic = document.getElementById("profile-pic");
+            let inputFile = document.getElementById("formFile");
+
+            inputFile.onchange = function(){
+                profilePic.src = URL.createObjectURL(inputFile.files[0]);
+            }
+        </script> 
+
         <div id="profile-info" class="mx-auto text-center">
             <h2>Nome Utente</h2>
             
