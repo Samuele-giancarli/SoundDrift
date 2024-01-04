@@ -10,7 +10,8 @@ class DatabaseHelper{
     }
 
     public function getUserInSession(){
-        $stmt = $this->db->prepare("SELECT * FROM utente WHERE Email = $_SESSION["email"]");
+        $stmt = $this->db->prepare("SELECT * FROM utente WHERE Email = ?");
+        $stmt->bind_param("s", $_SESSION['email']);
         $stmt->execute();
         $result = $stmt->get_result();
 
