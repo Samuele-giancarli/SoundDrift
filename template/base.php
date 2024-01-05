@@ -3,7 +3,7 @@
     <head>
         <title><?php echo $templateParams["titolo"]; ?></title>
         <meta charset="UTF-8"/>
-        <link href="css/style.css" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" href="../SoundDrift/css/style.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Major Mono Display">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -96,25 +96,25 @@
             </a>
 
             <div>
-                <button type="button" class="btn btn-light"> <a href="https://www.voiceevolutioninstitute.it/teams/view/aisja-baglioni" style="text-decoration:none">
-                    <i class="bi bi-bell" style="font-size: 20px"></i></a>
-                </button>
-                <button type="button" class="btn btn-light"> <a href="profile.php" style="text-decoration:none">
-                    <i class="bi bi-person" style="font-size: 20px"></i></a>
-                </button>
+                <a href="#" class="btn btn-dark" style="text-decoration:none">
+                    <i class="bi bi-person" style="font-size: 20px"></i>
+                </a>
                 <?php
                 if(isset($_SESSION["email"])) {
                 ?>
-                
-                <button type="button" class="btn btn-light"> <a href="logout.php" style="text-decoration:none">
-                    <i class="bi bi-bell" style="font-size: 20px"></i></a>
-                </button>
+                    <a href="profile.php" class="btn btn-dark" style="text-decoration:none">
+                        <i class="bi bi-person" style="font-size: 20px"></i>
+                    </a>
+
+                    <a href="logout.php" class="btn btn-dark" style="text-decoration:none">
+                        <i class="bi bi-bell" style="font-size: 20px"></i>
+                    </a>
                 <?php
                 } else {
                 ?>
-                <button type="button" class="btn btn-light"> <a href="login.php" style="text-decoration:none">
-                    <i class="bi bi-bell" style="font-size: 20px"></i></a>
-                </button>
+                    <a href="login.php" class="btn btn-dark" style="text-decoration:none">
+                        <i class="bi bi-bell" style="font-size: 20px"></i>
+                    </a>
                 <?php
                 }
                 ?>
