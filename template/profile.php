@@ -6,6 +6,7 @@
         <label class="btn btn-dark mt-2" for="formFile">Update Image</label>
         <input class="d-none" type="file" id="formFile">
     </div>
+    
         <script>
             let profilePic = document.getElementById("profile-pic");
             let inputFile = document.getElementById("formFile");
@@ -16,8 +17,8 @@
         </script> 
 
         <div id="profile-info" class="mx-auto text-center">
-        <?php //echo $templateParams["utente"][0]; ?>
-            <h2>Utente</h2>
+        <?php?>
+            <h2><?php echo $templateParams["utente"][0]["Email"]; ?></h2>
             
             <div id="profile-stats" class="mt-5">
                 <p>Follower: 100 | Following: 50 | Tracks: 200</p>
