@@ -1,6 +1,12 @@
 <?php
 
-if(isset($_POST["email"])) {
+$show_form = false;
+$err_mess=null;
+
+if(isset($_SESSION["email"])) {
+    $err_mess="L'utente è già loggato";
+    echo $err_mess;
+} elseif(isset($_POST["email"])) {
     $db = new mysqli("127.0.0.1", "root", "", "sounddrift", 3306);
     $stmt = $db->prepare("SELECT * FROM utente WHERE email=?");
     $stmt->bind_param("s", $email);
@@ -10,21 +16,32 @@ if(isset($_POST["email"])) {
     $row = $result->fetch_assoc();
     $db->close();
     if(is_null($row)) {
-        echo "L'utente non esiste";
+        $show_form = true;
+        $err_mess="L'utente non esiste";
     } elseif(!password_verify($_POST["password"], $row["Password"])) {
-        echo "Password errata";
+        $show_form = true;
+        $err_mess= "Password errata";
     } else {
         $_SESSION["email"] = $row["Email"];
         $_SESSION["username"] = $row["Username"];
         header("Location: index.php");
     }
 } else {
+    $show_form = true;
+}
+
+if($show_form) {
 ?>
 <form method="POST" action="login.php">
-    <input type="email" name="email" placeholder="email"/>
-    <input type="password" name="password" placeholder="password"/>
-    <input type="submit" value="login"/>
+    <input type="email" name="email" placeholder="La tua e-mail"/>
+    <input type="password" name="password" placeholder="La tua password"/>
+    <input type="submit" value="Login"/>
 </form>
 <?php
+
+if (!is_null($err_mess)){
+    echo $err_mess;
+}
 }
 ?>
+<a href="register.php" style="color: black"><p>Non sei ancora registrato?</p></a>

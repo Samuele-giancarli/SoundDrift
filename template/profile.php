@@ -2,7 +2,7 @@
     <div id="profile-section" class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3 d-flex align-items-center">
       
     <div class="bg-image ripple d-flex flex-column align-items-center" data-mdb-ripple-color="light">
-        <img src="images/ImageUpload.png" id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" />
+        <img src="#" id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" />
         <label class="btn btn-dark mt-2" for="formFile">Update Image</label>
         <input class="d-none" type="file" id="formFile">
     </div>
@@ -16,7 +16,8 @@
         </script> 
 
         <div id="profile-info" class="mx-auto text-center">
-            <h2>Nome Utente</h2>
+        <?php //echo $templateParams["utente"][0]; ?>
+            <h2>Utente</h2>
             
             <div id="profile-stats" class="mt-5">
                 <p>Follower: 100 | Following: 50 | Tracks: 200</p>
@@ -28,19 +29,34 @@
             <div class="row">
                 <ul class="nav nav-pills">
                     <li class="nav-item px-2 my-2 text-center col-3 col-md-3 ">
-                        <button type="button" class="btn btn-dark">Post</button>
+                        <a href="allPostProfile.php" class="btn btn-dark" style="text-decoration:none">
+                            Post
+                        </a>
                     </li>
                     <li class="nav-item px-2 my-2 text-center col-3 col-md-3">
-                        <button type="button" class="btn btn-dark">Popular</button>
+                        <a href="popularPostProfile.php" class="btn btn-dark" style="text-decoration:none">
+                            Popular
+                        </a>
                     </li>
                     <li class="nav-item px-2 my-2 text-center col-3 col-md-3">
-                        <button type="button" class="btn btn-dark">Albums</button>
+                        <a href="albumPostProfile.php" class="btn btn-dark" style="text-decoration:none">
+                            Album
+                        </a>
                     </li>
                     <li class="nav-item px-2 my-2 text-center col-3 col-md-3">
-                        <button type="button" class="btn btn-dark">Playlist</button>
+                        <a href="playlistPostProfile.php" class="btn btn-dark" style="text-decoration:none">
+                            Playlist
+                        </a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
+</div>
+<div id="navDetailed">
+    <?php
+            if(isset($templateParams["voceNav"])){
+                require_once("template/" . $templateParams["voceNav"]);
+            }
+    ?>
 </div>

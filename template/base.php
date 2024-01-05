@@ -22,9 +22,7 @@
             </a>
 
             <div>
-                <a href="#" class="btn btn-dark" style="text-decoration:none">
-                    <i class="bi bi-person" style="font-size: 20px"></i>
-                </a>
+
                 <?php
                 if(isset($_SESSION["email"])) {
                 ?>
@@ -33,17 +31,20 @@
                     </a>
 
                     <a href="logout.php" class="btn btn-dark" style="text-decoration:none">
-                        <i class="bi bi-bell" style="font-size: 20px"></i>
+                        <i class="bi bi-box-arrow-left" style="font-size: 20px"></i>
                     </a>
                 <?php
                 } else {
                 ?>
                     <a href="login.php" class="btn btn-dark" style="text-decoration:none">
-                        <i class="bi bi-bell" style="font-size: 20px"></i>
+                        <i class="bi bi-box-arrow-in-right" style="font-size: 20px"></i>
                     </a>
                 <?php
                 }
                 ?>
+                <a href="#" class="btn btn-dark" style="text-decoration:none">
+                    <i class="bi bi-bell" style="font-size: 20px"></i>
+                </a>
             </div>
         </header>
         
