@@ -9,7 +9,7 @@ class DatabaseHelper{
         }        
     }*/
 
-    public function getUserInSession(){
+    /*public function getUserInSession(){
         $stmt = $this->db->prepare("SELECT * FROM utente WHERE Email = ?");
         $stmt->bind_param("s", $_SESSION['email']);
         $stmt->execute();
@@ -17,5 +17,6 @@ class DatabaseHelper{
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+    */
 }
 ?>
