@@ -29,6 +29,9 @@
                     <a href="profile.php" class="btn btn-dark" style="text-decoration:none">
                         <i class="bi bi-person" style="font-size: 20px"></i>
                     </a>
+                    <a href="#" class="btn btn-dark" style="text-decoration:none">
+                    <i class="bi bi-bell" style="font-size: 20px"></i>
+                    </a>
 
                     <a href="logout.php" class="btn btn-dark" style="text-decoration:none">
                         <i class="bi bi-box-arrow-left" style="font-size: 20px"></i>
@@ -42,9 +45,6 @@
                 <?php
                 }
                 ?>
-                <a href="#" class="btn btn-dark" style="text-decoration:none">
-                    <i class="bi bi-bell" style="font-size: 20px"></i>
-                </a>
             </div>
         </header>
         

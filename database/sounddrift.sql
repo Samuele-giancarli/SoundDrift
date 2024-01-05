@@ -161,8 +161,7 @@ CREATE TABLE `testuale` (
 CREATE TABLE `utente` (
   `Email` char(50) NOT NULL,
   `Password` char(100) NOT NULL,
-  `Username` char(50) NOT NULL,
-  `DataNascita` date NOT NULL
+  `Username` char(50) NOT NULL;
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -316,6 +315,10 @@ ALTER TABLE `playlist`
 --
 ALTER TABLE `testuale`
   ADD CONSTRAINT `ID_TESTU_UTENT_FK` FOREIGN KEY (`Email`) REFERENCES `utente` (`Email`);
+
+ALTER TABLE `utente` 
+  ADD UNIQUE(`Username`);
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
