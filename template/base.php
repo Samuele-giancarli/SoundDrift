@@ -17,7 +17,7 @@
 
             <a href="index.php">
                 <!-- da rivedere per il discorso del percorso assoluto -->
-                    <img src="http://localhost/SoundDrift/images/logo3.jpg" width="70" style="display:inline-block">
+                    <img src="http://localhost/SoundDrift/images/App_images/logo3.jpg" width="70" style="display:inline-block">
                     <h1 class="text-white" style="display:inline-block; font-size:27px" >SoundDrift</h1>
             </a>
 
