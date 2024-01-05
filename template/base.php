@@ -3,85 +3,11 @@
     <head>
         <title><?php echo $templateParams["titolo"]; ?></title>
         <meta charset="UTF-8"/>
-        <link rel="stylesheet" href="../SoundDrift/css/style.css">
+        <link rel="stylesheet" href="../SoundDrift/css/style.css" aria-atomic="">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Major Mono Display">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-
-
-        <style>
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            font-family: Arial, sans-serif;
-        }
-
-        header {
-            background-color: #343a40;
-            color: #fff;
-            padding: 1rem;
-            text-align: center;
-            font-family: 'Major Mono Display', monospace;
-        }
-
-        main {
-            flex: 1;
-            margin: 100px 5% 0;
-        }
-
-        a:link{
-         text-decoration:none;
-         color:white;
-        }
-
-        a:visited{
-         text-decoration:none;
-         color:white;
-        }
-
-        footer {
-            background-color:gainsboro;
-            color:black;
-            text-align: center;
-            padding: 0.5rem;
-            width:100%;
-        }
-
-        footer a:link{
-            color:black;
-        }
-
-        footer a:visited{
-            color:black;
-        }
-
-        footer a:hover{
-            color:black;
-        }
-
-        #second-footer {
-            position: relative; /* Modifica qui */
-            bottom: 0;
-            width: 100%;
-            padding:0.5rem;
-        }
-
-        #second-footer a:link{
-            color:white
-        }
-
-        #second-footer a:visited{
-            color:white
-        }
-
-        #second-footer a:hover{
-            color:aquamarine
-        }
-        </style>
     </head>
 
     <body class="bg-light">
