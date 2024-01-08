@@ -65,7 +65,7 @@ if(!is_null($err_mess)) {
 if ($show_form){
     $db = new mysqli("127.0.0.1", "root", "", "sounddrift", 3306);
     echo "Album da finalizzare: <br> <ul>";
-    $stmt = $db->prepare("SELECT * FROM album WHERE Finalizzato=0 AND ID_Utente=?");
+    $stmt = $db->prepare("SELECT ID, Titolo FROM album WHERE Finalizzato=0 AND ID_Utente=? AND (SELECT COUNT(ID) FROM canzone WHERE album.ID=ID_Album) > 0");
     $idcreatore=$_SESSION["ID"];
     $stmt->bind_param("i", $idcreatore);
     $stmt->execute();
