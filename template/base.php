@@ -26,6 +26,12 @@
                 <?php
                 if(isset($_SESSION["ID"])) {
                 ?>
+                <a href="songUpload.php" class="btn btn-dark" style="text-decoration:none">
+                        <i class="bi bi-plus-square" style="font-size: 20px"></i>
+                </a>
+                <a href="albumCreate.php" class="btn btn-dark" style="text-decoration:none">
+                        <i class="bi bi-disc-fill" style="font-size: 20px"></i>
+                </a>
                     <a href="profile.php" class="btn btn-dark" style="text-decoration:none">
                         <i class="bi bi-person" style="font-size: 20px"></i>
                     </a>
@@ -98,7 +104,7 @@
                         <i class="bi bi-collection"></i> Libreria
                 </a>
                 <a href="upload.php" class="btn btn-dark" style="text-decoration:none">
-                        <i class="bi bi-plus-square"></i> Carica
+                        <i class="bi bi-file-post"></i> Post
                 </a>
                 <a href="#" class="btn btn-dark" style="text-decoration:none">
                         <i class="bi bi-gear"></i> Impostazioni

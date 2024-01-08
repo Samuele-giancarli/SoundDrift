@@ -5,7 +5,6 @@ $err_mess=null;
 
 if(isset($_SESSION["ID"])) {
     $err_mess="L'utente è già loggato";
-    echo $err_mess;
 } elseif(isset($_POST["email"])) {
     $db = new mysqli("127.0.0.1", "root", "", "sounddrift", 3306);
     $stmt = $db->prepare("SELECT * FROM utente WHERE email=?");

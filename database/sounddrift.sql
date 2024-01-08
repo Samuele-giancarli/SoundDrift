@@ -48,7 +48,7 @@ CREATE TABLE `album` (
   `Data` date NOT NULL,
   `Titolo` tinytext NOT NULL,
   `Genere` tinytext NOT NULL,
-  `NumCanzoni` int NOT NULL,
+  `Finalizzato` boolean NOT NULL DEFAULT 0,
   `ID_Immagine` int
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -189,7 +189,8 @@ ALTER TABLE `album`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `Autore/RicercaPerAutore` (`ID_Utente`),
   ADD KEY `RicercaPerTitolo` (`Titolo`),
-  ADD KEY `ImmagineAlbum` (`ID_Immagine`);
+  ADD KEY `ImmagineAlbum` (`ID_Immagine`),
+  ADD KEY `FinalizzaAlbum` (`Finalizzato`);
 
 --
 -- Indici per le tabelle `canzone`
