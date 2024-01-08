@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Creato il: Gen 03, 2024 alle 15:41
+-- Creato il: Gen 07, 2024 alle 20:08
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.0.30
 
@@ -24,74 +24,72 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `post`
+--
+
+CREATE TABLE `post` (
+  `ID` int NOT NULL,
+  `ID_Utente` int NOT NULL,
+  `Data` date NOT NULL,
+  `Testo` text NOT NULL,
+  `ID_Immagine` int,
+  `ID_Album` int,
+  `ID_Canzone` int
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+--
 -- Struttura della tabella `album`
 --
 
 CREATE TABLE `album` (
-  `Email` char(50) NOT NULL,
+  `ID` int NOT NULL,
+  `ID_Utente` int NOT NULL,
   `Data` date NOT NULL,
-  `Immagine` char(50) DEFAULT NULL,
-  `Titolo` char(50) NOT NULL,
-  `Genere` char(50) NOT NULL,
-  `Durata` decimal(50,0) NOT NULL,
-  `NumCanzoni` decimal(50,0) NOT NULL,
-  `Con_Email` char(50) DEFAULT NULL
+  `Titolo` tinytext NOT NULL,
+  `Genere` tinytext NOT NULL,
+  `NumCanzoni` int NOT NULL,
+  `ID_Immagine` int
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
 
 --
 -- Struttura della tabella `canzone`
 --
 
 CREATE TABLE `canzone` (
-  `Email` char(50) NOT NULL,
+  `ID` int NOT NULL,
+  `ID_Utente` int NOT NULL,
   `Data` date NOT NULL,
-  `Immagine` char(50) DEFAULT NULL,
-  `Titolo` char(50) NOT NULL,
-  `Genere` char(50) NOT NULL,
-  `Durata` decimal(50,0) NOT NULL,
-  `Int_Email` char(50) NOT NULL,
-  `Int_Titolo` char(50) NOT NULL,
-  `Ins_Email` char(50) DEFAULT NULL
+  `ID_Album` int,
+  `ID_Immagine` int,
+  `ID_Audio` int NOT NULL,
+  `Titolo` tinytext NOT NULL,
+  `Genere` tinytext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
---
--- Struttura della tabella `coda`
---
-
-CREATE TABLE `coda` (
-  `Email` char(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
 
 --
 -- Struttura della tabella `commento`
 --
 
 CREATE TABLE `commento` (
-  `EmailScrittore` char(50) NOT NULL,
-  `Descrizione` char(200) NOT NULL,
-  `Ha__Email_Testuale` char(50) NOT NULL,
-  `Ha__Email_Canzone` char(50) NOT NULL,
-  `Ha__Titolo_Canzone` char(50) NOT NULL,
-  `Ha__Email_Album` char(50) NOT NULL,
-  `Ha__Titolo_Album` char(50) NOT NULL
+`ID` int NOT NULL,
+`ID_Utente` int NOT NULL, 
+`ID_Post` int NOT NULL, 
+`Testo` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `compone`
+-- Struttura della tabella `associativa_playlist`
 --
 
-CREATE TABLE `compone` (
-  `C_C_Email` char(50) NOT NULL,
-  `C_C_Titolo` char(50) NOT NULL,
-  `Email` char(50) NOT NULL
+CREATE TABLE `associativa_playlist` (
+  `ID_Playlist` int NOT NULL, 
+  `ID_Canzone` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -101,8 +99,8 @@ CREATE TABLE `compone` (
 --
 
 CREATE TABLE `follow` (
-  `Segue_Email` char(50) NOT NULL,
-  `Seguito_Email` char(50) NOT NULL
+  `ID_Seguito` int NOT NULL, 
+  `ID_Seguace` int NOT NULL 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -111,8 +109,19 @@ CREATE TABLE `follow` (
 -- Struttura della tabella `libreria`
 --
 
-CREATE TABLE `libreria` (
-  `Email` char(50) NOT NULL
+CREATE TABLE `mipiace_canzone` (
+`ID_Utente` int NOT NULL, 
+`ID_Canzone` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `mipiace_album` (
+`ID_Utente` int NOT NULL, 
+`ID_Album` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `mipiace_playlist` (
+`ID_Utente` int NOT NULL, 
+`ID_Playlist` int NOT NULL 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -122,8 +131,12 @@ CREATE TABLE `libreria` (
 --
 
 CREATE TABLE `notifica` (
-  `Email` char(50) NOT NULL,
-  `Descrizione` char(100) NOT NULL
+  `ID` int NOT NULL,
+  `Testo` text NOT NULL,
+  `ID_Utente` int NOT NULL, 
+  `ID_Mandante` int, 
+  `ID_Post` int 
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -133,23 +146,22 @@ CREATE TABLE `notifica` (
 --
 
 CREATE TABLE `playlist` (
-  `Email` char(50) NOT NULL,
-  `Immagine` char(50) NOT NULL,
-  `Titolo` char(50) NOT NULL,
-  `Tie_Email` char(50) DEFAULT NULL
+  `ID` int NOT NULL,
+  `ID_Utente` int NOT NULL, 
+  `ID_Immagine` int,
+  `Titolo` tinytext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
-
 --
--- Struttura della tabella `testuale`
+-- Struttura della tabella `risorsa`
 --
 
-CREATE TABLE `testuale` (
-  `Email` char(50) NOT NULL,
-  `Data` date NOT NULL,
-  `Immagine` char(50) DEFAULT NULL,
-  `Testo` char(200) NOT NULL
+CREATE TABLE `risorsa` (
+  `ID` int NOT NULL,
+  `FileName` tinytext NOT NULL, 
+  `MimeType` tinytext NOT NULL,
+  `Contenuto` longblob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -159,9 +171,11 @@ CREATE TABLE `testuale` (
 --
 
 CREATE TABLE `utente` (
-  `Email` char(50) NOT NULL,
-  `Password` char(100) NOT NULL,
-  `Username` char(50) NOT NULL;
+  `ID` int NOT NULL,
+  `Email` tinytext NOT NULL,
+  `Password` tinytext NOT NULL,
+  `Username` tinytext NOT NULL,
+  `ID_Immagine` int
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -172,76 +186,161 @@ CREATE TABLE `utente` (
 -- Indici per le tabelle `album`
 --
 ALTER TABLE `album`
-  ADD PRIMARY KEY (`Email`,`Titolo`),
-  ADD KEY `REF_ALBUM_LIBRE_FK` (`Con_Email`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Autore/RicercaPerAutore` (`ID_Utente`),
+  ADD KEY `RicercaPerTitolo` (`Titolo`),
+  ADD KEY `ImmagineAlbum` (`ID_Immagine`);
 
 --
 -- Indici per le tabelle `canzone`
 --
 ALTER TABLE `canzone`
-  ADD PRIMARY KEY (`Email`,`Titolo`),
-  ADD KEY `EQU_CANZO_ALBUM_FK` (`Int_Email`,`Int_Titolo`),
-  ADD KEY `REF_CANZO_CODA_FK` (`Ins_Email`);
-
---
--- Indici per le tabelle `coda`
---
-ALTER TABLE `coda`
-  ADD PRIMARY KEY (`Email`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Autore/RicercaPerAutore` (`ID_Utente`),
+  ADD KEY `RicercaPerTitolo` (`Titolo`),
+  ADD KEY `InAlbum` (`ID_Album`),
+  ADD KEY `ImmagineCanzone` (`ID_Immagine`),
+  ADD KEY `AudioCanzone` (`ID_Audio`);
 
 --
 -- Indici per le tabelle `commento`
 --
 ALTER TABLE `commento`
-  ADD PRIMARY KEY (`EmailScrittore`),
-  ADD KEY `REF_COMME_TESTU_FK` (`Ha__Email_Testuale`),
-  ADD KEY `REF_COMME_CANZO_FK` (`Ha__Email_Canzone`,`Ha__Titolo_Canzone`),
-  ADD KEY `REF_COMME_ALBUM_FK` (`Ha__Email_Album`,`Ha__Titolo_Album`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `FKscrive_FK` (`ID_Utente`,`ID_Post`);
 
 --
--- Indici per le tabelle `compone`
+-- Indici per le tabelle `associativa_playlist`
 --
-ALTER TABLE `compone`
-  ADD PRIMARY KEY (`Email`,`C_C_Email`,`C_C_Titolo`),
-  ADD KEY `REF_compo_CANZO_FK` (`C_C_Email`,`C_C_Titolo`);
+ALTER TABLE `associativa_playlist`
+  ADD PRIMARY KEY (`ID_Canzone`,`ID_Playlist`),
+  ADD KEY `ID_Canzone` (`ID_Canzone`),
+  ADD KEY `ID_Playlist` (`ID_Playlist`);
 
 --
 -- Indici per le tabelle `follow`
 --
 ALTER TABLE `follow`
-  ADD PRIMARY KEY (`Segue_Email`,`Seguito_Email`),
-  ADD KEY `REF_follo_UTENT_1` (`Seguito_Email`);
+ADD PRIMARY KEY (`ID_Seguace`,`ID_Seguito`),
+  ADD KEY `ID_Seguace` (`ID_Seguace`),
+  ADD KEY `ID_Seguito` (`ID_Seguito`);
 
 --
--- Indici per le tabelle `libreria`
+-- Indici per le tabelle `mipiace_canzone`
 --
-ALTER TABLE `libreria`
-  ADD PRIMARY KEY (`Email`);
+ALTER TABLE `mipiace_canzone`
+ADD PRIMARY KEY (`ID_Utente`,`ID_Canzone`),
+  ADD KEY `ID_Utente` (`ID_Utente`),
+  ADD KEY `ID_Canzone` (`ID_Canzone`);
+
+--
+-- Indici per le tabelle `mipiace_album`
+--
+ALTER TABLE `mipiace_album`
+ADD PRIMARY KEY (`ID_Utente`,`ID_Album`),
+  ADD KEY `ID_Utente` (`ID_Utente`),
+  ADD KEY `ID_Album` (`ID_Album`);
+--
+-- Indici per le tabelle `mipiace_playlist`
+--
+ALTER TABLE `mipiace_playlist`
+ADD PRIMARY KEY (`ID_Utente`,`ID_Playlist`),
+  ADD KEY `ID_Utente` (`ID_Utente`),
+  ADD KEY `ID_Playlist` (`ID_Playlist`);
+
+
 
 --
 -- Indici per le tabelle `notifica`
 --
 ALTER TABLE `notifica`
-  ADD PRIMARY KEY (`Email`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indici per le tabelle `playlist`
 --
 ALTER TABLE `playlist`
-  ADD PRIMARY KEY (`Email`),
-  ADD KEY `REF_PLAYL_LIBRE_FK` (`Tie_Email`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `ID_Utente` (`ID_Utente`),
+  ADD KEY `ImmaginePlaylist` (`ID_Immagine`),
+  ADD KEY `RicercaPerTitolo` (`Titolo`);
 
 --
--- Indici per le tabelle `testuale`
+-- Indici per le tabelle `post`
 --
-ALTER TABLE `testuale`
-  ADD PRIMARY KEY (`Email`);
+ALTER TABLE `post`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `ID_Utente` (`ID_Utente`),
+  ADD KEY `ID_Canzone` (`ID_Canzone`),
+  ADD KEY `ID_Album` (`ID_Album`),
+  ADD KEY `ImmaginePost` (`ID_Immagine`);
+
+--
+-- Indici per le tabelle `risorsa`
+--
+ALTER TABLE `risorsa`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indici per le tabelle `utente`
 --
 ALTER TABLE `utente`
-  ADD PRIMARY KEY (`Email`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `ImmagineProfilo` (`ID_Immagine`),
+  ADD UNIQUE INDEX `UsernameUtente` (`Username`),
+  ADD UNIQUE INDEX `MailUtente` (`Email`);
+
+
+--
+-- AUTO_INCREMENT per le tabelle scaricate
+--
+
+--
+-- AUTO_INCREMENT per la tabella `canzone`
+--
+ALTER TABLE `canzone`
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT per la tabella `commento`
+--
+ALTER TABLE `commento`
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT per la tabella `notifica`
+--
+ALTER TABLE `notifica`
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT per la tabella `playlist`
+--
+ALTER TABLE `playlist`
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT per la tabella `testuale`
+--
+ALTER TABLE `post`
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT per la tabella `album`
+--
+ALTER TABLE `album`
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT per la tabella `risorsa`
+--
+ALTER TABLE `risorsa`
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT per la tabella `utente`
+--
+ALTER TABLE `utente`
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
 
 --
 -- Limiti per le tabelle scaricate
@@ -251,73 +350,71 @@ ALTER TABLE `utente`
 -- Limiti per la tabella `album`
 --
 ALTER TABLE `album`
-  ADD CONSTRAINT `REF_ALBUM_LIBRE_FK` FOREIGN KEY (`Con_Email`) REFERENCES `libreria` (`Email`),
-  ADD CONSTRAINT `REF_ALBUM_UTENT` FOREIGN KEY (`Email`) REFERENCES `utente` (`Email`);
+  ADD CONSTRAINT `AutoreAlbum` FOREIGN KEY (`ID_Utente`) REFERENCES `utente` (`ID`),
+  ADD CONSTRAINT `ImgAlbum` FOREIGN KEY (`ID_Immagine`) REFERENCES `risorsa` (`ID`);
 
 --
 -- Limiti per la tabella `canzone`
 --
 ALTER TABLE `canzone`
-  ADD CONSTRAINT `EQU_CANZO_ALBUM_FK` FOREIGN KEY (`Int_Email`,`Int_Titolo`) REFERENCES `album` (`Email`, `Titolo`),
-  ADD CONSTRAINT `REF_CANZO_CODA_FK` FOREIGN KEY (`Ins_Email`) REFERENCES `coda` (`Email`),
-  ADD CONSTRAINT `REF_CANZO_UTENT` FOREIGN KEY (`Email`) REFERENCES `utente` (`Email`);
-
---
--- Limiti per la tabella `coda`
---
-ALTER TABLE `coda`
-  ADD CONSTRAINT `ID_CODA_UTENT_FK` FOREIGN KEY (`Email`) REFERENCES `utente` (`Email`);
+  ADD CONSTRAINT `CanzoneInAlbum` FOREIGN KEY (`ID_Album`) REFERENCES `album` (`ID`),
+  ADD CONSTRAINT `AutoreCanzone` FOREIGN KEY (`ID_Utente`) REFERENCES `utente` (`ID`),
+  ADD CONSTRAINT `ImgSong` FOREIGN KEY (`ID_Immagine`) REFERENCES `risorsa` (`ID`),
+  ADD CONSTRAINT `AudioSong` FOREIGN KEY (`ID_Audio`) REFERENCES `risorsa` (`ID`);
 
 --
 -- Limiti per la tabella `commento`
 --
 ALTER TABLE `commento`
-  ADD CONSTRAINT `ID_COMME_UTENT_FK` FOREIGN KEY (`EmailScrittore`) REFERENCES `utente` (`Email`),
-  ADD CONSTRAINT `REF_COMME_ALBUM_FK` FOREIGN KEY (`Ha__Email_Album`,`Ha__Titolo_Album`) REFERENCES `album` (`Email`, `Titolo`),
-  ADD CONSTRAINT `REF_COMME_CANZO_FK` FOREIGN KEY (`Ha__Email_Canzone`,`Ha__Titolo_Canzone`) REFERENCES `canzone` (`Email`, `Titolo`),
-  ADD CONSTRAINT `REF_COMME_TESTU_FK` FOREIGN KEY (`Ha__Email_Testuale`) REFERENCES `testuale` (`Email`);
-
+  ADD CONSTRAINT `AutoreCommento` FOREIGN KEY (`ID_Utente`) REFERENCES `utente` (`ID`),
+   ADD CONSTRAINT `PostRiferimento` FOREIGN KEY (`ID_Post`) REFERENCES `post` (`ID`);
 --
--- Limiti per la tabella `compone`
+-- Limiti per la tabella `associativa_playlist`
 --
-ALTER TABLE `compone`
-  ADD CONSTRAINT `EQU_compo_PLAYL` FOREIGN KEY (`Email`) REFERENCES `playlist` (`Email`),
-  ADD CONSTRAINT `REF_compo_CANZO_FK` FOREIGN KEY (`C_C_Email`,`C_C_Titolo`) REFERENCES `canzone` (`Email`, `Titolo`);
+ALTER TABLE `associativa_playlist`
+ ADD CONSTRAINT `PlaylistContiene` FOREIGN KEY (`ID_Playlist`) REFERENCES `playlist` (`ID`),
+   ADD CONSTRAINT `CanzoneFaParte` FOREIGN KEY (`ID_Canzone`) REFERENCES `canzone` (`ID`);
 
 --
 -- Limiti per la tabella `follow`
 --
 ALTER TABLE `follow`
-  ADD CONSTRAINT `REF_follo_UTENT_1` FOREIGN KEY (`Seguito_Email`) REFERENCES `utente` (`Email`),
-  ADD CONSTRAINT `REF_follo_UTENT_FK` FOREIGN KEY (`Segue_Email`) REFERENCES `utente` (`Email`);
+ ADD CONSTRAINT `Seguace` FOREIGN KEY (`ID_Seguace`) REFERENCES `utente` (`ID`),
+ ADD CONSTRAINT `Seguito` FOREIGN KEY (`ID_Seguito`) REFERENCES `utente` (`ID`);
 
 --
--- Limiti per la tabella `libreria`
+-- Limiti per la tabella `mipiace_canzone`
 --
-ALTER TABLE `libreria`
-  ADD CONSTRAINT `ID_LIBRE_UTENT_FK` FOREIGN KEY (`Email`) REFERENCES `utente` (`Email`);
+ALTER TABLE `mipiace_canzone`
+ ADD CONSTRAINT `UtentePiaceCanzone` FOREIGN KEY (`ID_Utente`) REFERENCES `utente` (`ID`),
+ ADD CONSTRAINT `CanzonePiaceUtente` FOREIGN KEY (`ID_Canzone`) REFERENCES `canzone` (`ID`);
 
+--
+-- Limiti per la tabella `mipiace_album`
+--
+ALTER TABLE `mipiace_album`
+ ADD CONSTRAINT `UtentePiaceAlbum` FOREIGN KEY (`ID_Utente`) REFERENCES `utente` (`ID`),
+ ADD CONSTRAINT `AlbumPiaceUtente` FOREIGN KEY (`ID_Album`) REFERENCES `album` (`ID`);
+
+--
+-- Limiti per la tabella `mipiace_playlist`
+--
+ALTER TABLE `mipiace_playlist`
+ ADD CONSTRAINT `UtentePiacePlaylist` FOREIGN KEY (`ID_Utente`) REFERENCES `utente` (`ID`),
+ ADD CONSTRAINT `PlaylistPiaceUtente` FOREIGN KEY (`ID_Playlist`) REFERENCES `playlist` (`ID`);
 --
 -- Limiti per la tabella `notifica`
 --
 ALTER TABLE `notifica`
-  ADD CONSTRAINT `ID_NOTIF_UTENT_FK` FOREIGN KEY (`Email`) REFERENCES `utente` (`Email`);
-
+  ADD CONSTRAINT `Utente` FOREIGN KEY (`ID_Utente`) REFERENCES `utente` (`ID`),
+  ADD CONSTRAINT `Mandante` FOREIGN KEY (`ID_Mandante`) REFERENCES `utente` (`ID`),
+  ADD CONSTRAINT `Post` FOREIGN KEY (`ID_Post`) REFERENCES `post` (`ID`);
 --
 -- Limiti per la tabella `playlist`
 --
 ALTER TABLE `playlist`
-  ADD CONSTRAINT `ID_PLAYL_UTENT_FK` FOREIGN KEY (`Email`) REFERENCES `utente` (`Email`),
-  ADD CONSTRAINT `REF_PLAYL_LIBRE_FK` FOREIGN KEY (`Tie_Email`) REFERENCES `libreria` (`Email`);
-
---
--- Limiti per la tabella `testuale`
---
-ALTER TABLE `testuale`
-  ADD CONSTRAINT `ID_TESTU_UTENT_FK` FOREIGN KEY (`Email`) REFERENCES `utente` (`Email`);
-
-ALTER TABLE `utente` 
-  ADD UNIQUE(`Username`);
+ ADD CONSTRAINT `CreatorePlaylist` FOREIGN KEY (`ID_Utente`) REFERENCES `utente` (`ID`),
+ ADD CONSTRAINT `ImgPlaylist` FOREIGN KEY (`ID_Immagine`) REFERENCES `risorsa` (`ID`);
 
 COMMIT;
 
