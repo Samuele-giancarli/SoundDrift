@@ -3,7 +3,7 @@
 $show_form = false;
 $err_mess=null;
 
-if(isset($_SESSION["email"])) {
+if(isset($_SESSION["ID"])) {
     $err_mess="L'utente è già loggato";
     echo $err_mess;
 } elseif(isset($_POST["email"])) {
@@ -22,7 +22,7 @@ if(isset($_SESSION["email"])) {
         $show_form = true;
         $err_mess= "Password errata";
     } else {
-        $_SESSION["email"] = $row["Email"];
+        $_SESSION["ID"] = $row["ID"];
         $_SESSION["username"] = $row["Username"];
         header("Location: index.php");
     }

@@ -24,7 +24,7 @@
             <div>
 
                 <?php
-                if(isset($_SESSION["email"])) {
+                if(isset($_SESSION["ID"])) {
                 ?>
                     <a href="profile.php" class="btn btn-dark" style="text-decoration:none">
                         <i class="bi bi-person" style="font-size: 20px"></i>

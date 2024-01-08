@@ -10,9 +10,9 @@ class DatabaseHelper{
         }        
     }
 
-    public function getUser($email){
-        $stmt = $this->db->prepare("SELECT * FROM utente WHERE Email = ?");
-        $stmt->bind_param("s", $email);
+    public function getUser($ID){
+        $stmt = $this->db->prepare("SELECT * FROM utente WHERE ID = ?");
+        $stmt->bind_param("i", $ID);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -29,20 +29,20 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
     */
-    public function getFollowingOfUser($email){
-        $query = "SELECT COUNT(*) as num_following FROM follow WHERE Segue_Email = ?";
+    public function getFollowingOfUser($ID){
+        $query = "SELECT COUNT(*) as num_following FROM follow WHERE ID_Seguace = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("s", $email);
+        $stmt->bind_param("i", $ID);
         $stmt->execute();
         $result = $stmt->get_result();
         
         return $result->fetch_assoc();
     }
         
-    public function getFollowerOfUser($email){
-        $query = "SELECT COUNT(*) as num_followers FROM follow WHERE Seguito_Email = ?";
+    public function getFollowerOfUser($ID){
+        $query = "SELECT COUNT(*) as num_followers FROM follow WHERE ID_Seguito = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("s", $email);
+        $stmt->bind_param("i", $ID);
         $stmt->execute();
         $result = $stmt->get_result();
         

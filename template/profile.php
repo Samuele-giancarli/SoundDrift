@@ -18,7 +18,8 @@
 
         <div id="profile-info" class="mx-auto text-center">
         <?php?>
-            <h2><?php echo $templateParams["utente"][0]["Email"]; ?></h2>
+            <h2><?php echo $templateParams["utente"][0]["Username"]; ?></h2>
+
             
             <div id="profile-stats" class="mt-5">
                 <p>Follower: <?php if(is_null($templateParams["num_seguaci"]["num_followers"])){
