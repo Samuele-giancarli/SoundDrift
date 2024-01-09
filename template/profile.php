@@ -10,7 +10,6 @@
         <script>
             let profilePic = document.getElementById("profile-pic");
             let inputFile = document.getElementById("formFile");
-
             inputFile.onchange = function(){
                 profilePic.src = URL.createObjectURL(inputFile.files[0]);
             }

@@ -1,22 +1,16 @@
-<!-- Dentro il ciclo foreach per ogni post -->
-<div class="post-box">
-    <div class="row">
-        <!-- Immagine a sinistra -->
-        <div class="col-md-3">
-            <img src="<?php echo $post["utente"]["avatar"]; ?>" alt="Avatar" class="img-fluid rounded-circle" />
-        </div>
-        <!-- Contenuto del post a destra -->
-        <div class="col-md-9">
-            <div class="post-header">
-                <!-- <p><?php echo $post["utente"]["nome"]; ?> - <?php echo $post["data_post"]; ?></p> -->
-            </div>
-            <div class="post-content">
-                <!-- <p><?php echo $post["contenuto"]; ?></p> -->
-                <!-- Altre informazioni o contenuti del post -->
-            </div>
-            <div class="post-footer">
-                <a href="post.php?id=<?php echo $post["id_post"]; ?>">Visualizza dettagli</a>
-            </div>
-        </div>
+<!-- <div class="post-box" color=black>
+    <?php
+        //prendo dalla tabella utente riga 0 il suo username
+        //echo $templateParams["post"][0]["Username"];
+        //echo $templateParams["utente"][1]["Username"];
+        //echo $templateParams["utente"][3]["Username"];
+
+        //DEVO CREARE LA QUERY GETPOST o GETPOSTLIST SU DATABASE:PHP        
+    ?>
+</div> -->
+
+<?php foreach ($templateParams["feedData"] as $post): ?>
+    <div class="post">
+        <p><?php echo $post['Testo']; ?></p>
     </div>
-</div>
+<?php endforeach; ?>
