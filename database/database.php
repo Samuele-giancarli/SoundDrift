@@ -130,5 +130,20 @@ class DatabaseHelper{
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }*/
+
+    public function updateIdImageUser($idImage, $id) {
+        $stmt = $this->db->prepare("UPDATE utente SET ID_Immagine = ? WHERE ID = ?");
+        $stmt->bind_param("ii", $idImage, $id);
+        $stmt->execute();
+    }
+
+    public function getSongCountByUser($userID) {
+        $stmt = $this->db->prepare("SELECT COUNT(ID) AS conteggio FROM canzone WHERE ID_Utente=?");
+        $stmt->bind_param("i", $userID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return $row["conteggio"];
+    }
 }
 ?>
