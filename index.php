@@ -7,9 +7,12 @@ require_once("bootstrap.php");
 $templateParams["titolo"] = "SoundDrift - Home";
 $templateParams["nome"] = "feed.php";
 
-$templateParams["post"] = $dbh->getUser($_SESSION["ID"]);
-
-$templateParams["feedData"] = $dbh->getFeed($_SESSION["ID"]);
+if (isset($_SESSION["ID"])) {
+    $templateParams["post"] = $dbh->getUser($_SESSION["ID"]);
+    $templateParams["feedData"] = $dbh->getFeed($_SESSION["ID"]);
+} else {
+    //$templateParams["feedData"] = $dbh->getMostLiked();
+}
 
 require("template/base.php");
 

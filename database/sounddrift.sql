@@ -32,7 +32,7 @@ CREATE TABLE `post` (
   `ID_Utente` int NOT NULL,
   `Data` date NOT NULL,
   `Testo` text NOT NULL,
-  `ID_Immagine` int,
+  `ID_Immagine` int DEFAULT NULL,
   `ID_Album` int,
   `ID_Canzone` int
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -124,6 +124,11 @@ CREATE TABLE `mipiace_playlist` (
 `ID_Playlist` int NOT NULL 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
+CREATE TABLE `mipiace_post` (
+ID_Utente int NOT NULL, 
+ID_Post int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 -- --------------------------------------------------------
 
 --
@@ -175,7 +180,7 @@ CREATE TABLE `utente` (
   `Email` tinytext NOT NULL,
   `Password` tinytext NOT NULL,
   `Username` tinytext NOT NULL,
-  `ID_Immagine` int
+  `ID_Immagine` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -324,7 +329,8 @@ ALTER TABLE `playlist`
 -- AUTO_INCREMENT per la tabella `testuale`
 --
 ALTER TABLE `post`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT,  
+  ADD CONSTRAINT `ImgPost` FOREIGN KEY (`ID_immagine`) REFERENCES `risorsa` (`ID`);
 
 --
 -- AUTO_INCREMENT per la tabella `album`
@@ -403,6 +409,11 @@ ALTER TABLE `mipiace_album`
 ALTER TABLE `mipiace_playlist`
  ADD CONSTRAINT `UtentePiacePlaylist` FOREIGN KEY (`ID_Utente`) REFERENCES `utente` (`ID`),
  ADD CONSTRAINT `PlaylistPiaceUtente` FOREIGN KEY (`ID_Playlist`) REFERENCES `playlist` (`ID`);
+
+ALTER TABLE `mipiace_post`
+ ADD CONSTRAINT `UtentePiacePost` FOREIGN KEY (`ID_Utente`) REFERENCES `utente` (`ID`),
+ ADD CONSTRAINT `PostPiaceUtente` FOREIGN KEY (`ID_Post`) REFERENCES `post` (`ID`);
+
 --
 -- Limiti per la tabella `notifica`
 --
