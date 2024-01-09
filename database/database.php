@@ -120,6 +120,15 @@ class DatabaseHelper{
         return $this->db->insert_id;
     }
 
+    public function getSongCountByUser($userID) {
+        $stmt = $this->db->prepare("SELECT COUNT(ID) AS conteggio FROM canzone WHERE ID_Utente=?");
+        $stmt->bind_param("i", $userID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return $row["conteggio"];
+    }
+
     /*public function getFeed($ID){
         $query = "SELECT * FROM post, utente Username";
 
