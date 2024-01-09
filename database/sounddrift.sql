@@ -296,6 +296,13 @@ ALTER TABLE `utente`
   ADD UNIQUE INDEX `UsernameUtente` (`Username`),
   ADD UNIQUE INDEX `MailUtente` (`Email`);
 
+--
+-- Indici per le tabelle `risorsa`
+--
+ALTER TABLE `mipiace_post`
+  ADD PRIMARY KEY (`ID_Utente`, `ID_Post`),
+  ADD KEY (`ID_Utente`),
+  ADD KEY (`ID_Post`);
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
