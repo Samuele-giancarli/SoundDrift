@@ -90,6 +90,24 @@ class DatabaseHelper{
         return $feed;
     }
 
+    public function getMostLiked() {
+        $query =
+        "SELECT p.*, COUNT(m.ID_Utente) AS num_likes
+        FROM post p
+        LEFT JOIN mipiace_post m ON p.ID = m.ID_Post
+        GROUP BY p.ID
+        ORDER BY num_likes DESC, p.Data DESC";
+        $result = $this->db->query($query);
+
+        $feed = array();
+            
+        while ($row = $result->fetch_assoc()) {
+            $feed[] = $row;
+        }
+        
+        return $feed;
+    }
+
     public function getResource($ID) {
         $stmt = $this->db->prepare("SELECT * FROM risorsa WHERE ID=?");
         $stmt->bind_param("i", $ID);
@@ -137,17 +155,6 @@ class DatabaseHelper{
         $row = $result->fetch_assoc();
         return $row["ID_Immagine"];
     }
-
-    /*public function getFeed($ID){
-        $query = "SELECT * FROM post, utente Username";
-
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param("i", $userID);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        return $result->fetch_all(MYSQLI_ASSOC);
-    }*/
 
     public function updateIdImageUser($idImage, $id) {
         $stmt = $this->db->prepare("UPDATE utente SET ID_Immagine = ? WHERE ID = ?");
