@@ -8,7 +8,7 @@ $id = $_GET["id"];
 $row = $dbh->getImage($id);
 
 if(is_null($row)) {
-    die();
+    die("nessuna immagine corrispondente a questo id");
 }
 
 header("Content-Type: ".$row["MimeType"]);

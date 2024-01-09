@@ -88,5 +88,13 @@ class DatabaseHelper{
 
         return $result->fetch_assoc();
     }
+
+    public function InsertResource($NOME, $TIPO, $CONTENUTO) {
+        $query = "INSERT INTO risorsa (FileName, MimeType, Contenuto) VALUES (?,?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ssb", $NOME, $TIPO, $CONTENUTO);
+        $stmt->execute();
+    }
+
 }
 ?>
