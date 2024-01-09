@@ -1,21 +1,16 @@
-    <?php $db = new mysqli("127.0.0.1", "root", "", "sounddrift", 3307); ?>
-
-    
-    <?php 
+        <?php 
         if(isset($_FILES["profile-picture"])){
             $immagine=$_FILES["profile-picture"];
             $idimmagine=null;
             if ($immagine["error"]==0){
-                $idimmagine=store_file($db,$immagine);
+                $idimmagine=$dbh->storeResource($immagine);
                 if (is_null($idimmagine)){
                     echo "Errore generico";
                     die();
                 }
             }
             if (!is_null($idimmagine)) {
-                $stmt = $db->prepare("UPDATE utente SET ID_Immagine = ? WHERE ID = ?");
-                $stmt->bind_param("ii", $idimmagine, $templateParams["utente"]);
-                $stmt->execute();
+                $dbh->updateIdImageUser($idimmagine, $templateParams["utente"]);
             }
         }   
             
@@ -26,13 +21,7 @@
     <div id="profile-section" class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3 d-flex align-items-center">
       
     <div class="bg-image ripple d-flex flex-column align-items-center" data-mdb-ripple-color="light">
-        <img src="<?php 
-            $stmt = $db->prepare("SELECT * FROM risorsa WHERE ID=?");
-            $stmt->bind_param("i", $idimmagine);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $row = $result->fetch_assoc(); 
-            echo $row["FileName"]; ?>" id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" />
+        <img src="<?php $dbh->getResource($idimmagine)?>" id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" />
         
         <form id="profilePictureUpload" method="POST" enctype="multipart/form-data">
             <label class="btn btn-dark mt-2" for="formFile">Update Image</label>
@@ -56,7 +45,10 @@
                 }else
                 {
                     echo $templateParams["num_seguiti"]["num_following"];
-                }?>| Tracks: 200</p>
+                }?> | Tracks: </p>
+                    <?php
+                        echo $dbh->getSongCountByUser($templateParams["utente"]);
+                    ?>
             </div>
         </div>
     </div>
@@ -96,4 +88,3 @@
             }
     ?>
 </div>
-<?php $db->close();?>

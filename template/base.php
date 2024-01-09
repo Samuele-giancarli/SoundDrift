@@ -32,7 +32,7 @@
                 <a href="albumCreate.php" class="btn btn-dark" style="text-decoration:none">
                         <i class="bi bi-disc-fill" style="font-size: 20px"></i>
                 </a>
-                    <a href="profile.php" class="btn btn-dark" style="text-decoration:none">
+                    <a href="profile.php?utenteCorrente=<?php echo $_SESSION["ID"] ?>" class="btn btn-dark" style="text-decoration:none">
                         <i class="bi bi-person" style="font-size: 20px"></i>
                     </a>
                     <a href="#" class="btn btn-dark" style="text-decoration:none">
