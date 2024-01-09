@@ -10,17 +10,17 @@
                 }
             }
             if (!is_null($idimmagine)) {
-                $dbh->updateIdImageUser($idimmagine, $templateParams["utente"]);
+                $dbh->updateIdImageUser($idimmagine, $templateParams["utente"][0]["ID"]);
             }
         }   
             
-    ?>
+        ?>
 
 
     <div id="profile-page" class="container-fluid p-0 overflow-hidden">
     <div id="profile-section" class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3 d-flex align-items-center">
     <?php
-    $userID = $_SESSION["ID"];
+    $userID = $templateParams["utente"][0]["ID"];
     $profileImageID=$dbh->getUserImageID($userID);
     if(!is_null($profileImageID)) {
         $imageID="download.php?id=".$profileImageID;
@@ -31,11 +31,12 @@
     <div class="bg-image ripple d-flex flex-column align-items-center" data-mdb-ripple-color="light">
         <img <?php echo "src=\"".$imageID."\""; ?>  id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" />
         
+        <?php if($templateParams["utente"][0]["ID"] === $_SESSION["ID"]): ?>
         <form id="profilePictureUpload" method="POST" enctype="multipart/form-data">
             <label class="btn btn-dark mt-2" for="formFile">Update Image</label>
             <input class="d-none" type="file" id="formFile" name="profile-picture" accept="image/jpeg,image/png,image/webp,image/avif" onchange="this.form.submit()">
         </form>
-
+        <?php endif ?>
     </div>   
 
         <div id="profile-info" class="mx-auto text-center">
