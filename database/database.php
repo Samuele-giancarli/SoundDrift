@@ -18,6 +18,17 @@ class DatabaseHelper{
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+    
+
+    /*public function getImageUser($email){
+        $stmt = $this->db->prepare("SELECT immagine FROM utente WHERE Email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+    */
 
     //è un getNumber
     public function getFollowingOfUser($ID){
@@ -78,15 +89,18 @@ class DatabaseHelper{
     
         return $feed;
     }
+    
+    
 
-    public function getImage($ID) {
-        $query = "SELECT * FROM utente WHERE ID = ?";
+    /*public function getFeed($ID){
+        $query = "SELECT * FROM post, utente Username";
+
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("i", $ID);
+        $stmt->bind_param("i", $userID);
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return $result->fetch_assoc();
-    }
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }*/
 }
 ?>
