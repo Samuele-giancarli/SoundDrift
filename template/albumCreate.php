@@ -1,7 +1,5 @@
 <?php
 
-require_once("common.php");
-
 $show_form = true;
 $err_mess = null;
 
@@ -18,16 +16,15 @@ if(!isset($_SESSION["ID"])) {
     }elseif(strlen($genere)<=0||strlen($genere)>=256){
         $err_mess="Il genere non ha lunghezza valida.";
     }else{
-        $db = new mysqli("127.0.0.1", "root", "", "sounddrift", 3306);
         $idimmagine=null;
         if ($immagine["error"]==0){
-            $idimmagine=store_file($db,$immagine);
+            $idimmagine = $dbh->storeResource($immagine);
             if (is_null($idimmagine)){
                 echo "Errore generico";
                 die();
             }
         }
-        $stmt = $db->prepare("INSERT INTO album(Titolo,Genere,ID_Utente,Data,ID_Immagine) VALUES(?,?,?,CURDATE(),?)");
+        $stmt = $dbh->db->prepare("INSERT INTO album(Titolo,Genere,ID_Utente,Data,ID_Immagine) VALUES(?,?,?,CURDATE(),?)");
         $stmt->bind_param("ssii", $titolo, $genere, $idutente,$idimmagine);
         try {
             if($stmt->execute()) {
@@ -40,7 +37,6 @@ if(!isset($_SESSION["ID"])) {
         } catch(mysqli_sql_exception $e) {
             $err_mess="Errore generico";
         }
-        $db->close();
     }
 }
 ?>
@@ -63,9 +59,8 @@ if(!is_null($err_mess)) {
     echo $err_mess;
 }
 if ($show_form){
-    $db = new mysqli("127.0.0.1", "root", "", "sounddrift", 3306);
     echo "Album da finalizzare: <br> <ul>";
-    $stmt = $db->prepare("SELECT ID, Titolo FROM album WHERE Finalizzato=0 AND ID_Utente=? AND (SELECT COUNT(ID) FROM canzone WHERE album.ID=ID_Album) > 0");
+    $stmt = $dbh->db->prepare("SELECT ID, Titolo FROM album WHERE Finalizzato=0 AND ID_Utente=? AND (SELECT COUNT(ID) FROM canzone WHERE album.ID=ID_Album) > 0");
     $idcreatore=$_SESSION["ID"];
     $stmt->bind_param("i", $idcreatore);
     $stmt->execute();
@@ -74,6 +69,5 @@ if ($show_form){
         echo "<li>".htmlentities($row["Titolo"])." <button onclick=\"location.href='finalise.php?id=".$row["ID"]."'\" type=\"button\">Finalizza</button></li>";
     }
     echo "</ul>";
-    $db->close();
 }
 ?>
