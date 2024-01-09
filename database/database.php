@@ -129,6 +129,15 @@ class DatabaseHelper{
         return $row["conteggio"];
     }
 
+    public function getUserImageID($userID) {
+        $stmt = $this->db->prepare("SELECT ID_Immagine FROM utente WHERE ID=?");
+        $stmt->bind_param("i", $userID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return $row["ID_Immagine"];
+    }
+
     /*public function getFeed($ID){
         $query = "SELECT * FROM post, utente Username";
 
@@ -144,15 +153,6 @@ class DatabaseHelper{
         $stmt = $this->db->prepare("UPDATE utente SET ID_Immagine = ? WHERE ID = ?");
         $stmt->bind_param("ii", $idImage, $id);
         $stmt->execute();
-    }
-
-    public function getSongCountByUser($userID) {
-        $stmt = $this->db->prepare("SELECT COUNT(ID) AS conteggio FROM canzone WHERE ID_Utente=?");
-        $stmt->bind_param("i", $userID);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
-        return $row["conteggio"];
     }
 }
 ?>

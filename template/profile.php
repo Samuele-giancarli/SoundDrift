@@ -19,9 +19,17 @@
 
     <div id="profile-page" class="container-fluid p-0 overflow-hidden">
     <div id="profile-section" class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3 d-flex align-items-center">
-      
+    <?php
+    $userID = $_SESSION["ID"];
+    $profileImageID=$dbh->getUserImageID($userID);
+    if(!is_null($profileImageID)) {
+        $imageID="download.php?id=".$profileImageID;
+    } else {
+        $imageID="default.png";
+    }
+    ?>
     <div class="bg-image ripple d-flex flex-column align-items-center" data-mdb-ripple-color="light">
-        <img src="<?php $dbh->getResource($idimmagine)?>" id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" />
+        <img <?php echo "src=\"".$imageID."\""; ?>  id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" />
         
         <form id="profilePictureUpload" method="POST" enctype="multipart/form-data">
             <label class="btn btn-dark mt-2" for="formFile">Update Image</label>
