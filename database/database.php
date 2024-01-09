@@ -18,17 +18,6 @@ class DatabaseHelper{
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
-    
-
-    /*public function getImageUser($email){
-        $stmt = $this->db->prepare("SELECT immagine FROM utente WHERE Email = ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        return $result->fetch_all(MYSQLI_ASSOC);
-    }
-    */
 
     //è un getNumber
     public function getFollowingOfUser($ID){
@@ -160,6 +149,31 @@ class DatabaseHelper{
         $stmt = $this->db->prepare("UPDATE utente SET ID_Immagine = ? WHERE ID = ?");
         $stmt->bind_param("ii", $idImage, $id);
         $stmt->execute();
+    }
+
+    //DA RAGIONARE SU TABELLA GLOBALE (anche per seacrh)
+    public function addImagePost($idImage, $idPost) {
+        $query = "INSERT INTO post (ID_Post, ID_Immagine) VALUES (?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $idPost, $idImage);
+    }
+
+    public function addImagePlaylist($idImage, $idPlaylist) {
+        $query = "INSERT INTO playlist (ID_Playlist, ID_Immagine) VALUES (?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $idPlaylist, $idImage);
+    }
+
+    public function addImageAlbum($idImage, $idAlbum) {
+        $query = "INSERT INTO album (ID_Album, ID_Immagine) VALUES (?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $idAlbum, $idImage);
+    }
+
+    public function addImageSong($idImage, $idSong) {
+        $query = "INSERT INTO canzone (ID_Canzone, ID_Immagine) VALUES (?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $idSong, $idImage);
     }
 }
 ?>
