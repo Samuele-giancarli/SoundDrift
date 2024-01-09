@@ -89,6 +89,15 @@ class DatabaseHelper{
     
         return $feed;
     }
+
+    public function getResource($ID) {
+        $stmt = $this->db->prepare("SELECT * FROM risorsa WHERE ID=?");
+        $stmt->bind_param("i", $ID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return $row;
+    }
     
     
 
