@@ -1,10 +1,7 @@
 <?php
-require_once("common.php");
 
 $show_form = true;
 $err_mess = null;
-
-$db = new mysqli("127.0.0.1", "root", "", "sounddrift", 3306);
 
 if(!isset($_SESSION["ID"])) {
     $err_mess="Per caricare tuoi brani, devi essere loggato!";
@@ -27,19 +24,19 @@ if(!isset($_SESSION["ID"])) {
         $err_mess="Non hai inserito il file audio";
     }else{
         $idimmagine=null;
-        $idaudio=store_file($db,$audio);
+        $idaudio = $dbh->storeResource($audio);
         if (is_null($idaudio)){
             echo "Errore generico";
             die();
         }
         if ($immagine["error"]==0){
-            $idimmagine=store_file($db,$immagine);
+            $idimmagine = $dbh->storeResource($immagine);
             if (is_null($idimmagine)){
                 echo "Errore generico";
                 die();
             }
         }
-        $stmt = $db->prepare("INSERT INTO canzone(Titolo,Genere,ID_Utente,Data,ID_Immagine,ID_Audio,ID_Album) VALUES(?,?,?,CURDATE(),?,?,?)");
+        $stmt = $dbh->db->prepare("INSERT INTO canzone(Titolo,Genere,ID_Utente,Data,ID_Immagine,ID_Audio,ID_Album) VALUES(?,?,?,CURDATE(),?,?,?)");
         $stmt->bind_param("ssiiii", $titolo, $genere, $idutente,$idimmagine,$idaudio,$idalbum);
         try {
             if($stmt->execute()) {
@@ -70,7 +67,7 @@ if ($show_form) {
     Album di appartenenza: <select name="album" form="songupload">
         <option value="null">no album</option>
 <?php
-$stmt = $db->prepare("SELECT * FROM album WHERE Finalizzato=0 AND ID_Utente=?");
+$stmt = $dbh->db->prepare("SELECT * FROM album WHERE Finalizzato=0 AND ID_Utente=?");
 $idcreatore=$_SESSION["ID"];
 $stmt->bind_param("i", $idcreatore);
 $stmt->execute();
@@ -88,5 +85,4 @@ while ($row = $result->fetch_assoc()){
 if(!is_null($err_mess)) {
     echo $err_mess;
 }
-$db->close();
 ?>

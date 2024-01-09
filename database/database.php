@@ -1,7 +1,7 @@
 <?php
 
 class DatabaseHelper{
-    private $db;
+    public $db;
     
     public function __construct($servername, $username, $password, $dbname, $port){
         $this->db = new mysqli($servername, $username, $password, $dbname, $port);
@@ -99,7 +99,26 @@ class DatabaseHelper{
         return $row;
     }
     
-    
+    public function storeResource($file){
+        $null = null;
+        $filename = $file["name"];
+        $mimetype = $file["type"];
+        $filesize = $file["size"];
+        $fp = fopen($file["tmp_name"], "rb");
+        $content = fread($fp, $filesize);
+        fclose($fp);
+        $stmt = $this->db->prepare("INSERT INTO risorsa(FileName,MimeType,Contenuto) VALUES(?,?,?)");
+        $stmt->bind_param("ssb", $filename, $mimetype, $null);
+        $stmt->send_long_data(2, $content);
+        try {
+            if(!$stmt->execute()) {
+                return null;
+            }
+        } catch(mysqli_sql_exception $e) {
+            return null;
+        }
+        return $this->db->insert_id;
+    }
 
     /*public function getFeed($ID){
         $query = "SELECT * FROM post, utente Username";
