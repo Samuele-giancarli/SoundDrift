@@ -1,22 +1,47 @@
-<div id="profile-page" class="container-fluid p-0 overflow-hidden">
+    <?php $db = new mysqli("127.0.0.1", "root", "", "sounddrift", 3307); ?>
+
+    
+    <?php 
+        if(isset($_FILES["profile-picture"])){
+            $immagine=$_FILES["profile-picture"];
+            $idimmagine=null;
+            if ($immagine["error"]==0){
+                $idimmagine=store_file($db,$immagine);
+                if (is_null($idimmagine)){
+                    echo "Errore generico";
+                    die();
+                }
+            }
+            if (!is_null($idimmagine)) {
+                $stmt = $db->prepare("UPDATE utente SET ID_Immagine = ? WHERE ID = ?");
+                $stmt->bind_param("ii", $idimmagine, $templateParams["utente"]);
+                $stmt->execute();
+            }
+        }   
+            
+    ?>
+
+
+    <div id="profile-page" class="container-fluid p-0 overflow-hidden">
     <div id="profile-section" class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3 d-flex align-items-center">
       
     <div class="bg-image ripple d-flex flex-column align-items-center" data-mdb-ripple-color="light">
-        <img src="#" id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" />
-        <label class="btn btn-dark mt-2" for="formFile">Update Image</label>
-        <input class="d-none" type="file" id="formFile">
-    </div>
-    
-        <script>
-            let profilePic = document.getElementById("profile-pic");
-            let inputFile = document.getElementById("formFile");
-            inputFile.onchange = function(){
-                profilePic.src = URL.createObjectURL(inputFile.files[0]);
-            }
-        </script> 
+        <img src="<?php 
+            $stmt = $db->prepare("SELECT * FROM risorsa WHERE ID=?");
+            $stmt->bind_param("i", $idimmagine);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc(); 
+            echo $row["FileName"]; ?>" id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" />
+        
+        <form id="profilePictureUpload" method="POST" enctype="multipart/form-data">
+            <label class="btn btn-dark mt-2" for="formFile">Update Image</label>
+            <input class="d-none" type="file" id="formFile" name="profile-picture" accept="image/jpeg,image/png,image/webp,image/avif" onchange="this.form.submit()">
+        </form>
+
+    </div>   
 
         <div id="profile-info" class="mx-auto text-center">
-        <?php?>
             <h2><?php echo $templateParams["utente"][0]["Username"]; ?></h2>
 
             
@@ -71,3 +96,4 @@
             }
     ?>
 </div>
+<?php $db->close();?>
