@@ -23,7 +23,7 @@ if(isset($_SESSION["ID"])) {
     } else {
         $_SESSION["ID"] = $row["ID"];
         $_SESSION["username"] = $row["Username"];
-        header("Location: index.php");
+        header("Location: home.php");
     }
 } else {
     $show_form = true;
