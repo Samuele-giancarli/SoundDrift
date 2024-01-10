@@ -176,6 +176,8 @@ class DatabaseHelper{
         $result = $stmt->get_result();
         $row = $result->fetch_assoc();
         return $row;
+    }
+    
     //QUERY POST
     public function addImagePost($idImage, $idPost) {
         $query = "INSERT INTO post (ID_Post, ID_Immagine) VALUES (?,?)";
