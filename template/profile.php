@@ -86,22 +86,22 @@
             <div class="row">
                 <ul class="nav nav-pills">
                     <li class="nav-item px-2 my-2 text-center col-3 col-md-3 ">
-                        <a href="allPostProfile.php" class="btn btn-dark" style="text-decoration:none">
+                        <a href="allPostProfile.php?utenteCorrente=<?php echo $templateParams['utente'][0]['ID']; ?>" class="btn btn-dark" style="text-decoration:none">
                             Post
                         </a>
                     </li>
                     <li class="nav-item px-2 my-2 text-center col-3 col-md-3">
-                        <a href="popularPostProfile.php" class="btn btn-dark" style="text-decoration:none">
+                        <a href="popularPostProfile.php?utenteCorrente=<?php echo $templateParams['utente'][0]['ID'];?>" class="btn btn-dark" style="text-decoration:none">
                             Popolari
                         </a>
                     </li>
                     <li class="nav-item px-2 my-2 text-center col-3 col-md-3">
-                        <a href="albumPostProfile.php" class="btn btn-dark" style="text-decoration:none">
+                        <a href="albumPostProfile.php?utenteCorrente=<?php echo $templateParams['utente'][0]['ID'];?>" class="btn btn-dark" style="text-decoration:none">
                             Album
                         </a>
                     </li>
                     <li class="nav-item px-2 my-2 text-center col-3 col-md-3">
-                        <a href="playlistPostProfile.php" class="btn btn-dark" style="text-decoration:none">
+                        <a href="playlistPostProfile.php?utenteCorrente=<?php echo $templateParams['utente'][0]['ID'];?>" class="btn btn-dark" style="text-decoration:none">
                             Playlist
                         </a>
                     </li>
