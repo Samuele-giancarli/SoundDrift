@@ -236,6 +236,17 @@ class DatabaseHelper{
         return ($count > 0);
     }
 
+    public function getAlbumsOfUser($idCurrentUser){
+        $query = "SELECT * FROM album WHERE ID_Utente = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $idCurrentUser);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_all();
+
+        return $row;
+    }
+
     public function followUser($idSeguito, $idSeguace){
         $query = "INSERT INTO follow(ID_Seguito, ID_Seguace) VALUES (?,?)";
         $stmt = $this->db->prepare($query);
