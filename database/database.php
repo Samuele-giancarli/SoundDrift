@@ -161,5 +161,34 @@ class DatabaseHelper{
         $stmt->bind_param("ii", $idImage, $id);
         $stmt->execute();
     }
+
+    public function getSongInfo($id) {
+        $stmt = $this->db->prepare("SELECT * FROM canzone WHERE ID=?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return $row;
+    }
+
+    public function getAlbumInfo($id) {
+        $stmt = $this->db->prepare("SELECT * FROM album WHERE ID=?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return $row;
+    }
+
+    public function getResourceInfo($id){
+        $stmt = $this->db->prepare("SELECT * FROM risorsa WHERE ID=?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return $row;
+    }
 }
+
+
 ?>
