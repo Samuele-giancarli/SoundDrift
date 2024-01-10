@@ -105,6 +105,15 @@ class DatabaseHelper{
         $row = $result->fetch_assoc();
         return $row;
     }
+
+    public function getUserInfo($id) {
+        $stmt = $this->db->prepare("SELECT * FROM utente WHERE ID=?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return $row;
+    }
     
     public function storeResource($file){
         $null = null;
@@ -177,7 +186,7 @@ class DatabaseHelper{
         $row = $result->fetch_assoc();
         return $row;
     }
-    
+
     //QUERY POST
     public function addImagePost($idImage, $idPost) {
         $query = "INSERT INTO post (ID_Post, ID_Immagine) VALUES (?,?)";

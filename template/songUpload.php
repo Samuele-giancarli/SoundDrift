@@ -86,3 +86,16 @@ if(!is_null($err_mess)) {
     echo $err_mess;
 }
 ?>
+
+<ul>
+<?php
+$stmt = $dbh->db->prepare("SELECT * FROM canzone WHERE ID_Utente=?");
+$idutente = $_SESSION["ID"];
+$stmt->bind_param("i", $idutente);
+$stmt->execute();
+$result = $stmt->get_result();
+while($row = $result->fetch_assoc()) {
+    echo "<li><a style=\"color: black;\" href=\"songPlayer.php?id=".$row["ID"]."\">".htmlentities($row["Titolo"])."</a></li>";
+}
+?>
+</ul>

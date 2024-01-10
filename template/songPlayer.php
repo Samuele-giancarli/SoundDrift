@@ -1,3 +1,13 @@
+<?php
+if (!isset($_GET["id"])){
+    die();
+}
+$idcanzone=$_GET["id"];
+$info=$dbh->getSongInfo($idcanzone);
+$userInfo=$dbh->getUserInfo($info["ID_Utente"]);
+$audioInfo = $dbh->getResourceInfo($info["ID_Audio"]);
+?>
+
 <script>
 function duration() {
     let audio = document.getElementById("song");
@@ -14,22 +24,14 @@ function duration() {
     }
 }
 
-function play(){
-    let audio = document.getElementById("song");
-    audio.play();
+function play() {
+    let data = {};
+    data.title = <?php echo "\"".htmlentities($info["Titolo"])."\""; ?>;
+    data.author = <?php echo "\"".htmlentities($userInfo["Username"])."\""; ?>;
+    data.url = <?php echo "\"download.php?id=".$info["ID_Audio"]."\""; ?>;
+    window.parent.playNow(data);
 }
 </script>
-
-<?php
-
-if (!isset($_GET["id"])){
-    die();
-}
-
-$idcanzone=$_GET["id"];
-$info=$dbh->getSongInfo($idcanzone);
-
-?>
 
 <div>Titolo: <?php echo $info["Titolo"]; ?></div>
 <div>Genere: <?php echo $info["Genere"]; ?></div>
@@ -40,10 +42,6 @@ if (!is_null($info["ID_Immagine"])){
 <div>Copertina: <img <?php echo "src=\"download.php?id=".$info["ID_Immagine"]."\""; ?>  id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" /></div>
 <?php
 }
-?>
-
-<?php
-$audioInfo = $dbh->getResourceInfo($info["ID_Audio"]);
 ?>
 <div>Brano: <audio id="song">
 <source
