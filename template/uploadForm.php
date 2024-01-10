@@ -12,23 +12,8 @@
             $Textual = $_POST["testo"];
             $idImage = null;
             $img = $_FILES["immagine"];
-            
-            /*if (isset($img)) {
-                if ($img["error"] == 0) {
-                    $idImage = $dbh->storeResource($img);
-                    if (is_null($idImage)) {
-                        echo "Errore nel caricamento dell'immagine.";
-                        die();
-                    }
-                } 
-            }*/
 
             $idImage = uploadSource($dbh, $img);
-            if (is_null($idImage)) {
-                echo "Errore nel caricamento dell'immagine.";
-                die();
-            }
-
             $dbh->addPost($idUser, $Textual, $idImage);
 
             echo "post avvenuto con successo";

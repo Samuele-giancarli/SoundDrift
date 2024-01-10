@@ -1,6 +1,6 @@
         <?php 
         if(isset($_FILES["profile-picture"])){
-            $immagine=$_FILES["profile-picture"];
+            /*$immagine=$_FILES["profile-picture"];
             $idimmagine=null;
             if ($immagine["error"]==0){
                 $idimmagine=$dbh->storeResource($immagine);
@@ -11,7 +11,9 @@
             }
             if (!is_null($idimmagine)) {
                 $dbh->updateIdImageUser($idimmagine, $templateParams["utente"][0]["ID"]);
-            }
+            }*/
+
+            
         }   
             
         ?>
