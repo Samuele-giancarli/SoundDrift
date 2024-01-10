@@ -151,29 +151,41 @@ class DatabaseHelper{
         $stmt->execute();
     }
 
-    //DA RAGIONARE SU TABELLA GLOBALE (anche per seacrh)
+    //QUERY POST
     public function addImagePost($idImage, $idPost) {
         $query = "INSERT INTO post (ID_Post, ID_Immagine) VALUES (?,?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("ii", $idPost, $idImage);
+        $stmt->execute();
     }
 
     public function addImagePlaylist($idImage, $idPlaylist) {
         $query = "INSERT INTO playlist (ID_Playlist, ID_Immagine) VALUES (?,?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("ii", $idPlaylist, $idImage);
+        $stmt->execute();
     }
 
     public function addImageAlbum($idImage, $idAlbum) {
         $query = "INSERT INTO album (ID_Album, ID_Immagine) VALUES (?,?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("ii", $idAlbum, $idImage);
+        $stmt->execute();
     }
 
     public function addImageSong($idImage, $idSong) {
         $query = "INSERT INTO canzone (ID_Canzone, ID_Immagine) VALUES (?,?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("ii", $idSong, $idImage);
+        $stmt->execute();
+    }
+
+    public function addPost($idUser, $textual, $idImage) {
+        $query = "INSERT INTO post (Data, ID_Immagine, Testo, ID_Utente) VALUES (?, ?, ?, ?);";
+        $datePost = date("Y-m-d H:i:s");
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ssss", $datePost, $idImage, $textual, $idUser);
+        $stmt->execute();
     }
 }
 ?>
