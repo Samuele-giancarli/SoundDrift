@@ -5,8 +5,12 @@
         <div class="col-md-6 text-center">
             <div class="card rounded-3 text-center">
                 <div class="card-body">
-                    <h5 class="card-title"> <?php echo $post['Testo']; ?> </h5>
-                    <p class="card-text">
+                    <?php
+                        $User = $post['ID_Utente'];
+                        $UserInfo = $dbh->getUserInfo($User);
+                    ?>
+                    <h5 class="card-title"> <a href="profile.php?utenteCorrente= <?php echo $User ?>" style="color: black"> <?php echo $UserInfo['Username'] ?> </a> </h5>
+                    <p class="card-text"> 
                         <?php
                             $postImage = $post['ID_Immagine'];
                             $imagePath="download.php?id=".$postImage;
@@ -16,7 +20,7 @@
                         <?php } ?>
                         <br>
                         <?php $imageID="download.php?id=".$postImage; ?> <br>
-                        <?php echo $post['Testo']; ?> <br>               
+                        <?php echo $post['Testo']; ?> <br>    
                     </p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
