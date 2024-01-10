@@ -3,7 +3,7 @@
     <head>
         <title><?php echo $templateParams["titolo"]; ?></title>
         <meta charset="UTF-8"/>
-        <link rel="stylesheet" href="../SoundDrift/css/style.css" aria-atomic="">
+        <link rel="stylesheet" href="css/style.css" aria-atomic="">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Major Mono Display">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -12,10 +12,10 @@
 
     <body class="bg-light">
         <header class="bg-black fixed-top d-flex justify-content-between align-items-center">
-            <!--<h1 class="text-light"><button><a href="index.php" style="text-decoration:none"> <img src="images\logo.png" width=70>SoundDrift </a></button></h1>
+            <!--<h1 class="text-light"><button><a href="home.php" style="text-decoration:none"> <img src="images\logo.png" width=70>SoundDrift </a></button></h1>
             -->
 
-            <a href="index.php">
+            <a href="home.php">
                 <!-- da rivedere per il discorso del percorso assoluto -->
                     <img src="http://localhost/SoundDrift/images/App_images/logo3.jpg" width="70" style="display:inline-block">
                     <h1 class="text-white" style="display:inline-block; font-size:27px" >SoundDrift</h1>
@@ -61,39 +61,6 @@
                 }
             ?>
         </main>
-
-        <footer class="bg-secondary text-center">
-        <button type="button" class="btn btn-primary">
-                    <i class="bi bi-skip-backward"></i>
-                </button>
-        <button type="button" class="btn btn-primary">
-                    <i class="bi bi-play"></i> Play
-                </button>
-                <button type="button" class="btn btn-primary">
-                    <i class="bi bi-skip-forward"></i> 
-        </button>
-
-
-                <p style="display:inline-block"><a href="https://www.voiceevolutioninstitute.it/teams/view/aisja-baglioni" style="text-decoration:none">Nome del brano</a></p>
-                <p style="display:inline-block">-</p>
-                <p style="display:inline-block"><a href="https://www.voiceevolutioninstitute.it/teams/view/aisja-baglioni" style="text-decoration:none">Nome dell'artista</a></p>
-
-                <button type="button" class="btn btn-primary">
-                    <i class="bi bi-repeat"></i> 
-                </button>
-
-                <button type="button" class="btn btn-primary">
-                    <i class="bi bi-plus-circle-dotted"></i> 
-                </button>
-
-                <button type="button" class="btn btn-primary">
-                    <i class="bi bi-suit-heart"></i> 
-                </button>
-
-                <button type="button" class="btn btn-primary">
-                    <i class="bi bi-music-note-list"></i> 
-                </button>
-        </footer>
         
         <footer id="second-footer" class="bg-black text-center">
             <div class="container">

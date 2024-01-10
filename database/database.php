@@ -151,29 +151,68 @@ class DatabaseHelper{
         $stmt->execute();
     }
 
-    //DA RAGIONARE SU TABELLA GLOBALE (anche per seacrh)
+    public function getSongInfo($id) {
+        $stmt = $this->db->prepare("SELECT * FROM canzone WHERE ID=?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return $row;
+    }
+
+    public function getAlbumInfo($id) {
+        $stmt = $this->db->prepare("SELECT * FROM album WHERE ID=?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return $row;
+    }
+
+    public function getResourceInfo($id){
+        $stmt = $this->db->prepare("SELECT * FROM risorsa WHERE ID=?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return $row;
+    }
+    
+    //QUERY POST
     public function addImagePost($idImage, $idPost) {
         $query = "INSERT INTO post (ID_Post, ID_Immagine) VALUES (?,?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("ii", $idPost, $idImage);
+        $stmt->execute();
     }
 
     public function addImagePlaylist($idImage, $idPlaylist) {
         $query = "INSERT INTO playlist (ID_Playlist, ID_Immagine) VALUES (?,?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("ii", $idPlaylist, $idImage);
+        $stmt->execute();
     }
 
     public function addImageAlbum($idImage, $idAlbum) {
         $query = "INSERT INTO album (ID_Album, ID_Immagine) VALUES (?,?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("ii", $idAlbum, $idImage);
+        $stmt->execute();
     }
 
     public function addImageSong($idImage, $idSong) {
         $query = "INSERT INTO canzone (ID_Canzone, ID_Immagine) VALUES (?,?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("ii", $idSong, $idImage);
+        $stmt->execute();
+    }
+
+    public function addPost($idUser, $textual, $idImage) {
+        $query = "INSERT INTO post (Data, ID_Immagine, Testo, ID_Utente) VALUES (?, ?, ?, ?);";
+        $datePost = date("Y-m-d H:i:s");
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ssss", $datePost, $idImage, $textual, $idUser);
+        $stmt->execute();
     }
 
     public function isUserFollowed($idUserInSession, $idCurrentUser){
@@ -202,4 +241,6 @@ class DatabaseHelper{
         $stmt->execute();
     }
 }
+
+
 ?>
