@@ -175,5 +175,31 @@ class DatabaseHelper{
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("ii", $idSong, $idImage);
     }
+
+    public function isUserFollowed($idUserInSession, $idCurrentUser){
+        $query = "SELECT COUNT(*) as count FROM follow WHERE ID_Seguace = ? AND ID_Seguito = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $idUserInSession, $idCurrentUser);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $count = $row['count'];
+
+        return ($count > 0);
+    }
+
+    public function followUser($idSeguito, $idSeguace){
+        $query = "INSERT INTO follow(ID_Seguito, ID_Seguace) VALUES (?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $idSeguito, $idSeguace);
+        $stmt->execute();
+    }
+
+    public function unfollowUser($idSeguito, $idSeguace){
+        $query = "DELETE FROM follow WHERE ID_Seguito = ? AND ID_Seguace = ?;";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $idSeguito, $idSeguace);
+        $stmt->execute();
+    }
 }
 ?>
