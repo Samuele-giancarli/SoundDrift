@@ -5,7 +5,6 @@ $show_form = false;
 
 if(isset($_SESSION["ID"])) {
     $err_mess="OPS! Sei già registrato";
-    // Manda logout
 } elseif(isset($_POST["email"])) {
     $username=$_POST["username"];
     $email=$_POST["email"];
