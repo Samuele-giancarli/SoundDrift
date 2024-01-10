@@ -1,19 +1,10 @@
         <?php 
         if(isset($_FILES["profile-picture"])){
-            /*$immagine=$_FILES["profile-picture"];
-            $idimmagine=null;
-            if ($immagine["error"]==0){
-                $idimmagine=$dbh->storeResource($immagine);
-                if (is_null($idimmagine)){
-                    echo "Errore generico";
-                    die();
-                }
+            $immagine=$_FILES["profile-picture"];
+            $idImage = uploadSource($dbh, $immagine);
+            if (!is_null($idImage)) {
+                $dbh->updateIdImageUser($idImage, $templateParams["utente"][0]["ID"]);
             }
-            if (!is_null($idimmagine)) {
-                $dbh->updateIdImageUser($idimmagine, $templateParams["utente"][0]["ID"]);
-            }*/
-
-            
         }   
             
         ?>
