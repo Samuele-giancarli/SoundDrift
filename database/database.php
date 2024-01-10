@@ -18,17 +18,6 @@ class DatabaseHelper{
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
-    
-
-    /*public function getImageUser($email){
-        $stmt = $this->db->prepare("SELECT immagine FROM utente WHERE Email = ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        return $result->fetch_all(MYSQLI_ASSOC);
-    }
-    */
 
     //è un getNumber
     public function getFollowingOfUser($ID){
@@ -187,6 +176,67 @@ class DatabaseHelper{
         $result = $stmt->get_result();
         $row = $result->fetch_assoc();
         return $row;
+    //QUERY POST
+    public function addImagePost($idImage, $idPost) {
+        $query = "INSERT INTO post (ID_Post, ID_Immagine) VALUES (?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $idPost, $idImage);
+        $stmt->execute();
+    }
+
+    public function addImagePlaylist($idImage, $idPlaylist) {
+        $query = "INSERT INTO playlist (ID_Playlist, ID_Immagine) VALUES (?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $idPlaylist, $idImage);
+        $stmt->execute();
+    }
+
+    public function addImageAlbum($idImage, $idAlbum) {
+        $query = "INSERT INTO album (ID_Album, ID_Immagine) VALUES (?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $idAlbum, $idImage);
+        $stmt->execute();
+    }
+
+    public function addImageSong($idImage, $idSong) {
+        $query = "INSERT INTO canzone (ID_Canzone, ID_Immagine) VALUES (?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $idSong, $idImage);
+        $stmt->execute();
+    }
+
+    public function addPost($idUser, $textual, $idImage) {
+        $query = "INSERT INTO post (Data, ID_Immagine, Testo, ID_Utente) VALUES (?, ?, ?, ?);";
+        $datePost = date("Y-m-d H:i:s");
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ssss", $datePost, $idImage, $textual, $idUser);
+        $stmt->execute();
+    }
+
+    public function isUserFollowed($idUserInSession, $idCurrentUser){
+        $query = "SELECT COUNT(*) as count FROM follow WHERE ID_Seguace = ? AND ID_Seguito = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $idUserInSession, $idCurrentUser);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $count = $row['count'];
+
+        return ($count > 0);
+    }
+
+    public function followUser($idSeguito, $idSeguace){
+        $query = "INSERT INTO follow(ID_Seguito, ID_Seguace) VALUES (?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $idSeguito, $idSeguace);
+        $stmt->execute();
+    }
+
+    public function unfollowUser($idSeguito, $idSeguace){
+        $query = "DELETE FROM follow WHERE ID_Seguito = ? AND ID_Seguace = ?;";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $idSeguito, $idSeguace);
+        $stmt->execute();
     }
 }
 

@@ -16,6 +16,18 @@
             
         ?>
 
+        <?php 
+            if(isset($_POST["seguire"])){
+                $dbh->followUser($templateParams["utente"][0]["ID"], $_SESSION["ID"]);
+            }
+        ?>
+
+        <?php 
+            if(isset($_POST["unfollow"])){
+                $dbh->unfollowUser($templateParams["utente"][0]["ID"], $_SESSION["ID"]);
+            }
+        ?>
+
 
     <div id="profile-page" class="container-fluid p-0 overflow-hidden">
     <div id="profile-section" class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3 d-flex align-items-center">
@@ -36,6 +48,14 @@
             <label class="btn btn-dark mt-2" for="formFile">Update Image</label>
             <input class="d-none" type="file" id="formFile" name="profile-picture" accept="image/jpeg,image/png,image/webp,image/avif" onchange="this.form.submit()">
         </form>
+        <?php elseif($dbh->isUserFollowed($_SESSION["ID"], $templateParams["utente"][0]["ID"])): ?>
+            <form id="UnfollowingUser" method="POST">
+                <input type="submit" class="btn btn-secondary mt-2" value="Segui già" name="unfollow">
+            </form>
+        <?php else: ?>
+            <form id="FollowingUser" method="POST">
+                <input type="submit" class="btn btn-primary mt-2" value="Segui" name="seguire">
+            </form>
         <?php endif ?>
     </div>   
 
@@ -44,17 +64,17 @@
 
             
             <div id="profile-stats" class="mt-5">
-                <p>Follower: <?php if(is_null($templateParams["num_seguaci"]["num_followers"])){
+                <p>Seguaci: <?php if(is_null($templateParams["num_seguaci"]["num_followers"])){
                     echo 0;
                 }else
                 {
                     echo $templateParams["num_seguaci"]["num_followers"];
-                }?> | Following: <?php if(is_null($templateParams["num_seguiti"]["num_following"])){
+                }?> | Seguiti: <?php if(is_null($templateParams["num_seguiti"]["num_following"])){
                     echo 0;
                 }else
                 {
                     echo $templateParams["num_seguiti"]["num_following"];
-                }?> | Tracks: </p>
+                }?> | Tracce: </p>
                     <?php
                         echo $dbh->getSongCountByUser($templateParams["utente"]);
                     ?>
@@ -72,7 +92,7 @@
                     </li>
                     <li class="nav-item px-2 my-2 text-center col-3 col-md-3">
                         <a href="popularPostProfile.php" class="btn btn-dark" style="text-decoration:none">
-                            Popular
+                            Popolari
                         </a>
                     </li>
                     <li class="nav-item px-2 my-2 text-center col-3 col-md-3">

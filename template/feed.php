@@ -8,10 +8,10 @@
                     <h5 class="card-title"> <?php echo $post['Testo']; ?> </h5>
                     <p class="card-text">
                         <?php
-                            $postImage = $post['ID_Immagine']; 
-                            echo $postImage;     
+                            $postImage = $post['ID_Immagine'];
+                            $imagePath="download.php?id=".$postImage;
                         ?>
-                        <img <?php echo "src=\"".$postImage."\""; ?>  id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" />
+                        <img src = <?php echo $imagePath; ?>  id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" />
                         <br>
                         <?php $imageID="download.php?id=".$postImage; ?> <br>
                         <?php echo $post['Testo']; ?> <br>               
@@ -23,7 +23,7 @@
 
                             <button type="button" class="btn btn-secondary">Condividi</button>
                         </div>
-                        <small class="text-muted">10 peni nel culo</small>
+                        <small class="text-muted">10 likes</small>
                     </div>
                 </div>
             </div>
