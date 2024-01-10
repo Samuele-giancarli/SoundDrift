@@ -40,8 +40,8 @@ if(!isset($_SESSION["ID"])) {
         $stmt->bind_param("ssiiii", $titolo, $genere, $idutente,$idimmagine,$idaudio,$idalbum);
         try {
             if($stmt->execute()) {
-                $err_mess="<a href=\"songUpload.php\" style=\"color:black\">La canzone ".htmlentities($titolo)." è stata caricata: aggiungi subito altre canzoni!</a><br>";
-                $show_form=false;
+                $err_mess=">La canzone ".htmlentities($titolo)." è stata caricata: aggiungi subito altre canzoni!</a><br>";
+                $show_form=true;
             } else {
                 $err_mess="Errore sconosciuto";
             }

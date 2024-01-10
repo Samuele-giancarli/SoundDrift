@@ -20,17 +20,19 @@
 <button type="button" class="btn btn-primary" id="playButton">
             <i class="bi bi-play"></i> Play
         </button>
-        <button type="button" class="btn btn-primary">
-            <i class="bi bi-skip-forward"></i> 
-</button>
+    
 
 
         <p style="display:inline-block" id="title">Nome del brano</p>
         <p style="display:inline-block">-</p>
         <p style="display:inline-block" id="author">Nome dell'artista</p>
 
-        <button type="button" class="btn btn-primary">
-            <i class="bi bi-repeat"></i> 
+        <button type="button"  class="btn btn-primary">
+        <i class="bi bi-skip-forward"></i> 
+        </button>
+
+        <button type="button" class="btn btn-primary" id="loopButton" onclick="enableLoop();">
+            <i class="bi bi-arrow-repeat"> Enable Loop</i> 
         </button>
 
         <button type="button" class="btn btn-primary">

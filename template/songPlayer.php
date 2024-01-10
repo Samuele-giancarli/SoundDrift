@@ -22,6 +22,8 @@ function duration() {
     }else{
     durataElement.innerText = "Durata: " + minuti + "m" + secondi + "s";
     }
+    audio.volume = 0;
+    audio.play();
 }
 
 function play() {
@@ -67,5 +69,6 @@ if (!is_null($info["ID_Album"])){
 <button type="button" onclick="play();">Play</button>
 <script>
 let audio = document.getElementById("song");
+audio.ondurationchange = duration;
 audio.oncanplaythrough = duration;
 </script>

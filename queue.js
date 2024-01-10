@@ -27,3 +27,19 @@ function pause() {
     button.innerHTML = "<i class=\"bi bi-play\"></i> Play";
     button.onclick = play;
 }
+
+function enableLoop(){
+    let button = get("loopButton");
+    let audio = get("audio");
+    audio.loop = true;
+    button.innerHTML = "<i class=\"bi bi-arrow-repeat\"></i> Disable Loop";
+    button.onclick = disableLoop;
+}
+
+function disableLoop(){
+    let button = get("loopButton");
+    let audio = get("audio");
+    audio.loop = false;
+    button.innerHTML = "<i class=\"bi bi-arrow-repeat bgn-secondary\"></i> Enable Loop";
+    button.onclick = enableLoop;
+}
