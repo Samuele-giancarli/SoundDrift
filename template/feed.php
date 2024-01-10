@@ -11,7 +11,9 @@
                             $postImage = $post['ID_Immagine'];
                             $imagePath="download.php?id=".$postImage;
                         ?>
-                        <img src = <?php echo $imagePath; ?>  id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" />
+                        <?php if($postImage!= null) { ?>
+                            <img src = <?php echo $imagePath; ?>  id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" />
+                        <?php } ?>
                         <br>
                         <?php $imageID="download.php?id=".$postImage; ?> <br>
                         <?php echo $post['Testo']; ?> <br>               
