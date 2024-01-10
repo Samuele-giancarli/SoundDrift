@@ -35,9 +35,9 @@
             <i class="bi bi-arrow-repeat"> Enable Loop</i> 
         </button>
 
-        <button type="button" class="btn btn-primary">
+ <!--      <button type="button" class="btn btn-primary">
             <i class="bi bi-plus-circle-dotted"></i> 
-        </button>
+        </button> 
 
         <button type="button" class="btn btn-primary">
             <i class="bi bi-suit-heart"></i> 
@@ -45,7 +45,7 @@
 
         <button type="button" class="btn btn-primary">
             <i class="bi bi-music-note-list"></i> 
-        </button>
+        </button> -->
 </footer>
 </body>
 </html>

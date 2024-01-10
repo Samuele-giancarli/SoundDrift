@@ -69,5 +69,20 @@ if ($show_form){
         echo "<li>".htmlentities($row["Titolo"])." <button onclick=\"location.href='finalise.php?id=".$row["ID"]."'\" type=\"button\">Finalizza</button></li>";
     }
     echo "</ul>";
+    echo "Tutti gli album: <br>";
+?>
+<ul>
+<?php
+$stmt = $dbh->db->prepare("SELECT * FROM album WHERE ID_Utente=?");
+$idutente = $_SESSION["ID"];
+$stmt->bind_param("i", $idutente);
+$stmt->execute();
+$result = $stmt->get_result();
+while($row = $result->fetch_assoc()) {
+    echo "<li><a style=\"color: black;\" href=\"albumPlayer.php?id=".$row["ID"]."\">".htmlentities($row["Titolo"])."</a></li>";
+}
+?>
+</ul>
+<?php
 }
 ?>

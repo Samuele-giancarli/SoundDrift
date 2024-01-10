@@ -16,9 +16,11 @@ if(!isset($_SESSION["ID"])) {
     if($idalbum == "null") {
         $idalbum = null;
     }
-    if (strlen($titolo)<=0||strlen($titolo)>=256){
+    if (isset($_POST["albuminfo"]) && is_null($idalbum)){
+        $err_mess="Selezione album non valida";
+    }elseif (strlen($titolo)<=0||strlen($titolo)>=256){
         $err_mess="Il titolo non ha lunghezza valida";
-    }elseif(strlen($genere)<=0||strlen($genere)>=256){
+    }elseif(strlen(($genere)<=0||strlen($genere)>=256)&&!isset($_POST["albuminfo"])){
         $err_mess="Il genere non ha lunghezza valida";
     }elseif($audio["error"]!=0){
         $err_mess="Non hai inserito il file audio";
@@ -29,7 +31,11 @@ if(!isset($_SESSION["ID"])) {
             echo "Errore generico";
             die();
         }
-        if ($immagine["error"]==0){
+        if (isset($_POST["albuminfo"])) {
+            $albumInfo = $dbh->getAlbumInfo($idalbum);
+            $genere= $albumInfo["Genere"];
+            $idimmagine= $albumInfo["ID_Immagine"];
+        } elseif ($immagine["error"]==0){
             $idimmagine = $dbh->storeResource($immagine);
             if (is_null($idimmagine)){
                 echo "Errore generico";
@@ -55,6 +61,7 @@ if(!isset($_SESSION["ID"])) {
 <?php
 if ($show_form) {
 ?>
+
 <form id="songupload" method="POST" action="songUpload.php" enctype="multipart/form-data">
     <input type="text" name="titolo" placeholder="Titolo della canzone"/>
     <br>
@@ -65,7 +72,7 @@ if ($show_form) {
     File audio: <input type="file" name="audio" accept="audio/mpeg,audio/flac"/>
     <br>
     Album di appartenenza: <select name="album" form="songupload">
-        <option value="null">no album</option>
+    <option value="null">no album</option>
 <?php
 $stmt = $dbh->db->prepare("SELECT * FROM album WHERE Finalizzato=0 AND ID_Utente=?");
 $idcreatore=$_SESSION["ID"];
@@ -77,7 +84,13 @@ while ($row = $result->fetch_assoc()){
 }
 ?>
     </select>
+
     <br>
+    <input type="checkbox" id="albuminfo" name="albuminfo">
+    <label for="albuminfo">Copiare le informazioni dell'album?</label><br>
+
+    <?php
+    ?>
     <input type="submit" value="Invia"/>
 </form>
 <?php
