@@ -42,7 +42,7 @@
     ?>
     <div class="bg-image ripple d-flex flex-column align-items-center" data-mdb-ripple-color="light">
         <img <?php echo "src=\"".$imageID."\""; ?>  id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" />
-        
+    <?php if(isset($_SESSION["ID"])): ?>
         <?php if($templateParams["utente"][0]["ID"] === $_SESSION["ID"]): ?>
         <form id="profilePictureUpload" method="POST" enctype="multipart/form-data">
             <label class="btn btn-dark mt-2" for="formFile">Update Image</label>
@@ -57,6 +57,7 @@
                 <input type="submit" class="btn btn-primary mt-2" value="Segui" name="seguire">
             </form>
         <?php endif ?>
+    <?php endif ?>    
     </div>   
 
         <div id="profile-info" class="mx-auto text-center">
@@ -86,22 +87,22 @@
             <div class="row">
                 <ul class="nav nav-pills">
                     <li class="nav-item px-2 my-2 text-center col-3 col-md-3 ">
-                        <a href="allPostProfile.php" class="btn btn-dark" style="text-decoration:none">
+                        <a href="allPostProfile.php?utenteCorrente=<?php echo $templateParams['utente'][0]['ID']; ?>" class="btn btn-dark" style="text-decoration:none">
                             Post
                         </a>
                     </li>
                     <li class="nav-item px-2 my-2 text-center col-3 col-md-3">
-                        <a href="popularPostProfile.php" class="btn btn-dark" style="text-decoration:none">
+                        <a href="popularPostProfile.php?utenteCorrente=<?php echo $templateParams['utente'][0]['ID'];?>" class="btn btn-dark" style="text-decoration:none">
                             Popolari
                         </a>
                     </li>
                     <li class="nav-item px-2 my-2 text-center col-3 col-md-3">
-                        <a href="albumPostProfile.php" class="btn btn-dark" style="text-decoration:none">
+                        <a href="albumPostProfile.php?utenteCorrente=<?php echo $templateParams['utente'][0]['ID'];?>" class="btn btn-dark" style="text-decoration:none">
                             Album
                         </a>
                     </li>
                     <li class="nav-item px-2 my-2 text-center col-3 col-md-3">
-                        <a href="playlistPostProfile.php" class="btn btn-dark" style="text-decoration:none">
+                        <a href="playlistPostProfile.php?utenteCorrente=<?php echo $templateParams['utente'][0]['ID'];?>" class="btn btn-dark" style="text-decoration:none">
                             Playlist
                         </a>
                     </li>

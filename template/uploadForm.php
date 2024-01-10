@@ -12,9 +12,19 @@
                 $Textual = $_POST["testo"];
                 
                 // per adesso:
-                    $idImage = 1;
+                    $idImage = null;
                 //
-                
+                $img = $_FILES["immagine"];
+                if (isset($img)) {
+                    if ($img["error"] == 0) {
+                        $idImage = $dbh->storeResource($img);
+                        if (is_null($idImage)) {
+                            echo "Errore nel caricamento dell'immagine.";
+                            die();
+                        }
+                    } 
+                }
+        
                 $dbh->addPost($idUser, $Textual, $idImage);
         } catch (PDOException $e) {
             die("Query fallita: ". $e->getMessage());
