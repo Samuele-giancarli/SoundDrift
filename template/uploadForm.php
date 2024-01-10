@@ -28,7 +28,7 @@
     <form action="" method="post" enctype="multipart/form-data">
         <textarea name="testo"></textarea><br>
         Immagine: <br>
-        <input type="file" name="immagine"><br><br>
+        <input type="file" name="immagine" accept="image/jpeg,image/png,image/webp,image/avif"><br><br>
         <input type="submit" value="Pubblica">
     </form>
 <?php
