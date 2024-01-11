@@ -16,8 +16,8 @@
         if($isAlbum && $isSong)
         {
             echo "un post non può essere sia una canzone che un album";
-        } elseif(!$isAlbum && $isSong) {
-            $istext=false;
+        } elseif(!$isAlbum && !$isSong) {
+            $istext=true;
         }
 
 ?>
