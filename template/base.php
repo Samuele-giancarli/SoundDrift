@@ -62,6 +62,9 @@
             ?>
         </main>
         
+        <?php
+            if(isset($_SESSION["ID"])):
+        ?>
         <footer id="second-footer" class="bg-black text-center">
             <div class="container">
                 <a href="#" class="btn btn-dark" style="text-decoration:none">
@@ -78,6 +81,7 @@
                 </a>
             </div>
         </footer>
+        <?php endif ?>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     </body>
 </html>

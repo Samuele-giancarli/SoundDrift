@@ -5,6 +5,7 @@ body {
     display: flex;
     flex-direction: column;
     font-family: Arial, sans-serif;
+    overflow-y: auto;
 }
 
 header {
@@ -51,7 +52,7 @@ footer a:hover{
 }
 
 #second-footer {
-    position: relative; /* Modifica qui */
+    position: fixed; /* Modifica qui */
     bottom: 0;
     width: 100%;
     padding:0.5rem;
