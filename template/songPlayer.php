@@ -26,12 +26,12 @@ function duration() {
     audio.play();
 }
 
-function play() {
+function play(enqueue) {
     let data = {};
     data.title = <?php echo "\"".htmlentities($info["Titolo"])."\""; ?>;
     data.author = <?php echo "\"".htmlentities($userInfo["Username"])."\""; ?>;
     data.url = <?php echo "\"download.php?id=".$info["ID_Audio"]."\""; ?>;
-    window.parent.playNow(data);
+    window.parent.playNow(data, enqueue);
 }
 </script>
 
@@ -67,9 +67,11 @@ if (!is_null($info["ID_Album"])){
 
 <div id="durata"></div>
 
-<button type="button" onclick="play();">Play</button>
+<button type="button" onclick="play(false);">Play</button>
 <script>
 let audio = document.getElementById("song");
 audio.ondurationchange = duration;
 audio.oncanplaythrough = duration;
 </script>
+
+<button type="button" onclick="play(true);">Aggiungi in coda</button>

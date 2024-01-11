@@ -14,10 +14,12 @@
 <audio id="audio"></audio>
 <iframe src="home.php" width="100%" height="100%"></iframe>
 <footer class="bg-secondary text-center">
-<button type="button" class="btn btn-primary">
+        <input type="range" min="0" max="1" value="1" step="0.01" id="volume" onchange="volumeUpdate();" oninput="volumeUpdate();"></input>
+
+        <button type="button" class="btn btn-primary" onclick="prevSong();">
             <i class="bi bi-skip-backward"></i>
         </button>
-<button type="button" class="btn btn-primary" id="playButton">
+        <button type="button" class="btn btn-primary" id="playButton">
             <i class="bi bi-play"></i> Play
         </button>
     
@@ -27,13 +29,16 @@
         <p style="display:inline-block">-</p>
         <p style="display:inline-block" id="author">Nome dell'artista</p>
 
-        <button type="button"  class="btn btn-primary">
-        <i class="bi bi-skip-forward"></i> 
+        <button type="button"  class="btn btn-primary" onclick="nextSong();">
+            <i class="bi bi-skip-forward"></i> 
         </button>
 
         <button type="button" class="btn btn-primary" id="loopButton" onclick="enableLoop();">
-            <i class="bi bi-arrow-repeat"> Enable Loop</i> 
+            <i class="bi bi-arrow-repeat"></i> Enable Loop
         </button>
+
+        <p style="display:inline-block">Prossimo in coda:</p>
+        <p style="display:inline-block" id="next"></p>
 
  <!--      <button type="button" class="btn btn-primary">
             <i class="bi bi-plus-circle-dotted"></i> 

@@ -17,6 +17,18 @@ if (!is_null($info["ID_Immagine"])){
 <div>Copertina: <img <?php echo "src=\"download.php?id=".$info["ID_Immagine"]."\""; ?>  id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" /></div>
 <?php
 }
+
+echo "<button type=\"button\" onclick=\"";
+foreach ($dbh -> getSongsFromAlbum($idalbum) as $song){
+    echo "window.parent.playNow({";
+    echo "'title': '".htmlentities($song["Titolo"])."',";
+    $userInfo = $dbh->getUserInfo($song["ID_Utente"]);
+    echo "'author': '".htmlentities($userInfo["Username"])."',";
+    echo "'url': 'download.php?id=".$song["ID_Audio"]."'";
+    echo "},true);";
+}
+echo "\">Aggiungi tutto in coda</button>";
+
 ?>
 
 <div>Brani: </div>
@@ -25,14 +37,29 @@ if (!is_null($info["ID_Immagine"])){
 <?php
 foreach ($dbh -> getSongsFromAlbum($idalbum) as $song){
     echo "<li><a style=\"color: black;\" href=\"songPlayer.php?id=".$song["ID"]."\">".htmlentities($song["Titolo"])."</a>";
-    echo " <button type=\"button\" onclick=\"";
-    echo "window.parent.playNow({";
-    echo "'title': '".htmlentities($song["Titolo"])."',";
-    $userInfo = $dbh->getUserInfo($song["ID_Utente"]);
-    echo "'author': '".htmlentities($userInfo["Username"])."',";
-    echo "'url': 'download.php?id=".$song["ID_Audio"]."'";
-    echo "});";
-    echo "\">Riproduci</button></li>";
+    for ($i=0; $i<2; $i++) {
+        echo " <button type=\"button\" onclick=\"";
+        echo "window.parent.playNow({";
+        echo "'title': '".htmlentities($song["Titolo"])."',";
+        $userInfo = $dbh->getUserInfo($song["ID_Utente"]);
+        echo "'author': '".htmlentities($userInfo["Username"])."',";
+        echo "'url': 'download.php?id=".$song["ID_Audio"]."'";
+        echo "},";
+        if($i == 0) {
+            echo "false";
+        } else {
+            echo "true";
+        }
+        echo ");";
+        echo "\">";
+        if($i == 0) {
+            echo "Riproduci";
+        } else {
+            echo "Aggiungi in coda";
+        }
+        echo "</button>";
+    }
+    echo "</li>";
 }
 ?>
 </ol>
