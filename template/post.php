@@ -64,7 +64,7 @@
                         echo "<a class=\"btn btn-info\" style=\"color: white;\" href=\"songPlayer.php?id=".$songInfo["ID"]."\">Vai al brano</a>";
                     }
                     if(!is_null($albumInfo)){
-                        echo "<a class=\"btn btn-info\" style=\"color: white;\" href=\"songPlayer.php?id=".$albumInfo["ID"]."\">Vai all'album</style=></a>";
+                        echo "<button type=\"button\" class=\"btn btn-info\"><a style=\"color: white;\" href=\"albumPlayer.php?id=".$albumInfo["ID"]."\">Link all'album</a></button>";
                     }
                     ?>
                     </div>
