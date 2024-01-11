@@ -1,1 +1,3 @@
-allPostProfile<br>ciao <?php echo $_SESSION["ID"];?><br>
+<?php foreach ($templateParams["feedData"] as $post):
+    renderPost($post, $dbh);
+endforeach; ?>

@@ -70,6 +70,24 @@ class DatabaseHelper{
         return $feed;
     }
 
+    public function getPostsOfUser($id) {
+    
+    
+        $query = "SELECT * FROM post WHERE ID_Utente = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $feed = array();
+    
+        while ($row = $result->fetch_assoc()) {
+            $feed[] = $row;
+        }
+    
+        return $feed;
+    
+    }
+
     public function getMostLiked() {
         $query =
         "SELECT p.*, COUNT(m.ID_Utente) AS num_likes
