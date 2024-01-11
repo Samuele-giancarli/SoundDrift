@@ -11,6 +11,8 @@
         $songInfo=null;
         $albumInfo=null;
 
+        $isLiked = $dbh->isLikedBy($postId,$userid);
+
         if (!is_null($postInfo["ID_Canzone"])){
         $songInfo= $dbh->getSongInfo($postInfo["ID_Canzone"]);
         }
@@ -51,12 +53,18 @@
                     <?php } ?>
                     <br>
                     <?php echo htmlentities($postInfo["Testo"]); ?>
+                    <br>
+                    <?php if($isLiked){
+                        echo "piaciuto da te";
+                    } else {
+                        echo "non piaciuto da te";
+                    }?>
                 </p>
 
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
 
-                        <button type="button" class="btn btn-primary" onclick="toggleLike(this)">Like</button>
+                        <button type="button" class="btn btn-primary" onclick="swtch(this)">Like</button>
                         <button type="button" class="btn btn-secondary">Condividi</button>
 
                     <?php
@@ -64,7 +72,7 @@
                         echo "<a class=\"btn btn-info\" style=\"color: white;\" href=\"songPlayer.php?id=".$songInfo["ID"]."\">Vai al brano</a>";
                     }
                     if(!is_null($albumInfo)){
-                        echo "<button type=\"button\" class=\"btn btn-info\"><a style=\"color: white;\" href=\"albumPlayer.php?id=".$albumInfo["ID"]."\">Link all'album</a></button>";
+                        echo "<a class=\"btn btn-info\" style=\"color: white;\" href=\"albumPlayer.php?id=".$albumInfo["ID"]."\">Vai all'allbum</a>";
                     }
                     ?>
                     </div>
@@ -75,12 +83,60 @@
     </div>
 </div>
 
+<?php /*
+    function toggleLike($button,$dbh){
+        
+    }*/
+?>
+
 <script>
-    function toggleLike(button){
-        console.log("toggleLike called");
+    var oldStyle;
+    var isOn = false;
+    
+    function likeOn(button){
+        oldStyle = button.style;
         button.style.backgroundColor = "#ff0000";
-        button.style.borderColor = "#ff0000"
+        button.style.borderColor = "#ff0000";
+
+        console.log("likeOn");
     }
+
+    function likeOff(button){
+        button.style = oldStyle;
+
+        console.log("likeOff");
+    }
+
+    function swtch(button){
+        console.log("onSWITCH");
+        if(isOn){
+            console.log("onON");
+            likeOff(button);
+            isOn = false;
+        } else {
+            console.log("onOFF");
+            likeOn(button);
+            isOn = true
+        }
+    }
+    
+    /*lo script servirà solo per la logica estetica mentre la gestione del db con php
+    prima cosa da fare è la funzione in php
+    */
+    /*function likeOn(button){
+        console.log("toggleLike called");
+        //rifinire animazione
+        button.style.backgroundColor = "#ff0000";
+        button.style.borderColor = "#ff0000";
+        //
+
+
+    }
+
+    /*function likeOff(button){
+        return false;
+        return true;
+    }*/
 </script>
 
 <?php } ?>
