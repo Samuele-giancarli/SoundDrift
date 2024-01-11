@@ -1,14 +1,19 @@
 <?php
 session_start();
+require_once("bootstrap.php");
 if (!isset($_SESSION["ID"])){
     die();
 }
-$db = new mysqli("127.0.0.1", "root", "", "sounddrift", 3306);
-$stmt = $db->prepare("UPDATE album SET Finalizzato=1 WHERE ID_Utente=? AND ID=?");
+
+$stmt = $dbh->db->prepare("UPDATE album SET Finalizzato=1 WHERE ID_Utente=? AND ID=?");
 $idutente=$_SESSION["ID"];
 $idalbum=$_GET["id"];
+$albumInfo=$dbh->getAlbumInfo($idalbum);
+$titolo=$albumInfo["Titolo"];
+$genere=$albumInfo["Genere"];
+$idimmagine=$albumInfo["ID_Immagine"];
 $stmt->bind_param("ii", $idutente, $idalbum);
 $stmt->execute();
-$db->close();
+$dbh->addAlbum($titolo, $genere, $idutente, $idimmagine);
 header("Location: albumCreate.php");
 ?>

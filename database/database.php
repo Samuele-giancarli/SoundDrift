@@ -331,18 +331,29 @@ class DatabaseHelper{
         $stmt->bind_param("ssisiii", $title, $genre, $idUser, $date, $idImage, $idAudio, $idAlbum);
         $stmt->execute();
         $idcanzone = $this->db->insert_id;
-        $this->addPost($idUser, $title, $idImage, $idcanzone);
+        $this->addPost($idUser, $title, $idImage, $idcanzone, null);
 
         return true;
     }
 
     /*addpost da mettere a posto*/
-    public function addPost($idUser, $textual, $idImage, $idcanzone) {
-        $query = "INSERT INTO post (Data, ID_Immagine, Testo, ID_Utente, ID_Canzone) VALUES (?, ?, ?, ?, ?);";
+    public function addPost($idUser, $textual, $idImage, $idcanzone,$idalbum) {
+        $query = "INSERT INTO post (Data, ID_Immagine, Testo, ID_Utente, ID_Canzone, ID_Album) VALUES (?, ?, ?, ?, ?, ?);";
         $datePost = date("Y-m-d H:i:s");
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("sisii", $datePost, $idImage, $textual, $idUser, $idcanzone);
+        $stmt->bind_param("sisiii", $datePost, $idImage, $textual, $idUser, $idcanzone, $idalbum);
         $stmt->execute();
+        return true;
+    }
+
+    public function addAlbum($title,$genre,$idUser,$idImage){
+        $query = "INSERT INTO album (Titolo, Genere, ID_Utente, Data, ID_Immagine) VALUES (?,?,?,?,?)";
+        $date = date("Y-m-d H:i:s");
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ssisi", $title, $genre, $idUser, $date, $idImage);
+        $stmt->execute();
+        $idalbum = $this->db->insert_id;
+        $this->addPost($idUser, $title, $idImage, null, $idalbum);
         return true;
     }
 

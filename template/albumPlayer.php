@@ -17,7 +17,8 @@ if (!is_null($info["ID_Immagine"])){
 <div>Copertina: <img <?php echo "src=\"download.php?id=".$info["ID_Immagine"]."\""; ?>  id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" /></div>
 <?php
 }
-
+$rows= $dbh -> getSongsFromAlbum($idalbum);
+if (count($rows)!=0){
 echo "<button type=\"button\" onclick=\"";
 foreach ($dbh -> getSongsFromAlbum($idalbum) as $song){
     echo "window.parent.playNow({";
@@ -28,7 +29,7 @@ foreach ($dbh -> getSongsFromAlbum($idalbum) as $song){
     echo "},true);";
 }
 echo "\">Aggiungi tutto in coda</button>";
-
+}
 ?>
 
 <div>Brani: </div>
