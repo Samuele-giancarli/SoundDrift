@@ -42,10 +42,8 @@ if(!isset($_SESSION["ID"])) {
                 die();
             }
         }
-        $stmt = $dbh->db->prepare("INSERT INTO canzone(Titolo,Genere,ID_Utente,Data,ID_Immagine,ID_Audio,ID_Album) VALUES(?,?,?,CURDATE(),?,?,?)");
-        $stmt->bind_param("ssiiii", $titolo, $genere, $idutente,$idimmagine,$idaudio,$idalbum);
         try {
-            if($stmt->execute()) {
+            if($dbh->addSong($titolo, $genere, $idutente, $idimmagine, $idaudio, $idalbum)) {
                 $err_mess=">La canzone ".htmlentities($titolo)." è stata caricata: aggiungi subito altre canzoni!</a><br>";
                 $show_form=true;
             } else {

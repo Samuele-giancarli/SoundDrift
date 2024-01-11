@@ -2,7 +2,7 @@
 
 class DatabaseHelper{
     public $db;
-    
+
     public function __construct($servername, $username, $password, $dbname, $port){
         $this->db = new mysqli($servername, $username, $password, $dbname, $port);
         if ($this->db->connect_error) {
@@ -216,12 +216,24 @@ class DatabaseHelper{
         $stmt->execute();
     }
 
+    public function addSong($title,$genre,$idUser,$idImage,$idAudio,$idAlbum){
+        $query = "INSERT INTO canzone (Titolo, Genere, ID_Utente, Data, ID_Immagine, ID_Audio, ID_Album) VALUES (?,?,?,?,?,?,?)";
+        $date = date("Y-m-d H:i:s");
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("sssssss", $title, $genre, $idUser, $date, $idImage, $idAudio, $idAlbum);
+        $stmt->execute();
+
+        return true;
+    }
+
     public function addPost($idUser, $textual, $idImage) {
         $query = "INSERT INTO post (Data, ID_Immagine, Testo, ID_Utente) VALUES (?, ?, ?, ?);";
         $datePost = date("Y-m-d H:i:s");
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("ssss", $datePost, $idImage, $textual, $idUser);
         $stmt->execute();
+
+        return true;
     }
 
     public function isUserFollowed($idUserInSession, $idCurrentUser){
