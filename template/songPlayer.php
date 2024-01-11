@@ -1,4 +1,8 @@
 <?php
+function jsescape($s) {
+    return str_replace("'", "\\'", $s);
+}
+
 if (!isset($_GET["id"])){
     die();
 }
@@ -28,9 +32,9 @@ function duration() {
 
 function play(enqueue) {
     let data = {};
-    data.title = <?php echo "\"".htmlentities($info["Titolo"])."\""; ?>;
-    data.author = <?php echo "\"".htmlentities($userInfo["Username"])."\""; ?>;
-    data.url = <?php echo "\"download.php?id=".$info["ID_Audio"]."\""; ?>;
+    data.title = <?php echo "'".jsescape($info["Titolo"])."'"; ?>;
+    data.author = <?php echo "'".jsescape($userInfo["Username"])."'"; ?>;
+    data.url = <?php echo "'download.php?id=".$info["ID_Audio"]."'"; ?>;
     window.parent.playNow(data, enqueue);
 }
 </script>

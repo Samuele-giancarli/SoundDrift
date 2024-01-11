@@ -1,4 +1,7 @@
 <?php
+function jsescape($s) {
+    return str_replace("'", "\\'", $s);
+}
 if (!isset($_GET["id"])){
     die();
 }
@@ -20,11 +23,11 @@ if (!is_null($info["ID_Immagine"])){
 $rows= $dbh -> getSongsFromAlbum($idalbum);
 if (count($rows)!=0){
 echo "<button type=\"button\" onclick=\"";
-foreach ($dbh -> getSongsFromAlbum($idalbum) as $song){
+foreach ($rows as $song){
     echo "window.parent.playNow({";
-    echo "'title': '".htmlentities($song["Titolo"])."',";
+    echo "'title': '".jsescape($song["Titolo"])."',";
     $userInfo = $dbh->getUserInfo($song["ID_Utente"]);
-    echo "'author': '".htmlentities($userInfo["Username"])."',";
+    echo "'author': '".jsescape($userInfo["Username"])."',";
     echo "'url': 'download.php?id=".$song["ID_Audio"]."'";
     echo "},true);";
 }
@@ -41,9 +44,9 @@ foreach ($dbh -> getSongsFromAlbum($idalbum) as $song){
     for ($i=0; $i<2; $i++) {
         echo " <button type=\"button\" onclick=\"";
         echo "window.parent.playNow({";
-        echo "'title': '".htmlentities($song["Titolo"])."',";
+        echo "'title': '".jsescape($song["Titolo"])."',";
         $userInfo = $dbh->getUserInfo($song["ID_Utente"]);
-        echo "'author': '".htmlentities($userInfo["Username"])."',";
+        echo "'author': '".jsescape($userInfo["Username"])."',";
         echo "'url': 'download.php?id=".$song["ID_Audio"]."'";
         echo "},";
         if($i == 0) {
@@ -58,7 +61,7 @@ foreach ($dbh -> getSongsFromAlbum($idalbum) as $song){
         } else {
             echo "Aggiungi in coda";
         }
-        echo "</button>";
+        echo "</button>\n";
     }
     echo "</li>";
 }
