@@ -343,7 +343,6 @@ class DatabaseHelper{
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("sisii", $datePost, $idImage, $textual, $idUser, $idcanzone);
         $stmt->execute();
-
         return true;
     }
 

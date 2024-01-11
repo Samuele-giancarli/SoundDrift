@@ -1,16 +1,24 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
 <?php
     function renderPost($postInfo, $dbh) {
         $userid = $postInfo["ID_Utente"];
         $image = $postInfo["ID_Immagine"];
+        //se manca immagine: inserisci img default dalla cartella images
         $username = $dbh->getUserInfo($userid)["Username"];
         $postId = $postInfo["ID"];
         $likeNumber = $dbh->countLikes($postId);
         $imagePath="download.php?id=".$image;
-
         $isAlbum = $dbh->isPostAlbum($postId);
         $isSong = $dbh->isPostSong($postId);
+        $songInfo=null;
+        $albumInfo=null;
+
+        if (!is_null($postInfo["ID_Canzone"])){
+        $songInfo= $dbh->getSongInfo($postInfo["ID_Canzone"]);
+        }
+
+        if (!is_null($postInfo["ID_Album"])){
+        $albumInfo=$dbh->getAlbumInfo($postInfo["ID_Album"]);
+        }
 
         $istext = false;
         if($isAlbum && $isSong)
@@ -19,6 +27,7 @@
         } elseif(!$isAlbum && !$isSong) {
             $istext=true;
         }
+    
 
 ?>
 
@@ -27,19 +36,41 @@
         <div class="card rounded-3 text-center">
             <div class="card-body">
                 <h5 class="card-title">
-                    <a href="profile.php?utenteCorrente=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a>
-                </h5>
-                <p class="card-text">
+                    <?php
+                    if (!is_null($songInfo)){
+                        ?>
+                    <a href="profile.php?utenteCorrente=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un brano
+                        <?php
+                }else if (!is_null($albumInfo)){
+                    ?>
+                    <a href="profile.php?utenteCorrente=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un album
+                    <?php
+                }else{
+                    ?>
+                    <a href="profile.php?utenteCorrente=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un post
+                    <?php
+                }
+                    ?>
+                    </h5>
+                <p class="card-text" style="text-align:center;">
                     <?php if ($image != null) { ?>
                         <img src="<?php echo $imagePath; ?>" id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" />
                     <?php } ?>
                     <br>
-                    <?php if($istext) echo $postInfo["testo"]; ?>
+                    <?php echo htmlentities($postInfo["Testo"]); ?>
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                         <button type="button" class="btn btn-primary">Like</button>
                         <button type="button" class="btn btn-secondary">Condividi</button>
+                    <?php
+                    if (!is_null($songInfo)){
+                        echo "<button type=\"button\" class=\"btn btn-info\"><a style=\"color: white;\" href=\"songPlayer.php?id=".$songInfo["ID"]."\">Link al brano</a></button>";
+                    }
+                    if(!is_null($albumInfo)){
+                        echo "<button type=\"button\" class=\"btn btn-info\"><a style=\"color: white;\" href=\"songPlayer.php?id=".$albumInfo["ID"]."\">Link all'album</a></button>";
+                    }
+                    ?>
                     </div>
                     <small class="text-muted"><?php echo $likeNumber ?> likes </small>
                 </div>
