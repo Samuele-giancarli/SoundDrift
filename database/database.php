@@ -49,6 +49,43 @@ class DatabaseHelper{
         return $followingList;
     }
 
+    public function updateLike($idPost,$idUser){
+        if(!$this->isLikedBy($idUser, $idPost)){
+            $queryInsert = "INSERT INTO mipiace_post (ID_Post, ID_Utente) VALUES (?, ?)";
+            $stmt = $this->db->prepare($queryInsert);
+            $stmt->bind_param("ii", $idPost, $idLiker);
+        } else {
+            $queryDelete = "DELETE FROM mipiace_post WHERE ID_Post = ? AND ID_Utente = ?";
+            $stmt = $this->db->prepare($queryDelete);
+            $stmt->bind_param("ii", $idPost, $idLiker);
+        }
+        $stmt->execute();
+    }
+
+    public function isLikedby($idPost, $idUser){
+        $query = "SELECT * FROM mipiace_post WHERE ID_Post = ? AND ID_Utente = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $idPost, $idUser);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->num_rows > 0;
+    }
+
+    public function countLikes($idPost){
+        $query = "SELECT COUNT(*) as likeCount FROM mipiace_post WHERE ID_Post = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $idPost);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            return $row['likeCount'];
+        } else {
+            return 0;
+        }
+    }
+
     public function isPostAlbum($ID_Post){
         $query = "SELECT ID_Album FROM post WHERE ID = ?";
         $stmt  = $this->db->prepare($query);
@@ -299,6 +336,7 @@ class DatabaseHelper{
         return true;
     }
 
+    /*addpost da mettere a posto*/
     public function addPost($idUser, $textual, $idImage, $idcanzone) {
         $query = "INSERT INTO post (Data, ID_Immagine, Testo, ID_Utente, ID_Canzone) VALUES (?, ?, ?, ?, ?);";
         $datePost = date("Y-m-d H:i:s");
