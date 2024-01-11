@@ -223,6 +223,8 @@ class DatabaseHelper{
         $stmt->bind_param("sssssss", $title, $genre, $idUser, $date, $idImage, $idAudio, $idAlbum);
         $stmt->execute();
 
+        $this->addPost($idUser, $title, $idImage);
+
         return true;
     }
 
