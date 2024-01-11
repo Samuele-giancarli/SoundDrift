@@ -34,7 +34,8 @@
                         <img src="<?php echo $imagePath; ?>" id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" />
                     <?php } ?>
                     <br>
-                    <?php if($istext){?> <small class="card-text"> <?php echo $postInfo["Testo"];?> <?php }?>
+                    <?php if($istext){?> <class="card-text"> <?php echo $postInfo["Testo"];?> <?php }
+                    elseif($isSong){?> <class="card-text"> <?php echo "TITOLO DELLA CANZONE";?> <?php }?>
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
