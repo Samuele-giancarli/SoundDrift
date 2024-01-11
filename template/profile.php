@@ -68,10 +68,10 @@
                 }else
                 {
                     echo $templateParams["num_seguiti"]["num_following"];
-                }?> | Tracce: </p>
+                }?> | Tracce:
                     <?php
-                        echo $dbh->getSongCountByUser($templateParams["utente"]);
-                    ?>
+                    echo $dbh->getSongCountByUser($templateParams["utente"]["ID"]);
+                    ?></p>
             </div>
         </div>
     </div>
