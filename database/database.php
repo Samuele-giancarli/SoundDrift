@@ -229,19 +229,19 @@ class DatabaseHelper{
         $query = "INSERT INTO canzone (Titolo, Genere, ID_Utente, Data, ID_Immagine, ID_Audio, ID_Album) VALUES (?,?,?,?,?,?,?)";
         $date = date("Y-m-d H:i:s");
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("sssssss", $title, $genre, $idUser, $date, $idImage, $idAudio, $idAlbum);
+        $stmt->bind_param("ssisiii", $title, $genre, $idUser, $date, $idImage, $idAudio, $idAlbum);
         $stmt->execute();
-
-        $this->addPost($idUser, $title, $idImage);
+        $idcanzone = $this->db->insert_id;
+        $this->addPost($idUser, $title, $idImage, $idcanzone);
 
         return true;
     }
 
-    public function addPost($idUser, $textual, $idImage) {
-        $query = "INSERT INTO post (Data, ID_Immagine, Testo, ID_Utente) VALUES (?, ?, ?, ?);";
+    public function addPost($idUser, $textual, $idImage, $idcanzone) {
+        $query = "INSERT INTO post (Data, ID_Immagine, Testo, ID_Utente, ID_Canzone) VALUES (?, ?, ?, ?, ?);";
         $datePost = date("Y-m-d H:i:s");
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("ssss", $datePost, $idImage, $textual, $idUser);
+        $stmt->bind_param("sisii", $datePost, $idImage, $textual, $idUser, $idcanzone);
         $stmt->execute();
 
         return true;
