@@ -49,6 +49,32 @@ class DatabaseHelper{
         return $followingList;
     }
 
+    public function isPostAlbum($ID_Post){
+        $query = "SELECT ID_Album FROM post WHERE ID = ?";
+        $stmt  = $this->db->prepare($query);
+        $stmt->bind_param("i", $ID_Post);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0){
+            $row = $result->fetch_assoc();
+            return !is_null($row['ID_Album']);
+        }
+    }
+
+    public function isPostSong($ID_Post){
+        $query = "SELECT ID_Canzone FROM post WHERE ID = ?";
+        $stmt  = $this->db->prepare($query);
+        $stmt->bind_param("i", $ID_Post);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0){
+            $row = $result->fetch_assoc();
+            return !is_null($row['ID_Canzone']);
+        }
+    }
+
     public function getFeed($ID) {
         $followingList = $this->getListOfFollowing($ID);
     
