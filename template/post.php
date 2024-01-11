@@ -59,7 +59,8 @@
 
 <script>
     function toggleLike(button){
-        button.style.backgroundColor = "ff0000"
+        button.style.backgroundColor = "ff0000";
+        button.style.borderColor = "ff0000"
     }
 </script>
 
