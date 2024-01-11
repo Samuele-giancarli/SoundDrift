@@ -2,7 +2,6 @@
     function renderPost($postInfo, $dbh) {
         $userid = $postInfo["ID_Utente"];
         $image = $postInfo["ID_Immagine"];
-        //se manca immagine: inserisci img default dalla cartella images
         $username = $dbh->getUserInfo($userid)["Username"];
         $postId = $postInfo["ID"];
         $likeNumber = $dbh->countLikes($postId);
@@ -21,9 +20,8 @@
         }
 
         $istext = false;
-        if($isAlbum && $isSong)
-        {
-            echo "un post non può essere sia una canzone che un album";
+        if($isAlbum && $isSong) {
+            die();
         } elseif(!$isAlbum && !$isSong) {
             $istext=true;
         }
@@ -38,20 +36,15 @@
                 <h5 class="card-title">
                     <?php
                     if (!is_null($songInfo)){
-                        ?>
-                    <a href="profile.php?utenteCorrente=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un brano
-                        <?php
-                }else if (!is_null($albumInfo)){
+                        ?> <a href="profile.php?utenteCorrente=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un brano <?php
+                    } else if (!is_null($albumInfo)){
+                        ?> <a href="profile.php?utenteCorrente=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un album<?php
+                    } else {
+                        ?> <a href="profile.php?utenteCorrente=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un post <?php
+                    }
                     ?>
-                    <a href="profile.php?utenteCorrente=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un album
-                    <?php
-                }else{
-                    ?>
-                    <a href="profile.php?utenteCorrente=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un post
-                    <?php
-                }
-                    ?>
-                    </h5>
+                </h5>
+
                 <p class="card-text" style="text-align:center;">
                     <?php if ($image != null) { ?>
                         <img src="<?php echo $imagePath; ?>" id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" />
@@ -59,24 +52,19 @@
                     <br>
                     <?php echo htmlentities($postInfo["Testo"]); ?>
                 </p>
+
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                        
-                    
-                    
+
                         <button type="button" class="btn btn-primary" onclick="toggleLike(this)">Like</button>
-
-
-
-
-
                         <button type="button" class="btn btn-secondary">Condividi</button>
+
                     <?php
                     if (!is_null($songInfo)){
-                        echo "<button type=\"button\" class=\"btn btn-info\"><a style=\"color: white;\" href=\"songPlayer.php?id=".$songInfo["ID"]."\">Link al brano</a></button>";
+                        echo "<a class=\"btn btn-info\" style=\"color: white;\" href=\"songPlayer.php?id=".$songInfo["ID"]."\">Vai al brano</a>";
                     }
                     if(!is_null($albumInfo)){
-                        echo "<button type=\"button\" class=\"btn btn-info\"><a style=\"color: white;\" href=\"songPlayer.php?id=".$albumInfo["ID"]."\">Link all'album</a></button>";
+                        echo "<a class=\"btn btn-info\" style=\"color: white;\" href=\"songPlayer.php?id=".$albumInfo["ID"]."\">Vai all'album</style=></a>";
                     }
                     ?>
                     </div>
@@ -89,8 +77,9 @@
 
 <script>
     function toggleLike(button){
-        button.style.backgroundColor = "ff0000";
-        button.style.borderColor = "ff0000"
+        console.log("toggleLike called");
+        button.style.backgroundColor = "#ff0000";
+        button.style.borderColor = "#ff0000"
     }
 </script>
 
