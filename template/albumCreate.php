@@ -68,6 +68,7 @@ if ($show_form){
     while ($row = $result->fetch_assoc()){
         echo "<li>".htmlentities($row["Titolo"])." <button onclick=\"location.href='finalise.php?id=".$row["ID"]."'\" type=\"button\">Finalizza</button></li>";
     }
+    
     echo "</ul>";
     echo "Tutti gli album: <br>";
 ?>

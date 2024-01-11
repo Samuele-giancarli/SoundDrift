@@ -357,6 +357,8 @@ class DatabaseHelper{
         return true;
     }
 
+    
+
     public function isUserFollowed($idUserInSession, $idCurrentUser){
         $query = "SELECT COUNT(*) as count FROM follow WHERE ID_Seguace = ? AND ID_Seguito = ?";
         $stmt = $this->db->prepare($query);

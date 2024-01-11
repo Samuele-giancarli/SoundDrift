@@ -14,6 +14,6 @@ $genere=$albumInfo["Genere"];
 $idimmagine=$albumInfo["ID_Immagine"];
 $stmt->bind_param("ii", $idutente, $idalbum);
 $stmt->execute();
-$dbh->addAlbum($titolo, $genere, $idutente, $idimmagine);
+$dbh->addPost($idutente, $titolo, $idimmagine, null, $idalbum);
 header("Location: albumCreate.php");
 ?>
