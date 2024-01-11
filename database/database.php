@@ -10,15 +10,6 @@ class DatabaseHelper{
         }        
     }
 
-    public function getUser($ID){
-        $stmt = $this->db->prepare("SELECT * FROM utente WHERE ID = ?");
-        $stmt->bind_param("i", $ID);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        return $result->fetch_all(MYSQLI_ASSOC);
-    }
-
     //è un getNumber
     public function getFollowingOfUser($ID){
         $query = "SELECT COUNT(*) as num_following FROM follow WHERE ID_Seguace = ?";
@@ -252,6 +243,28 @@ class DatabaseHelper{
 
     public function getAlbumsOfUser($idCurrentUser){
         $query = "SELECT * FROM album WHERE ID_Utente = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $idCurrentUser);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_all();
+
+        return $row;
+    }
+
+    public function getPlaylistsOfUser($idCurrentUser){
+        $query = "SELECT * FROM playlist WHERE ID_Utente = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $idCurrentUser);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_all();
+
+        return $row;
+    }
+
+    public function getSongsOfUser($idCurrentUser){
+        $query = "SELECT * FROM canzone WHERE ID_Utente = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("i", $idCurrentUser);
         $stmt->execute();
