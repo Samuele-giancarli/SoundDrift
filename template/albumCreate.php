@@ -79,7 +79,7 @@ $stmt->bind_param("i", $idutente);
 $stmt->execute();
 $result = $stmt->get_result();
 while($row = $result->fetch_assoc()) {
-    echo "<li><a style=\"color: black;\" href=\"albumPlayer.php?id=".$row["ID"]."\">".htmlentities($row["Titolo"])."</a></li>";
+    echo "<li><a style=\"color:black\" href=\"albumPlayer.php?id=".$row["ID"]."\">".htmlentities($row["Titolo"])."</a></li>";
 }
 ?>
 </ul>

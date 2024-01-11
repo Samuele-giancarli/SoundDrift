@@ -247,6 +247,19 @@ class DatabaseHelper{
         return $row;
     }
 
+    public function getSongsFromAlbum($idalbum){
+        $query="SELECT * FROM canzone WHERE ID_Album=? ORDER BY ID ASC";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $idalbum);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $rows=array();
+        while ($row = $result->fetch_assoc()){
+            array_push($rows, $row);
+        }
+        return $rows;
+    }
+
     public function followUser($idSeguito, $idSeguace){
         $query = "INSERT INTO follow(ID_Seguito, ID_Seguace) VALUES (?,?)";
         $stmt = $this->db->prepare($query);

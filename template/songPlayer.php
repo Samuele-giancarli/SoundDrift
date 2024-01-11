@@ -36,6 +36,7 @@ function play() {
 </script>
 
 <div>Titolo: <?php echo $info["Titolo"]; ?></div>
+<div>Autore: <?php echo "<a style=\"color:black\" href=\"profile.php?id=".$userInfo["ID"]."\">".htmlentities($userInfo["Username"])."</a>"; ?></div>
 <div>Genere: <?php echo $info["Genere"]; ?></div>
 
 <?php 
@@ -45,7 +46,7 @@ if (!is_null($info["ID_Immagine"])){
 <?php
 }
 ?>
-<div>Brano: <audio id="song">
+<div><audio id="song">
 <source
 <?php
 echo "src=\"download.php?id=".$audioInfo["ID"]."\" ";
@@ -59,7 +60,7 @@ echo "type=\"".$audioInfo["MimeType"]."\"";
 if (!is_null($info["ID_Album"])){
     $albumInfo=$dbh->getAlbumInfo($info["ID_Album"]);
 ?>
-<div>Album di appartenenza: <?php echo $albumInfo["Titolo"]; ?></div>
+<div>Album di appartenenza: <?php echo "<a style=\"color:black\" href=\"albumPlayer.php?id=".$albumInfo["ID"]."\">".htmlentities($albumInfo["Titolo"])."</a>"; ?></div>
 <?php
 }
 ?>
