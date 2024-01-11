@@ -88,6 +88,42 @@ class DatabaseHelper{
     
     }
 
+    public function getSongsOfUser($id) {
+    
+    
+        $query = "SELECT * FROM canzone WHERE ID_Utente = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $feed = array();
+    
+        while ($row = $result->fetch_assoc()) {
+            $feed[] = $row;
+        }
+    
+        return $feed;
+    
+    }
+
+    public function getAlbumsOfUser($id) {
+    
+    
+        $query = "SELECT * FROM album WHERE ID_Utente = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $feed = array();
+    
+        while ($row = $result->fetch_assoc()) {
+            $feed[] = $row;
+        }
+    
+        return $feed;
+    
+    }
+
     public function getMostLiked() {
         $query =
         "SELECT p.*, COUNT(m.ID_Utente) AS num_likes
@@ -259,30 +295,9 @@ class DatabaseHelper{
         return ($count > 0);
     }
 
-    public function getAlbumsOfUser($idCurrentUser){
-        $query = "SELECT * FROM album WHERE ID_Utente = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param("i", $idCurrentUser);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $row = $result->fetch_all();
-
-        return $row;
-    }
 
     public function getPlaylistsOfUser($idCurrentUser){
         $query = "SELECT * FROM playlist WHERE ID_Utente = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param("i", $idCurrentUser);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $row = $result->fetch_all();
-
-        return $row;
-    }
-
-    public function getSongsOfUser($idCurrentUser){
-        $query = "SELECT * FROM canzone WHERE ID_Utente = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("i", $idCurrentUser);
         $stmt->execute();

@@ -1,8 +1,3 @@
-<?php var_dump($templateParams["songs"]) ?>
-<?php if(empty($templateParams["songs"])): ?>
-    Nessuna canzone pubblicata
-<?php else: ?>
-<?php foreach ($templateParams["songs"] as $song): ?>
-    
-<?php endforeach; ?>
-<?php endif; ?> 
+<?php foreach ($templateParams["songs"] as $post):
+    renderPost($post, $dbh);
+endforeach; ?>
