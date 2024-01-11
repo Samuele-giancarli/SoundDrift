@@ -39,7 +39,15 @@
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-primary">Like</button>
+                        
+                    
+                    
+                        <button type="button" class="btn btn-primary" onclick="toggleLike(this)">Like</button>
+
+
+
+
+
                         <button type="button" class="btn btn-secondary">Condividi</button>
                     </div>
                     <small class="text-muted"><?php echo $likeNumber ?> likes </small>
@@ -48,5 +56,11 @@
         </div>
     </div>
 </div>
+
+<script>
+    function toggleLike(button){
+        button.style.backgroundColor = "ff0000"
+    }
+</script>
 
 <?php } ?>
