@@ -12,15 +12,9 @@ $userInfo= $dbh->getUserInfo($idutente);
 $imageID="default.png";
 
 ?>
+<p>Questi sono i brani che ti piacciono:</p>
 
-<div>Titolo: <?php echo "Brani piaciuti"; ?></div>
-
-<?php 
-?>
-<div>Copertina: <img <?php echo "src=\"download.php?id=".$imageID."\""; ?>  id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" /></div>
 <?php
-
-
 $rows= $dbh -> getLikedSongs($idutente);
 //var_dump($rows);
 if (count($rows)!=0){
@@ -34,6 +28,7 @@ foreach ($rows as $song){
     echo "},true);";
 }
 echo "\">Aggiungi tutto in coda</button>";
+echo "<br>";
 }
 
 ?>

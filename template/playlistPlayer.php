@@ -84,12 +84,12 @@ if ($dbh -> isPlaylistLiked($idutente, $idplaylist)){
 <?php
 foreach ($rows as $song){
     $songInfo=$dbh->getSongInfo($song["ID"]);
-    echo "<li><a style=\"color: black;\" href=\"songPlayer.php?id=".$song["ID"]."\">".htmlentities($song["Titolo"])."</a>";
+    $userInfo = $dbh->getUserInfo($song["ID_Utente"]);
+    echo "<li><a style=\"color: black;\" href=\"songPlayer.php?id=".$song["ID"]."\">".htmlentities($song["Titolo"])."</a> -  <a style=\"color: black;\" href=\"profile.php?id=".$userInfo["ID"]."\">".htmlentities($userInfo["Username"])."</a>";
     for ($i=0; $i<2; $i++) {
         echo " <button type=\"button\" onclick=\"";
         echo "window.parent.playNow({";
         echo "'title': '".jsescape($song["Titolo"])."',";
-        $userInfo = $dbh->getUserInfo($song["ID_Utente"]);
         echo "'author': '".jsescape($userInfo["Username"])."',";
         echo "'url': 'download.php?id=".$song["ID_Audio"]."'";
         echo "},";
