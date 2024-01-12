@@ -70,7 +70,7 @@
                 <a href="#" class="btn btn-dark" style="text-decoration:none">
                         <i class="bi bi-search"></i> Cerca
                 </a>
-                <a href="#" class="btn btn-dark" style="text-decoration:none">
+                <a href="libreria.php" class="btn btn-dark" style="text-decoration:none">
                         <i class="bi bi-collection"></i> Libreria
                 </a>
                 <a href="upload.php" class="btn btn-dark" style="text-decoration:none">

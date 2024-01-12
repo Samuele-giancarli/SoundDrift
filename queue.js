@@ -6,8 +6,6 @@ function get(id) {
 }
 
 function playNow(data, enqueue) {
-    console.log(data);
-    console.log(enqueue);
     if(!enqueue) {
         queue = new Array();
         queue_index = 0;

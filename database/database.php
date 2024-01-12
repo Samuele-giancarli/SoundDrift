@@ -353,7 +353,6 @@ class DatabaseHelper{
         $stmt->bind_param("ssisi", $title, $genre, $idUser, $date, $idImage);
         $stmt->execute();
         $idalbum = $this->db->insert_id;
-        $this->addPost($idUser, $title, $idImage, null, $idalbum);
         return true;
     }
 
@@ -409,6 +408,53 @@ class DatabaseHelper{
         $stmt->bind_param("ii", $idSeguito, $idSeguace);
         $stmt->execute();
     }
+
+    public function likeAlbum($iduser, $idalbum){
+        $query="INSERT IGNORE INTO mipiace_album(ID_Utente,ID_Album) VALUES (?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $iduser, $idalbum);
+        $stmt->execute();
+    }
+
+    public function unlikeAlbum($iduser, $idalbum){
+        $query="DELETE FROM mipiace_album WHERE ID_Utente=? AND ID_Album=?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $iduser, $idalbum);
+        $stmt->execute();
+    }
+
+    public function isAlbumLiked($iduser, $idalbum){
+        $stmt = $this->db->prepare("SELECT * FROM mipiace_album WHERE ID_Utente=? AND ID_Album=?");
+        $stmt->bind_param("ii", $iduser, $idalbum);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return !is_null($row);
+    }
+
+    public function likeSong($iduser, $idsong){
+        $query="INSERT IGNORE INTO mipiace_canzone(ID_Utente,ID_Canzone) VALUES (?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $iduser, $idsong);
+        $stmt->execute();
+    }
+
+    public function unlikeSong($iduser, $idsong){
+        $query="DELETE FROM mipiace_canzone WHERE ID_Utente=? AND ID_Canzone=?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $iduser, $idsong);
+        $stmt->execute();
+    }
+
+    public function isSongLiked($iduser, $idsong){
+        $stmt = $this->db->prepare("SELECT * FROM mipiace_canzone WHERE ID_Utente=? AND ID_Canzone=?");
+        $stmt->bind_param("ii", $iduser, $idsong);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return !is_null($row);
+    }
+    
 }
 
 
