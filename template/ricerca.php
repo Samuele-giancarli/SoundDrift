@@ -24,16 +24,20 @@
                     document.getElementById('searchResults').innerHTML = "";
 
                     try{
-                        output = JSON.parse(response);
-                        console.log(output);
+                        //output = JSON.parse(response);
+                        //console.log(output);
                     }catch(e){
                         console.log(e); 
                     }
+
+                    searchResults.innerHTML += response;
+                    
                     // iterate over results  
-                    for( var i = 0; i < output.length; i++ ){  
+                    //for( var i = 0; i < output.length; i++ ){  
                         // append result to result container, link to url of post
 
-                        searchResults.innerHTML += "<a style='color: black' href='songPlayer.php?id=" + output[i]["IDSong"] + "'>ID Canzone: " + output[i]["IDSong"] + " Titolo:" + output[i]["Titolo"] + "</a></br>"; }  
+                        //searchResults.innerHTML += "<a style='color: black' href='songPlayer.php?id=" + output[i]["IDSong"] + "'>ID Canzone: " + output[i]["IDSong"] + " Titolo:" + output[i]["Titolo"] + "</a></br>"; 
+                    //}  
                 }
             };
 
