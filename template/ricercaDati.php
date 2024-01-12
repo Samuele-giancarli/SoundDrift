@@ -1,26 +1,18 @@
 <?php
+    include "../bootstrap.php";
+
     $response = array();
     if(isset($_GET["q"])){
     // Ricevi il valore di ricerca dall'URL
         $searchInput = $_GET['q'];
-        $db = new mysqli("127.0.0.1", "root", "", "sounddrift", 3307);
-        if ($db->connect_error) {
-            die("Connessione fallita: " . $db->connect_error);
-        }
 
         // Esegui la query di ricerca nel database
-        $sql = "SELECT * FROM canzone WHERE Titolo LIKE '%$searchInput%'";
-        $result = $db->query($sql);
+        $arrayResult = $dbh -> searchSongsbyTitle($searchInput);
 
         // Mostra i risultati
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                $response[] = array("Titolo" => $row["Titolo"]);
-            }
-        } else {
-            $response[] = "Nessun risultato trovato.";
+        foreach($arrayResult as $song){
+            $response[] = array("IDSong" => $song["ID"], "Titolo" => $song["Titolo"]);
         }
-        $db->close();
         
         echo (json_encode($response));
     }
