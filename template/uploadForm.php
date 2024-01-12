@@ -14,7 +14,7 @@
         } else {
             try {
                 $idImage = uploadSource($dbh, $img);
-                $dbh->addPost($idUser, $textual, $idImage);
+                $dbh->addPost($idUser, $textual, $idImage, NULL, NULL);
                 $err_mess= "Post avvenuto con successo.";
             } catch (PDOException $e) {
                 $err_mess="Query fallita: "; $e->getMessage();

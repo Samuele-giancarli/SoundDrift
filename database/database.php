@@ -49,6 +49,43 @@ class DatabaseHelper{
         return $followingList;
     }
 
+    public function updateLike($idPost,$idUser){
+        if(!$this->isLikedBy($idUser, $idPost)){
+            $queryInsert = "INSERT INTO mipiace_post (ID_Post, ID_Utente) VALUES (?, ?)";
+            $stmt = $this->db->prepare($queryInsert);
+            $stmt->bind_param("ii", $idPost, $idLiker);
+        } else {
+            $queryDelete = "DELETE FROM mipiace_post WHERE ID_Post = ? AND ID_Utente = ?";
+            $stmt = $this->db->prepare($queryDelete);
+            $stmt->bind_param("ii", $idPost, $idLiker);
+        }
+        $stmt->execute();
+    }
+
+    public function isLikedby($idPost, $idUser){
+        $query = "SELECT * FROM mipiace_post WHERE ID_Post = ? AND ID_Utente = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $idPost, $idUser);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->num_rows > 0;
+    }
+
+    public function countLikes($idPost){
+        $query = "SELECT COUNT(*) as likeCount FROM mipiace_post WHERE ID_Post = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $idPost);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            return $row['likeCount'];
+        } else {
+            return 0;
+        }
+    }
+
     public function isPostAlbum($ID_Post){
         $query = "SELECT ID_Album FROM post WHERE ID = ?";
         $stmt  = $this->db->prepare($query);
@@ -294,20 +331,32 @@ class DatabaseHelper{
         $stmt->bind_param("ssisiii", $title, $genre, $idUser, $date, $idImage, $idAudio, $idAlbum);
         $stmt->execute();
         $idcanzone = $this->db->insert_id;
-        $this->addPost($idUser, $title, $idImage, $idcanzone);
+        $this->addPost($idUser, $title, $idImage, $idcanzone, null);
 
         return true;
     }
 
-    public function addPost($idUser, $textual, $idImage, $idcanzone) {
-        $query = "INSERT INTO post (Data, ID_Immagine, Testo, ID_Utente, ID_Canzone) VALUES (?, ?, ?, ?, ?);";
+    /*addpost da mettere a posto*/
+    public function addPost($idUser, $textual, $idImage, $idcanzone,$idalbum) {
+        $query = "INSERT INTO post (Data, ID_Immagine, Testo, ID_Utente, ID_Canzone, ID_Album) VALUES (?, ?, ?, ?, ?, ?);";
         $datePost = date("Y-m-d H:i:s");
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("sisii", $datePost, $idImage, $textual, $idUser, $idcanzone);
+        $stmt->bind_param("sisiii", $datePost, $idImage, $textual, $idUser, $idcanzone, $idalbum);
         $stmt->execute();
-
         return true;
     }
+
+    public function addAlbum($title,$genre,$idUser,$idImage){
+        $query = "INSERT INTO album (Titolo, Genere, ID_Utente, Data, ID_Immagine) VALUES (?,?,?,?,?)";
+        $date = date("Y-m-d H:i:s");
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ssisi", $title, $genre, $idUser, $date, $idImage);
+        $stmt->execute();
+        $idalbum = $this->db->insert_id;
+        return true;
+    }
+
+    
 
     public function isUserFollowed($idUserInSession, $idCurrentUser){
         $query = "SELECT COUNT(*) as count FROM follow WHERE ID_Seguace = ? AND ID_Seguito = ?";
@@ -358,6 +407,77 @@ class DatabaseHelper{
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("ii", $idSeguito, $idSeguace);
         $stmt->execute();
+    }
+
+    public function likeAlbum($iduser, $idalbum){
+        $query="INSERT IGNORE INTO mipiace_album(ID_Utente,ID_Album) VALUES (?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $iduser, $idalbum);
+        $stmt->execute();
+    }
+
+    public function unlikeAlbum($iduser, $idalbum){
+        $query="DELETE FROM mipiace_album WHERE ID_Utente=? AND ID_Album=?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $iduser, $idalbum);
+        $stmt->execute();
+    }
+
+    public function isAlbumLiked($iduser, $idalbum){
+        $stmt = $this->db->prepare("SELECT * FROM mipiace_album WHERE ID_Utente=? AND ID_Album=?");
+        $stmt->bind_param("ii", $iduser, $idalbum);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return !is_null($row);
+    }
+
+    
+    public function getLikedAlbums($iduser){
+        $stmt = $this->db->prepare("SELECT * FROM mipiace_album WHERE ID_Utente=?");
+        $stmt->bind_param("i", $iduser);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $rows=array();
+        while ($row = $result->fetch_assoc()){
+            array_push($rows, $row);
+        }
+        return $rows;
+    }
+
+    public function likeSong($iduser, $idsong){
+        $query="INSERT IGNORE INTO mipiace_canzone(ID_Utente,ID_Canzone) VALUES (?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $iduser, $idsong);
+        $stmt->execute();
+    }
+
+    public function unlikeSong($iduser, $idsong){
+        $query="DELETE FROM mipiace_canzone WHERE ID_Utente=? AND ID_Canzone=?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $iduser, $idsong);
+        $stmt->execute();
+    }
+
+    public function isSongLiked($iduser, $idsong){
+        $stmt = $this->db->prepare("SELECT * FROM mipiace_canzone WHERE ID_Utente=? AND ID_Canzone=?");
+        $stmt->bind_param("ii", $iduser, $idsong);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return !is_null($row);
+    }
+
+    public function searchSongsbyTitle($title){
+        $stmt = $this->db->prepare("SELECT * FROM canzone WHERE LOWER(Titolo) LIKE LOWER('%?%')");
+        $stmt->bind_param("s", $title);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $rows=array();
+        while ($row = $result->fetch_assoc()){
+            array_push($rows, $row);
+        }
+        return $rows;
     }
 }
 
