@@ -596,5 +596,17 @@ class DatabaseHelper{
         return $rows;
     }
 
+    public function getLikedSongs($iduser){
+        $query="SELECT canzone.* FROM mipiace_canzone JOIN canzone ON mipiace_canzone.ID_Canzone=canzone.ID WHERE mipiace_canzone.ID_Utente=?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $iduser);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $rows=array();
+        while ($row = $result->fetch_assoc()){
+            array_push($rows, $row);
+        }
+        return $rows;
+    }
 }
 ?>

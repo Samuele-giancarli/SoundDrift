@@ -2,6 +2,8 @@
 if (!isset($_SESSION["ID"])){
     die();
 }
+$idutente=$_SESSION["ID"];
+
 ?>
   <a href="playlist.php" class="btn btn-dark" style="text-decoration:none">
     <i class="bi bi-music-note-list" style="font-size: 20px">Vai alle playlist</i>
@@ -10,9 +12,6 @@ if (!isset($_SESSION["ID"])){
   <p>Queste sono le tue playlist salvate!</p>
 
 <?php
-
-
-$idutente=$_SESSION["ID"];
 
 $rows= $dbh -> getLikedPlaylists($idutente);
 if (!is_null(count($rows))){
@@ -28,8 +27,9 @@ if (!is_null(count($rows))){
     }
 }
 ?>
+<a style="color:black; text-decoration:none" href="braniPiaciuti.php"><p>Questi sono i brani che ti piacciono</p></a>
 
-<p>Questi sono gli album che ti piacciono!</p>
+<p>Questi sono gli album che ti piacciono</p>
 
 <?php
 

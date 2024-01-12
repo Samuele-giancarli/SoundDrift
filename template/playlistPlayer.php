@@ -75,6 +75,7 @@ if ($dbh -> isPlaylistLiked($idutente, $idplaylist)){
 }else{
     echo "<button id=\"like\" type=\"button\" onclick=\"playlistLike();\">Aggiungi in libreria</button>";    
 }
+    echo "<button id=\"addsongs\" type=\"button\">Aggiungi canzoni alla playlist</button>";
 }
 ?>
 <div>Brani: </div>
@@ -82,6 +83,7 @@ if ($dbh -> isPlaylistLiked($idutente, $idplaylist)){
 <ol>
 <?php
 foreach ($rows as $song){
+    $songInfo=$dbh->getSongInfo($song["ID"]);
     echo "<li><a style=\"color: black;\" href=\"songPlayer.php?id=".$song["ID"]."\">".htmlentities($song["Titolo"])."</a>";
     for ($i=0; $i<2; $i++) {
         echo " <button type=\"button\" onclick=\"";
