@@ -67,19 +67,23 @@
 ?>
 
 <?php
-    function renderPost($postInfo, $dbh) {
-        $userid = $postInfo["ID_Utente"];
+    function renderPost($postInfo, $dbh, $ID_Visualizer) {
+        $userid = $postInfo["ID_Utente"]; //userid è l'id dellutente pubblicatore
+        $username = $dbh->getUserInfo($userid)["Username"]; //username è l'username dell'utente pubblicatore
         $image = $postInfo["ID_Immagine"];
-        $username = $dbh->getUserInfo($userid)["Username"];
         $postId = $postInfo["ID"];
         $likeNumber = $dbh->countLikes($postId);
         $imagePath="download.php?id=".$image;
+        //fino a qui sono tutte informazzioni sul post e il poster
+
         $isAlbum = $dbh->isPostAlbum($postId);
         $isSong = $dbh->isPostSong($postId);
         $songInfo=null;
         $albumInfo=null;
 
-        $isLiked = $dbh->isLikedBy($postId,$userid);
+        $visualizerId = $ID_Visualizer;
+
+        $isLiked = $dbh->isLikedBy($postId,$visualizerId);
 
         if (!is_null($postInfo["ID_Canzone"])){
         $songInfo= $dbh->getSongInfo($postInfo["ID_Canzone"]);
