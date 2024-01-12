@@ -66,7 +66,7 @@ foreach ($rows as $song){
 }
 echo "\">Aggiungi tutto in coda</button>";
 }
-if ($info["Finalizzato"]==1){
+if (isset($_SESSION["ID"])&&$info["Finalizzato"]==1){
 if ($dbh -> isAlbumLiked($idutente, $idalbum)){
     echo "<button id=\"like\" type=\"button\" onclick=\"albumUnlike();\">Togli dalla libreria</button>";
 }else{

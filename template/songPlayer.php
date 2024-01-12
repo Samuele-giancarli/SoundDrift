@@ -110,9 +110,12 @@ audio.oncanplaythrough = duration;
 
 <button type="button" onclick="play(true);">Aggiungi in coda</button>
 <?php
+
+if (isset($_SESSION["ID"])){
 if ($dbh -> isSongLiked($idutente, $idcanzone)){
     echo "<button id=\"like\" type=\"button\" onclick=\"songUnlike();\">Togli dai piaciuti</button>";
 }else{
     echo "<button id=\"like\" type=\"button\" onclick=\"songLike();\">Aggiungi ai piaciuti</button>";    
+}
 }
 ?>

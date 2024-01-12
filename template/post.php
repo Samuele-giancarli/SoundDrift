@@ -9,7 +9,7 @@
     function generaLike($idPost) {
         $testo = "Like";
         // Genera il pulsante con il testo e l'ID specificati
-        return '<button type="button" class="btn btn-primary" onclick=swtch(this) id="' . $idPost . '" type="button">'. $idPost .'</button>';
+        return '<button type="button" class="btn btn-primary" onclick="swtch(this)" id="' . $idPost . '" type="button">'. $testo .'</button>';
     }
 ?>
 
@@ -53,11 +53,11 @@
                 <h5 class="card-title">
                     <?php
                     if (!is_null($songInfo)){
-                        ?> <a href="profile.php?utenteCorrente=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un brano <?php
+                        ?> <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un brano <?php
                     } else if (!is_null($albumInfo)){
-                        ?> <a href="profile.php?utenteCorrente=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un album<?php
+                        ?> <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un album<?php
                     } else {
-                        ?> <a href="profile.php?utenteCorrente=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un post <?php
+                        ?> <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un post <?php
                     }
                     ?>
                 </h5>
