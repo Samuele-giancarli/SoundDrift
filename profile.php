@@ -9,6 +9,12 @@ if(!isset($profileNavPage)) {
     $templateParams["feedData"] = $dbh->getPostsOfUser($_GET["id"]);
 }
 
+if (isset($_SESSION["ID"])) {
+    $templateParams["ID_Visualizer"] = $_SESSION["ID"];
+} else {
+    $templateParams["ID_Visualizer"] = null;
+}
+
 //Base Template
 $templateParams["titolo"] = "SoundDrift - Profilo";
 $templateParams["nome"] = "profile.php";

@@ -5,28 +5,69 @@
     }
 </style>
 
+<script>
+    var oldStyle;
+
+    function likeOn(postId){
+        var button = document.getElementById(postId);
+        oldStyle = button.style;
+        button.style.backgroundColor = "#ff0000";
+        button.style.borderColor = "#ff0000";
+
+        button.dataset.isOn = "true";
+
+        console.log("likeOn");
+    }
+
+    function likeOff(postId){
+        var button = document.getElementById(postId);
+        button.style = oldStyle;
+
+        button.dataset.isOn = "false";
+
+        console.log("likeOff");
+    }
+
+    function updateLike(postId){
+
+        console.log("started Update")
+
+        var button = document.getElementById(postId);
+        if(button.dataset.isOn === "true"){
+            likeOff(postId);
+        } else {
+            likeOn(postId)
+        }
+    }
+    
+</script>
+
 <?php
     function generaLike($idPost) {
         $testo = "Like";
         // Genera il pulsante con il testo e l'ID specificati
-        return '<button type="button" class="btn btn-primary" onclick="swtch(this)" id="' . $idPost . '" type="button">'. $testo .'</button>';
+        return '<button type="button" class="btn btn-primary" onclick="updateLike('.$idPost.')" id="' . $idPost . '"  data-isOn="false" type="button">'. $idPost .'</button>';
     }
 ?>
 
 <?php
-    function renderPost($postInfo, $dbh) {
-        $userid = $postInfo["ID_Utente"];
+    function renderPost($postInfo, $dbh, $ID_Visualizer) {
+        $userid = $postInfo["ID_Utente"]; //userid è l'id dellutente pubblicatore
+        $username = $dbh->getUserInfo($userid)["Username"]; //username è l'username dell'utente pubblicatore
         $image = $postInfo["ID_Immagine"];
-        $username = $dbh->getUserInfo($userid)["Username"];
         $postId = $postInfo["ID"];
         $likeNumber = $dbh->countLikes($postId);
         $imagePath="download.php?id=".$image;
+        //fino a qui sono tutte informazzioni sul post e il poster
+
         $isAlbum = $dbh->isPostAlbum($postId);
         $isSong = $dbh->isPostSong($postId);
         $songInfo=null;
         $albumInfo=null;
 
-        $isLiked = $dbh->isLikedBy($postId,$userid);
+        $visualizerId = $ID_Visualizer; //questo è l'id dell'eventuale visualizzatore
+
+        $isLiked = $dbh->isLikedBy($postId,$visualizerId);
 
         if (!is_null($postInfo["ID_Canzone"])){
         $songInfo= $dbh->getSongInfo($postInfo["ID_Canzone"]);
@@ -79,7 +120,6 @@
                         <?php if($isLiked){
                             /*echo "<script>swtch(document.getElementById("?> $postId <?php ");</script>";*/
                             echo "<script>likeOn($postId);</script>";
-
                         } else {
                             //echo "non piaciuto da te";
                         }?>
@@ -108,57 +148,6 @@
     }*/
 ?>
 
-<script>
-    var oldStyle;
-    var isOn = false;
 
-    function likeOn(postId){
-        var button = document.getElementById(postId);
-        oldStyle = button.style;
-        button.style.backgroundColor = "#ff0000";
-        button.style.borderColor = "#ff0000";
-
-        console.log("likeOn");
-    }
-
-    function likeOff(postId){
-        var button = document.getElementById(postId);
-        button.style = oldStyle;
-
-        console.log("likeOff");
-    }
-
-    function swtch(postId){
-        var button = document.getElementById(postId);
-        console.log("onSWITCH");
-        if(isOn){
-            console.log("onON");
-            likeOff(button);
-            isOn = false;
-        } else {
-            console.log("onOFF");
-            likeOn(button);
-            isOn = true
-        }
-    }
-    
-    /*lo script servirà solo per la logica estetica mentre la gestione del db con php
-    prima cosa da fare è la funzione in php
-    */
-    /*function likeOn(button){
-        console.log("toggleLike called");
-        //rifinire animazione
-        button.style.backgroundColor = "#ff0000";
-        button.style.borderColor = "#ff0000";
-        //
-
-
-    }
-
-    /*function likeOff(button){
-        return false;
-        return true;
-    }*/
-</script>
 
 <?php } ?>
