@@ -24,10 +24,10 @@ if(!isset($_SESSION["ID"])) {
                 die();
             }
         }
-        $stmt = $dbh->db->prepare("INSERT INTO album(Titolo,Genere,ID_Utente,Data,ID_Immagine) VALUES(?,?,?,CURDATE(),?)");
-        $stmt->bind_param("ssii", $titolo, $genere, $idutente,$idimmagine);
+
+        $idalbum=$dbh->addAlbum($titolo, $genere, $idutente, $idimmagine);
         try {
-            if($stmt->execute()) {
+            if(!is_null($idalbum)) {
                 $err_mess="<a href=\"songUpload.php\" style=\"color:black\">L'album ".htmlentities($titolo)." è stato creato: aggiungi subito delle canzoni!</a><br>";
                 $err_mess=$err_mess."<a href=\"albumCreate.php\" style=\"color:black\">Oppure crea un nuovo album.</a>";
                 $show_form=false;

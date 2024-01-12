@@ -21,10 +21,11 @@ if(!isset($_SESSION["ID"])) {
                 die();
             }
         }
-        $stmt = $dbh->db->prepare("INSERT INTO playlist(Titolo,ID_Utente,ID_Immagine) VALUES(?,?,?)");
-        $stmt->bind_param("sii", $titolo, $idutente, $idimmagine);
+
         try {
-            if($stmt->execute()) {
+            $idPlaylist = $dbh->addPlaylist($titolo, $idutente, $idimmagine);
+        if (!is_null($idPlaylist)) { 
+                $dbh ->likePlaylist($idutente, $idPlaylist);
                 $err_mess="<a href=\"libreria.php\" style=\"color:black\">La playlist ".htmlentities($titolo)." è stata creata: vai alla libreria</a><br>";
                 $err_mess=$err_mess."<a href=\"playlist.php\" style=\"color:black\">Oppure crea una nuova playlist.</a>";
                 $show_form=false;

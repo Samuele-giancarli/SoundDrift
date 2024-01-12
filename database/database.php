@@ -378,11 +378,26 @@ class DatabaseHelper{
         $date = date("Y-m-d H:i:s");
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("ssisi", $title, $genre, $idUser, $date, $idImage);
-        $stmt->execute();
+        if ($stmt->execute()){
         $idalbum = $this->db->insert_id;
-        return true;
+        return $idalbum;
+        } else{
+        return null;
     }
+}
 
+    
+    public function addPlaylist($title,$idUser,$idImage){
+        $query = "INSERT INTO playlist (Titolo, ID_Utente, ID_Immagine) VALUES (?,?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("sii", $title, $idUser, $idImage);
+        if ($stmt->execute()){
+        $idplaylist = $this->db->insert_id;
+        return $idplaylist;
+        }else{
+            return null;
+        }
+    }
     
 
     public function isUserFollowed($idUserInSession, $idCurrentUser){
