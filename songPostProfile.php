@@ -5,8 +5,7 @@ include("template/post.php");
 
 // Base Template
 $templateParams["voceNav"] = "songPostProfile.php";
-
-$templateParams["songs"] = $dbh->getPostsOfUser($_GET["utenteCorrente"]);
+$templateParams["feedData"] = $dbh->getPostsOfUser($_GET["id"]);
 
 require_once("profile.php");
 

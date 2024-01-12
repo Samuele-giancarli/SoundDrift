@@ -35,7 +35,6 @@ function albumUnlike(){
     
 }
 
-
 function albumUnlikeDone() {
     let button=document.getElementById("like");
     button.innerText="Aggiungi in libreria";
@@ -67,10 +66,12 @@ foreach ($rows as $song){
 }
 echo "\">Aggiungi tutto in coda</button>";
 }
+if ($info["Finalizzato"]==1){
 if ($dbh -> isAlbumLiked($idutente, $idalbum)){
     echo "<button id=\"like\" type=\"button\" onclick=\"albumUnlike();\">Togli dalla libreria</button>";
 }else{
     echo "<button id=\"like\" type=\"button\" onclick=\"albumLike();\">Aggiungi in libreria</button>";    
+}
 }
 ?>
 <div>Brani: </div>

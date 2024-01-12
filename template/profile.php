@@ -80,22 +80,22 @@
             <div class="row">
                 <ul class="nav nav-pills">
                     <li class="nav-item px-2 my-2 text-center col-3 col-md-3 ">
-                        <a href="allPostProfile.php?utenteCorrente=<?php echo $templateParams['utente']['ID']; ?>" class="btn btn-dark" style="text-decoration:none">
+                        <a href="allPostProfile.php?id=<?php echo $templateParams['utente']['ID']; ?>" class="btn btn-dark" style="text-decoration:none">
                             Tutti
                         </a>
                     </li>
                     <li class="nav-item px-2 my-2 text-center col-3 col-md-3">
-                        <a href="songPostProfile.php?utenteCorrente=<?php echo $templateParams['utente']['ID'];?>" class="btn btn-dark" style="text-decoration:none">
+                        <a href="songPostProfile.php?id=<?php echo $templateParams['utente']['ID'];?>" class="btn btn-dark" style="text-decoration:none">
                             Canzoni
                         </a>
                     </li>
                     <li class="nav-item px-2 my-2 text-center col-3 col-md-3">
-                        <a href="albumPostProfile.php?utenteCorrente=<?php echo $templateParams['utente']['ID'];?>" class="btn btn-dark" style="text-decoration:none">
+                        <a href="albumPostProfile.php?id=<?php echo $templateParams['utente']['ID'];?>" class="btn btn-dark" style="text-decoration:none">
                             Album
                         </a>
                     </li>
                     <li class="nav-item px-2 my-2 text-center col-3 col-md-3">
-                        <a href="playlistPostProfile.php?utenteCorrente=<?php echo $templateParams['utente']['ID'];?>" class="btn btn-dark" style="text-decoration:none">
+                        <a href="playlistPostProfile.php?id=<?php echo $templateParams['utente']['ID'];?>" class="btn btn-dark" style="text-decoration:none">
                             Playlist
                         </a>
                     </li>

@@ -23,7 +23,7 @@
         $istext = false;
         if($isAlbum && $isSong)
         {
-            echo "un post non può essere sia una canzone che un album";
+            echo "Un post non può essere sia una canzone che un album";
         } elseif(!$isAlbum && !$isSong) {
             $istext=true;
         }
@@ -39,15 +39,15 @@
                     <?php
                     if (!is_null($songInfo)){
                         ?>
-                    <a href="profile.php?utenteCorrente=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un brano
+                    <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un brano
                         <?php
                 }else if (!is_null($albumInfo)){
                     ?>
-                    <a href="profile.php?utenteCorrente=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un album
+                    <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un album
                     <?php
                 }else{
                     ?>
-                    <a href="profile.php?utenteCorrente=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un post
+                    <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un post
                     <?php
                 }
                     ?>

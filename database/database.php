@@ -432,6 +432,19 @@ class DatabaseHelper{
         return !is_null($row);
     }
 
+    
+    public function getLikedAlbums($iduser){
+        $stmt = $this->db->prepare("SELECT * FROM mipiace_album WHERE ID_Utente=?");
+        $stmt->bind_param("i", $iduser);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $rows=array();
+        while ($row = $result->fetch_assoc()){
+            array_push($rows, $row);
+        }
+        return $rows;
+    }
+
     public function likeSong($iduser, $idsong){
         $query="INSERT IGNORE INTO mipiace_canzone(ID_Utente,ID_Canzone) VALUES (?,?)";
         $stmt = $this->db->prepare($query);
