@@ -7,7 +7,6 @@
 
 <script>
     var oldStyle;
-    var isOn = false;
 
     function likeOn(postId){
         var button = document.getElementById(postId);
@@ -15,7 +14,7 @@
         button.style.backgroundColor = "#ff0000";
         button.style.borderColor = "#ff0000";
 
-        isOn = true;
+        button.dataset.isOn = "true";
 
         console.log("likeOn");
     }
@@ -24,7 +23,7 @@
         var button = document.getElementById(postId);
         button.style = oldStyle;
 
-        isOn = false;
+        button.dataset.isOn = "false";
 
         console.log("likeOff");
     }
@@ -34,26 +33,12 @@
         console.log("started Update")
 
         var button = document.getElementById(postId);
-        if(isOn){
+        if(button.dataset.isOn === "true"){
             likeOff(postId);
         } else {
             likeOn(postId)
         }
     }
-
-    /*function swtch(postId){
-        var button = document.getElementById(postId);
-        console.log("onSWITCH");
-        if(isOn){
-            console.log("onON");
-            likeOff(button);
-            isOn = false;
-        } else {
-            console.log("onOFF");
-            likeOn(button);
-            isOn = true
-        }
-    }*/
     
 </script>
 
@@ -61,7 +46,7 @@
     function generaLike($idPost) {
         $testo = "Like";
         // Genera il pulsante con il testo e l'ID specificati
-        return '<button type="button" class="btn btn-primary" onclick="updateLike('.$idPost.')" id="' . $idPost . '" type="button">'. $idPost .'</button>';
+        return '<button type="button" class="btn btn-primary" onclick="updateLike('.$idPost.')" id="' . $idPost . '"  data-isOn="false" type="button">'. $idPost .'</button>';
     }
 ?>
 
