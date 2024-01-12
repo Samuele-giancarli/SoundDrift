@@ -1,3 +1,18 @@
+<style>
+    .liked {
+        background-color: #ff0000;
+        border-color: #ff0000;
+    }
+</style>
+
+<?php
+    function generaLike($idPost) {
+        $testo = "Like";
+        // Genera il pulsante con il testo e l'ID specificati
+        return '<button type="button" class="btn btn-primary" onclick=swtch(this) id="' . $idPost . '" type="button">'. $idPost .'</button>';
+    }
+?>
+
 <?php
     function renderPost($postInfo, $dbh) {
         $userid = $postInfo["ID_Utente"];
@@ -54,17 +69,21 @@
                     <br>
                     <?php echo htmlentities($postInfo["Testo"]); ?>
                     <br>
-                    <?php if($isLiked){
-                        echo "piaciuto da te";
-                    } else {
-                        echo "non piaciuto da te";
-                    }?>
                 </p>
 
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
 
-                        <button type="button" class="btn btn-primary" onclick="swtch(this)">Like</button>
+                        <?php echo generaLike($postId);?>
+
+                        <?php if($isLiked){
+                            /*echo "<script>swtch(document.getElementById("?> $postId <?php ");</script>";*/
+                            echo "<script>likeOn($postId);</script>";
+
+                        } else {
+                            //echo "non piaciuto da te";
+                        }?>
+
                         <button type="button" class="btn btn-secondary">Condividi</button>
 
                     <?php
@@ -92,8 +111,9 @@
 <script>
     var oldStyle;
     var isOn = false;
-    
-    function likeOn(button){
+
+    function likeOn(postId){
+        var button = document.getElementById(postId);
         oldStyle = button.style;
         button.style.backgroundColor = "#ff0000";
         button.style.borderColor = "#ff0000";
@@ -101,13 +121,15 @@
         console.log("likeOn");
     }
 
-    function likeOff(button){
+    function likeOff(postId){
+        var button = document.getElementById(postId);
         button.style = oldStyle;
 
         console.log("likeOff");
     }
 
-    function swtch(button){
+    function swtch(postId){
+        var button = document.getElementById(postId);
         console.log("onSWITCH");
         if(isOn){
             console.log("onON");
