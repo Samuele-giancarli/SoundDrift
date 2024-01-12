@@ -53,6 +53,7 @@ if (!is_null($info["ID_Immagine"])){
 <div>Copertina: <img <?php echo "src=\"download.php?id=".$info["ID_Immagine"]."\""; ?>  id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" /></div>
 <?php
 }
+
 $rows= $dbh -> getSongsFromAlbum($idalbum);
 if (count($rows)!=0){
 echo "<button type=\"button\" onclick=\"";
@@ -66,6 +67,7 @@ foreach ($rows as $song){
 }
 echo "\">Aggiungi tutto in coda</button>";
 }
+
 if (isset($_SESSION["ID"])&&$info["Finalizzato"]==1){
 if ($dbh -> isAlbumLiked($idutente, $idalbum)){
     echo "<button id=\"like\" type=\"button\" onclick=\"albumUnlike();\">Togli dalla libreria</button>";

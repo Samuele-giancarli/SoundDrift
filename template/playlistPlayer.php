@@ -55,6 +55,7 @@ if (!is_null($info["ID_Immagine"])){
 }
 
 $rows= $dbh -> getSongsFromPlaylist($idplaylist);
+//var_dump($rows);
 if (count($rows)!=0){
 echo "<button type=\"button\" onclick=\"";
 foreach ($rows as $song){
@@ -67,6 +68,7 @@ foreach ($rows as $song){
 }
 echo "\">Aggiungi tutto in coda</button>";
 }
+
 if (isset($_SESSION["ID"])){
 if ($dbh -> isPlaylistLiked($idutente, $idplaylist)){
     echo "<button id=\"like\" type=\"button\" onclick=\"playlistUnlike();\">Togli dalla libreria</button>";
@@ -79,7 +81,7 @@ if ($dbh -> isPlaylistLiked($idutente, $idplaylist)){
 
 <ol>
 <?php
-foreach ($dbh -> getSongsFromPlaylist($idplaylist) as $song){
+foreach ($rows as $song){
     echo "<li><a style=\"color: black;\" href=\"songPlayer.php?id=".$song["ID"]."\">".htmlentities($song["Titolo"])."</a>";
     for ($i=0; $i<2; $i++) {
         echo " <button type=\"button\" onclick=\"";

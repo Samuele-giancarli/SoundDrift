@@ -4,7 +4,7 @@ if (!isset($_SESSION["ID"])){
 }
 ?>
   <a href="playlist.php" class="btn btn-dark" style="text-decoration:none">
-    <i class="bi bi-music-note-list" style="font-size: 20px">Crea una playlist</i>
+    <i class="bi bi-music-note-list" style="font-size: 20px">Vai alle playlist</i>
   </a>
 
   <p>Queste sono le tue playlist salvate!</p>

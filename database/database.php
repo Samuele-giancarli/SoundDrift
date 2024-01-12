@@ -427,7 +427,7 @@ class DatabaseHelper{
     }
 
     public function getSongsFromPlaylist($idplaylist){
-        $query="SELECT * FROM associativa_playlist WHERE ID_Playlist=? ORDER BY ID_Canzone ASC";
+        $query="SELECT canzone.* FROM associativa_playlist JOIN canzone ON associativa_playlist.ID_Canzone=canzone.ID WHERE associativa_playlist.ID_Playlist=?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("i", $idplaylist);
         $stmt->execute();
@@ -573,7 +573,28 @@ class DatabaseHelper{
         }
         return $rows;
     }
+
+
+    public function addSongToPlaylist($idsong, $idplaylist){
+        $query = "INSERT IGNORE INTO associativa_playlist(ID_Canzone, ID_Playlist) VALUES (?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $idsong, $idplaylist);
+        $stmt->execute();
+        return true;
+    }
+
+    public function inWhichPlaylists($idsong){
+        $query="SELECT * FROM associativa_playlist WHERE ID_Canzone=?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $idsong);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $rows = array();
+        while ($row = $result->fetch_assoc()) {
+            array_push($rows, $row);
+        }
+        return $rows;
+    }
+
 }
-
-
 ?>
