@@ -1,5 +1,6 @@
 <?php
     include "../bootstrap.php";
+    include "post.php";
 
     $response = array();
     if(isset($_GET["q"])){
@@ -7,13 +8,16 @@
         $searchInput = $_GET['q'];
 
         // Esegui la query di ricerca nel database
-        $arrayResult = $dbh -> searchSongsbyTitle($searchInput);
+        $arrayResult = $dbh -> searchPostsbyTitle($searchInput);
 
         // Mostra i risultati
         foreach($arrayResult as $song){
-            $response[] = array("IDSong" => $song["ID"], "Titolo" => $song["Titolo"]);
+            
+            renderPost($song, $dbh);
+            
+            //$response[] = array("IDSong" => $song["ID"], "Titolo" => $song["Titolo"]);
         }
         
-        echo (json_encode($response));
+        //echo (json_encode($response));
     }
 ?>
