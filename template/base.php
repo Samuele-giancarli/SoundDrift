@@ -67,7 +67,7 @@
         ?>
         <footer id="second-footer" class="bg-black text-center">
             <div class="container">
-                <a href="#" class="btn btn-dark" style="text-decoration:none">
+                <a href="ricerca.php" class="btn btn-dark" style="text-decoration:none">
                         <i class="bi bi-search"></i> Cerca
                 </a>
                 <a href="libreria.php" class="btn btn-dark" style="text-decoration:none">
