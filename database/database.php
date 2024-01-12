@@ -187,6 +187,24 @@ class DatabaseHelper{
     
     }
 
+    public function getPlaylistsOfUser($id) {
+    
+    
+        $query = "SELECT * FROM playlist WHERE ID_Utente = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $feed = array();
+    
+        while ($row = $result->fetch_assoc()) {
+            $feed[] = $row;
+        }
+    
+        return $feed;
+    
+    }
+
     public function getMostLiked() {
         $query =
         "SELECT p.*, COUNT(m.ID_Utente) AS num_likes
@@ -286,6 +304,15 @@ class DatabaseHelper{
         return $row;
     }
 
+    public function getPlaylistInfo($id) {
+        $stmt = $this->db->prepare("SELECT * FROM playlist WHERE ID=?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return $row;
+    }
+
     public function getResourceInfo($id){
         $stmt = $this->db->prepare("SELECT * FROM risorsa WHERE ID=?");
         $stmt->bind_param("i", $id);
@@ -351,11 +378,26 @@ class DatabaseHelper{
         $date = date("Y-m-d H:i:s");
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("ssisi", $title, $genre, $idUser, $date, $idImage);
-        $stmt->execute();
+        if ($stmt->execute()){
         $idalbum = $this->db->insert_id;
-        return true;
+        return $idalbum;
+        } else{
+        return null;
     }
+}
 
+    
+    public function addPlaylist($title,$idUser,$idImage){
+        $query = "INSERT INTO playlist (Titolo, ID_Utente, ID_Immagine) VALUES (?,?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("sii", $title, $idUser, $idImage);
+        if ($stmt->execute()){
+        $idplaylist = $this->db->insert_id;
+        return $idplaylist;
+        }else{
+            return null;
+        }
+    }
     
 
     public function isUserFollowed($idUserInSession, $idCurrentUser){
@@ -371,21 +413,23 @@ class DatabaseHelper{
     }
 
 
-    public function getPlaylistsOfUser($idCurrentUser){
-        $query = "SELECT * FROM playlist WHERE ID_Utente = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param("i", $idCurrentUser);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $row = $result->fetch_all();
-
-        return $row;
-    }
-
     public function getSongsFromAlbum($idalbum){
         $query="SELECT * FROM canzone WHERE ID_Album=? ORDER BY ID ASC";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("i", $idalbum);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $rows=array();
+        while ($row = $result->fetch_assoc()){
+            array_push($rows, $row);
+        }
+        return $rows;
+    }
+
+    public function getSongsFromPlaylist($idplaylist){
+        $query="SELECT * FROM associativa_playlist WHERE ID_Playlist=? ORDER BY ID_Canzone ASC";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $idplaylist);
         $stmt->execute();
         $result = $stmt->get_result();
         $rows=array();
@@ -467,7 +511,55 @@ class DatabaseHelper{
         $row = $result->fetch_assoc();
         return !is_null($row);
     }
+
+    public function likePlaylist($iduser, $idplaylist){
+        $query="INSERT IGNORE INTO mipiace_playlist(ID_Utente,ID_Playlist) VALUES (?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $iduser, $idplaylist);
+        $stmt->execute();
+    }
+
+    public function unlikePlaylist($iduser, $idplaylist){
+        $query="DELETE FROM mipiace_playlist WHERE ID_Utente=? AND ID_Playlist=?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $iduser, $idplaylist);
+        $stmt->execute();
+    }
+
+    public function isPlaylistLiked($iduser, $idplaylist){
+        $stmt = $this->db->prepare("SELECT * FROM mipiace_playlist WHERE ID_Utente=? AND ID_Playlist=?");
+        $stmt->bind_param("ii", $iduser, $idplaylist);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return !is_null($row);
+    }
+
     
+    public function getLikedPlaylists($iduser){
+        $stmt = $this->db->prepare("SELECT * FROM mipiace_playlist WHERE ID_Utente=?");
+        $stmt->bind_param("i", $iduser);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $rows=array();
+        while ($row = $result->fetch_assoc()){
+            array_push($rows, $row);
+        }
+        return $rows;
+    }
+
+    public function searchSongsbyTitle($title){
+        $stmt = $this->db->prepare("SELECT * FROM canzone WHERE LOWER(Titolo) LIKE LOWER(?)");
+        $title = "%$title%";
+        $stmt->bind_param("s", $title);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $rows = array();
+        while ($row = $result->fetch_assoc()) {
+            array_push($rows, $row);
+        }
+        return $rows;
+    }
 }
 
 
