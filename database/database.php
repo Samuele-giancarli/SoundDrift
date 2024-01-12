@@ -469,12 +469,13 @@ class DatabaseHelper{
     }
 
     public function searchSongsbyTitle($title){
-        $stmt = $this->db->prepare("SELECT * FROM canzone WHERE LOWER(Titolo) LIKE LOWER('%?%')");
+        $stmt = $this->db->prepare("SELECT * FROM canzone WHERE LOWER(Titolo) LIKE LOWER(?)");
+        $title = "%$title%";
         $stmt->bind_param("s", $title);
         $stmt->execute();
         $result = $stmt->get_result();
-        $rows=array();
-        while ($row = $result->fetch_assoc()){
+        $rows = array();
+        while ($row = $result->fetch_assoc()) {
             array_push($rows, $row);
         }
         return $rows;
