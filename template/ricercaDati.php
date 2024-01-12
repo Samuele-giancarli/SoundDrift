@@ -1,6 +1,7 @@
 <?php
     include "../bootstrap.php";
     include "post.php";
+    session_start();
 
     $response = array();
     if(isset($_GET["q"])){
@@ -13,7 +14,7 @@
         // Mostra i risultati
         foreach($arrayResult as $song){
             
-            renderPost($song, $dbh);
+            renderPost($song, $dbh, $_SESSION["ID"]);
             
             //$response[] = array("IDSong" => $song["ID"], "Titolo" => $song["Titolo"]);
         }
