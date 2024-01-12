@@ -28,7 +28,7 @@
         console.log("likeOff");
     }
 
-    function updateLike(postId){
+    function updateLikeVisual(postId){
 
         console.log("started Update")
 
@@ -122,21 +122,20 @@
                 </p>
 
                 <div class="d-flex justify-content-between align-items-center">
-                    <form method="post" action="updateLike.php">
+               
+                    <form method="post" action="updateLike.php" enctype="multipart/form-data">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-primary" onclick="updateLike(<?php echo $postId; ?>)" id="<?php echo $postId; ?>" data-isOn="false" type="button"><?php echo $postId; ?></button>
+                            <button type="submit" class="btn btn-primary" onclick="updateLikeVisual(<?php echo $postId; ?>)" id="<?php echo $postId; ?>" data-isOn="false" type="button"><?php echo $postId; ?></button>
                             <button type="button" class="btn btn-secondary">Condividi</button>
                             <?php echo (!is_null($songInfo) ? '<a class="btn btn-info" style="color: white;" href="songPlayer.php?id='.$songInfo["ID"].'">Vai al brano</a>' : ''); ?>
                             <?php echo (!is_null($albumInfo) ? '<a class="btn btn-info" style="color: white;" href="albumPlayer.php?id='.$albumInfo["ID"].'">Vai all\'album</a>' : ''); ?>
                             <small class="text-muted"><?php echo $likeNumber; ?> likes </small>
                         </div>
+                        <input type="hidden" name="idPost" value="<?php echo $postId; ?>">
+                        <input type="hidden" name="idUser" value="<?php echo $visualizerId; ?>">
                     </form>
 
-                <?php if($isLiked){ /*echo "<script>swtch(document.getElementById("?> $postId <?php ");</script>";*/
-                    echo "<script>likeOn($postId);</script>";
-                } else {
-                    //echo "non piaciuto da te";
-                }?>
+                    <?php if($isLiked){echo "<script>likeOn($postId);</script>";}?>
 
                 </div>
             </div>
