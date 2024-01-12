@@ -80,7 +80,7 @@
         $songInfo=null;
         $albumInfo=null;
 
-        $visualizerId = $ID_Visualizer;
+        $visualizerId = $ID_Visualizer; //questo è l'id dell'eventuale visualizzatore
 
         $isLiked = $dbh->isLikedBy($postId,$visualizerId);
 
