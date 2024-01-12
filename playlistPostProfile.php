@@ -6,6 +6,8 @@ require_once("bootstrap.php");
 $templateParams["voceNav"] = "playlistPostProfile.php";
 $templateParams["playlists"] = $dbh->getPlaylistsOfUser($_GET["id"]);
 
+$profileNavPage = true;
+
 require_once("profile.php");
 
 

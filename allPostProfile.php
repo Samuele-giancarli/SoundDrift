@@ -7,5 +7,7 @@ include("template/post.php");
 $templateParams["voceNav"] = "allPostProfile.php";
 $templateParams["feedData"] = $dbh->getPostsOfUser($_GET["id"]);
 
+$profileNavPage = true;
+
 require_once("profile.php");
 ?>
