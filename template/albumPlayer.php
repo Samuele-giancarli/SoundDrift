@@ -8,7 +8,41 @@ if (!isset($_GET["id"])){
 $idalbum=$_GET["id"];
 $info=$dbh->getAlbumInfo($idalbum);
 $userInfo=$dbh->getUserInfo($info["ID_Utente"]);
+$idutente=$userInfo["ID"];
+
 ?>
+<script>
+function albumLike(){
+    let button=document.getElementById("like");
+    let xhr=new XMLHttpRequest();
+    xhr.open('GET', 'albumLike.php?id=' + <?php echo "'".$idalbum."'"; ?>);
+    xhr.onload=albumLikeDone;
+    xhr.send();
+}
+
+function albumLikeDone() {
+    let button=document.getElementById("like");
+    button.innerText="Togli dalla libreria";
+    button.onclick = albumUnlike;
+}
+
+function albumUnlike(){
+    let button=document.getElementById("like");
+    let xhr=new XMLHttpRequest();
+    xhr.open('GET', 'albumUnlike.php?id=' + <?php echo "'".$idalbum."'"; ?>);
+    xhr.onload=albumUnlikeDone;
+    xhr.send();
+    
+}
+
+
+function albumUnlikeDone() {
+    let button=document.getElementById("like");
+    button.innerText="Aggiungi in libreria";
+    button.onclick = albumLike;
+}
+</script>
+
 
 <div>Titolo: <?php echo $info["Titolo"]; ?></div>
 <div>Autore: <?php echo "<a style=\"color:black\" href=\"profile.php?id=".$userInfo["ID"]."\">".htmlentities($userInfo["Username"])."</a>"; ?></div>
@@ -33,8 +67,12 @@ foreach ($rows as $song){
 }
 echo "\">Aggiungi tutto in coda</button>";
 }
+if ($dbh -> isAlbumLiked($idutente, $idalbum)){
+    echo "<button id=\"like\" type=\"button\" onclick=\"albumUnlike();\">Togli dalla libreria</button>";
+}else{
+    echo "<button id=\"like\" type=\"button\" onclick=\"albumLike();\">Aggiungi in libreria</button>";    
+}
 ?>
-
 <div>Brani: </div>
 
 <ol>

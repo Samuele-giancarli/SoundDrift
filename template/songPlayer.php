@@ -9,6 +9,7 @@ if (!isset($_GET["id"])){
 $idcanzone=$_GET["id"];
 $info=$dbh->getSongInfo($idcanzone);
 $userInfo=$dbh->getUserInfo($info["ID_Utente"]);
+$idutente=$userInfo["ID"];
 $audioInfo = $dbh->getResourceInfo($info["ID_Audio"]);
 ?>
 
@@ -36,6 +37,35 @@ function play(enqueue) {
     data.author = <?php echo "'".jsescape($userInfo["Username"])."'"; ?>;
     data.url = <?php echo "'download.php?id=".$info["ID_Audio"]."'"; ?>;
     window.parent.playNow(data, enqueue);
+}
+
+function songLike(){
+    let button=document.getElementById("like");
+    let xhr=new XMLHttpRequest();
+    xhr.open('GET', 'songLike.php?id=' + <?php echo "'".$idcanzone."'"; ?>);
+    xhr.onload=songLikeDone;
+    xhr.send();
+}
+
+function songLikeDone() {
+    let button=document.getElementById("like");
+    button.innerText="Togli dai piaciuti";
+    button.onclick = songUnlike;
+}
+
+function songUnlike(){
+    let button=document.getElementById("like");
+    let xhr=new XMLHttpRequest();
+    xhr.open('GET', 'songUnlike.php?id=' + <?php echo "'".$idcanzone."'"; ?>);
+    xhr.onload=songUnlikeDone;
+    xhr.send();
+    
+}
+
+function songUnlikeDone() {
+    let button=document.getElementById("like");
+    button.innerText="Aggiungi ai piaciuti";
+    button.onclick = songLike;
 }
 </script>
 
@@ -79,3 +109,10 @@ audio.oncanplaythrough = duration;
 </script>
 
 <button type="button" onclick="play(true);">Aggiungi in coda</button>
+<?php
+if ($dbh -> isSongLiked($idutente, $idcanzone)){
+    echo "<button id=\"like\" type=\"button\" onclick=\"songUnlike();\">Togli dai piaciuti</button>";
+}else{
+    echo "<button id=\"like\" type=\"button\" onclick=\"songLike();\">Aggiungi ai piaciuti</button>";    
+}
+?>
