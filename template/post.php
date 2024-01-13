@@ -39,9 +39,15 @@
 
         console.log("started Update")
         let button = document.getElementById("likebutton" + postId);
+        
         let xhr = new XMLHttpRequest();
         xhr.open("GET", "updateLike.php?id="+postId, false);
         xhr.send();
+
+        xhr = new XMLHttpRequest();
+        xhr.open("GET", "updateLikeNotificationPost.php?id="+postId, false);
+        xhr.send();
+
         if(button.dataset.isOn === "true"){
             likeOff(postId, init);
         } else {

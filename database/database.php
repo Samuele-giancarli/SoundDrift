@@ -32,6 +32,24 @@ class DatabaseHelper{
         return $result->fetch_assoc();
     }
 
+    public function addNotificationPost($idPost){
+        $queryInsert = "INSERT INTO notifica (Testo, ID_Utente, ID_Mandante, ID_Post) VALUES (?,?,?,?,?)";
+        $stmt = $this->db->prepare($queryInsert);
+        
+        $testo = "";
+        $idUtente = 5;
+        $idMandente = 6;
+        $idPost;
+
+        $stmt->bind_param("siii", $testo, $idUtente, $idMandente, $idPost);
+
+        try {
+            $stmt->execute();
+        } catch(mysqli_sql_exception $e) {
+            echo "". $e->getMessage() ."";
+        }
+    }
+
     public function getListOfNotifications($ID){
         $query = "SELECT * FROM notifica WHERE ID_Utente = ?";
         $stmt = $this->db->prepare($query);
