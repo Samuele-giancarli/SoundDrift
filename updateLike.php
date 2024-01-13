@@ -1,16 +1,13 @@
 <?php
+    session_start();
     require_once("bootstrap.php");
-    if(!isset($_POST["idPost"]) || !isset($_POST["idUser"]))
+    if(!isset($_GET["id"]) || !isset($_SESSION["ID"]))
     {
         http_response_code(400);
         die();
     }
-    $idPost = $_POST['idPost'];
-    $idUser = $_POST['idUser'];
 
-    echo $idPost;
-    echo $idUser;
-
+    $idPost = $_GET["id"];
+    $idUser = $_SESSION["ID"];
     $dbh->updateLike($idPost,$idUser);
-    echo "dbh updateAto";
 ?>
