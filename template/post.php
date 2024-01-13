@@ -141,7 +141,7 @@
                 /*ID - ID_Utente - Data - Titolo - Genere - Finalizzato - ID_Immagine*/
             
                 ?>
-            <div style="max-height: 150px; overflow-y: auto; overflow-x: hidden;">
+            <div style="max-height: 200px; overflow-y: auto; overflow-x: hidden;">
                <?php foreach ($dbh -> getSongsFromAlbum($idalbum) as $song) {?>
                      <!--
 
@@ -153,7 +153,7 @@
                     <div class="song row">
                             <!-- Song Name (Takes 9 columns) -->
                         <div class="col-9">
-                            <h3><?php echo $song["Titolo"]; ?></h3>
+                            <h4><?php echo $song["Titolo"]; ?></h4>
                             <!-- Add more song details as needed -->
                         </div>
 
