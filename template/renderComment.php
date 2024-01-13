@@ -17,7 +17,7 @@
                 <a href="profile.php?id=<?php echo $id_mandante; ?>" style="color: black; text-decoration:none"><?php echo $authorname; ?></a>
                 </h5>
                 <p class="card-title">
-                   <?php echo $testo; ?>
+                   <?php echo htmlentities($testo); ?>
                 </p>
             </div>
         </div>
