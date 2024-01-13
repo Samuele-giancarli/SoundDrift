@@ -14,6 +14,8 @@
         oldStyle = button.style;
         button.style.backgroundColor = "#ff0000";
         button.style.borderColor = "#ff0000";
+        button.innerHTML = '<i class="bi bi-heart-fill"></i>';
+        
         button.dataset.isOn = "true";
         let n = parseInt(likes.innerText.split(" ")[0]) + 1;
         if(!init)
@@ -26,6 +28,7 @@
         let likes = document.getElementById("likenumber" + postId);
         button.style = oldStyle;
         button.dataset.isOn = "false";
+        button.innerHTML = '<i class="bi bi-heart"></i>';
         let n = parseInt(likes.innerText.split(" ")[0]) - 1;
         if(!init)
             likes.innerText = n + " likes";
@@ -46,22 +49,6 @@
         }
     }
 </script>
-
-<?php
-    /*function generaBarraFunzionalita($idPost,$songInfo, $albumInfo) {
-        $testo = "Like";
-        // Genera il pulsante con il testo e l'ID specificati
-        return '<form method="post" action="updateLike.php">
-                    <div class="btn-group">
-                    <button type="button" class="btn btn-primary" onclick="updateLike('.$idPost.')" id="' . $idPost . '"  data-isOn="false" type="button">'. $idPost .'</button>
-                    <button type="button" class="btn btn-secondary">Condividi</button>'.
-                    (!is_null($songInfo) ? '<a class="btn btn-info" style="color: white;" href="songPlayer.php?id='.$songInfo["ID"].'">Vai al brano</a>' : '').
-                    (!is_null($albumInfo) ? '<a class="btn btn-info" style="color: white;" href="albumPlayer.php?id='.$albumInfo["ID"].'">Vai all\'album</a>' : '').
-                    '<small class="text-muted"><?php echo $likeNumber ?> likes </small>
-                    </div>
-                </form>';
-    }*/
-?>
 
 <?php
     function renderPost($postInfo, $dbh, $ID_Visualizer) {
@@ -206,7 +193,7 @@
                         <?php
                         if (isset($_SESSION["ID"])){
                             ?>
-                        <button type="button" class="btn btn-primary" onclick="updateLikeVisual(<?php echo $postId; ?>, false)" id="likebutton<?php echo $postId; ?>" data-isOn="false"><?php echo $postId; ?></button>
+                        <button type="button" class="btn btn-primary" onclick="updateLikeVisual(<?php echo $postId; ?>, false)" id="likebutton<?php echo $postId; ?>" data-isOn="false"><i class="bi bi-heart"></i></button>
                         <a class="btn btn-info" style="color: white" href="comment.php?id=<?php echo $postId ?>"> Commenti </a>
                         <?php
                         }
