@@ -36,12 +36,15 @@ class DatabaseHelper{
         $query= "INSERT INTO notifica (Testo, ID_Utente, ID_Mandante, ID_Post) VALUES (?,?,?,?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("siii", $testo, $idUtente, $idMandante, $idPost);
-        try ($stmt->execute()){
-        } catch(mysqli_sql_exception $e) {
-            return null;
-        }
-        return $this->db->insert_id;
+        try {
+            if (!$stmt->execute()){
+                return null;
+            } 
+    }catch(mysqli_sql_exception $e) {
+        return null;
     }
+    return $this->db->insert_id;
+}
 
 
     public function getListOfNotifications($ID){
@@ -263,15 +266,15 @@ class DatabaseHelper{
         $stmt = $this->db->prepare("INSERT INTO risorsa(FileName,MimeType,Contenuto) VALUES(?,?,?)");
         $stmt->bind_param("ssb", $filename, $mimetype, $null);
         $stmt->send_long_data(2, $content);
-        try {
-            if(!$stmt->execute()) {
+        try{
+            if (!$stmt->execute()){
+                return null;
+            } 
+        } catch(mysqli_sql_exception $e) {
                 return null;
             }
-        } catch(mysqli_sql_exception $e) {
-            return null;
-        }
         return $this->db->insert_id;
-    }
+}
 
     public function getSongCountByUser($userID) {
         $stmt = $this->db->prepare("SELECT COUNT(ID) AS conteggio FROM canzone WHERE ID_Utente=?");
