@@ -608,5 +608,18 @@ class DatabaseHelper{
         }
         return $rows;
     }
+
+    public function searchSongsbyTitleWithFilter($title,$idplaylist){
+        $stmt = $this->db->prepare("SELECT canzone.* FROM canzone LEFT JOIN associativa_playlist ON canzone.ID=associativa_playlist.ID_Canzone AND associativa_playlist.ID_Playlist=? WHERE LOWER(canzone.Titolo) LIKE LOWER(?) AND associativa_playlist.ID_Playlist IS NULL");
+        $title = "%$title%";
+        $stmt->bind_param("is", $idplaylist, $title);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $rows = array();
+        while ($row = $result->fetch_assoc()) {
+            array_push($rows, $row);
+        }
+        return $rows;
+    }
 }
 ?>
