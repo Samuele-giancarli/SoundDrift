@@ -50,14 +50,14 @@ class DatabaseHelper{
     }
 
     public function updateLike($idPost,$idUser){
-        if(!$this->isLikedBy($idUser, $idPost)){
+        if(!$this->isLikedBy($idPost, $idUser)){
             $queryInsert = "INSERT INTO mipiace_post (ID_Post, ID_Utente) VALUES (?, ?)";
             $stmt = $this->db->prepare($queryInsert);
-            $stmt->bind_param("ii", $idPost, $idLiker);
+            $stmt->bind_param("ii", $idPost, $idUser);
         } else {
             $queryDelete = "DELETE FROM mipiace_post WHERE ID_Post = ? AND ID_Utente = ?";
             $stmt = $this->db->prepare($queryDelete);
-            $stmt->bind_param("ii", $idPost, $idLiker);
+            $stmt->bind_param("ii", $idPost, $idUser);
         }
         $stmt->execute();
     }
