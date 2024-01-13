@@ -1,24 +1,32 @@
 <?php
     include "../bootstrap.php";
-    include "post.php";
+    
     session_start();
 
-    $response = array();
     if(isset($_GET["q"])){
     // Ricevi il valore di ricerca dall'URL
         $searchInput = $_GET['q'];
 
         // Esegui la query di ricerca nel database
-        $arrayResult = $dbh -> searchPostsbyTitle($searchInput);
-
-        // Mostra i risultati
-        foreach($arrayResult as $song){
+        $arrayPostsResult = $dbh -> searchPostsbyTitle($searchInput);
+        $arrayUsersResult = $dbh -> searchUsersbyName($searchInput);
+        if(!is_null($arrayPostsResult)){
+            include "post.php";
             
-            renderPost($song, $dbh, $_SESSION["ID"]);
-            
-            //$response[] = array("IDSong" => $song["ID"], "Titolo" => $song["Titolo"]);
+            // Mostra i risultati
+            foreach($arrayPostsResult as $post){
+                renderPost($post, $dbh, $_SESSION["ID"]);
+            }
         }
-        
-        //echo (json_encode($response));
+
+
+        if(!is_null($arrayUsersResult)){
+            include "userForResearch.php";
+            
+            foreach($arrayUsersResult as $user){
+                renderUser($user);
+            }
+        }
+
     }
 ?>

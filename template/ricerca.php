@@ -18,26 +18,12 @@
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     let response = xhr.responseText;
-                    console.log(response);
                     let output;
                     // Pulisci i risultati precedenti
                     document.getElementById('searchResults').innerHTML = "";
 
-                    try{
-                        //output = JSON.parse(response);
-                        //console.log(output);
-                    }catch(e){
-                        console.log(e); 
-                    }
-
                     searchResults.innerHTML += response;
                     
-                    // iterate over results  
-                    //for( var i = 0; i < output.length; i++ ){  
-                        // append result to result container, link to url of post
-
-                        //searchResults.innerHTML += "<a style='color: black' href='songPlayer.php?id=" + output[i]["IDSong"] + "'>ID Canzone: " + output[i]["IDSong"] + " Titolo:" + output[i]["Titolo"] + "</a></br>"; 
-                    //}  
                 }
             };
 

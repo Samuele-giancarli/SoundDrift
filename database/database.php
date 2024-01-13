@@ -573,6 +573,19 @@ class DatabaseHelper{
         }
         return $rows;
     }
+
+    public function searchUsersbyName($username){
+        $stmt = $this->db->prepare("SELECT * FROM utente WHERE LOWER(Username) LIKE LOWER(?)");
+        $username = "%$username%";
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $rows = array();
+        while ($row = $result->fetch_assoc()) {
+            array_push($rows, $row);
+        }
+        return $rows;
+    }
 }
 
 
