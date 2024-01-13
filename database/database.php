@@ -730,5 +730,13 @@ class DatabaseHelper{
         $stmt->execute();
         return $this->db->insert_id;
     }
+
+    public function updatePassword($idUser, $password){
+        $queryInsert = "UPDATE utente SET Password=? WHERE ID=?";
+        $stmt = $this->db->prepare($queryInsert);
+        $stmt->bind_param("si", $password, $idUser);
+        $stmt->execute();
+    }
 }
+
 ?>

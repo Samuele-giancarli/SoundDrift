@@ -76,7 +76,7 @@
                 <a href="upload.php" class="btn btn-dark" style="text-decoration:none">
                         <i class="bi bi-file-post"></i> Post
                 </a>
-                <a href="#" class="btn btn-dark" style="text-decoration:none">
+                <a href="settings.php" class="btn btn-dark" style="text-decoration:none">
                         <i class="bi bi-gear"></i> Impostazioni
                 </a>
             </div>

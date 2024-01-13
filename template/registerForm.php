@@ -51,7 +51,7 @@ if($show_form) {
     <h2>Registrazione</h2>
     <div>
         <label for="username">Nome utente:</label>
-        <input type="text" name="username" id="username" placeholder="Inserisci nome utente">
+        <input type="text" name="username" id="username" autocomplete="off" placeholder="Inserisci nome utente">
     </div>
     <div>
         <label for="email">Email:</label>
@@ -66,9 +66,8 @@ if($show_form) {
         <input type="password" name="password2" id="password2" placeholder="Ripeti password">
     </div>
     <button type="submit">Registrati</button>
-    <br>
+    </form>
     <a href="login.php" style="color:black">Sei già registrato?</a>
-</form>
 <?php
 }
 if(!is_null($err_mess)) {
