@@ -32,6 +32,22 @@ class DatabaseHelper{
         return $result->fetch_assoc();
     }
 
+    public function getListOfNotifications($ID){
+        $query = "SELECT * FROM notifica WHERE ID_Utente = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $ID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $notificationList = array();
+
+        while ($row = $result->fetch_assoc()) {
+            $notificationList[] = $row;
+        }
+
+        return $notificationList;    
+    }
+
     //ritorna la lista di following dello user attuale
     public function getListOfFollowing($ID){
         $query = "SELECT ID_Seguito FROM follow WHERE ID_Seguace = ?";
