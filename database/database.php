@@ -303,6 +303,24 @@ class DatabaseHelper{
         $stmt->execute();
     }
 
+    public function getCommentInfo($id) {
+        $stmt = $this->db->prepare("SELECT * FROM commento WHERE ID=?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return $row;
+    }
+
+    public function getPostInfo($id) {
+        $stmt = $this->db->prepare("SELECT * FROM post WHERE ID=?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return $row;
+    }
+
     public function getSongInfo($id) {
         $stmt = $this->db->prepare("SELECT * FROM canzone WHERE ID=?");
         $stmt->bind_param("i", $id);
@@ -618,8 +636,6 @@ class DatabaseHelper{
     }
 
         public function getPostsOfUser($id) {
-    
-    
         $query = "SELECT * FROM post WHERE ID_Utente = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("i", $id);
@@ -714,6 +730,7 @@ class DatabaseHelper{
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("iis", $idUser, $idPost, $text);
         $stmt->execute();
+        return $this->db->insert_id;
     }
 }
 ?>
