@@ -35,7 +35,7 @@
         console.log("likeOff");
     }
 
-    function updateLikeVisual(postId, init){
+    function updateLikeVisual(postId, init, visualizerId){
 
         console.log("started Update")
         let button = document.getElementById("likebutton" + postId);
@@ -45,7 +45,7 @@
         xhr.send();
 
         xhr = new XMLHttpRequest();
-        xhr.open("GET", "updateLikeNotificationPost.php?id="+postId, false);
+        xhr.open("GET", "updateLikeNotificationPost.php?id="+postId+"&id_man="+visualizerId, false);
         xhr.send();
 
         if(button.dataset.isOn === "true"){
@@ -199,7 +199,7 @@
                         <?php
                         if (isset($_SESSION["ID"])){
                             ?>
-                        <button type="button" class="btn btn-primary" onclick="updateLikeVisual(<?php echo $postId; ?>, false)" id="likebutton<?php echo $postId; ?>" data-isOn="false"><i class="bi bi-heart"></i></button>
+                        <button type="button" class="btn btn-primary" onclick="updateLikeVisual(<?php echo $postId; ?>, false, <?php echo $visualizerId?>)" id="likebutton<?php echo $postId; ?>" data-isOn="false"><i class="bi bi-heart"></i></button>
                         <a class="btn btn-info" style="color: white" href="comment.php?id=<?php echo $postId ?>"> Commenti </a>
                         <?php
                         }
