@@ -1,6 +1,5 @@
 
 <?php
-include "../bootstrap.php";
 
     function renderPlaylist($playlistInfo,$dbh) {
         $playlistid = $playlistInfo["ID"]; 

@@ -81,7 +81,7 @@
                 <ul class="nav nav-pills">
                     <li class="nav-item px-2 my-2 text-center col-3 col-md-3 ">
                         <a href="allPostProfile.php?id=<?php echo $templateParams['utente']['ID']; ?>" class="btn btn-dark" style="text-decoration:none">
-                            Tutti
+                            Post
                         </a>
                     </li>
                     <li class="nav-item px-2 my-2 text-center col-3 col-md-3">

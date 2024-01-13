@@ -1,6 +1,5 @@
 
 <?php
-include "../bootstrap.php";
 
     function renderSong($songInfo,$dbh) {
         $songid = $songInfo["ID"]; 

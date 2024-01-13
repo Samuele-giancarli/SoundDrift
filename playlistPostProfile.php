@@ -1,10 +1,11 @@
 <?php
 
 require_once("bootstrap.php");
+include("template/playlistForResearch.php");
 
 // Base Template
 $templateParams["voceNav"] = "playlistPostProfile.php";
-$templateParams["playlists"] = $dbh->getPlaylistsOfUser($_GET["id"]);
+$templateParams["feedData"] = $dbh->getPlaylistsOfUser($_GET["id"]);
 
 $profileNavPage = true;
 

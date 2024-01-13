@@ -1,11 +1,11 @@
 <?php
 
 require_once("bootstrap.php");
-include("template/post.php");
+include("template/albumForResearch.php");
 
 // Base Template
 $templateParams["voceNav"] = "albumPostProfile.php";
-$templateParams["feedData"] = $dbh->getPostsOfUser($_GET["id"]);
+$templateParams["feedData"] = $dbh->getAlbumsOfUser($_GET["id"]);
 
 $profileNavPage = true;
 

@@ -1,11 +1,9 @@
 
 <?php 
-require_once("post.php");
 
-foreach ($templateParams["feedData"] as $post){
-    $idpost=$post["ID"];
-    if ($dbh->isPostAlbum($idpost)){
-    renderPost($post, $dbh, $templateParams["ID_Visualizer"]);
+
+foreach ($templateParams["feedData"] as $album){
+    $idalbum=$album["ID"];
+    renderAlbum($album, $dbh);
     }
-}
 ?>
