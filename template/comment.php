@@ -1,13 +1,3 @@
-<?php
-$postId = $_GET["id"];  // Sostituire con l'ID del post corrente
-$comments = $dbh->getCommentsForPost($postId);
-
-foreach ($comments as $comment) {
-    echo '<div class="comment">';
-    echo '<p>' . $comment['Testo'] . '</p>';
-    echo '</div>';
-}
-?>
 <!-- Modulo per aggiungere un nuovo commento -->
 <div id="commentForm">
     <label for="commentText">Inserisci il tuo commento:</label>
@@ -16,7 +6,17 @@ foreach ($comments as $comment) {
 </div>
 
 <div id="commentsContainer">
+    <?php
+    // Mostra i commenti esistenti
+    $postId = $_GET["id"];  // Sostituire con l'ID del post corrente
+    $comments = $dbh->getCommentsForPost($postId);
 
+    foreach ($comments as $comment) {
+        echo '<div class="comment">';
+        echo '<p>' . $comment['Testo'] . '</p>';
+        echo '</div>';
+    }
+    ?>
 </div>
 
 <script>
