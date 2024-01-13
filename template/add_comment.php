@@ -1,6 +1,7 @@
 <?php 
     include "../bootstrap.php";
     session_start();
+    require_once("renderComment.php");
     header('Content-Type: application/json');
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -9,14 +10,8 @@
         $username = $dbh->getUserInfo($idUser)["Username"];
         $commentText = $_POST['commentText'];
 
-        $dbh->insertCommentInPost($idUser, $postId, $commentText);
-        $response = array(
-            'username' => $username,
-            'commentText' => $commentText
-        );
-
-        // Convertire l'array associativo in una stringa JSON
-        echo json_encode($response);
-        exit();  // Assicurati di terminare l'esecuzione dello script dopo l'invio della risposta JSON
+        $commentId = $dbh->insertCommentInPost($idUser, $postId, $commentText);
+        $commentInfo = $dbh->getCommentInfo($commentId);
+        renderComment($commentInfo, $dbh);
     }
 ?>
