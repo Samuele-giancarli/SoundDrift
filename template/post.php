@@ -6,37 +6,43 @@
 </style>
 
 <script>
-    var oldStyle;
+    let oldStyle;
 
-    function likeOn(postId){
-        var button = document.getElementById(postId);
+    function likeOn(postId, init){
+        let button = document.getElementById("likebutton" + postId);
+        let likes = document.getElementById("likenumber" + postId);
         oldStyle = button.style;
         button.style.backgroundColor = "#ff0000";
         button.style.borderColor = "#ff0000";
-
         button.dataset.isOn = "true";
-
+        let n = parseInt(likes.innerText.split(" ")[0]) + 1;
+        if(!init)
+            likes.innerText = n + " likes";
         console.log("likeOn");
     }
 
-    function likeOff(postId){
-        var button = document.getElementById(postId);
+    function likeOff(postId, init){
+        let button = document.getElementById("likebutton" + postId);
+        let likes = document.getElementById("likenumber" + postId);
         button.style = oldStyle;
-
         button.dataset.isOn = "false";
-
+        let n = parseInt(likes.innerText.split(" ")[0]) - 1;
+        if(!init)
+            likes.innerText = n + " likes";
         console.log("likeOff");
     }
 
-    function updateLikeVisual(postId){
+    function updateLikeVisual(postId, init){
 
         console.log("started Update")
-
-        var button = document.getElementById(postId);
+        let button = document.getElementById("likebutton" + postId);
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", "updateLike.php?id="+postId, false);
+        xhr.send();
         if(button.dataset.isOn === "true"){
-            likeOff(postId);
+            likeOff(postId, init);
         } else {
-            likeOn(postId)
+            likeOn(postId, init);
         }
     }
     
@@ -200,19 +206,20 @@
 
                 <div class="d-flex justify-content-between align-items-center">
                
-                    <form method="post" action="updateLike.php" enctype="multipart/form-data">
-                        <div class="btn-group">
-                            <button type="submit" class="btn btn-primary" onclick="updateLikeVisual(<?php echo $postId; ?>)" id="<?php echo $postId; ?>" data-isOn="false" type="button"><?php echo $postId; ?></button>
-                            <button type="button" class="btn btn-secondary">Condividi</button>
-                            <?php echo (!is_null($songInfo) ? '<a class="btn btn-info" style="color: white;" href="songPlayer.php?id='.$songInfo["ID"].'">Vai al brano</a>' : ''); ?>
-                            <?php echo (!is_null($albumInfo) ? '<a class="btn btn-info" style="color: white;" href="albumPlayer.php?id='.$albumInfo["ID"].'">Vai all\'album</a>' : ''); ?>
-                            <small class="text-muted"><?php echo $likeNumber; ?> likes </small>
-                        </div>
-                        <input type="hidden" name="idPost" value="<?php echo $postId; ?>">
-                        <input type="hidden" name="idUser" value="<?php echo $visualizerId; ?>">
-                    </form>
+                    <div class="btn-group">
+                        <?php
+                        if (!isset($_SESSION["ID"])){
+                            ?>
+                        <button type="button" class="btn btn-primary" onclick="updateLikeVisual(<?php echo $postId; ?>, false)" id="likebutton<?php echo $postId; ?>" data-isOn="false"><?php echo $postId; ?></button>
+                        <?php
+                        }
+                        ?>
+                        <?php echo (!is_null($songInfo) ? '<a class="btn btn-info" style="color: white;" href="songPlayer.php?id='.$songInfo["ID"].'">Vai al brano</a>' : ''); ?>
+                        <?php echo (!is_null($albumInfo) ? '<a class="btn btn-info" style="color: white;" href="albumPlayer.php?id='.$albumInfo["ID"].'">Vai all\'album</a>' : ''); ?>
+                        <small class="text-muted" id="likenumber<?php echo $postId; ?>"><?php echo $likeNumber; ?> likes</small>
+                    </div>
 
-                    <?php if($isLiked){echo "<script>likeOn($postId);</script>";}?>
+                    <?php if($isLiked){echo "<script>likeOn($postId, true);</script>";}?>
 
                 </div>
             </div>

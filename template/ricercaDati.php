@@ -10,6 +10,10 @@
         // Esegui la query di ricerca nel database
         $arrayPostsResult = $dbh -> searchPostsbyTitle($searchInput);
         $arrayUsersResult = $dbh -> searchUsersbyName($searchInput);
+        $arraySongsResult= $dbh -> searchSongsbyTitle($searchInput);
+        $arrayAlbumsResult= $dbh -> searchSongsbyTitle($searchInput);
+        $arrayPlaylistsResult= $dbh -> searchSongsbyTitle($searchInput);
+        
         if(!is_null($arrayPostsResult)){
             include "post.php";
             
@@ -24,7 +28,15 @@
             include "userForResearch.php";
             
             foreach($arrayUsersResult as $user){
-                renderUser($user);
+                renderUser($user,$dbh);
+            }
+        }
+
+        if(!is_null($arraySongsResult)){
+            include "songForResearch.php";
+            
+            foreach($arraySongsResult as $song){
+                renderSong($song,$dbh);
             }
         }
 

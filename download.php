@@ -1,6 +1,6 @@
 <?php
 
-require_once("bootstrap.php");
+include "bootstrap.php";
 
 if(!isset($_GET["id"])) {
     die();

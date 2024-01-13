@@ -561,6 +561,32 @@ class DatabaseHelper{
         return $rows;
     }
 
+    public function searchAlbumsbyTitle($title){
+        $stmt = $this->db->prepare("SELECT * FROM album WHERE LOWER(Titolo) LIKE LOWER(?)");
+        $title = "%$title%";
+        $stmt->bind_param("s", $title);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $rows = array();
+        while ($row = $result->fetch_assoc()) {
+            array_push($rows, $row);
+        }
+        return $rows;
+    }
+
+    public function searchPlaylistsbyTitle($title){
+        $stmt = $this->db->prepare("SELECT * FROM playlist WHERE LOWER(Titolo) LIKE LOWER(?)");
+        $title = "%$title%";
+        $stmt->bind_param("s", $title);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $rows = array();
+        while ($row = $result->fetch_assoc()) {
+            array_push($rows, $row);
+        }
+        return $rows;
+    }
+
     public function searchPostsbyTitle($title){
         $stmt = $this->db->prepare("SELECT * FROM post WHERE LOWER(Testo) LIKE LOWER(?)");
         $title = "%$title%";
