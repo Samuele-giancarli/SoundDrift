@@ -11,8 +11,8 @@
         $arrayPostsResult = $dbh -> searchPostsbyTitle($searchInput);
         $arrayUsersResult = $dbh -> searchUsersbyName($searchInput);
         $arraySongsResult= $dbh -> searchSongsbyTitle($searchInput);
-        $arrayAlbumsResult= $dbh -> searchSongsbyTitle($searchInput);
-        $arrayPlaylistsResult= $dbh -> searchSongsbyTitle($searchInput);
+        $arrayAlbumsResult= $dbh -> searchAlbumsbyTitle($searchInput);
+        $arrayPlaylistsResult= $dbh -> searchPlaylistsbyTitle($searchInput);
         
         if(!is_null($arrayPostsResult)){
             include "post.php";
@@ -37,6 +37,23 @@
             
             foreach($arraySongsResult as $song){
                 renderSong($song,$dbh);
+            }
+        }
+
+
+        if(!is_null($arrayAlbumsResult)){
+            include "albumForResearch.php";
+            
+            foreach($arrayAlbumsResult as $album){
+                renderAlbum($album,$dbh);
+            }
+        }
+
+        if(!is_null($arrayPlaylistsResult)){
+            include "playlistForResearch.php";
+            
+            foreach($arrayPlaylistsResult as $playlist){
+                renderPlaylist($playlist,$dbh);
             }
         }
 

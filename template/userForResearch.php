@@ -11,7 +11,7 @@
         <div class="card rounded-3 text-center">
             <div class="card-body">
                 <h5 class="card-title">
-                    <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a>
+                    <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username. "(Utente)" ?></a>
                 </h5>
 
                 <p class="card-text" style="text-align:center;">

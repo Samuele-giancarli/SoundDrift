@@ -75,8 +75,11 @@ if ($dbh -> isPlaylistLiked($idutente, $idplaylist)){
 }else{
     echo "<button id=\"like\" type=\"button\" onclick=\"playlistLike();\">Aggiungi in libreria</button>";    
 }
+if ($_SESSION["ID"]==$info["ID_Utente"]){
     echo "<button id=\"playlist\" type=\"button\"><a href=\"addToPlaylist.php?id=".$idplaylist."\" style=\"color:black; text-decoration:none\">Aggiungi canzoni alla playlist</a></button>";
 }
+}
+
 ?>
 <div>Brani: </div>
 

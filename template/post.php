@@ -45,7 +45,6 @@
             likeOn(postId, init);
         }
     }
-    
 </script>
 
 <?php
@@ -165,9 +164,6 @@
 
                         <!-- Play Button (Takes 3 columns) -->
                         <div class="col-3 text-end">
-                            <button class="btn btn-primary">
-                                <i class="bi bi-play-fill"></i> Play
-                            </button>
                         </div>
                     </div>
 
@@ -208,7 +204,7 @@
                
                     <div class="btn-group">
                         <?php
-                        if (!isset($_SESSION["ID"])){
+                        if (isset($_SESSION["ID"])){
                             ?>
                         <button type="button" class="btn btn-primary" onclick="updateLikeVisual(<?php echo $postId; ?>, false)" id="likebutton<?php echo $postId; ?>" data-isOn="false"><?php echo $postId; ?></button>
                         <?php

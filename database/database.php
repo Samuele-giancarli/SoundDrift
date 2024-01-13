@@ -133,23 +133,6 @@ class DatabaseHelper{
         return $feed;
     }
 
-    public function getPostsOfUser($id) {
-    
-    
-        $query = "SELECT * FROM post WHERE ID_Utente = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $feed = array();
-    
-        while ($row = $result->fetch_assoc()) {
-            $feed[] = $row;
-        }
-    
-        return $feed;
-    
-    }
 
     public function getSongsOfUser($id) {
     
@@ -598,6 +581,24 @@ class DatabaseHelper{
             array_push($rows, $row);
         }
         return $rows;
+    }
+
+        public function getPostsOfUser($id) {
+    
+    
+        $query = "SELECT * FROM post WHERE ID_Utente = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $feed = array();
+    
+        while ($row = $result->fetch_assoc()) {
+            $feed[] = $row;
+        }
+    
+        return $feed;
+    
     }
 
     public function searchUsersbyName($username){

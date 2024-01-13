@@ -2,12 +2,12 @@
 <?php
 include "../bootstrap.php";
 
-    function renderAlbum($albumInfo,$dbh) {
-        $albumid = $albumInfo["ID"]; 
-        $albumtitle = $albumInfo["Titolo"];
-        $authorid=$albumInfo["ID_Utente"];
+    function renderPlaylist($playlistInfo,$dbh) {
+        $playlistid = $playlistInfo["ID"]; 
+        $playlisttitle = $playlistInfo["Titolo"];
+        $authorid=$playlistInfo["ID_Utente"];
         $authorname= $dbh->getUserInfo($authorid)["Username"];
-        $image = $albumInfo["ID_Immagine"];
+        $image = $playlistInfo["ID_Immagine"];
         $imagePath="download.php?id=".$image;
 ?>
 
@@ -16,7 +16,7 @@ include "../bootstrap.php";
         <div class="card rounded-3 text-center">
             <div class="card-body">
                 <h5 class="card-title">
-                    <a href="albumPlayer.php?id=<?php echo $albumid ?>" style="color: black"><?php echo $albumtitle." (Album)" ?></a>
+                    <a href="playlistPlayer.php?id=<?php echo $playlistid ?>" style="color: black"><?php echo $playlisttitle." (Playlist)" ?></a>
                 </h5>
 
                 <p class="card-text" style="text-align:center;">
