@@ -112,6 +112,16 @@
                     ?>
                 </h5>
 
+                <!-- h5 e tutto quello che c'è sopra sono il post generico-->
+
+
+
+
+
+
+        <?php 
+            if(is_null($albumInfo)) {
+                ?>
                 <p class="card-text" style="text-align:center;">
                     <?php if ($image != null) { ?>
                         <img src="<?php echo $imagePath; ?>" id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" />
@@ -120,6 +130,73 @@
                     <?php echo htmlentities($postInfo["Testo"]); ?>
                     <br>
                 </p>
+                <?php
+            } else { 
+                
+                $albumInfo;
+                $idalbum = $albumInfo["ID"];
+                $AlbumGen = $albumInfo["Genere"];
+                $imagePath;
+                $albumTit = $albumInfo["Titolo"];
+                /*ID - ID_Utente - Data - Titolo - Genere - Finalizzato - ID_Immagine*/
+            
+                ?>
+            <div style="max-height: 200px; overflow-y: auto; overflow-x: hidden;">
+               <?php foreach ($dbh -> getSongsFromAlbum($idalbum) as $song) {?>
+                     <!--
+
+                        qua andrà la visualizzazione delle canzoni singole
+
+                    -->
+
+                    
+                    <div class="song row">
+                            <!-- Song Name (Takes 9 columns) -->
+                        <div class="col-9">
+                            <h4><?php echo $song["Titolo"]; ?></h4>
+                            <!-- Add more song details as needed -->
+                        </div>
+
+                        <!-- Play Button (Takes 3 columns) -->
+                        <div class="col-3 text-end">
+                            <button class="btn btn-primary">
+                                <i class="bi bi-play-fill"></i> Play
+                            </button>
+                        </div>
+                    </div>
+
+                    <br>
+                <?php } ?>
+            </div>
+
+                
+
+                 <!--
+
+                        qua andrà la visualizzazione dell'album
+
+                -->     
+
+      <?php } ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- questo qua sotto sono i pulsanti del post generico-->
 
                 <div class="d-flex justify-content-between align-items-center">
                
@@ -142,12 +219,6 @@
         </div>
     </div>
 </div>
-
-<?php /*
-    function toggleLike($button,$dbh){
-        
-    }*/
-?>
 
 
 
