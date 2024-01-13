@@ -586,7 +586,6 @@ class DatabaseHelper{
         }
         return $rows;
     }
-}
 
 
     public function addSongToPlaylist($idsong, $idplaylist){
