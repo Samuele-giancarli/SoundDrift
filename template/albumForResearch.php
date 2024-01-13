@@ -5,6 +5,7 @@
         $albumid = $albumInfo["ID"]; 
         $albumtitle = $albumInfo["Titolo"];
         $authorid=$albumInfo["ID_Utente"];
+        $data=$albumInfo["Data"];
         $authorname= $dbh->getUserInfo($authorid)["Username"];
         $image = $albumInfo["ID_Immagine"];
         $imagePath="download.php?id=".$image;
@@ -28,6 +29,7 @@
                     <a href="profile.php?id=<?php echo $authorid ?>" style="color: black"><?php echo $authorname ?></a>
                 </h5>
             </div>
+            <div> <small class="text-muted" id="albumdate" style="align:right"><?php echo $data;?></small></div>
         </div>
     </div>
 </div>

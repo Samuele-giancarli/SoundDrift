@@ -78,7 +78,8 @@ CREATE TABLE `commento` (
 `ID` int NOT NULL,
 `ID_Utente` int NOT NULL, 
 `ID_Post` int NOT NULL, 
-`Testo` text NOT NULL
+`Testo` text NOT NULL,
+`DateTime` DateTime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -126,8 +127,8 @@ CREATE TABLE `mipiace_playlist` (
 
 
 CREATE TABLE `mipiace_post` (
-ID_Utente int NOT NULL, 
-ID_Post int NOT NULL
+`ID_Utente` int NOT NULL, 
+`ID_Post` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 -- --------------------------------------------------------
 
@@ -141,7 +142,7 @@ CREATE TABLE `notifica` (
   `ID_Utente` int NOT NULL, 
   `ID_Mandante` int, 
   `ID_Post` int,
-  `Visualizzato` boolean NOT NULL DEFAULT 0
+  `DateTime` DateTime NOT NULL
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -262,7 +263,7 @@ ALTER TABLE `notifica`
   ADD KEY(`ID_Post`),
   ADD KEY(`ID_Mandante`),
   ADD KEY(`ID_Utente`),
-  ADD UNIQUE (`ID_Post`, `Testo`, `ID_Mandante`, `ID_Utente`);
+  ADD `tripla` TEXT AS (CONCAT(`ID_Utente`, "|", `ID_Mandante`, "|", IFNULL(`ID_Post`, 0), "|", `Testo`)) UNIQUE;
 
 --
 -- Indici per le tabelle `playlist`

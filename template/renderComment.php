@@ -3,6 +3,7 @@
 
     function renderComment($commento,$dbh) {
         $idcommento = $commento["ID"];
+        $data=$dbh->getCommentInfo($idcommento)["DateTime"];
         $testo = $commento["Testo"];
         $id_mandante = $commento["ID_Utente"];
         $id_post = $commento["ID_Post"];
@@ -20,6 +21,7 @@
                    <?php echo htmlentities($testo); ?>
                 </p>
             </div>
+             <div> <small class="text-muted" id="postdate" style="align:right"><?php echo $data;?></small></div>
         </div>
     </div>
 </div>

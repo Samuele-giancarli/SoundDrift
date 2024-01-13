@@ -33,7 +33,7 @@ class DatabaseHelper{
     }
 
     public function addNotification($idUtente, $idMandante, $testo, $idPost){
-        $query= "INSERT INTO notifica (Testo, ID_Utente, ID_Mandante, ID_Post) VALUES (?,?,?,?)";
+        $query= "INSERT INTO notifica (Testo, ID_Utente, ID_Mandante, ID_Post, DateTime) VALUES (?,?,?,?,NOW())";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("siii", $testo, $idUtente, $idMandante, $idPost);
         try {
@@ -47,10 +47,10 @@ class DatabaseHelper{
 }
 
 
-    public function getListOfNotifications($ID){
+    public function getListOfNotifications($iduser){
         $query = "SELECT * FROM notifica WHERE ID_Utente = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("i", $ID);
+        $stmt->bind_param("i", $iduser);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -81,15 +81,16 @@ class DatabaseHelper{
     }
 
     public function updateLike($idPost,$idUser){
-        if(!$this->isLikedBy($idPost, $idUser)){
-            $queryInsert = "INSERT INTO mipiace_post (ID_Post, ID_Utente) VALUES (?, ?)";
-            $stmt = $this->db->prepare($queryInsert);
-            $stmt->bind_param("ii", $idPost, $idUser);
-        } else {
-            $queryDelete = "DELETE FROM mipiace_post WHERE ID_Post = ? AND ID_Utente = ?";
-            $stmt = $this->db->prepare($queryDelete);
-            $stmt->bind_param("ii", $idPost, $idUser);
-        }
+        $queryInsert = "INSERT INTO mipiace_post (ID_Post, ID_Utente) VALUES (?, ?)";
+        $stmt = $this->db->prepare($queryInsert);
+        $stmt->bind_param("ii", $idPost, $idUser);
+        $stmt->execute();
+    }
+
+    public function updateUnlike($idPost,$idUser){
+        $queryDelete = "DELETE FROM mipiace_post WHERE ID_Post = ? AND ID_Utente = ?";
+        $stmt = $this->db->prepare($queryDelete);
+        $stmt->bind_param("ii", $idPost, $idUser);
         $stmt->execute();
     }
 

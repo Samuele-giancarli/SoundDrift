@@ -1,15 +1,14 @@
 <?php 
 
-    if(!is_null($_GET["id"])){
+    if(!is_null($_SESSION["ID"])){
 
-        $userId = $_GET["id"];
+        $userId = $_SESSION["ID"];
 
         foreach ($dbh->getListOfNotifications($userId) as $notifica) {
-            renderNotification($notifica);
+            renderNotification($notifica,$dbh);
         }
-
     } else {
-        echo "solo chi è loggato può vedere le proprie notifiche";
+        echo "Solo chi è loggato può vedere le proprie notifiche";
     }
 
 ?>

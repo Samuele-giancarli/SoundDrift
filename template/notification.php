@@ -1,9 +1,12 @@
 <?php
-    function renderNotification($notifica){
+    function renderNotification($notifica,$dbh){
         $id = $notifica["ID"];
         $testo = $notifica["Testo"];
         $id_mandante = $notifica["ID_Mandante"];
+        $date=$notifica["DateTime"];
         $id_post = $notifica["ID_Post"];
+        $userInfo=$dbh->getUserInfo($id_mandante);
+        $username=$userInfo["Username"];
 
         /*?> <p> <?php echo $id ?> </p> <?php ;
         ?> <p> <?php echo $testo ?> </p> <?php ;
@@ -17,17 +20,13 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-3">
-                                <strong>ID:</strong> <?php echo $id; ?>
+                                <p><?php echo "<a style=\"color:blue; text-decoration:none\" href=\"profile.php?id=".$id_mandante."\">".htmlentities($username)." </a>".htmlentities($testo);
+                                if (!is_null($id_post)){
+                                echo "<a style=\"color:blue; text-decoration:none\" href=\"comment.php?id=".$id_post."\">post</a>";
+                                }?>
+                                </p>
                             </div>
-                            <div class="col-sm-3">
-                                <strong>Testo:</strong> <?php echo htmlentities($testo); ?>
-                            </div>
-                            <div class="col-sm-3">
-                                <strong>ID Mandante:</strong> <?php echo $id_mandante; ?>
-                            </div>
-                            <div class="col-sm-3">
-                                <strong>ID Post:</strong> <?php echo $id_post; ?>
-                            </div>
+                            <div> <small class="text-muted" id="notificadate" style="align:right"><?php echo $date;?></small></div>
                         </div>
                     </div>
                 </div>

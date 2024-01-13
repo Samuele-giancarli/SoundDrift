@@ -5,6 +5,7 @@
         $songid = $songInfo["ID"]; 
         $songtitle = $songInfo["Titolo"];
         $authorid=$songInfo["ID_Utente"];
+        $date=$songInfo["Data"];
         $authorname= $dbh->getUserInfo($authorid)["Username"];
         $image = $songInfo["ID_Immagine"];
         $imagePath="download.php?id=".$image;
@@ -28,6 +29,7 @@
                     <a href="profile.php?id=<?php echo $authorid ?>" style="color: black"><?php echo $authorname ?></a>
                 </h5>
             </div>
+            <div> <small class="text-muted" id="songdate" style="align:right"><?php echo $date;?></small></div>
         </div>
     </div>
 </div>

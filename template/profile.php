@@ -12,6 +12,7 @@
         <?php 
             if(isset($_POST["seguire"])){
                 $dbh->followUser($templateParams["utente"]["ID"], $_SESSION["ID"]);
+                $dbh->addNotification($templateParams["utente"]["ID"],$_SESSION["ID"],"ora ti segue",null);
             }
         ?>
 

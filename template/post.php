@@ -43,11 +43,6 @@
         let xhr = new XMLHttpRequest();
         xhr.open("GET", "updateLike.php?id="+postId, false);
         xhr.send();
-
-        xhr = new XMLHttpRequest();
-        xhr.open("GET", "updateLikeNotificationPost.php?id="+postId+"&id_man="+visualizerId, false);
-        xhr.send();
-
         if(button.dataset.isOn === "true"){
             likeOff(postId, init);
         } else {
@@ -175,22 +170,6 @@
       <?php } ?>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <!-- questo qua sotto sono i pulsanti del post generico-->
 
                 <div class="d-flex justify-content-between align-items-center">
@@ -198,7 +177,7 @@
                     <div class="btn-group">
                         <?php
                         if (isset($_SESSION["ID"])){
-                            ?>
+                        ?>
                         <button type="button" class="btn btn-primary" onclick="updateLikeVisual(<?php echo $postId; ?>, false, <?php echo $visualizerId?>)" id="likebutton<?php echo $postId; ?>" data-isOn="false"><i class="bi bi-heart"></i></button>
                         <a class="btn btn-info" style="color: white" href="comment.php?id=<?php echo $postId ?>"> Commenti </a>
                         <?php
@@ -207,8 +186,9 @@
                         <?php echo (!is_null($songInfo) ? '<a class="btn btn-info" style="color: white;" href="songPlayer.php?id='.$songInfo["ID"].'">Vai al brano</a>' : ''); ?>
                         <?php echo (!is_null($albumInfo) ? '<a class="btn btn-info" style="color: white;" href="albumPlayer.php?id='.$albumInfo["ID"].'">Vai all\'album</a>' : ''); ?>
                         
-                        <small class="text-muted" id="likenumber<?php echo $postId; ?>"><?php echo $likeNumber; ?> likes</small>
+                        <small class="text-muted" id="likenumber<?php echo $postId; ?>"><?php echo $likeNumber; ?> likes </small>
                     </div>
+                    <div> <small class="text-muted" id="postdate" style="align:right"><?php echo $postInfo["Data"];?></small></div>
 
                     <?php if($isLiked){echo "<script>likeOn($postId, true);</script>";}?>
 

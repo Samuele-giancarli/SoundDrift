@@ -9,5 +9,12 @@
 
     $idPost = $_GET["id"];
     $idUser = $_SESSION["ID"];
-    $dbh->updateLike($idPost,$idUser);
+    $postInfo=$dbh->getPostInfo($idPost);
+    $idAuthor=$postInfo["ID_Utente"];
+    if ($dbh->isLikedby($idPost,$idUser)){
+        $dbh->updateUnlike($idPost,$idUser);
+    }else{
+        $dbh->UpdateLike($idPost,$idUser);
+        $dbh->addNotification($idAuthor,$idUser,"ha messo like al tuo ",$idPost);
+    }
 ?>
