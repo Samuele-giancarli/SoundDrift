@@ -98,6 +98,7 @@ if(!is_null($err_mess)) {
 }
 ?>
 
+<p>Tutte le canzoni: </p>
 <ul>
 <?php
 $stmt = $dbh->db->prepare("SELECT * FROM canzone WHERE ID_Utente=?");

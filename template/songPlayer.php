@@ -11,6 +11,10 @@ $info=$dbh->getSongInfo($idcanzone);
 $userInfo=$dbh->getUserInfo($info["ID_Utente"]);
 $idutente=$userInfo["ID"];
 $audioInfo = $dbh->getResourceInfo($info["ID_Audio"]);
+$alreadyin=$dbh->inWhichPlaylists($idcanzone);
+for($i = 0; $i < count($alreadyin); $i++) {
+    $alreadyin[$i] = $alreadyin[$i]["ID_Playlist"];
+}
 ?>
 
 <script>
@@ -119,3 +123,26 @@ if ($dbh -> isSongLiked($idutente, $idcanzone)){
 }
 }
 ?>
+
+<form id="playlist" method="GET" action="songAssoc.php" enctype="multipart/form-data">
+    Aggiungi a playlist: <select name="id" form="playlist">
+
+    <?php
+    $stmt = $dbh->db->prepare("SELECT * FROM playlist WHERE ID_Utente=?");
+    $idcreatore=$_SESSION["ID"];
+    $stmt->bind_param("i", $idcreatore);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()){
+        if(in_array($row["ID"], $alreadyin)) {
+            continue;
+        }
+        echo "<option value=".$row["ID"].">".htmlentities($row["Titolo"])."</option>";
+    }
+    ?>
+    </select>
+    <input type="hidden" name="songid" value=<?php echo "'".$idcanzone."'"; ?>>
+    <input type="submit" value="Invia"/>
+</form>
+
+

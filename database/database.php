@@ -427,7 +427,7 @@ class DatabaseHelper{
     }
 
     public function getSongsFromPlaylist($idplaylist){
-        $query="SELECT * FROM associativa_playlist WHERE ID_Playlist=? ORDER BY ID_Canzone ASC";
+        $query="SELECT canzone.* FROM associativa_playlist JOIN canzone ON associativa_playlist.ID_Canzone=canzone.ID WHERE associativa_playlist.ID_Playlist=?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("i", $idplaylist);
         $stmt->execute();
@@ -589,4 +589,51 @@ class DatabaseHelper{
 }
 
 
+    public function addSongToPlaylist($idsong, $idplaylist){
+        $query = "INSERT IGNORE INTO associativa_playlist(ID_Canzone, ID_Playlist) VALUES (?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $idsong, $idplaylist);
+        $stmt->execute();
+        return true;
+    }
+
+    public function inWhichPlaylists($idsong){
+        $query="SELECT * FROM associativa_playlist WHERE ID_Canzone=?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $idsong);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $rows = array();
+        while ($row = $result->fetch_assoc()) {
+            array_push($rows, $row);
+        }
+        return $rows;
+    }
+
+    public function getLikedSongs($iduser){
+        $query="SELECT canzone.* FROM mipiace_canzone JOIN canzone ON mipiace_canzone.ID_Canzone=canzone.ID WHERE mipiace_canzone.ID_Utente=?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $iduser);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $rows=array();
+        while ($row = $result->fetch_assoc()){
+            array_push($rows, $row);
+        }
+        return $rows;
+    }
+
+    public function searchSongsbyTitleWithFilter($title,$idplaylist){
+        $stmt = $this->db->prepare("SELECT canzone.* FROM canzone LEFT JOIN associativa_playlist ON canzone.ID=associativa_playlist.ID_Canzone AND associativa_playlist.ID_Playlist=? WHERE LOWER(canzone.Titolo) LIKE LOWER(?) AND associativa_playlist.ID_Playlist IS NULL");
+        $title = "%$title%";
+        $stmt->bind_param("is", $idplaylist, $title);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $rows = array();
+        while ($row = $result->fetch_assoc()) {
+            array_push($rows, $row);
+        }
+        return $rows;
+    }
+}
 ?>

@@ -55,6 +55,7 @@ if (!is_null($info["ID_Immagine"])){
 }
 
 $rows= $dbh -> getSongsFromPlaylist($idplaylist);
+//var_dump($rows);
 if (count($rows)!=0){
 echo "<button type=\"button\" onclick=\"";
 foreach ($rows as $song){
@@ -67,25 +68,28 @@ foreach ($rows as $song){
 }
 echo "\">Aggiungi tutto in coda</button>";
 }
+
 if (isset($_SESSION["ID"])){
 if ($dbh -> isPlaylistLiked($idutente, $idplaylist)){
     echo "<button id=\"like\" type=\"button\" onclick=\"playlistUnlike();\">Togli dalla libreria</button>";
 }else{
     echo "<button id=\"like\" type=\"button\" onclick=\"playlistLike();\">Aggiungi in libreria</button>";    
 }
+    echo "<button id=\"playlist\" type=\"button\"><a href=\"addToPlaylist.php?id=".$idplaylist."\" style=\"color:black; text-decoration:none\">Aggiungi canzoni alla playlist</a></button>";
 }
 ?>
 <div>Brani: </div>
 
 <ol>
 <?php
-foreach ($dbh -> getSongsFromPlaylist($idplaylist) as $song){
-    echo "<li><a style=\"color: black;\" href=\"songPlayer.php?id=".$song["ID"]."\">".htmlentities($song["Titolo"])."</a>";
+foreach ($rows as $song){
+    $songInfo=$dbh->getSongInfo($song["ID"]);
+    $userInfo = $dbh->getUserInfo($song["ID_Utente"]);
+    echo "<li><a style=\"color: black;\" href=\"songPlayer.php?id=".$song["ID"]."\">".htmlentities($song["Titolo"])."</a> -  <a style=\"color: black;\" href=\"profile.php?id=".$userInfo["ID"]."\">".htmlentities($userInfo["Username"])."</a>";
     for ($i=0; $i<2; $i++) {
         echo " <button type=\"button\" onclick=\"";
         echo "window.parent.playNow({";
         echo "'title': '".jsescape($song["Titolo"])."',";
-        $userInfo = $dbh->getUserInfo($song["ID_Utente"]);
         echo "'author': '".jsescape($userInfo["Username"])."',";
         echo "'url': 'download.php?id=".$song["ID_Audio"]."'";
         echo "},";

@@ -28,7 +28,7 @@
         console.log("likeOff");
     }
 
-    function updateLike(postId){
+    function updateLikeVisual(postId){
 
         console.log("started Update")
 
@@ -43,11 +43,19 @@
 </script>
 
 <?php
-    function generaLike($idPost) {
+    /*function generaBarraFunzionalita($idPost,$songInfo, $albumInfo) {
         $testo = "Like";
         // Genera il pulsante con il testo e l'ID specificati
-        return '<button type="button" class="btn btn-primary" onclick="updateLike('.$idPost.')" id="' . $idPost . '"  data-isOn="false" type="button">'. $idPost .'</button>';
-    }
+        return '<form method="post" action="updateLike.php">
+                    <div class="btn-group">
+                    <button type="button" class="btn btn-primary" onclick="updateLike('.$idPost.')" id="' . $idPost . '"  data-isOn="false" type="button">'. $idPost .'</button>
+                    <button type="button" class="btn btn-secondary">Condividi</button>'.
+                    (!is_null($songInfo) ? '<a class="btn btn-info" style="color: white;" href="songPlayer.php?id='.$songInfo["ID"].'">Vai al brano</a>' : '').
+                    (!is_null($albumInfo) ? '<a class="btn btn-info" style="color: white;" href="albumPlayer.php?id='.$albumInfo["ID"].'">Vai all\'album</a>' : '').
+                    '<small class="text-muted"><?php echo $likeNumber ?> likes </small>
+                    </div>
+                </form>';
+    }*/
 ?>
 
 <?php
@@ -91,18 +99,29 @@
     <div class="col-md-6 text-center"> 
         <div class="card rounded-3 text-center">
             <div class="card-body">
+
                 <h5 class="card-title">
                     <?php
-                    if (!is_null($songInfo)){
-                        ?> <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un brano <?php
-                    } else if (!is_null($albumInfo)){
-                        ?> <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un album<?php
-                    } else {
-                        ?> <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un post <?php
-                    }
+                        if (!is_null($songInfo)){
+                            ?> <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un brano <?php
+                        } else if (!is_null($albumInfo)){
+                            ?> <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un album<?php
+                        } else {
+                            ?> <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un post <?php
+                        }
                     ?>
                 </h5>
 
+                <!-- h5 e tutto quello che c'è sopra sono il post generico-->
+
+
+
+
+
+
+        <?php 
+            if(is_null($albumInfo)) {
+                ?>
                 <p class="card-text" style="text-align:center;">
                     <?php if ($image != null) { ?>
                         <img src="<?php echo $imagePath; ?>" id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" />
@@ -111,42 +130,95 @@
                     <?php echo htmlentities($postInfo["Testo"]); ?>
                     <br>
                 </p>
+                <?php
+            } else { 
+                
+                $albumInfo;
+                $idalbum = $albumInfo["ID"];
+                $AlbumGen = $albumInfo["Genere"];
+                $imagePath;
+                $albumTit = $albumInfo["Titolo"];
+                /*ID - ID_Utente - Data - Titolo - Genere - Finalizzato - ID_Immagine*/
+            
+                ?>
+            <div style="max-height: 200px; overflow-y: auto; overflow-x: hidden;">
+               <?php foreach ($dbh -> getSongsFromAlbum($idalbum) as $song) {?>
+                     <!--
+
+                        qua andrà la visualizzazione delle canzoni singole
+
+                    -->
+
+                    
+                    <div class="song row">
+                            <!-- Song Name (Takes 9 columns) -->
+                        <div class="col-9">
+                            <h4><?php echo $song["Titolo"]; ?></h4>
+                            <!-- Add more song details as needed -->
+                        </div>
+
+                        <!-- Play Button (Takes 3 columns) -->
+                        <div class="col-3 text-end">
+                            <button class="btn btn-primary">
+                                <i class="bi bi-play-fill"></i> Play
+                            </button>
+                        </div>
+                    </div>
+
+                    <br>
+                <?php } ?>
+            </div>
+
+                
+
+                 <!--
+
+                        qua andrà la visualizzazione dell'album
+
+                -->     
+
+      <?php } ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- questo qua sotto sono i pulsanti del post generico-->
 
                 <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
+               
+                    <form method="post" action="updateLike.php" enctype="multipart/form-data">
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-primary" onclick="updateLikeVisual(<?php echo $postId; ?>)" id="<?php echo $postId; ?>" data-isOn="false" type="button"><?php echo $postId; ?></button>
+                            <button type="button" class="btn btn-secondary">Condividi</button>
+                            <?php echo (!is_null($songInfo) ? '<a class="btn btn-info" style="color: white;" href="songPlayer.php?id='.$songInfo["ID"].'">Vai al brano</a>' : ''); ?>
+                            <?php echo (!is_null($albumInfo) ? '<a class="btn btn-info" style="color: white;" href="albumPlayer.php?id='.$albumInfo["ID"].'">Vai all\'album</a>' : ''); ?>
+                            <small class="text-muted"><?php echo $likeNumber; ?> likes </small>
+                        </div>
+                        <input type="hidden" name="idPost" value="<?php echo $postId; ?>">
+                        <input type="hidden" name="idUser" value="<?php echo $visualizerId; ?>">
+                    </form>
 
-                        <?php echo generaLike($postId);?>
+                    <?php if($isLiked){echo "<script>likeOn($postId);</script>";}?>
 
-                        <?php if($isLiked){
-                            /*echo "<script>swtch(document.getElementById("?> $postId <?php ");</script>";*/
-                            echo "<script>likeOn($postId);</script>";
-                        } else {
-                            //echo "non piaciuto da te";
-                        }?>
-
-                        <button type="button" class="btn btn-secondary">Condividi</button>
-
-                    <?php
-                    if (!is_null($songInfo)){
-                        echo "<a class=\"btn btn-info\" style=\"color: white;\" href=\"songPlayer.php?id=".$songInfo["ID"]."\">Vai al brano</a>";
-                    }
-                    if(!is_null($albumInfo)){
-                        echo "<a class=\"btn btn-info\" style=\"color: white;\" href=\"albumPlayer.php?id=".$albumInfo["ID"]."\">Vai all'album</a>";
-                    }
-                    ?>
-                    </div>
-                    <small class="text-muted"><?php echo $likeNumber ?> likes </small>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<?php /*
-    function toggleLike($button,$dbh){
-        
-    }*/
-?>
 
 
 
