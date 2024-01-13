@@ -1,13 +1,3 @@
-<?php
-$postId = $_GET["id"];  // Sostituire con l'ID del post corrente
-$comments = $dbh->getCommentsForPost($postId);
-
-foreach ($comments as $comment) {
-    echo '<div class="comment">';
-    echo '<p>' . $comment['Testo'] . '</p>';
-    echo '</div>';
-}
-?>
 <!-- Modulo per aggiungere un nuovo commento -->
 <div id="commentForm">
     <label for="commentText">Inserisci il tuo commento:</label>
@@ -16,7 +6,18 @@ foreach ($comments as $comment) {
 </div>
 
 <div id="commentsContainer">
+    <?php
+    // Mostra i commenti esistenti
+    $postId = $_GET["id"];  // Sostituire con l'ID del post corrente
+    $comments = $dbh->getCommentsForPost($postId);
 
+    foreach ($comments as $comment) {
+        echo '<div class="comment">';
+        echo '<p>' . $dbh->getUserInfo($comment['ID_Utente'])["Username"] . '</p>';
+        echo '<p>' . $comment['Testo'] . '</p>';
+        echo '</div>';
+    }
+    ?>
 </div>
 
 <script>
@@ -34,14 +35,20 @@ foreach ($comments as $comment) {
         // Gestisci la risposta dalla richiesta
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
+                let response = JSON.parse(xhr.responseText);
+
                 // Aggiorna la visualizzazione dei commenti senza ricaricare la pagina
                 let commentsContainer = document.getElementById('commentsContainer');
-                commentsContainer.innerHTML = xhr.responseText;
+                let newComment = document.createElement('div');
+                newComment.className = 'comment';
+                newComment.innerHTML = '<p>' + response.username + '</p> <p>' + response.commentText + '</p>';
+                commentsContainer.appendChild(newComment);
 
                 // Pulisci il campo di testo del commento dopo l'invio
                 document.getElementById('commentText').value = '';
             }
-        }
+        };
+
         // Invia i dati nella richiesta
         xhr.send('postId=' + encodeURIComponent(postId) + '&commentText=' + encodeURIComponent(commentText));
     }

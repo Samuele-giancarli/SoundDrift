@@ -1,6 +1,5 @@
 
 <?php
-include "../bootstrap.php";
 
     function renderAlbum($albumInfo,$dbh) {
         $albumid = $albumInfo["ID"]; 

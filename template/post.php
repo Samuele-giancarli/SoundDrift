@@ -207,12 +207,13 @@
                         if (isset($_SESSION["ID"])){
                             ?>
                         <button type="button" class="btn btn-primary" onclick="updateLikeVisual(<?php echo $postId; ?>, false)" id="likebutton<?php echo $postId; ?>" data-isOn="false"><?php echo $postId; ?></button>
+                        <a class="btn btn-info" style="color: white" href="comment.php?id=<?php echo $postId ?>"> Commenti </a>
                         <?php
                         }
                         ?>
                         <?php echo (!is_null($songInfo) ? '<a class="btn btn-info" style="color: white;" href="songPlayer.php?id='.$songInfo["ID"].'">Vai al brano</a>' : ''); ?>
                         <?php echo (!is_null($albumInfo) ? '<a class="btn btn-info" style="color: white;" href="albumPlayer.php?id='.$albumInfo["ID"].'">Vai all\'album</a>' : ''); ?>
-                        <a class="btn btn-info" style="color: white" href="comment.php?=<?php echo $postId ?>"> Commenti </a>
+                        
                         <small class="text-muted" id="likenumber<?php echo $postId; ?>"><?php echo $likeNumber; ?> likes</small>
                     </div>
 

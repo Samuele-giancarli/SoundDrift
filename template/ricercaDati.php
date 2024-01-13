@@ -14,14 +14,6 @@
         $arrayAlbumsResult= $dbh -> searchAlbumsbyTitle($searchInput);
         $arrayPlaylistsResult= $dbh -> searchPlaylistsbyTitle($searchInput);
         
-        if(!is_null($arrayPostsResult)){
-            include "post.php";
-            
-            // Mostra i risultati
-            foreach($arrayPostsResult as $post){
-                renderPost($post, $dbh, $_SESSION["ID"]);
-            }
-        }
 
 
         if(!is_null($arrayUsersResult)){

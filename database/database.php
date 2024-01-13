@@ -617,6 +617,8 @@ class DatabaseHelper{
     
     }
 
+
+
     public function searchUsersbyName($username){
         $stmt = $this->db->prepare("SELECT * FROM utente WHERE LOWER(Username) LIKE LOWER(?)");
         $username = "%$username%";

@@ -1,11 +1,9 @@
 
 <?php 
-require_once("post.php");
 
-foreach ($templateParams["feedData"] as $post){
-    $idpost=$post["ID"];
-    if ($dbh->isPostSong($idpost)){
-    renderPost($post, $dbh, $templateParams["ID_Visualizer"]);
+
+foreach ($templateParams["feedData"] as $song){
+    $idsong=$song["ID"];
+    renderSong($song, $dbh);
     }
-}
 ?>
