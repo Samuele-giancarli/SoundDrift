@@ -140,7 +140,8 @@ CREATE TABLE `notifica` (
   `Testo` text NOT NULL,
   `ID_Utente` int NOT NULL, 
   `ID_Mandante` int, 
-  `ID_Post` int 
+  `ID_Post` int,
+  `Visualizzato` boolean NOT NULL DEFAULT 0
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -253,14 +254,15 @@ ALTER TABLE `mipiace_playlist`
 ADD PRIMARY KEY (`ID_Utente`,`ID_Playlist`),
   ADD KEY `ID_Utente` (`ID_Utente`),
   ADD KEY `ID_Playlist` (`ID_Playlist`);
-
-
-
 --
 -- Indici per le tabelle `notifica`
 --
 ALTER TABLE `notifica`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY(`ID_Post`),
+  ADD KEY(`ID_Mandante`),
+  ADD KEY(`ID_Utente`),
+  ADD UNIQUE (`ID_Post`, `Testo`, `ID_Mandante`, `ID_Utente`);
 
 --
 -- Indici per le tabelle `playlist`
@@ -366,7 +368,6 @@ ALTER TABLE `utente`
 ALTER TABLE `album`
   ADD CONSTRAINT `AutoreAlbum` FOREIGN KEY (`ID_Utente`) REFERENCES `utente` (`ID`),
   ADD CONSTRAINT `ImgAlbum` FOREIGN KEY (`ID_Immagine`) REFERENCES `risorsa` (`ID`);
-
 --
 -- Limiti per la tabella `canzone`
 --
@@ -375,7 +376,6 @@ ALTER TABLE `canzone`
   ADD CONSTRAINT `AutoreCanzone` FOREIGN KEY (`ID_Utente`) REFERENCES `utente` (`ID`),
   ADD CONSTRAINT `ImgSong` FOREIGN KEY (`ID_Immagine`) REFERENCES `risorsa` (`ID`),
   ADD CONSTRAINT `AudioSong` FOREIGN KEY (`ID_Audio`) REFERENCES `risorsa` (`ID`);
-
 --
 -- Limiti per la tabella `commento`
 --
@@ -420,7 +420,6 @@ ALTER TABLE `mipiace_playlist`
 ALTER TABLE `mipiace_post`
  ADD CONSTRAINT `UtentePiacePost` FOREIGN KEY (`ID_Utente`) REFERENCES `utente` (`ID`),
  ADD CONSTRAINT `PostPiaceUtente` FOREIGN KEY (`ID_Post`) REFERENCES `post` (`ID`);
-
 --
 -- Limiti per la tabella `notifica`
 --
@@ -428,6 +427,7 @@ ALTER TABLE `notifica`
   ADD CONSTRAINT `Utente` FOREIGN KEY (`ID_Utente`) REFERENCES `utente` (`ID`),
   ADD CONSTRAINT `Mandante` FOREIGN KEY (`ID_Mandante`) REFERENCES `utente` (`ID`),
   ADD CONSTRAINT `Post` FOREIGN KEY (`ID_Post`) REFERENCES `post` (`ID`);
+
 --
 -- Limiti per la tabella `playlist`
 --
