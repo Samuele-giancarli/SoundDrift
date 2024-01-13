@@ -32,22 +32,24 @@ class DatabaseHelper{
         return $result->fetch_assoc();
     }
 
-    public function addNotificationPost($idPost){
-        $queryInsert = "INSERT INTO notifica (Testo, ID_Utente, ID_Mandante, ID_Post) VALUES (?,?,?,?)";
-        $stmt = $this->db->prepare($queryInsert);
-        
-        $testo = "";
-        $idUtente = 5;
-        $idMandente = 6;
-        $idPost;
+    public function updateNotificationPost($idPost, $idMandente){
+        if ($this->isLikedBy($idPost, $idMandente)) {
+            
+            $queryInsert = "INSERT INTO notifica (Testo, ID_Utente, ID_Mandante, ID_Post) VALUES (?,?,?,?)";
+            $stmt = $this->db->prepare($queryInsert);
+            
+            $testo = "";
+            $idUtente = 5;
 
-        $stmt->bind_param("siii", $testo, $idUtente, $idMandente, $idPost);
+            $stmt->bind_param("siii", $testo, $idUtente, $idMandente, $idPost);
+        } else {
+            
+            $queryDelete = "DELETE FROM notifica WHERE ID_Post = ? AND ID_Utente = ?";
+            $stmt = $this->db->prepare($queryDelete);
 
-        try {
-            $stmt->execute();
-        } catch(mysqli_sql_exception $e) {
-            echo "". $e->getMessage() ."";
+            $stmt->bind_param("ii", $idPost, $idMandente);
         }
+        $stmt->execute();
     }
 
     public function getListOfNotifications($ID){

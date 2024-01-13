@@ -7,6 +7,7 @@
         die();
     }
 
+    $id_mandante = $_GET["id_man"];
     $idPost = $_GET["id"];
-    $dbh->addNotificationPost($idPost);
+    $dbh->updateNotificationPost($idPost,$id_mandante);
 ?>
