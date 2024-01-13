@@ -207,7 +207,13 @@
                 <div class="d-flex justify-content-between align-items-center">
                
                     <div class="btn-group">
+                        <?php
+                        if (!isset($_SESSION["ID"])){
+                            ?>
                         <button type="button" class="btn btn-primary" onclick="updateLikeVisual(<?php echo $postId; ?>, false)" id="likebutton<?php echo $postId; ?>" data-isOn="false"><?php echo $postId; ?></button>
+                        <?php
+                        }
+                        ?>
                         <?php echo (!is_null($songInfo) ? '<a class="btn btn-info" style="color: white;" href="songPlayer.php?id='.$songInfo["ID"].'">Vai al brano</a>' : ''); ?>
                         <?php echo (!is_null($albumInfo) ? '<a class="btn btn-info" style="color: white;" href="albumPlayer.php?id='.$albumInfo["ID"].'">Vai all\'album</a>' : ''); ?>
                         <small class="text-muted" id="likenumber<?php echo $postId; ?>"><?php echo $likeNumber; ?> likes</small>
