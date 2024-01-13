@@ -33,7 +33,7 @@ class DatabaseHelper{
     }
 
     public function addNotificationPost($idPost){
-        $queryInsert = "INSERT INTO notifica (Testo, ID_Utente, ID_Mandante, ID_Post) VALUES (?,?,?,?,?)";
+        $queryInsert = "INSERT INTO notifica (Testo, ID_Utente, ID_Mandante, ID_Post) VALUES (?,?,?,?)";
         $stmt = $this->db->prepare($queryInsert);
         
         $testo = "";
