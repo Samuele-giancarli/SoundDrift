@@ -634,5 +634,23 @@ class DatabaseHelper{
         }
         return $rows;
     }
+
+    public function getCommentsForPost($postId) {
+        $query = "SELECT * FROM commento WHERE ID_Post = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $postId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        // Restituisci i risultati come array associativo
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function insertCommentInPost($idUser, $idPost, $text){
+        $query = "INSERT INTO commento(ID_Utente, ID_Post, Testo) VALUES (?,?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("iis", $idUser, $idPost, $text);
+        $stmt->execute();
+    }
 }
 ?>
