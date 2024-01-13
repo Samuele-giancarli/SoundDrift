@@ -20,7 +20,7 @@
                                 <strong>ID:</strong> <?php echo $id; ?>
                             </div>
                             <div class="col-sm-3">
-                                <strong>Testo:</strong> <?php echo $testo; ?>
+                                <strong>Testo:</strong> <?php echo htmlentities($testo); ?>
                             </div>
                             <div class="col-sm-3">
                                 <strong>ID Mandante:</strong> <?php echo $id_mandante; ?>
