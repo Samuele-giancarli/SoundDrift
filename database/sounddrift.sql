@@ -339,8 +339,7 @@ ALTER TABLE `playlist`
 -- AUTO_INCREMENT per la tabella `testuale`
 --
 ALTER TABLE `post`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT,  
-  ADD CONSTRAINT `ImgPost` FOREIGN KEY (`ID_immagine`) REFERENCES `risorsa` (`ID`);
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `album`
@@ -435,6 +434,11 @@ ALTER TABLE `notifica`
 ALTER TABLE `playlist`
  ADD CONSTRAINT `CreatorePlaylist` FOREIGN KEY (`ID_Utente`) REFERENCES `utente` (`ID`),
  ADD CONSTRAINT `ImgPlaylist` FOREIGN KEY (`ID_Immagine`) REFERENCES `risorsa` (`ID`);
+
+ALTER TABLE `post`
+  ADD CONSTRAINT `CanzonePost` FOREIGN KEY (`ID_Canzone`) REFERENCES `canzone` (`ID`),
+  ADD CONSTRAINT `AlbumPost` FOREIGN KEY (`ID_Album`) REFERENCES `album` (`ID`),
+  ADD CONSTRAINT `ImgPost` FOREIGN KEY (`ID_Immagine`) REFERENCES `risorsa` (`ID`);
 
 COMMIT;
 
