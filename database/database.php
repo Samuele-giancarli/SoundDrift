@@ -724,9 +724,10 @@ class DatabaseHelper{
     }
 
     public function insertCommentInPost($idUser, $idPost, $text){
-        $query = "INSERT INTO commento(ID_Utente, ID_Post, Testo) VALUES (?,?,?)";
+        $query = "INSERT INTO commento(ID_Utente, ID_Post, Testo, DateTime) VALUES (?,?,?,?)";
+        $date = date("Y-m-d H:i:s");
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("iis", $idUser, $idPost, $text);
+        $stmt->bind_param("iiss", $idUser, $idPost, $text, $date);
         $stmt->execute();
         return $this->db->insert_id;
     }
