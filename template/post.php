@@ -96,9 +96,9 @@
                 <h5 class="card-title">
                     <?php
                         if (!is_null($songInfo)){
-                            ?> <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un brano <?php
+                            ?> <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha condiviso un brano <?php
                         } else if (!is_null($albumInfo)){
-                            ?> <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un album<?php
+                            ?> <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha condiviso un album<?php
                         } else {
                             ?> <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un post <?php
                         }
@@ -183,8 +183,8 @@
                         <?php
                         }
                         ?>
-                        <?php echo (!is_null($songInfo) ? '<a class="btn btn-info" style="color: white;" href="songPlayer.php?id='.$songInfo["ID"].'">Vai al brano</a>' : ''); ?>
-                        <?php echo (!is_null($albumInfo) ? '<a class="btn btn-info" style="color: white;" href="albumPlayer.php?id='.$albumInfo["ID"].'">Vai all\'album</a>' : ''); ?>
+                        <?php echo (!is_null($songInfo) ? '<a class="btn btn-info" style="color: white;" href="songPlayer.php?id='.$songInfo["ID"].'">Vai al brano ('.htmlentities($songInfo["Titolo"]).')</a>' : ''); ?>
+                        <?php echo (!is_null($albumInfo) ? '<a class="btn btn-info" style="color: white;" href="albumPlayer.php?id='.$albumInfo["ID"].'">Vai all\'album ('.htmlentities($albumInfo["Titolo"]).')</a>' : ''); ?>
                         
                         <small class="text-muted" id="likenumber<?php echo $postId; ?>"><?php echo $likeNumber; ?> likes </small>
                     </div>

@@ -69,11 +69,12 @@ echo "\">Aggiungi tutto in coda</button>";
 }
 
 if (isset($_SESSION["ID"])&&$info["Finalizzato"]==1){
-if ($dbh -> isAlbumLiked($idutente, $idalbum)){
-    echo "<button id=\"like\" type=\"button\" onclick=\"albumUnlike();\">Togli dalla libreria</button>";
-}else{
-    echo "<button id=\"like\" type=\"button\" onclick=\"albumLike();\">Aggiungi in libreria</button>";    
-}
+    if ($dbh -> isAlbumLiked($idutente, $idalbum)){
+        echo "<button id=\"like\" type=\"button\" onclick=\"albumUnlike();\">Togli dalla libreria</button>";
+    }else{
+        echo "<button id=\"like\" type=\"button\" onclick=\"albumLike();\">Aggiungi in libreria</button>";    
+    }
+    echo "<button type=\"button\"><a style=\"color:black\" href=\"upload.php?albumid=".$idalbum."\">Condividi</a></button>";
 }
 ?>
 <div>Brani: </div>

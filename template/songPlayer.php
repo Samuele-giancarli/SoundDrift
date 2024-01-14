@@ -116,11 +116,12 @@ audio.oncanplaythrough = duration;
 <?php
 
 if (isset($_SESSION["ID"])){
-if ($dbh -> isSongLiked($idutente, $idcanzone)){
-    echo "<button id=\"like\" type=\"button\" onclick=\"songUnlike();\">Togli dai piaciuti</button>";
-}else{
-    echo "<button id=\"like\" type=\"button\" onclick=\"songLike();\">Aggiungi ai piaciuti</button>";    
-}
+    if ($dbh -> isSongLiked($idutente, $idcanzone)){
+        echo "<button id=\"like\" type=\"button\" onclick=\"songUnlike();\">Togli dai piaciuti</button>";
+    }else{
+        echo "<button id=\"like\" type=\"button\" onclick=\"songLike();\">Aggiungi ai piaciuti</button>";    
+    }
+    echo "<button type=\"button\"><a style=\"color:black\" href=\"upload.php?songid=".$idcanzone."\">Condividi</a></button>";
 }
 ?>
 

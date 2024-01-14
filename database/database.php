@@ -391,7 +391,7 @@ class DatabaseHelper{
         $stmt->bind_param("ssisiii", $title, $genre, $idUser, $date, $idImage, $idAudio, $idAlbum);
         $stmt->execute();
         $idcanzone = $this->db->insert_id;
-        $this->addPost($idUser, $title, $idImage, $idcanzone, null);
+        $this->addPost($idUser, "", $idImage, $idcanzone, null);
 
         return true;
     }
