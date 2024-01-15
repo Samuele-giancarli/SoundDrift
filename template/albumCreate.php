@@ -33,7 +33,7 @@ if (!isset($_SESSION["ID"])) {
         try {
             if (!is_null($idalbum)) {
                 $success = "<a href=\"songUpload.php\" class=\"text-dark\">L'album " . htmlentities($titolo) . " è stato creato: aggiungi subito delle canzoni!</a><br>";
-                $success .= "<a href=\"albumCreate.php\" class=\"text-dark\">Oppure crea un nuovo album.</a>";
+                $success= $success."<a href=\"albumCreate.php\" class=\"text-dark\">Oppure crea un nuovo album.</a>";
                 $show_form = false;
             } else {
                 $err_mess = "Errore sconosciuto";
@@ -47,14 +47,14 @@ if (!isset($_SESSION["ID"])) {
 
 <?php if ($show_form) : ?>
     <form method="POST" action="albumCreate.php" enctype="multipart/form-data" class="mt-4">
-    <legend>Carica un album</legend>
+    <legend>Crea un album</legend>
         <div class="mb-3">
             <label for="titolo" class="form-label">Titolo dell'album:</label>
-            <input type="text" name="titolo" class="form-control" placeholder="Titolo dell'album">
+            <input type="text" name="titolo" class="form-control" placeholder="Titolo dell'album" required>
         </div>
         <div class="mb-3">
             <label for="genere" class="form-label">Genere dell'album:</label>
-            <input type="text" name="genere" class="form-control" placeholder="Genere dell'album">
+            <input type="text" name="genere" class="form-control" placeholder="Genere dell'album" required>
         </div>
         <div class="mb-3">
             <label for="immagine" class="form-label">Immagine:</label>
@@ -76,7 +76,7 @@ if (!isset($_SESSION["ID"])) {
 
 <?php if ($show_form) : ?>
     <div class="mt-4">
-        <h5>Album da finalizzare:</h5>
+        <p>Album da finalizzare:</p>
         <ul class="list-group">
             <?php
             $stmt = $dbh->db->prepare("SELECT ID, Titolo FROM album WHERE Finalizzato=0 AND ID_Utente=? AND (SELECT COUNT(ID) FROM canzone WHERE album.ID=ID_Album) > 0");
@@ -88,15 +88,15 @@ if (!isset($_SESSION["ID"])) {
             while ($row = $result->fetch_assoc()) :
             ?>
                 <li class="list-group-item">
-                    <?php echo htmlentities($row["Titolo"]); ?>
-                    <button class="btn btn-secondary btn-sm" onclick="location.href='finalise.php?id=<?php echo $row['ID']; ?>'">Finalizza</button>
+                <?php echo "<a class=\"link-info\" href=\"albumPlayer.php?id=" . $row["ID"] . "\">" . htmlentities($row["Titolo"]) . "</a>";?>
+                <button id="finalizza" class="btn btn-secondary btn-sm" onclick="location.href='finalise.php?id=<?php echo $row['ID']; ?>'">Finalizza</button>
                 </li>
             <?php endwhile; ?>
         </ul>
     </div>
 
     <div class="mt-4">
-        <h5>Tutti gli album:</h5>
+        <p>Tutti gli album:</p>
         <ul class="list-group">
             <?php
             $stmt = $dbh->db->prepare("SELECT * FROM album WHERE ID_Utente=?");
@@ -108,7 +108,7 @@ if (!isset($_SESSION["ID"])) {
             while ($row = $result->fetch_assoc()) :
             ?>
                 <li class="list-group-item">
-                    <a href="albumPlayer.php?id=<?php echo $row["ID"]; ?>" class="text-dark"><?php echo htmlentities($row["Titolo"]); ?></a>
+                <?php echo "<a class=\"link-info\" href=\"albumPlayer.php?id=" . $row["ID"] . "\">" . htmlentities($row["Titolo"]) . "</a>";?> 
                 </li>
             <?php endwhile; ?>
         </ul>
