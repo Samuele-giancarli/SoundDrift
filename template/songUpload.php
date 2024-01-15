@@ -60,54 +60,60 @@ if(!isset($_SESSION["ID"])) {
 if ($show_form) {
 ?>
 
-<form id="songupload" method="POST" action="songUpload.php" enctype="multipart/form-data">
-    <input type="text" name="titolo" placeholder="Titolo della canzone"/>
-    <br>
-    <input type="text" name="genere" placeholder="Genere della canzone"/>
-    <br>
-    Immagine: <input type="file" name="immagine" accept="image/jpeg,image/png,image/webp,image/avif"/>
-    <br>
-    File audio: <input type="file" name="audio" accept="audio/mpeg,audio/flac"/>
-    <br>
-    Album di appartenenza: <select name="album" form="songupload">
-    <option value="null">no album</option>
-<?php
-$stmt = $dbh->db->prepare("SELECT * FROM album WHERE Finalizzato=0 AND ID_Utente=?");
-$idcreatore=$_SESSION["ID"];
-$stmt->bind_param("i", $idcreatore);
-$stmt->execute();
-$result = $stmt->get_result();
-while ($row = $result->fetch_assoc()){
-    echo "<option value=".$row["ID"].">".htmlentities($row["Titolo"])."</option>";
-}
-?>
-    </select>
+<div class="container mt-5">
+    <form id="songupload" method="POST" action="songUpload.php" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="titolo" class="form-label">Titolo della canzone:</label>
+            <input type="text" class="form-control" name="titolo" placeholder="Titolo della canzone" required>
+        </div>
+        <div class="mb-3">
+            <label for="genere" class="form-label">Genere della canzone:</label>
+            <input type="text" class="form-control" name="genere" placeholder="Genere della canzone" required>
+        </div>
+        <div class="mb-3">
+            <label for="immagine" class="form-label">Immagine:</label>
+            <input type="file" class="form-control" name="immagine" accept="image/jpeg,image/png,image/webp,image/avif">
+        </div>
+        <div class="mb-3">
+            <label for="audio" class="form-label">File audio:</label>
+            <input type="file" class="form-control" name="audio" accept="audio/mpeg,audio/flac" required>
+        </div>
+        <div class="mb-3">
+            <label for="album" class="form-label">Album di appartenenza:</label>
+            <select class="form-control" name="album">
+                <option value="null">no album</option>
+                <?php
+                $stmt = $dbh->db->prepare("SELECT * FROM album WHERE Finalizzato=0 AND ID_Utente=?");
+                $idcreatore = $_SESSION["ID"];
+                $stmt->bind_param("i", $idcreatore);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                while ($row = $result->fetch_assoc()) {
+                    echo "<option value=" . $row["ID"] . ">" . htmlentities($row["Titolo"]) . "</option>";
+                }
+                ?>
+            </select>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="albuminfo" name="albuminfo">
+            <label class="form-check-label" for="albuminfo">Copiare le informazioni dell'album?</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Invia</button>
+    </form>
+</div>
 
-    <br>
-    <input type="checkbox" id="albuminfo" name="albuminfo">
-    <label for="albuminfo">Copiare le informazioni dell'album?</label><br>
+<?php } ?>
 
+<p class="mt-4">Tutte le canzoni:</p>
+<ul class="list-group">
     <?php
+    $stmt = $dbh->db->prepare("SELECT * FROM canzone WHERE ID_Utente=?");
+    $idutente = $_SESSION["ID"];
+    $stmt->bind_param("i", $idutente);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+        echo "<li class=\"list-group-item\"><a class=\"link-info\" href=\"songPlayer.php?id=" . $row["ID"] . "\">" . htmlentities($row["Titolo"]) . "</a></li>";
+    }
     ?>
-    <input type="submit" value="Invia"/>
-</form>
-<?php
-}
-if(!is_null($err_mess)) {
-    echo $err_mess;
-}
-?>
-
-<p>Tutte le canzoni: </p>
-<ul>
-<?php
-$stmt = $dbh->db->prepare("SELECT * FROM canzone WHERE ID_Utente=?");
-$idutente = $_SESSION["ID"];
-$stmt->bind_param("i", $idutente);
-$stmt->execute();
-$result = $stmt->get_result();
-while($row = $result->fetch_assoc()) {
-    echo "<li><a style=\"color: black;\" href=\"songPlayer.php?id=".$row["ID"]."\">".htmlentities($row["Titolo"])."</a></li>";
-}
-?>
 </ul>
