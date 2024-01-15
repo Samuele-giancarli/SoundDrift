@@ -1,3 +1,5 @@
+
+<legend>Le tue notifiche:</legend>
 <?php 
 
     if(!is_null($_SESSION["ID"])){
