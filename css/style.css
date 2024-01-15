@@ -22,14 +22,18 @@ main {
     
 }
 
+a{
+    text-decoration:none;
+}
+
 a:link{
- text-decoration:none;
- color:white;
+    text-decoration:none;
+    color:white;
 }
 
 a:visited{
- text-decoration:none;
- color:white;
+    text-decoration:none;
+    color:white;
 }
 
 footer {
@@ -85,5 +89,6 @@ footer a:hover{
         display: inline-block;
         
     }
+
     
 }

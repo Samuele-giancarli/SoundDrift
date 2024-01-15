@@ -28,29 +28,29 @@
                 if(isset($_SESSION["ID"])) {
                 ?>
                 
-                <a id="home" href="home.php" class="btn btn-dark" style="text-decoration:none">
+                <a id="home" href="home.php" class="btn btn-dark">
                         <i class="bi bi-house" style="font-size: 20px"></i>
                 </a>
-                <a href="songUpload.php" class="btn btn-dark" style="text-decoration:none">
+                <a href="songUpload.php" class="btn btn-dark">
                         <i class="bi bi-plus-square" style="font-size: 20px"></i>
                 </a>
-                <a href="albumCreate.php" class="btn btn-dark" style="text-decoration:none">
+                <a href="albumCreate.php" class="btn btn-dark">
                         <i class="bi bi-disc-fill" style="font-size: 20px"></i>
                 </a>
-                    <a href="profile.php?id=<?php echo $_SESSION["ID"] ?>" class="btn btn-dark" style="text-decoration:none">
+                    <a href="profile.php?id=<?php echo $_SESSION["ID"] ?>" class="btn btn-dark">
                         <i class="bi bi-person" style="font-size: 20px"></i>
                     </a>
-                    <a href="notifications.php?id=<?php echo $_SESSION["ID"] ?>" class="btn btn-dark" style="text-decoration:none">
+                    <a href="notifications.php?id=<?php echo $_SESSION["ID"] ?>" class="btn btn-dark">
                     <i class="bi bi-bell" style="font-size: 20px"></i>
                     </a>
 
-                    <a href="logout.php" class="btn btn-dark" style="text-decoration:none">
+                    <a href="logout.php" class="btn btn-dark">
                         <i class="bi bi-box-arrow-left" style="font-size: 20px"></i>
                     </a>
                 <?php
                 } else {
                 ?>
-                    <a href="login.php" class="btn btn-dark" style="text-decoration:none">
+                    <a id="loginfromOut" href="login.php" class="btn btn-dark">
                         <i class="bi bi-box-arrow-in-right" style="font-size: 20px"></i>
                     </a>
                 <?php
@@ -72,16 +72,16 @@
         ?>
         <footer id="second-footer" class="bg-black text-center">
             <div class="container">
-                <a href="ricerca.php" class="btn btn-dark" style="text-decoration:none">
+                <a href="ricerca.php" class="btn btn-dark" >
                         <i class="bi bi-search"></i> Cerca
                 </a>
-                <a href="libreria.php" class="btn btn-dark" style="text-decoration:none">
+                <a href="libreria.php" class="btn btn-dark">
                         <i class="bi bi-collection"></i> Libreria
                 </a>
-                <a href="upload.php" class="btn btn-dark" style="text-decoration:none">
+                <a href="upload.php" class="btn btn-dark">
                         <i class="bi bi-file-post"></i> Post
                 </a>
-                <a href="settings.php" class="btn btn-dark" style="text-decoration:none">
+                <a href="settings.php" class="btn btn-dark">
                         <i class="bi bi-gear"></i> Impostazioni
                 </a>
             </div>
