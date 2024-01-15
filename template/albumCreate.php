@@ -47,7 +47,7 @@ if (!isset($_SESSION["ID"])) {
 
 <?php if ($show_form) : ?>
     <form method="POST" action="albumCreate.php" enctype="multipart/form-data" class="mt-4">
-    <legend>Carica un album</legend>
+    <legend>Crea un album</legend>
         <div class="mb-3">
             <label for="titolo" class="form-label">Titolo dell'album:</label>
             <input type="text" name="titolo" class="form-control" placeholder="Titolo dell'album" required>
