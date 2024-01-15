@@ -53,7 +53,7 @@ function songLike(){
 
 function songLikeDone() {
     let button=document.getElementById("like");
-    button.innerText="Togli dai piaciuti";
+    button.innerText="Rimuovi dai piaciuti";
     button.onclick = songUnlike;
 }
 
@@ -73,14 +73,15 @@ function songUnlikeDone() {
 }
 </script>
 
-<div>Titolo: <?php echo $info["Titolo"]; ?></div>
-<div>Autore: <?php echo "<a style=\"color:black\" href=\"profile.php?id=".$userInfo["ID"]."\">".htmlentities($userInfo["Username"])."</a>"; ?></div>
-<div>Genere: <?php echo $info["Genere"]; ?></div>
+<legend><?php echo $info["Titolo"]; ?></legend>
+<div class="mb-3">Titolo: <?php echo $info["Titolo"]; ?></div>
+<div class="mb-3">Autore: <?php echo "<a class=\"link-primary\" href=\"profile.php?id=".$userInfo["ID"]."\">".htmlentities($userInfo["Username"])."</a>"; ?></div>
+<div class="mb-3">Genere: <?php echo $info["Genere"]; ?></div>
 
 <?php 
 if (!is_null($info["ID_Immagine"])){
 ?>
-<div>Copertina: <img <?php echo "src=\"download.php?id=".$info["ID_Immagine"]."\""; ?>  id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" /></div>
+<div class="mb-3"><img <?php echo "src=\"download.php?id=".$info["ID_Immagine"]."\""; ?>  id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" /></div>
 <?php
 }
 ?>
@@ -98,35 +99,40 @@ echo "type=\"".$audioInfo["MimeType"]."\"";
 if (!is_null($info["ID_Album"])){
     $albumInfo=$dbh->getAlbumInfo($info["ID_Album"]);
 ?>
-<div>Album di appartenenza: <?php echo "<a style=\"color:black\" href=\"albumPlayer.php?id=".$albumInfo["ID"]."\">".htmlentities($albumInfo["Titolo"])."</a>"; ?></div>
+<div class="mb-3">Album di appartenenza: <?php echo "<a class=\"link-primary\" href=\"albumPlayer.php?id=".$albumInfo["ID"]."\">".htmlentities($albumInfo["Titolo"])."</a>"; ?></div>
 <?php
 }
 ?>
 
-<div id="durata"></div>
-
-<button type="button" onclick="play(false);">Play</button>
+<div class="mb-3">
+<button type="button" class="btn btn-primary" onclick="play(false)">Riproduci</button>
 <script>
 let audio = document.getElementById("song");
 audio.ondurationchange = duration;
 audio.oncanplaythrough = duration;
 </script>
 
-<button type="button" onclick="play(true);">Aggiungi in coda</button>
-<?php
 
+<button type="button" class="btn btn-primary" onclick="play(true)">Aggiungi in coda</button>
+</div>
+
+<div class="mb-3">
+<?php
 if (isset($_SESSION["ID"])){
     if ($dbh -> isSongLiked($idutente, $idcanzone)){
-        echo "<button id=\"like\" type=\"button\" onclick=\"songUnlike();\">Togli dai piaciuti</button>";
+        echo "<button class=\"btn btn-primary\" id=\"like\" type=\"button\" onclick=\"songUnlike();\">Rimuovi da Piaciuti </button>";
     }else{
-        echo "<button id=\"like\" type=\"button\" onclick=\"songLike();\">Aggiungi ai piaciuti</button>";    
+        echo "<button class=\"btn btn-primary\" id=\"like\" type=\"button\" onclick=\"songLike();\">Aggiungi a Piaciuti </button>";    
     }
-    echo "<button type=\"button\"><a style=\"color:black\" href=\"upload.php?songid=".$idcanzone."\">Condividi</a></button>";
+        echo "<button class=\"btn btn-primary\" id=\"share\" type=\"button\"><a href=\"upload.php?songid=".$idcanzone."\">Condividi</a></button>";
 }
 ?>
+</div>
 
-<form id="playlist" method="GET" action="songAssoc.php" enctype="multipart/form-data">
-    Aggiungi a playlist: <select name="id" form="playlist">
+<form id="playlist" method="GET" action="songAssoc.php" enctype="multipart/form-data" class="mt-4" >
+<div class="mb-3">
+<label for="playlist" class="form-label"> Aggiungi a playlist: </label>
+<select class="form-control" name="playlist" form="playlist">
 
     <?php
     $stmt = $dbh->db->prepare("SELECT * FROM playlist WHERE ID_Utente=?");
@@ -142,8 +148,9 @@ if (isset($_SESSION["ID"])){
     }
     ?>
     </select>
+</div>
     <input type="hidden" name="songid" value=<?php echo "'".$idcanzone."'"; ?>>
-    <input type="submit" value="Invia"/>
+    <button type="submit" class="btn btn-secondary">Aggiungi</button>
 </form>
 
 

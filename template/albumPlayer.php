@@ -42,21 +42,23 @@ function albumUnlikeDone() {
 }
 </script>
 
-
-<div>Titolo: <?php echo $info["Titolo"]; ?></div>
-<div>Autore: <?php echo "<a style=\"color:black\" href=\"profile.php?id=".$userInfo["ID"]."\">".htmlentities($userInfo["Username"])."</a>"; ?></div>
-<div>Genere: <?php echo $info["Genere"]; ?></div>
+<legend><?php echo $info["Titolo"]; ?></legend>
+<div class="mb-3">Titolo: <?php echo $info["Titolo"]; ?></div>
+<div class="mb-3">Autore: <?php echo "<a class=\"link-primary\"  href=\"profile.php?id=".$userInfo["ID"]."\">".htmlentities($userInfo["Username"])."</a>"; ?></div>
+<div class="mb-3">Genere: <?php echo $info["Genere"]; ?></div>
 
 <?php 
 if (!is_null($info["ID_Immagine"])){
 ?>
-<div>Copertina: <img <?php echo "src=\"download.php?id=".$info["ID_Immagine"]."\""; ?>  id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" /></div>
+<div class="mb-3"><img <?php echo "src=\"download.php?id=".$info["ID_Immagine"]."\""; ?>  id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" /></div>
 <?php
 }
 
 $rows= $dbh -> getSongsFromAlbum($idalbum);
+?>
+<?php
 if (count($rows)!=0){
-echo "<button type=\"button\" onclick=\"";
+echo "<div class=\"mb-3\"> <button class=\"btn btn-primary\" type=\"button\" onclick=\"";
 foreach ($rows as $song){
     echo "window.parent.playNow({";
     echo "'title': '".jsescape($song["Titolo"])."',";
@@ -65,26 +67,29 @@ foreach ($rows as $song){
     echo "'url': 'download.php?id=".$song["ID_Audio"]."'";
     echo "},true);";
 }
-echo "\">Aggiungi tutto in coda</button>";
+echo "\">Aggiungi tutto in coda</button></div>";
 }
+?>
+
+<?php
 
 if (isset($_SESSION["ID"])&&$info["Finalizzato"]==1){
     if ($dbh -> isAlbumLiked($idutente, $idalbum)){
-        echo "<button id=\"like\" type=\"button\" onclick=\"albumUnlike();\">Togli dalla libreria</button>";
+        echo "<button class=\"btn btn-primary\" id=\"like\" type=\"button\" onclick=\"albumUnlike();\">Rimuovi da Libreria</button>";
     }else{
-        echo "<button id=\"like\" type=\"button\" onclick=\"albumLike();\">Aggiungi in libreria</button>";    
+        echo "<button class=\"btn btn-primary\" id=\"like\" type=\"button\" onclick=\"albumLike();\">Aggiungi a Libreria</button>";    
     }
-    echo "<button type=\"button\"><a style=\"color:black\" href=\"upload.php?albumid=".$idalbum."\">Condividi</a></button>";
+    echo "<button class=\"btn btn-primary\"  type=\"button\"><a href=\"upload.php?albumid=".$idalbum."\">Condividi</a></button>";
 }
 ?>
-<div>Brani: </div>
+<p class="mt-4">Brani:</p>
 
-<ol>
+<ol class="list-group list-group-numbered">
 <?php
 foreach ($dbh -> getSongsFromAlbum($idalbum) as $song){
-    echo "<li><a style=\"color: black;\" href=\"songPlayer.php?id=".$song["ID"]."\">".htmlentities($song["Titolo"])."</a>";
+    echo "<li class=\"list-group-item\"><a class=\"link-primary\" href=\"songPlayer.php?id=".$song["ID"]."\">".htmlentities($song["Titolo"])."</a>";
     for ($i=0; $i<2; $i++) {
-        echo " <button type=\"button\" onclick=\"";
+        echo " <button class=\"btn btn-secondary\" type=\"button\" onclick=\"";
         echo "window.parent.playNow({";
         echo "'title': '".jsescape($song["Titolo"])."',";
         $userInfo = $dbh->getUserInfo($song["ID_Utente"]);
@@ -101,7 +106,7 @@ foreach ($dbh -> getSongsFromAlbum($idalbum) as $song){
         if($i == 0) {
             echo "Riproduci";
         } else {
-            echo "Aggiungi in coda";
+            echo "Coda";
         }
         echo "</button>\n";
     }

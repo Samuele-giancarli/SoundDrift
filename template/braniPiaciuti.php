@@ -41,7 +41,7 @@ foreach ($rows as $song){
         if($i == 0) {
             echo "Riproduci";
         } else {
-            echo "Aggiungi in coda";
+            echo "Coda";
         }
         echo "</button>\n";
     }

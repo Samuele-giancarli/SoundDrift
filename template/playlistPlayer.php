@@ -43,9 +43,9 @@ function playlistUnlikeDone() {
 }
 </script>
 
-
-<div>Titolo: <?php echo $info["Titolo"]; ?></div>
-<div>Autore: <?php echo "<a style=\"color:black\" href=\"profile.php?id=".$userInfo["ID"]."\">".htmlentities($userInfo["Username"])."</a>"; ?></div>
+<legend><?php echo $info["Titolo"]." (Playlist)"; ?></legend>
+<div class="mb-3">Titolo: <?php echo $info["Titolo"]; ?></div>
+<div class="mb-3">Autore: <?php echo "<a class=\"link-primary\"  href=\"profile.php?id=".$userInfo["ID"]."\">".htmlentities($userInfo["Username"])."</a>"; ?></div>
 
 <?php 
 if (!is_null($info["ID_Immagine"])){
@@ -55,9 +55,11 @@ if (!is_null($info["ID_Immagine"])){
 }
 
 $rows= $dbh -> getSongsFromPlaylist($idplaylist);
-//var_dump($rows);
+?>
+<div class="mb-3">
+<?php
 if (count($rows)!=0){
-echo "<button type=\"button\" onclick=\"";
+echo "<button class=\"btn btn-primary\" type=\"button\" onclick=\"";
 foreach ($rows as $song){
     echo "window.parent.playNow({";
     echo "'title': '".jsescape($song["Titolo"])."',";
@@ -68,29 +70,33 @@ foreach ($rows as $song){
 }
 echo "\">Aggiungi tutto in coda</button>";
 }
+?>
+</div>
 
+<div class="mb-3">
+<?php
 if (isset($_SESSION["ID"])){
 if ($dbh -> isPlaylistLiked($idutente, $idplaylist)){
-    echo "<button id=\"like\" type=\"button\" onclick=\"playlistUnlike();\">Togli dalla libreria</button>";
+    echo "<button class=\"btn btn-primary\" id=\"like\" type=\"button\" onclick=\"playlistUnlike();\">Togli da Libreria</button>";
 }else{
-    echo "<button id=\"like\" type=\"button\" onclick=\"playlistLike();\">Aggiungi in libreria</button>";    
+    echo "<button class=\"btn btn-primary\" id=\"like\" type=\"button\" onclick=\"playlistLike();\">Aggiungi a Libreria</button>";    
 }
 if ($_SESSION["ID"]==$info["ID_Utente"]){
-    echo "<button id=\"playlist\" type=\"button\"><a href=\"addToPlaylist.php?id=".$idplaylist."\" style=\"color:black; text-decoration:none\">Aggiungi canzoni alla playlist</a></button>";
+    echo "<button class=\"btn btn-primary\" id=\"playlist\" type=\"button\"><a href=\"addToPlaylist.php?id=".$idplaylist."\">Aggiungi canzoni</a></button>";
 }
 }
-
 ?>
-<div>Brani: </div>
+</div>
+<p class="mt-4">Brani:</p>
 
-<ol>
+<ol class="list-group list-group-numbered">
 <?php
 foreach ($rows as $song){
     $songInfo=$dbh->getSongInfo($song["ID"]);
     $userInfo = $dbh->getUserInfo($song["ID_Utente"]);
-    echo "<li><a style=\"color: black;\" href=\"songPlayer.php?id=".$song["ID"]."\">".htmlentities($song["Titolo"])."</a> -  <a style=\"color: black;\" href=\"profile.php?id=".$userInfo["ID"]."\">".htmlentities($userInfo["Username"])."</a>";
+    echo "<li class=\"list-group-item\"><a class=\"link-primary\" href=\"songPlayer.php?id=".$song["ID"]."\">".htmlentities($song["Titolo"])."</a> -  <a style=\"color: black;\" href=\"profile.php?id=".$userInfo["ID"]."\">".htmlentities($userInfo["Username"])."</a>";
     for ($i=0; $i<2; $i++) {
-        echo " <button type=\"button\" onclick=\"";
+        echo " <button class=\"btn btn-secondary\" type=\"button\" onclick=\"";
         echo "window.parent.playNow({";
         echo "'title': '".jsescape($song["Titolo"])."',";
         echo "'author': '".jsescape($userInfo["Username"])."',";
@@ -106,7 +112,7 @@ foreach ($rows as $song){
         if($i == 0) {
             echo "Riproduci";
         } else {
-            echo "Aggiungi in coda";
+            echo "Coda";
         }
         echo "</button>\n";
     }

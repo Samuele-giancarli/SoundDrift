@@ -5,11 +5,11 @@ $postInfo=$dbh->getPostInfo($postId);
 renderPost($postInfo,$dbh,$_SESSION["ID"]);
 ?>
 
-<div class="row justify-content-center" id="commentForm">
-    <label for="commentText">Inserisci il tuo commento:</label>
-    <textarea id="commentText" name="commentText"></textarea>
-    <button onclick="addComment()">Invia Commento</button>
+<div class="row justify-content-center form-outline" id="commentForm" class="mt-4" rows="3" >
+    <label for="commentText">Scrivi un commento:</label>
+    <textarea id="commentText" class="form-control" rows="2" name="commentText" placeholder="Il tuo commento"></textarea>
 </div>
+<button class="btn btn-primary" onclick="addComment()">Invia Commento</button>
 
 <div id="commentsContainer">
     <?php
