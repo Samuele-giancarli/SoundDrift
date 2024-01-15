@@ -1,7 +1,7 @@
 <?php
 $show_form = true;
 $err_mess = null;
-$succes=null;
+$success=null;
 
 if (!isset($_SESSION["ID"])) {
     $err_mess = "Per creare un album, devi essere loggato!";
