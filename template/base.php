@@ -49,7 +49,7 @@
                 <?php
                 } else {
                 ?>
-                    <a href="login.php" class="btn btn-dark" style="text-decoration:none">
+                    <a id="loginfromOut" href="login.php" class="btn btn-dark">
                         <i class="bi bi-box-arrow-in-right" style="font-size: 20px"></i>
                     </a>
                 <?php

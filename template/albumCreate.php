@@ -1,6 +1,7 @@
 <?php
 $show_form = true;
 $err_mess = null;
+$success=null;
 
 if (!isset($_SESSION["ID"])) {
     $err_mess = "Per creare un album, devi essere loggato!";
@@ -31,8 +32,8 @@ if (!isset($_SESSION["ID"])) {
 
         try {
             if (!is_null($idalbum)) {
-                $err_mess = "<a href=\"songUpload.php\" class=\"text-dark\">L'album " . htmlentities($titolo) . " è stato creato: aggiungi subito delle canzoni!</a><br>";
-                $err_mess .= "<a href=\"albumCreate.php\" class=\"text-dark\">Oppure crea un nuovo album.</a>";
+                $success = "<a href=\"songUpload.php\" class=\"text-dark\">L'album " . htmlentities($titolo) . " è stato creato: aggiungi subito delle canzoni!</a><br>";
+                $success .= "<a href=\"albumCreate.php\" class=\"text-dark\">Oppure crea un nuovo album.</a>";
                 $show_form = false;
             } else {
                 $err_mess = "Errore sconosciuto";
@@ -46,10 +47,13 @@ if (!isset($_SESSION["ID"])) {
 
 <?php if ($show_form) : ?>
     <form method="POST" action="albumCreate.php" enctype="multipart/form-data" class="mt-4">
+    <legend>Carica un album</legend>
         <div class="mb-3">
+            <label for="titolo" class="form-label">Titolo dell'album:</label>
             <input type="text" name="titolo" class="form-control" placeholder="Titolo dell'album">
         </div>
         <div class="mb-3">
+            <label for="genere" class="form-label">Genere dell'album:</label>
             <input type="text" name="genere" class="form-control" placeholder="Genere dell'album">
         </div>
         <div class="mb-3">
@@ -60,11 +64,15 @@ if (!isset($_SESSION["ID"])) {
     </form>
 <?php endif; ?>
 
-<?php if (!is_null($err_mess)) : ?>
+<?php if (!is_null($err_mess)) { ?>
     <div class="alert alert-danger mt-4">
         <?php echo $err_mess; ?>
     </div>
-<?php endif; ?>
+<?php } elseif (!is_null($success)){ ?>
+    <div class="alert alert-primary mt-4">
+    <?php echo $success; ?>
+    </div>
+<?php }  ?>
 
 <?php if ($show_form) : ?>
     <div class="mt-4">
@@ -81,7 +89,7 @@ if (!isset($_SESSION["ID"])) {
             ?>
                 <li class="list-group-item">
                     <?php echo htmlentities($row["Titolo"]); ?>
-                    <button class="btn btn-secondary btn-sm" onclick="location.href='finalise.php?id=<?php echo $row["ID"]; ?>'">Finalizza</button>
+                    <button class="btn btn-secondary btn-sm" onclick="location.href='finalise.php?id=<?php echo $row['ID']; ?>'">Finalizza</button>
                 </li>
             <?php endwhile; ?>
         </ul>
