@@ -91,7 +91,10 @@ if (!isset($_SESSION["ID"])) {
                 <?php echo "<a class=\"link-info\" href=\"albumPlayer.php?id=" . $row["ID"] . "\">" . htmlentities($row["Titolo"]) . "</a>";?>
                 <button id="finalizza" class="btn btn-secondary btn-sm" onclick="location.href='finalise.php?id=<?php echo $row['ID']; ?>'">Finalizza</button>
                 </li>
-            <?php endwhile; ?>
+
+            <?php endwhile; 
+            //sposta il bottone "finalizza a dx"
+            ?>
         </ul>
     </div>
 

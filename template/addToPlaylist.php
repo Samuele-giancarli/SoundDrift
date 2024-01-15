@@ -19,7 +19,7 @@ $playlistInfo=$dbh->getPlaylistInfo($idplaylist);
 ?>
 
 <form method="GET" action="addToPlaylist.php" class="mt-4">
-<legend><?php echo "Aggiungi canzoni a: "."<a style=\"color:blue; text-decoration:none\" href=\"playlistPlayer.php?id=".$idplaylist."\">".htmlentities($playlistInfo['Titolo'])."</a>";?></legend>
+<legend><?php echo "Aggiungi canzoni a: "."<a class=\"link-info\" href=\"playlistPlayer.php?id=".$idplaylist."\">".htmlentities($playlistInfo['Titolo'])."</a>";?></legend>
     <div class="mb-3">
         <label for="query" class="form-label">Cerca canzoni:</label>
         <input type="text" name="query" class="form-control" placeholder="Nome del brano" required>
@@ -30,20 +30,29 @@ $playlistInfo=$dbh->getPlaylistInfo($idplaylist);
 
 <?php
 if (!is_null($search)){
-echo "<ul>";
     $rows=$dbh->searchSongsbyTitleWithFilter($search, $idplaylist);
     foreach ($rows as $song){
+        ?>    
+        <ul class="list-group">
+        <?php
         $authorInfo=$dbh->getUserInfo($song["ID_Utente"]);
-        echo "<form action=\"playlistAddSong.php\" method=\"GET\">";
-        echo "<li>";
+        ?>
+        <form action="playlistAddSong.php" method="GET" class="mt-4">
+        <li class="list-group-item">
+        <?php 
         echo "<input type=\"hidden\" name=\"idsong\" value=\"".$song["ID"]."\">";
         echo "<input type=\"hidden\" name=\"idplaylist\" value=\"".$idplaylist."\">";
         echo "<input type=\"hidden\" name=\"queryused\" value='".jsescape($search)."'>";
-        echo "<a href=\"songPlayer.php?id=".$song["ID"]."\" style=\"color:black; text-decoration:none\">".$song["Titolo"]."</a> - ".$authorInfo["Username"]." ";
-        echo "<input type=\"submit\" value=\"Aggiungi\">";
-        echo "</li></form>";
+        echo "<a class=\"link-info\" href=\"songPlayer.php?id=".$song["ID"]."\" style=\"color:black; text-decoration:none\">".$song["Titolo"]."</a> - ".$authorInfo["Username"]." ";
+        echo "<button type=\"submit\" class=\"btn btn-secondary\">Aggiungi</button>";
+          //sposta il bottone "aggiungi" a dx
+        ?>
+        </li></form>
+        <?php
     }
-echo "</ul>";
+    ?>
+        </ul>
+<?php
 }
 ?>
 
