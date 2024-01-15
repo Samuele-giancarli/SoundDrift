@@ -1,6 +1,6 @@
 
 <?php
-setNotificationsRead($iduser);
+$dbh->setNotificationsRead($_SESSION["ID"]);
 
     function renderNotification($notifica,$dbh){
         $id = $notifica["ID"];

@@ -738,7 +738,6 @@ class DatabaseHelper{
         $stmt->bind_param("si", $password, $idUser);
         $stmt->execute();
     }
-}
 
     public function newNotifications($iduser){
         $query = "SELECT * FROM notifica WHERE ID_Utente = ? AND Visualizzato=0";
@@ -746,7 +745,7 @@ class DatabaseHelper{
         $stmt->bind_param("i", $iduser);
         $stmt->execute();
         $result = $stmt->get_result();
-        $row = $result->fetch_assoc()
+        $row = $result->fetch_assoc();
         if (is_null($row)){
             return false;
         }
@@ -759,5 +758,6 @@ class DatabaseHelper{
         $stmt->bind_param("i", $iduser);
         $stmt->execute();
     }
+}
 
 ?>
