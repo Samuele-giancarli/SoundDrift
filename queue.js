@@ -45,8 +45,8 @@ function playCurrentSong() {
         audio.oncanplaythrough = null;
         pause();
         audio.src = "";
-        title.innerText = "Nome del brano";
-        author.innerText = "Nome dell'artista";
+        title.innerText = "Brano";
+        author.innerText = "Artista";
         next.innerText = "";
         return;
     }
@@ -72,7 +72,7 @@ function play() {
     let button = get("playButton");
     let audio = get("audio");
     audio.play();
-    button.innerHTML = "<i class=\"bi bi-pause\"></i> Pause";
+    button.innerHTML = "<i class=\"bi bi-pause\"></i><span class=\"hide-on-mobile\">Pause</span>";
     button.onclick = pause;
 }
 
@@ -80,7 +80,7 @@ function pause() {
     let button = get("playButton");
     let audio = get("audio");
     audio.pause();
-    button.innerHTML = "<i class=\"bi bi-play\"></i> Play";
+    button.innerHTML = "<i class=\"bi bi-play\"><span class=\"hide-on-mobile\"></i> Play</span>";
     button.onclick = play;
 }
 

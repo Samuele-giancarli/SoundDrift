@@ -740,4 +740,24 @@ class DatabaseHelper{
     }
 }
 
+    public function newNotifications($iduser){
+        $query = "SELECT * FROM notifica WHERE ID_Utente = ? AND Visualizzato=0";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $iduser);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc()
+        if (is_null($row)){
+            return false;
+        }
+        return true;    
+    }
+
+    public function setNotificationsRead($iduser){
+        $query = "UPDATE notifica SET Visualizzato=1 WHERE ID_Utente = ? AND Visualizzato=0";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $iduser);
+        $stmt->execute();
+    }
+
 ?>

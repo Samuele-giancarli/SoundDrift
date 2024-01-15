@@ -14,31 +14,31 @@
 <body>
 <audio id="audio"></audio>
 <iframe src="home.php" width="100%" height="100%"></iframe>
-<footer class="bg-secondary text-center">
-        <input type="range" min="0" max="1" value="1" step="0.01" id="volume" onchange="volumeUpdate();" oninput="volumeUpdate();"></input>
+<footer class="bg-opacity-10 bg-secondary text-center">
+<span class="hide-on-mobile"><input type="range" min="0" max="1" value="1" step="0.01" id="volume" onchange="volumeUpdate();" oninput="volumeUpdate();"></input></span>
 
-        <button type="button" class="btn btn-primary" onclick="prevSong();">
-            <i class="bi bi-skip-backward"></i>
-        </button>
         <button type="button" class="btn btn-primary" id="playButton">
-            <i class="bi bi-play"></i> Play
+            <i class="bi bi-play"></i> <span class="hide-on-mobile">Play</span>
         </button>
     
+        <button type="button" class="btn btn-secondary" onclick="prevSong();">
+            <i class="bi bi-skip-backward"></i>
+        </button>
 
 
-        <p style="display:inline-block" id="title">Nome del brano</p>
+        <p style="display:inline-block; inline-size:15%; word-break: break-word;" id="title" >Brano </p>
         <p style="display:inline-block">-</p>
-        <p style="display:inline-block" id="author">Nome dell'artista</p>
+        <p style="display:inline-block; inline-size:15%;  word-break: break-word;  " id="author"> Artista</p>
 
-        <button type="button"  class="btn btn-primary" onclick="nextSong();">
+        <button type="button"  class="btn btn-secondary" onclick="nextSong();">
             <i class="bi bi-skip-forward"></i> 
         </button>
 
-        <button type="button" class="btn btn-primary" id="loopButton" onclick="enableLoop();">
-            <i class="bi bi-arrow-repeat"></i> Enable Loop
-        </button>
+        <span class="hide-on-mobile"><button type="button" class="btn btn-secondary" id="loopButton" onclick="enableLoop();">
+            <i class="bi bi-arrow-repeat"></i>Enable Loop
+        </button></span>
 
-        <p style="display:inline-block">Prossimo in coda:</p>
+        <span class="hide-on-mobile"><p style="display:inline-block">Prossimo in coda:</p></span>
         <p style="display:inline-block" id="next"></p>
 
  <!--      <button type="button" class="btn btn-primary">

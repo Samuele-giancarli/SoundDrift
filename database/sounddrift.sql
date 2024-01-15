@@ -142,7 +142,8 @@ CREATE TABLE `notifica` (
   `ID_Utente` int NOT NULL, 
   `ID_Mandante` int, 
   `ID_Post` int,
-  `DateTime` DateTime NOT NULL
+  `DateTime` DateTime NOT NULL,
+  `Visualizzato` boolean DEFAULT 0
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

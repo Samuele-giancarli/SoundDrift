@@ -1,5 +1,7 @@
 
 <?php
+setNotificationsRead($iduser);
+
     function renderNotification($notifica,$dbh){
         $id = $notifica["ID"];
         $testo = $notifica["Testo"];

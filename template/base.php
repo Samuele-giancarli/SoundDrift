@@ -39,9 +39,23 @@
                         <a href="profile.php?id=<?php echo $_SESSION["ID"] ?>" class="btn btn-dark" style="text-decoration:none">
                             <i class="bi bi-person" style="font-size: 20px"></i>
                         </a>
+
+                        <?php
+                        if ($dbh->newNotifications($_SESSION["ID"])){
+                            ?>
+                            <a href="notifications.php?id=<?php echo $_SESSION["ID"] ?>" class="btn btn-danger" style="text-decoration:none">
+                            <i class="bi bi-bell" style="font-size: 20px"></i>
+                        </a>
+                        <?php
+                        }else{
+                            ?>
                         <a href="notifications.php?id=<?php echo $_SESSION["ID"] ?>" class="btn btn-dark" style="text-decoration:none">
                             <i class="bi bi-bell" style="font-size: 20px"></i>
                         </a>
+                        <?php
+                        }
+                        
+                        ?>
                         <a href="logout.php" class="btn btn-dark" style="text-decoration:none">
                             <i class="bi bi-box-arrow-left" style="font-size: 20px"></i>
                         </a>
