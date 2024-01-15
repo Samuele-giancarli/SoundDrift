@@ -69,7 +69,7 @@ if ($show_form) {
         </div>
         <div class="mb-3">
             <label for="genere" class="form-label">Genere della canzone:</label>
-            <input type="text" class="form-control" name="genere" id="genere" placeholder="Genere della canzone" required>
+            <input type="text" class="form-control" name="genere" id="genere" placeholder="Genere della canzone">
         </div>
         <div class="mb-3">
             <label for="immagine" class="form-label">Immagine:</label>
@@ -97,7 +97,7 @@ if ($show_form) {
         </div>
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="albuminfo" name="albuminfo">
-            <label class="form-check-label" for="albuminfo">Copiare le informazioni dell'album?</label>
+            <label for="albuminfo" class="form-check-label">Copiare le informazioni dell'album?</label>
         </div>
         <button type="submit" class="btn btn-primary">Invia</button>
     </form>

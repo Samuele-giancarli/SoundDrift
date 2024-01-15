@@ -89,7 +89,7 @@ if (!isset($_SESSION["ID"])) {
             ?>
                 <li class="list-group-item">
                     <?php echo htmlentities($row["Titolo"]); ?>
-                    <button class="btn btn-secondary btn-sm" onclick="location.href='finalise.php?id=<?php echo $row["ID"]; ?>'">Finalizza</button>
+                    <button class="btn btn-secondary btn-sm" onclick="location.href='finalise.php?id=<?php echo $row['ID']; ?>'">Finalizza</button>
                 </li>
             <?php endwhile; ?>
         </ul>
