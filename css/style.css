@@ -19,6 +19,7 @@ header {
 main {
     flex: 1;
     margin: 100px 5% 0;
+    
 }
 
 a:link{
@@ -50,6 +51,7 @@ footer a:visited{
 footer a:hover{
     color:black;
 }
+
 
 #second-footer {
     position: fixed; /* Modifica qui */

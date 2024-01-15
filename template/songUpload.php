@@ -64,23 +64,23 @@ if ($show_form) {
     <form id="songupload" method="POST" action="songUpload.php" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="titolo" class="form-label">Titolo della canzone:</label>
-            <input type="text" class="form-control" name="titolo" placeholder="Titolo della canzone" required>
+            <input type="text" class="form-control" name="titolo" id="titolo" placeholder="Titolo della canzone" required>
         </div>
         <div class="mb-3">
             <label for="genere" class="form-label">Genere della canzone:</label>
-            <input type="text" class="form-control" name="genere" placeholder="Genere della canzone" required>
+            <input type="text" class="form-control" name="genere" id="genere" placeholder="Genere della canzone" required>
         </div>
         <div class="mb-3">
             <label for="immagine" class="form-label">Immagine:</label>
-            <input type="file" class="form-control" name="immagine" accept="image/jpeg,image/png,image/webp,image/avif">
+            <input type="file" class="form-control" name="immagine" id="immagine" accept="image/jpeg,image/png,image/webp,image/avif">
         </div>
         <div class="mb-3">
             <label for="audio" class="form-label">File audio:</label>
-            <input type="file" class="form-control" name="audio" accept="audio/mpeg,audio/flac" required>
+            <input type="file" class="form-control" name="audio" id="audio" accept="audio/mpeg,audio/flac" required>
         </div>
         <div class="mb-3">
             <label for="album" class="form-label">Album di appartenenza:</label>
-            <select class="form-control" name="album">
+            <select class="form-control" name="album" id="album">
                 <option value="null">no album</option>
                 <?php
                 $stmt = $dbh->db->prepare("SELECT * FROM album WHERE Finalizzato=0 AND ID_Utente=?");

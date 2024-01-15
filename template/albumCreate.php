@@ -1,89 +1,108 @@
 <?php
-
 $show_form = true;
 $err_mess = null;
 
-if(!isset($_SESSION["ID"])) {
-    $err_mess="Per creare un album, devi essere loggato!";
-    $show_form=false;
-} elseif(isset ($_POST["titolo"])) {
-    $idutente=$_SESSION["ID"];
-    $titolo=$_POST["titolo"];
-    $genere=$_POST["genere"];
-    $immagine=$_FILES["immagine"];
-    if (strlen($titolo)<=0||strlen($titolo)>=256){
-        $err_mess="Il titolo non ha lunghezza valida.";
-    }elseif(strlen($genere)<=0||strlen($genere)>=256){
-        $err_mess="Il genere non ha lunghezza valida.";
-    }else{
-        $idimmagine=null;
-        if ($immagine["error"]==0){
+if (!isset($_SESSION["ID"])) {
+    $err_mess = "Per creare un album, devi essere loggato!";
+    $show_form = false;
+} elseif (isset($_POST["titolo"])) {
+    $idutente = $_SESSION["ID"];
+    $titolo = $_POST["titolo"];
+    $genere = $_POST["genere"];
+    $immagine = $_FILES["immagine"];
+
+    if (strlen($titolo) <= 0 || strlen($titolo) >= 256) {
+        $err_mess = "Il titolo non ha lunghezza valida.";
+    } elseif (strlen($genere) <= 0 || strlen($genere) >= 256) {
+        $err_mess = "Il genere non ha lunghezza valida.";
+    } else {
+        $idimmagine = null;
+
+        if ($immagine["error"] == 0) {
             $idimmagine = $dbh->storeResource($immagine);
-            if (is_null($idimmagine)){
+
+            if (is_null($idimmagine)) {
                 echo "Errore generico";
                 die();
             }
         }
 
-        $idalbum=$dbh->addAlbum($titolo, $genere, $idutente, $idimmagine);
+        $idalbum = $dbh->addAlbum($titolo, $genere, $idutente, $idimmagine);
+
         try {
-            if(!is_null($idalbum)) {
-                $err_mess="<a href=\"songUpload.php\" style=\"color:black\">L'album ".htmlentities($titolo)." è stato creato: aggiungi subito delle canzoni!</a><br>";
-                $err_mess=$err_mess."<a href=\"albumCreate.php\" style=\"color:black\">Oppure crea un nuovo album.</a>";
-                $show_form=false;
+            if (!is_null($idalbum)) {
+                $err_mess = "<a href=\"songUpload.php\" class=\"text-dark\">L'album " . htmlentities($titolo) . " è stato creato: aggiungi subito delle canzoni!</a><br>";
+                $err_mess .= "<a href=\"albumCreate.php\" class=\"text-dark\">Oppure crea un nuovo album.</a>";
+                $show_form = false;
             } else {
-                $err_mess="Errore sconosciuto";
+                $err_mess = "Errore sconosciuto";
             }
-        } catch(mysqli_sql_exception $e) {
-            $err_mess="Errore generico";
+        } catch (mysqli_sql_exception $e) {
+            $err_mess = "Errore generico";
         }
     }
 }
 ?>
 
-<?php
-if ($show_form) {
-?>
-<form method="POST" action="albumCreate.php" enctype="multipart/form-data">
-    <input type="text" name="titolo" placeholder="Titolo dell'album"/>
-    <br>
-    <input type="text" name="genere" placeholder="Genere dell'album"/>
-    <br> 
-    Immagine: <input type="file" name="immagine" accept="image/jpeg,image/png,image/webp,image/avif"/>
-    <br>
-    <input type="submit" value="Invia"/>
-</form>
-<?php
-}
-if(!is_null($err_mess)) {
-    echo $err_mess;
-}
-if ($show_form){
-    echo "Album da finalizzare: <br> <ul>";
-    $stmt = $dbh->db->prepare("SELECT ID, Titolo FROM album WHERE Finalizzato=0 AND ID_Utente=? AND (SELECT COUNT(ID) FROM canzone WHERE album.ID=ID_Album) > 0");
-    $idcreatore=$_SESSION["ID"];
-    $stmt->bind_param("i", $idcreatore);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    while ($row = $result->fetch_assoc()){
-        echo "<li>".htmlentities($row["Titolo"])." <button onclick=\"location.href='finalise.php?id=".$row["ID"]."'\" type=\"button\">Finalizza</button></li>";
-    }
-    
-    echo "</ul>";
-    echo "Tutti gli album: <br>";
-?>
-<ul>
-<?php
-$stmt = $dbh->db->prepare("SELECT * FROM album WHERE ID_Utente=?");
-$idutente = $_SESSION["ID"];
-$stmt->bind_param("i", $idutente);
-$stmt->execute();
-$result = $stmt->get_result();
-while($row = $result->fetch_assoc()) {
-    echo "<li><a style=\"color:black\" href=\"albumPlayer.php?id=".$row["ID"]."\">".htmlentities($row["Titolo"])."</a></li>";
-}
-?>
-</ul>
-<?php
-}
-?>
+<?php if ($show_form) : ?>
+    <form method="POST" action="albumCreate.php" enctype="multipart/form-data" class="mt-4">
+        <div class="mb-3">
+            <input type="text" name="titolo" class="form-control" placeholder="Titolo dell'album">
+        </div>
+        <div class="mb-3">
+            <input type="text" name="genere" class="form-control" placeholder="Genere dell'album">
+        </div>
+        <div class="mb-3">
+            <label for="immagine" class="form-label">Immagine:</label>
+            <input type="file" name="immagine" id="immagine" class="form-control" accept="image/jpeg,image/png,image/webp,image/avif">
+        </div>
+        <button type="submit" class="btn btn-primary">Invia</button>
+    </form>
+<?php endif; ?>
+
+<?php if (!is_null($err_mess)) : ?>
+    <div class="alert alert-danger mt-4">
+        <?php echo $err_mess; ?>
+    </div>
+<?php endif; ?>
+
+<?php if ($show_form) : ?>
+    <div class="mt-4">
+        <h5>Album da finalizzare:</h5>
+        <ul class="list-group">
+            <?php
+            $stmt = $dbh->db->prepare("SELECT ID, Titolo FROM album WHERE Finalizzato=0 AND ID_Utente=? AND (SELECT COUNT(ID) FROM canzone WHERE album.ID=ID_Album) > 0");
+            $idcreatore = $_SESSION["ID"];
+            $stmt->bind_param("i", $idcreatore);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            while ($row = $result->fetch_assoc()) :
+            ?>
+                <li class="list-group-item">
+                    <?php echo htmlentities($row["Titolo"]); ?>
+                    <button class="btn btn-secondary btn-sm" onclick="location.href='finalise.php?id=<?php echo $row["ID"]; ?>'">Finalizza</button>
+                </li>
+            <?php endwhile; ?>
+        </ul>
+    </div>
+
+    <div class="mt-4">
+        <h5>Tutti gli album:</h5>
+        <ul class="list-group">
+            <?php
+            $stmt = $dbh->db->prepare("SELECT * FROM album WHERE ID_Utente=?");
+            $idutente = $_SESSION["ID"];
+            $stmt->bind_param("i", $idutente);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            while ($row = $result->fetch_assoc()) :
+            ?>
+                <li class="list-group-item">
+                    <a href="albumPlayer.php?id=<?php echo $row["ID"]; ?>" class="text-dark"><?php echo htmlentities($row["Titolo"]); ?></a>
+                </li>
+            <?php endwhile; ?>
+        </ul>
+    </div>
+<?php endif; ?>
