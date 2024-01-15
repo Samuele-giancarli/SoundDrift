@@ -15,13 +15,17 @@ if (!isset($idplaylist)){
 }
 $playlistInfo=$dbh->getPlaylistInfo($idplaylist);
 
-echo "<a href=\"playlistPlayer.php?id=".$idplaylist."\" style=\"color:black; text-decoration:none\">Aggiungi canzoni a: ".$playlistInfo["Titolo"]."</a>";
+
 ?>
 
-<form method="GET" action="addToPlaylist.php">
-    <input type="text" placeholder="Cerca canzone" name="query">
+<form method="GET" action="addToPlaylist.php" class="mt-4">
+<legend><?php echo "Aggiungi canzoni a: "."<a style=\"color:blue; text-decoration:none\" href=\"playlistPlayer.php?id=".$idplaylist."\">".htmlentities($playlistInfo['Titolo'])."</a>";?></legend>
+    <div class="mb-3">
+        <label for="query" class="form-label">Cerca canzoni:</label>
+        <input type="text" name="query" class="form-control" placeholder="Nome del brano" required>
+</div>
     <input type="hidden" name="id" value=<?php echo "\"".$idplaylist."\""; ?>>
-    <input type="submit" value="Cerca">
+    <button type="submit" class="btn btn-primary">Cerca</button>
 </form>
 
 <?php
