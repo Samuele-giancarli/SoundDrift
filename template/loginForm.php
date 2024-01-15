@@ -2,6 +2,7 @@
 
 $show_form = false;
 $err_mess=null;
+$success=null;
 
 if(isset($_SESSION["ID"])) {
     $err_mess="L'utente è già loggato";
@@ -32,7 +33,7 @@ if(isset($_SESSION["ID"])) {
 if($show_form):
 ?>
  <form method="POST" action="login.php" class="mt-5">
-        <h2 class="mb-4">Login</h2>
+        <legend>Login</legend>
         <div class="mb-3">
             <label for="email" class="form-label">Email:</label>
             <input type="email" name="email" id="email" class="form-control" placeholder="La tua e-mail" required>
@@ -43,6 +44,7 @@ if($show_form):
         </div>
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
+
     <?php if (!is_null($err_mess)): ?>
         <div class="alert alert-danger mt-3" role="alert">
             <?php echo $err_mess; ?>
@@ -52,8 +54,15 @@ if($show_form):
 <?php endif; ?>
 <?php
 
-if (!is_null($err_mess)){
-    echo $err_mess;
-}
+if (!is_null($err_mess)) { ?>
+    <div class="alert alert-danger mt-4">
+        <?php echo $err_mess; ?>
+    </div>
+<?php } elseif (!is_null($success)){ ?>
+    <div class="alert alert-primary mt-4">
+    <?php echo $success; ?>
+    </div>
+<?php } 
+
 ?>
 <p class="mt-3 text-center">Non sei ancora registrato? <a class="link-primary" href="register.php">Registrati</a></p>
