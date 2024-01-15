@@ -19,7 +19,7 @@ $playlistInfo=$dbh->getPlaylistInfo($idplaylist);
 ?>
 
 <form method="GET" action="addToPlaylist.php" class="mt-4">
-<legend><?php echo "Aggiungi canzoni a: "."<a class=\"link-info\" href=\"playlistPlayer.php?id=".$idplaylist."\">".htmlentities($playlistInfo['Titolo'])."</a>";?></legend>
+<legend><?php echo "Aggiungi canzoni a: "."<a class=\"link-primary\" href=\"playlistPlayer.php?id=".$idplaylist."\">".htmlentities($playlistInfo['Titolo'])."</a>";?></legend>
     <div class="mb-3">
         <label for="query" class="form-label">Cerca canzoni:</label>
         <input type="text" name="query" class="form-control" placeholder="Nome del brano" required>
@@ -43,7 +43,7 @@ if (!is_null($search)){
         echo "<input type=\"hidden\" name=\"idsong\" value=\"".$song["ID"]."\">";
         echo "<input type=\"hidden\" name=\"idplaylist\" value=\"".$idplaylist."\">";
         echo "<input type=\"hidden\" name=\"queryused\" value='".jsescape($search)."'>";
-        echo "<a class=\"link-info\" href=\"songPlayer.php?id=".$song["ID"]."\" style=\"color:black; text-decoration:none\">".$song["Titolo"]."</a> - ".$authorInfo["Username"]." ";
+        echo "<a class=\"link-primary\" href=\"songPlayer.php?id=".$song["ID"]."\" style=\"color:black; text-decoration:none\">".$song["Titolo"]."</a> - ".$authorInfo["Username"]." ";
         echo "<button type=\"submit\" class=\"btn btn-secondary\">Aggiungi</button>";
           //sposta il bottone "aggiungi" a dx
         ?>

@@ -123,7 +123,7 @@ if ($show_form) {
     $stmt->execute();
     $result = $stmt->get_result();
     while ($row = $result->fetch_assoc()) {
-        echo "<li class=\"list-group-item\"><a class=\"link-info\" href=\"songPlayer.php?id=" . $row["ID"] . "\">" . htmlentities($row["Titolo"]) . "</a></li>";
+        echo "<li class=\"list-group-item\"><a class=\"link-primary\" href=\"songPlayer.php?id=" . $row["ID"] . "\">" . htmlentities($row["Titolo"]) . "</a></li>";
     }
     ?>
 </ul>

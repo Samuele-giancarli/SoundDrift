@@ -1,10 +1,15 @@
-<form id="searchForm">
-    <input type="text" class="form-control" id="searchInput" name="searchInput" placeholder="Inserisci la tua ricerca">
-</form>
+<form id="searchForm" class="mt-4">
+<div class="mb-3">
+            <label for="text" class="form-label"></label>
+            <input type="text" autocomplete="off" class="form-control" name="searchInput" id="searchInput" placeholder="Inserisci la tua ricerca">
+        </div>
+   
 
-<div id="searchResults">
+<div id="searchResults" class="mb-3">
         <!-- Qui verranno visualizzati i risultati della ricerca in tempo reale -->
 </div>
+
+</form>
 
 <script>
         document.getElementById('searchInput').addEventListener('input', function() {

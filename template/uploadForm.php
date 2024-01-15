@@ -5,6 +5,7 @@ function jsescape($s) {
 }
 
     $err_mess = null;
+    $success=null;
     
     // Verifica se l'utente è già loggato
     if (!isset($_SESSION["ID"])) {
@@ -22,7 +23,7 @@ function jsescape($s) {
             try {
                 $idImage = uploadSource($dbh, $img);
                 $dbh->addPost($idUser, $textual, $idImage, $idSong, $idAlbum);
-                $err_mess= "Post avvenuto con successo.";
+                $success= "Post avvenuto con successo.";
             } catch (PDOException $e) {
                 $err_mess="Query fallita: "; $e->getMessage();
             }
@@ -30,31 +31,49 @@ function jsescape($s) {
     }
 ?>
 
-<h2>Pubblica un nuovo post</h2>
-    <form action="upload.php" method="post" enctype="multipart/form-data">
-        <textarea name="testo"></textarea><br>
-        Immagine: <br>
-        <input type="file" name="immagine" accept="image/jpeg,image/png,image/webp,image/avif"><br>
+    <form action="upload.php" method="post" enctype="multipart/form-data" class="mt-4">
+    <legend>Pubblica un nuovo post</legend>
+        <div class="form-outline">
+            <label for="testo" class="form-label">Scrivi qui: </label>
+            <textarea name="testo" class="form-control" id="testo" placeholder="Qualcosa da raccontare?" rows="3" required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="immagine" class="form-label">Immagine:</label>
+            <input type="file" class="form-control" name="immagine" id="immagine" accept="image/jpeg,image/png,image/webp,image/avif">
+        </div>
+
         <?php
         if($_SERVER["REQUEST_METHOD"] === "GET") {
             if(isset($_GET["songid"])) {
                 $songInfo = $dbh->getSongInfo($_GET["songid"]);
                 $authorInfo = $dbh->getUserInfo($songInfo["ID_Utente"]);
                 echo "<input type=\"hidden\" name=\"songid\" value=\"".$_GET["songid"]."\">";
-                echo "Condivisione canzone: ".htmlentities($songInfo["Titolo"])." - ".htmlentities($authorInfo["Username"])."<br>";
+                ?>
+            <div class="mb-3">
+            <p class="mt-4">Stai condividendo: <?php echo htmlentities($songInfo["Titolo"])." - ".htmlentities($authorInfo["Username"]) ?></p>
+        </div>
+        <?php
             } elseif(isset($_GET["albumid"])) {
                 $albumInfo = $dbh->getAlbumInfo($_GET["albumid"]);
                 $authorInfo = $dbh->getUserInfo($albumInfo["ID_Utente"]);
                 echo "<input type=\"hidden\" name=\"albumid\" value=\"".$_GET["albumid"]."\">";
-                echo "Condivisione album: ".htmlentities($albumInfo["Titolo"])." - ".htmlentities($authorInfo["Username"])."<br>";
+                ?>
+                <p class="mt-4">Stai condividendo: <?php echo htmlentities($albumInfo["Titolo"])." - ".htmlentities($authorInfo["Username"]) ?></p>
+           <?php
             }
         }
         ?>
-        <input type="submit" value="Pubblica">
+             <button type="submit" class="btn btn-primary">Pubblica</button>
     </form>
 <?php
 
-if(!is_null($err_mess)) {
-    echo $err_mess;
-}
-?>
+if (!is_null($err_mess)) { ?>
+    <div class="alert alert-danger mt-4">
+        <?php echo $err_mess; ?>
+    </div>
+<?php } elseif (!is_null($success)){ ?>
+    <div class="alert alert-primary mt-4">
+    <?php echo $success; ?>
+    </div>
+<?php }  ?>

@@ -20,7 +20,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-3">
-                                <p><?php echo "<a style=\"color:blue; text-decoration:none\" href=\"profile.php?id=".$id_mandante."\">".htmlentities($username)." </a>".htmlentities($testo);
+                                <p><?php echo "<a class=\"link-primary\" style=\"color:blue; text-decoration:none\" href=\"profile.php?id=".$id_mandante."\">".htmlentities($username)." </a>".htmlentities($testo);
                                 if (!is_null($id_post)){
                                 echo "<a style=\"color:blue; text-decoration:none\" href=\"comment.php?id=".$id_post."\">post</a>";
                                 }?>

@@ -79,7 +79,7 @@ $stmt->bind_param("i", $idutente);
 $stmt->execute();
 $result = $stmt->get_result();
 while($row = $result->fetch_assoc()) {
-    echo "<li class=\"list-group-item\"><a class=\"link-info\" href=\"playlistPlayer.php?id=" . $row["ID"] . "\">" . htmlentities($row["Titolo"]) . "</a></li>";
+    echo "<li class=\"list-group-item\"><a class=\"link-primary\" href=\"playlistPlayer.php?id=" . $row["ID"] . "\">" . htmlentities($row["Titolo"]) . "</a></li>";
 }
 ?>
 </ul>
