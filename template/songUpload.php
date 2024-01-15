@@ -2,6 +2,7 @@
 
 $show_form = true;
 $err_mess = null;
+$success=null;
 
 if(!isset($_SESSION["ID"])) {
     $err_mess="Per caricare tuoi brani, devi essere loggato!";
@@ -44,7 +45,7 @@ if(!isset($_SESSION["ID"])) {
         }
         try {
             if($dbh->addSong($titolo, $genere, $idutente, $idimmagine, $idaudio, $idalbum)) {
-                $err_mess=">La canzone ".htmlentities($titolo)." è stata caricata: aggiungi subito altre canzoni!</a><br>";
+                $success=">La canzone ".htmlentities($titolo)." è stata caricata: aggiungi subito altre canzoni!</a><br>";
                 $show_form=true;
             } else {
                 $err_mess="Errore sconosciuto";
@@ -60,8 +61,7 @@ if(!isset($_SESSION["ID"])) {
 if ($show_form) {
 ?>
 
-<div class="container mt-5">
-    <form id="songupload" method="POST" action="songUpload.php" enctype="multipart/form-data">
+    <form id="songupload" method="POST" action="songUpload.php" enctype="multipart/form-data" class="mt-4">
         <legend>Carica una canzone</legend>
         <div class="mb-3">
             <label for="titolo" class="form-label">Titolo della canzone:</label>
@@ -101,9 +101,18 @@ if ($show_form) {
         </div>
         <button type="submit" class="btn btn-primary">Invia</button>
     </form>
-</div>
 
 <?php } ?>
+
+<?php if (!is_null($err_mess)) { ?>
+    <div class="alert alert-danger mt-4">
+        <?php echo $err_mess; ?>
+    </div>
+<?php } elseif (!is_null($success)){ ?>
+    <div class="alert alert-primary mt-4">
+    <?php echo $success; ?>
+    </div>
+<?php }  ?>
 
 <p class="mt-4">Tutte le canzoni:</p>
 <ul class="list-group">
