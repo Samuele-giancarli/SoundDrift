@@ -2,6 +2,7 @@
 
 $show_form = true;
 $err_mess = null;
+$success=null;
 
 if(!isset($_SESSION["ID"])) {
     $err_mess="Per creare una playlist, devi essere loggato!";
@@ -26,8 +27,8 @@ if(!isset($_SESSION["ID"])) {
             $idPlaylist = $dbh->addPlaylist($titolo, $idutente, $idimmagine);
         if (!is_null($idPlaylist)) { 
                 $dbh ->likePlaylist($idutente, $idPlaylist);
-                $err_mess="<a href=\"libreria.php\" style=\"color:black\">La playlist ".htmlentities($titolo)." è stata creata: vai alla libreria</a><br>";
-                $err_mess=$err_mess."<a href=\"playlist.php\" style=\"color:black\">Oppure crea una nuova playlist.</a>";
+                $success="<a href=\"libreria.php\" style=\"color:black\">La playlist ".htmlentities($titolo)." è stata creata: vai alla libreria</a><br>";
+                $success=$success."<a href=\"playlist.php\" style=\"color:black\">Oppure crea una nuova playlist.</a>";
                 $show_form=false;
             } else {
                 $err_mess="Errore sconosciuto";
@@ -42,24 +43,35 @@ if(!isset($_SESSION["ID"])) {
 <?php
 if ($show_form) {
 ?>
-<form method="POST" action="playlist.php" enctype="multipart/form-data">
-    <input type="text" name="titolo" placeholder="Titolo della playlist"/>
-    <br>
-    Immagine: <input type="file" name="immagine" accept="image/jpeg,image/png,image/webp,image/avif"/>
-    <br>
-    <input type="submit" value="Invia"/>
+<form method="POST" action="playlist.php" enctype="multipart/form-data" class="mt-4">
+    <legend>Crea una playlist</legend>
+        <div class="mb-3">
+            <label for="titolo" class="form-label">Nome della playlist:</label>
+            <input type="text" name="titolo" class="form-control" placeholder="Nome della playlist" required>
+        <div class="mb-3">
+            <label for="immagine" class="form-label">Immagine:</label>
+            <input type="file" name="immagine" id="immagine" class="form-control" accept="image/jpeg,image/png,image/webp,image/avif">
+        </div>
+        <button type="submit" class="btn btn-primary">Invia</button>
 </form>
 <?php
+
 }
-if(!is_null($err_mess)) {
-    echo $err_mess;
-}
+
+if (!is_null($err_mess)) { ?>
+    <div class="alert alert-danger mt-4">
+        <?php echo $err_mess; ?>
+    </div>
+<?php } elseif (!is_null($success)){ ?>
+    <div class="alert alert-primary mt-4">
+    <?php echo $success; ?>
+    </div>
+<?php } 
+
 if ($show_form){
-    
-    echo "</ul>";
-    echo "Tutte le playlist: <br>";
-?>
-<ul>
+    ?>
+    <p class="mt-4">Tutte le playlist:</p>
+    <ul class="list-group">
 <?php
 $stmt = $dbh->db->prepare("SELECT * FROM playlist WHERE ID_Utente=?");
 $idutente = $_SESSION["ID"];
@@ -67,7 +79,7 @@ $stmt->bind_param("i", $idutente);
 $stmt->execute();
 $result = $stmt->get_result();
 while($row = $result->fetch_assoc()) {
-    echo "<li><a style=\"color:black\" href=\"playlistPlayer.php?id=".$row["ID"]."\">".htmlentities($row["Titolo"])."</a></li>";
+    echo "<li class=\"list-group-item\"><a class=\"link-info\" href=\"playlistPlayer.php?id=" . $row["ID"] . "\">" . htmlentities($row["Titolo"]) . "</a></li>";
 }
 ?>
 </ul>
