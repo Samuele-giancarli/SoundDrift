@@ -62,6 +62,7 @@ if ($show_form) {
 
 <div class="container mt-5">
     <form id="songupload" method="POST" action="songUpload.php" enctype="multipart/form-data">
+        <legend>Carica una canzone</legend>
         <div class="mb-3">
             <label for="titolo" class="form-label">Titolo della canzone:</label>
             <input type="text" class="form-control" name="titolo" placeholder="Titolo della canzone" required>
