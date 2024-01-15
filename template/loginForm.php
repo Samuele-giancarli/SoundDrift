@@ -29,18 +29,31 @@ if(isset($_SESSION["ID"])) {
     $show_form = true;
 }
 
-if($show_form) {
+if($show_form):
 ?>
-<form method="POST" action="login.php">
-    <input type="email" name="email" placeholder="La tua e-mail"/>
-    <input type="password" name="password" placeholder="La tua password"/>
-    <input type="submit" value="Login"/>
-</form>
+ <form method="POST" action="login.php" class="mt-5">
+        <h2 class="mb-4">Login</h2>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" name="email" id="email" class="form-control" placeholder="La tua e-mail" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" name="password" id="password" class="form-control" placeholder="La tua password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    <?php if (!is_null($err_mess)): ?>
+        <div class="alert alert-danger mt-3" role="alert">
+            <?php echo $err_mess; ?>
+        </div>
+    <?php endif; ?>
+    <a href="register.php" class="mt-3 d-block">Non sei ancora registrato?</a>
+<?php endif; ?>
 <?php
 
 if (!is_null($err_mess)){
     echo $err_mess;
 }
-}
 ?>
-<a href="register.php" style="color: black"><p>Non sei ancora registrato?</p></a>
+<p class="mt-3 text-center">Non sei ancora registrato? <a class="link-primary" href="register.php">Registrati</a></p>

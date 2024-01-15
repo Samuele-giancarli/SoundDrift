@@ -47,27 +47,33 @@ if(isset($_SESSION["ID"])) {
 
 if($show_form) {
 ?>
-<form action="register.php" method="post">
-    <h2>Registrazione</h2>
-    <div>
-        <label for="username">Nome utente:</label>
-        <input type="text" name="username" id="username" autocomplete="off" placeholder="Inserisci nome utente">
-    </div>
-    <div>
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" placeholder="Inserisci email">
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" placeholder="Inserisci password">
-    </div>
-    <div>
-        <label for="password2">Conferma password:</label>
-        <input type="password" name="password2" id="password2" placeholder="Ripeti password">
-    </div>
-    <button type="submit">Registrati</button>
-    </form>
-    <a href="login.php" style="color:black">Sei già registrato?</a>
+<div class="container">
+        <form action="register.php" method="post" class="needs-validation" novalidate>
+            <h2 class="mb-4">Registrazione</h2>
+            <div class="form-group mb-3">
+                <label for="username">Nome utente:</label>
+                <input type="text" class="form-control" name="username" id="username" autocomplete="off"
+                    placeholder="Inserisci nome utente" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" name="email" id="email" placeholder="Inserisci email"
+                    required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" name="password" id="password"
+                    placeholder="Inserisci password" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="password2">Conferma password:</label>
+                <input type="password" class="form-control" name="password2" id="password2"
+                    placeholder="Ripeti password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Registrati</button>
+        </form>
+        <p class="mt-3 text-center">Sei già registrato? <a class="link-primary" href="login.php">Accedi</a></p>
+
 <?php
 }
 if(!is_null($err_mess)) {

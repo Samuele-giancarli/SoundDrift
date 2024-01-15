@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="it">
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title><?php echo $templateParams["titolo"]; ?></title>
         <meta charset="UTF-8"/>
         <link rel="stylesheet" href="css/style.css" aria-atomic="">
@@ -17,7 +18,7 @@
 
             <a href="home.php">
                 <!-- da rivedere per il discorso del percorso assoluto -->
-                    <img src="images/App_images/logo3.jpg" width="70" style="display:inline-block">
+                    <img src="images/App_images/logo3.jpg" id="logo" width="70" style="display:inline-block">
                     <h1 class="text-white" style="display:inline-block; font-size:27px" >SoundDrift</h1>
             </a>
 
