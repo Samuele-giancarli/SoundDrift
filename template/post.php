@@ -1,5 +1,10 @@
+<?php
+    function renderPost($postInfo, $dbh, $ID_Visualizer) {
+
+?>
+
 <script>
-    let oldStyle;
+let oldStyle;
 
     function likeOn(postId, init){
         let button = document.getElementById("likebutton" + postId);
@@ -45,7 +50,8 @@
 </script>
 
 <?php
-    function renderPost($postInfo, $dbh, $ID_Visualizer) {
+
+
         $userid = $postInfo["ID_Utente"]; //userid è l'id dellutente pubblicatore
         $username = $dbh->getUserInfo($userid)["Username"]; //username è l'username dell'utente pubblicatore
         $image = $postInfo["ID_Immagine"];
