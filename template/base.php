@@ -16,9 +16,9 @@
             <!--<h1 class="text-light"><button><a href="home.php" style="text-decoration:none"> <img src="images\logo.png" width=70>SoundDrift </a></button></h1>
             -->
 
-            <a href="home.php">
+            <a href="home.php" id="logo">
                 <!-- da rivedere per il discorso del percorso assoluto -->
-                    <img src="images/App_images/logo3.jpg" id="logo" width="70" style="display:inline-block">
+                    <img src="images/App_images/logo3.jpg" width="70" style="display:inline-block">
                     <h1 class="text-white" style="display:inline-block; font-size:27px" >SoundDrift</h1>
             </a>
 
@@ -27,6 +27,10 @@
                 <?php
                 if(isset($_SESSION["ID"])) {
                 ?>
+                
+                <a id="home" href="home.php" class="btn btn-dark" style="text-decoration:none">
+                        <i class="bi bi-house" style="font-size: 20px"></i>
+                </a>
                 <a href="songUpload.php" class="btn btn-dark" style="text-decoration:none">
                         <i class="bi bi-plus-square" style="font-size: 20px"></i>
                 </a>
