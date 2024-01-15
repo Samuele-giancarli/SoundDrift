@@ -76,6 +76,23 @@ footer a:hover{
     display: none;
 }
 
+
+.dropdown-menu a {
+    color: black;
+    transition: color 0.3s; /* Aggiungi una transizione per un effetto più fluido */
+}
+
+.dropdown-menu a:hover {
+    color: #007bff; /* Colore azzurro */
+}
+
+.dropdown-menu a:focus {
+    outline: none; /* Rimuovi l'outline di default del focus */
+    box-shadow: none; /* Rimuovi la box-shadow di default del focus */
+    background-color: #007bff; /* Aggiungi un colore di sfondo al focus */
+    color: #fff; /* Cambia il colore del testo durante il focus */
+}
+
 @media screen and (max-width: 768px) {
     #logo{
         display: none;
@@ -84,6 +101,10 @@ footer a:hover{
     #home {
         display: inline-block;
         
+    }
+
+    .hide-on-mobile {
+        display: none !important; /* Nascondi il testo */
     }
     
 }

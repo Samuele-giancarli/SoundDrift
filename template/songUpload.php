@@ -60,7 +60,7 @@ if(!isset($_SESSION["ID"])) {
 if ($show_form) {
 ?>
 
-<div class="container mt-5">
+<div class="container mt-4">
     <form id="songupload" method="POST" action="songUpload.php" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="titolo" class="form-label">Titolo della canzone:</label>

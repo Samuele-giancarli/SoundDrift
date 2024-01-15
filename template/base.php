@@ -13,40 +13,39 @@
 
     <body class="bg-light">
         <header class="bg-black fixed-top d-flex justify-content-between align-items-center">
-            <!--<h1 class="text-light"><button><a href="home.php" style="text-decoration:none"> <img src="images\logo.png" width=70>SoundDrift </a></button></h1>
-            -->
 
             <a href="home.php" id="logo">
-                <!-- da rivedere per il discorso del percorso assoluto -->
                     <img src="images/App_images/logo3.jpg" width="70" style="display:inline-block">
                     <h1 class="text-white" style="display:inline-block; font-size:27px" >SoundDrift</h1>
             </a>
 
             <div>
 
-                <?php
+            <?php
                 if(isset($_SESSION["ID"])) {
                 ?>
-                
-                <a id="home" href="home.php" class="btn btn-dark" style="text-decoration:none">
-                        <i class="bi bi-house" style="font-size: 20px"></i>
-                </a>
-                <a href="songUpload.php" class="btn btn-dark" style="text-decoration:none">
-                        <i class="bi bi-plus-square" style="font-size: 20px"></i>
-                </a>
-                <a href="albumCreate.php" class="btn btn-dark" style="text-decoration:none">
-                        <i class="bi bi-disc-fill" style="font-size: 20px"></i>
-                </a>
-                    <a href="profile.php?id=<?php echo $_SESSION["ID"] ?>" class="btn btn-dark" style="text-decoration:none">
-                        <i class="bi bi-person" style="font-size: 20px"></i>
-                    </a>
-                    <a href="notifications.php?id=<?php echo $_SESSION["ID"] ?>" class="btn btn-dark" style="text-decoration:none">
-                    <i class="bi bi-bell" style="font-size: 20px"></i>
-                    </a>
-
-                    <a href="logout.php" class="btn btn-dark" style="text-decoration:none">
-                        <i class="bi bi-box-arrow-left" style="font-size: 20px"></i>
-                    </a>
+                    <div class="btn-group">
+                        <a id="home" href="home.php" class="btn btn-dark " style="text-decoration:none">
+                            <i class="bi bi-house" style="font-size: 20px"></i>
+                        </a>
+                        <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            Carica
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="songUpload.php"><i class="bi bi-plus-square"></i> Carica Canzone</a></li>
+                            <li><a class="dropdown-item" href="albumCreate.php"><i class="bi bi-disc-fill"></i> Crea Album</a></li>
+                            <li><a class="dropdown-item" href="playlist.php"><i class="bi bi-music-note-list"></i> Crea Playlist</a></li>
+                        </ul>
+                        <a href="profile.php?id=<?php echo $_SESSION["ID"] ?>" class="btn btn-dark" style="text-decoration:none">
+                            <i class="bi bi-person" style="font-size: 20px"></i>
+                        </a>
+                        <a href="notifications.php?id=<?php echo $_SESSION["ID"] ?>" class="btn btn-dark" style="text-decoration:none">
+                            <i class="bi bi-bell" style="font-size: 20px"></i>
+                        </a>
+                        <a href="logout.php" class="btn btn-dark" style="text-decoration:none">
+                            <i class="bi bi-box-arrow-left" style="font-size: 20px"></i>
+                        </a>
+                    </div>
                 <?php
                 } else {
                 ?>
@@ -72,17 +71,20 @@
         ?>
         <footer id="second-footer" class="bg-black text-center">
             <div class="container">
-                <a href="ricerca.php" class="btn btn-dark" style="text-decoration:none">
-                        <i class="bi bi-search"></i> Cerca
+                <a href="ricerca.php" class="btn btn-dark " style="text-decoration:none">
+                        <i class="bi bi-search"></i> <span class="hide-on-mobile">Cerca</span>
                 </a>
                 <a href="libreria.php" class="btn btn-dark" style="text-decoration:none">
-                        <i class="bi bi-collection"></i> Libreria
+                        <i class="bi bi-collection"></i> <span class="hide-on-mobile">Libreria</span>
+                </a>
                 </a>
                 <a href="upload.php" class="btn btn-dark" style="text-decoration:none">
-                        <i class="bi bi-file-post"></i> Post
+                        <i class="bi bi-file-post"></i> <span class="hide-on-mobile">Post</span>
+                </a>
                 </a>
                 <a href="settings.php" class="btn btn-dark" style="text-decoration:none">
-                        <i class="bi bi-gear"></i> Impostazioni
+                        <i class="bi bi-gear"></i> <span class="hide-on-mobile">Impostazioni</span>
+                </a>
                 </a>
             </div>
         </footer>
