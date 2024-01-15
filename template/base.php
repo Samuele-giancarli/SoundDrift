@@ -24,7 +24,7 @@
             <?php
                 if(isset($_SESSION["ID"])) {
                 ?>
-                    <div class="btn-group">
+                    <div class="btn-group" id="upperButtons">
                         <a id="home" href="home.php" class="btn btn-dark " style="text-decoration:none">
                             <i class="bi bi-house" style="font-size: 20px"></i>
                         </a>
@@ -75,11 +75,11 @@
                         <i class="bi bi-search"></i> <span class="hide-on-mobile">Cerca</span>
                 </a>
                 <a href="libreria.php" class="btn btn-dark" style="text-decoration:none">
-                        <i class="bi bi-collection"></i> <span class="hide-on-mobile">Libreria</span>
+                        <i class="bi bi-collection"></i> Libreria</span>
                 </a>
                 </a>
                 <a href="upload.php" class="btn btn-dark" style="text-decoration:none">
-                        <i class="bi bi-file-post"></i> <span class="hide-on-mobile">Post</span>
+                        <i class="bi bi-file-post"></i> Post</span>
                 </a>
                 </a>
                 <a href="settings.php" class="btn btn-dark" style="text-decoration:none">
