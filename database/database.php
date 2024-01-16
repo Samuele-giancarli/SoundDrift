@@ -595,7 +595,7 @@ class DatabaseHelper{
     }
 
     public function searchAlbumsbyTitle($title){
-        $stmt = $this->db->prepare("SELECT * FROM album WHERE LOWER(Titolo) LIKE LOWER(?)");
+        $stmt = $this->db->prepare("SELECT * FROM album WHERE LOWER(Titolo) LIKE LOWER(?) AND Finalizzato=1");
         $title = "%$title%";
         $stmt->bind_param("s", $title);
         $stmt->execute();
