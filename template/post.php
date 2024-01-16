@@ -1,11 +1,13 @@
+<script>
+    oldStyle = false;
+</script>
+
 <?php
     function renderPost($postInfo, $dbh, $ID_Visualizer) {
 
 ?>
 
 <script>
-let oldStyle;
-
     function likeOn(postId, init){
         let button = document.getElementById("likebutton" + postId);
         let likes = document.getElementById("likenumber" + postId);
