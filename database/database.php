@@ -48,7 +48,7 @@ class DatabaseHelper{
 
 
     public function getListOfNotifications($iduser){
-        $query = "SELECT * FROM notifica WHERE ID_Utente = ?";
+        $query = "SELECT * FROM notifica WHERE ID_Utente = ? ORDER BY DateTime DESC" ;
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("i", $iduser);
         $stmt->execute();
@@ -713,7 +713,7 @@ class DatabaseHelper{
     }
 
     public function getCommentsForPost($postId) {
-        $query = "SELECT * FROM commento WHERE ID_Post = ?";
+        $query = "SELECT * FROM commento WHERE ID_Post = ? ORDER BY DateTime DESC";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $postId);
         $stmt->execute();
