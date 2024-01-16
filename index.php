@@ -23,7 +23,7 @@
             <i class="bi bi-play"></i> <span class="hide-on-mobile">Play</span>
         </button>
     
-        <button type="button" class="btn btn-secondary" onclick="prevSong();">
+        <button type="button" class="btn btn-primary" onclick="prevSong();">
             <i class="bi bi-skip-backward"></i>
         </button>
 
@@ -41,11 +41,11 @@
         <p style="display:inline-block">di</p>
         <p style="display:inline-block; inline-size:15%;  word-break: break-word;  " id="author"> Artista</p> -->
 
-        <button type="button"  class="btn btn-secondary" onclick="nextSong();">
+        <button type="button"  class="btn btn-primary" onclick="nextSong();">
             <i class="bi bi-skip-forward"></i> 
         </button>
 
-        <span class="hide-on-mobile"><button type="button" class="btn btn-secondary" id="loopButton" onclick="enableLoop();">
+        <span class="hide-on-mobile"><button type="button" class="btn btn-primary" id="loopButton" onclick="enableLoop();">
             <i class="bi bi-arrow-repeat"></i>Enable Loop
         </button></span>
 
