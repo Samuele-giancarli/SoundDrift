@@ -26,7 +26,7 @@ if(isset($_POST["unfollow"])){
         <?php
         $userID = $templateParams["utente"]["ID"];
         $profileImageID = $dbh->getUserImageID($userID);
-        $imageID = (!is_null($profileImageID)) ? "download.php?id=" . $profileImageID : "default.png";
+        $imageID = (!is_null($profileImageID)) ? "download.php?id=" . $profileImageID : "images/default.jpg";
         ?>
         <div class="bg-image ripple">
             <img <?php echo "src=\"".$imageID."\""; ?>  id="profile-pic" class="img-thumbnail rounded-circle" style="width: 100px; height: 100px; object-fit: cover;" />
