@@ -19,11 +19,11 @@
 <footer class="bg-opacity-10 bg-secondary text-center">
 <span class="hide-on-mobile"><input type="range" min="0" max="1" value="1" step="0.01" id="volume" onchange="volumeUpdate();" oninput="volumeUpdate();"></input></span>
 
-        <button type="button" class="btn btn-primary" id="playButton">
+        <button type="button" class="btn btn-dark" id="playButton">
             <i class="bi bi-play"></i> <span class="hide-on-mobile">Play</span>
         </button>
     
-        <button type="button" class="btn btn-primary" onclick="prevSong();">
+        <button type="button" class="btn btn-dark" onclick="prevSong();">
             <i class="bi bi-skip-backward"></i>
         </button>
 
@@ -37,7 +37,7 @@
                             
         </ul>
 </div>
-        <button type="button"  class="btn btn-primary" onclick="nextSong();">
+        <button type="button"  class="btn btn-dark" onclick="nextSong();">
             <i class="bi bi-skip-forward"></i> 
         </button>
 

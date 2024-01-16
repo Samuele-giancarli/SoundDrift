@@ -71,6 +71,7 @@
         $postId = $postInfo["ID"];
         $likeNumber = $dbh->countLikes($postId);
         $imagePath="download.php?id=".$image;
+        $text = $postInfo["Testo"];
         //fino a qui sono tutte informazzioni sul post e il poster
 
         $isAlbum = $dbh->isPostAlbum($postId);
@@ -120,12 +121,19 @@
                 <?php 
                     if(is_null($albumInfo)) {
                         ?>
-                        <p class="card-text" style="text-align:center;">
-                            <?php if ($image != null) { ?>
-                                <img src="<?php echo $imagePath; ?>" id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" />
-                            <?php } ?>
+                        <?php if ($image != null) { ?>
+                            <img src="<?php echo $imagePath; ?>" id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" />
+                        <?php }
+                            $alignment = null;
+                            if (strlen($text) < 150) {
+                                $alignment = "text-center";
+                            } else {
+                                $alignment = "text-left";
+                            }
+                        ?>
+                        <p class="card-text <?php echo $alignment; ?>" style="text-align:left;">
                             <br>
-                            <?php echo htmlentities($postInfo["Testo"]); ?>
+                            <?php echo htmlentities($text); ?>
                             <br>
                         </p>
                         <?php
@@ -181,9 +189,9 @@
                         <?php echo (!is_null($songInfo) ? '<a class="btn btn-dark rounded" style="color: white;" href="songPlayer.php?id='.$songInfo["ID"].'">Vai al brano </a>' : '');?>
                         <?php echo (!is_null($albumInfo) ? '<a class="btn btn-dark rounded" style="color: white;" href="albumPlayer.php?id='.$albumInfo["ID"].'">Vai all\'album </a>' : '');?>
 
-                        <small class="text-muted" style="margin-left: 5px;" id="likenumber<?php echo $postId; ?>"><?php echo $likeNumber; ?> likes </small>
+                        <small class="text-muted" style="margin-left: 5px; font-weight: bold;" id="likenumber<?php echo $postId; ?>"><?php echo $likeNumber; ?> likes </small>
                     </div>
-                    <div> <small class="text-muted" id="postdate" style="align:right"><?php echo $postInfo["Data"];?></small></div>
+                    <div> <small class="text-muted" id="postdate" style="align:right; font-weight: bold;"><?php echo $postInfo["Data"];?></small></div>
 
                     <?php if($isLiked){echo "<script>likeOn($postId, true);</script>";}?>
 
