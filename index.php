@@ -32,8 +32,8 @@
                             Stai ascoltando
         </button>
         <ul class="dropdown-menu">
-                            <li><a href="#" id="title" class="link-primary dropdown-item">Brano</a></li>
-                            <li><a href="#" id="author" class="dropdown-item">Artista</a></li>
+                            <li><a href="#" id="title"  style="text-align:center" class="link-primary dropdown-item">Brano</a></li>
+                            <li><a href="#" id="author"  style="text-align:center" class="dropdown-item">Artista</a></li>
                             
         </ul>
 </div>
@@ -49,9 +49,14 @@
             <i class="bi bi-arrow-repeat"></i>Enable Loop
         </button></span>
 
-        <span class="hide-on-mobile"><p style="display:inline-block">Prossimo in coda:</p></span>
-        <p style="display:inline-block" id="next"></p>
-
+        <div class="dropup-center dropup" style="display:inline-block">
+        <span class="hide-on-mobile"> 
+        <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Prossimo in coda</button>
+        <ul class="dropdown-menu">
+        <li a href="#" id="next" style="text-align:center"></a></li>
+        </ul>
+        </div>
+        </span>
  <!--      <button type="button" class="btn btn-primary">
             <i class="bi bi-plus-circle-dotted"></i> 
         </button> 
