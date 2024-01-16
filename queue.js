@@ -15,7 +15,7 @@ function playNow(data, enqueue) {
         playCurrentSong();
     } else if(queue.length - 2 == queue_index) {
         let next = get("next");
-        next.innerText = data.title;
+        next.innerHTML = "<span class=\"hide-on-mobile\">"+data.title+"</span>";
     }
 }
 
@@ -80,7 +80,7 @@ function pause() {
     let button = get("playButton");
     let audio = get("audio");
     audio.pause();
-    button.innerHTML = "<i class=\"bi bi-play\"><span class=\"hide-on-mobile\"></i> Play</span>";
+    button.innerHTML = "<i class=\"bi bi-play\"></i><span class=\"hide-on-mobile\">Play</span>";
     button.onclick = play;
 }
 

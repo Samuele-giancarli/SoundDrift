@@ -11,7 +11,7 @@ body {
 header {
     background-color: #343a40;
     color: #fff;
-    padding: 1rem;
+    padding: 0.5rem;
     text-align: center;
     font-family: 'Major Mono Display', monospace;
 }
@@ -79,6 +79,14 @@ footer a:hover{
 
 #home {
     display: none;
+}
+
+legend{
+    word-break:break-all;
+}
+
+p{
+    word-break:break-all; 
 }
 
 
