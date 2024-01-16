@@ -187,7 +187,7 @@ class DatabaseHelper{
     public function getAlbumsOfUser($id) {
     
     
-        $query = "SELECT * FROM album WHERE ID_Utente = ?";
+        $query = "SELECT * FROM album WHERE ID_Utente = ?  AND Finalizzato=1";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("i", $id);
         $stmt->execute();
