@@ -47,7 +47,7 @@ if ($show_form) {
     <legend>Crea una playlist</legend>
         <div class="mb-3">
             <label for="titolo" class="form-label">Nome della playlist:</label>
-            <input type="text" name="titolo" class="form-control" placeholder="Nome della playlist" required>
+            <input type="text" id="titolo" name="titolo" class="form-control" placeholder="Nome della playlist" required>
         <div class="mb-3">
             <label for="immagine" class="form-label">Immagine:</label>
             <input type="file" name="immagine" id="immagine" class="form-control" accept="image/jpeg,image/png,image/webp,image/avif">

@@ -133,8 +133,8 @@ if (isset($_SESSION["ID"])){
 
 <form id="playlist" method="GET" action="songAssoc.php" enctype="multipart/form-data" class="mt-4" >
 <div class="mb-3">
-<label for="playlist" class="form-label"> Aggiungi a playlist: </label>
-<select class="form-control" name="playlist" form="playlist">
+<label for="playlistS" class="form-label"> Aggiungi a playlist: </label>
+<select class="form-control" id="playlistS" name="playlist" form="playlist">
 
     <?php
     $stmt = $dbh->db->prepare("SELECT * FROM playlist WHERE ID_Utente=?");

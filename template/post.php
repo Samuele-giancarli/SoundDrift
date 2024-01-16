@@ -1,7 +1,3 @@
-<script>
-    oldStyle = false;
-</script>
-
 <?php
     function renderPost($postInfo, $dbh, $ID_Visualizer) {
 
@@ -11,7 +7,6 @@
     function likeOn(postId, init){
         let button = document.getElementById("likebutton" + postId);
         let likes = document.getElementById("likenumber" + postId);
-        oldStyle = button.style;
         button.style.backgroundColor = "#ff0000";
         button.style.borderColor = "#ff0000";
         button.innerHTML = '<i class="bi bi-heart-fill"></i>';
@@ -26,7 +21,10 @@
     function likeOff(postId, init){
         let button = document.getElementById("likebutton" + postId);
         let likes = document.getElementById("likenumber" + postId);
-        button.style = oldStyle;
+
+        button.style.backgroundColor = "#0d6efd";
+        button.style.borderColor = "#0d6efd";
+
         button.dataset.isOn = "false";
         button.innerHTML = '<i class="bi bi-heart"></i>';
         let n = parseInt(likes.innerText.split(" ")[0]) - 1;
