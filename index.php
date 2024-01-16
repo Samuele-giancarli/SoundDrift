@@ -37,10 +37,6 @@
                             
         </ul>
 </div>
-       <!-- <p class="text-primary"style="display:inline-block; inline-size:15%; word-break: break-word;" id="title" >Brano </p>
-        <p style="display:inline-block">di</p>
-        <p style="display:inline-block; inline-size:15%;  word-break: break-word;  " id="author"> Artista</p> -->
-
         <button type="button"  class="btn btn-primary" onclick="nextSong();">
             <i class="bi bi-skip-forward"></i> 
         </button>
@@ -57,17 +53,6 @@
         </ul>
         </div>
         </span>
- <!--      <button type="button" class="btn btn-primary">
-            <i class="bi bi-plus-circle-dotted"></i> 
-        </button> 
-
-        <button type="button" class="btn btn-primary">
-            <i class="bi bi-suit-heart"></i> 
-        </button>
-
-        <button type="button" class="btn btn-primary">
-            <i class="bi bi-music-note-list"></i> 
-        </button> -->
 </footer>
 </body>
 </html>
