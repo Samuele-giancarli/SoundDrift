@@ -2,6 +2,7 @@
 
 $err_mess = null;
 $show_form = false;
+$success=null;
 
 if(isset($_SESSION["ID"])) {
     $err_mess="OPS! Sei già registrato";
@@ -30,7 +31,7 @@ if(isset($_SESSION["ID"])) {
         $stmt->bind_param("sss", $email, $pwhash,$username);
         try {
             if($stmt->execute()) {
-                $err_mess="<a href=\"login.php\" style=\"color:black\">Registrazione effettuata con successo, ora puoi fare il login</a>";
+                $success="<a href=\"login.php\" style=\"color:black\">Registrazione effettuata con successo, ora puoi fare il login</a>";
             } else {
                 $err_mess="Errore sconosciuto";
                 $show_form=true;
@@ -76,7 +77,14 @@ if($show_form) {
 
 <?php
 }
-if(!is_null($err_mess)) {
-    echo $err_mess;
-}
+
+if (!is_null($err_mess)) { ?>
+    <div class="alert alert-danger mt-4">
+        <?php echo $err_mess; ?>
+    </div>
+<?php } elseif (!is_null($success)){ ?>
+    <div class="alert alert-primary mt-4">
+    <?php echo $success; ?>
+    </div>
+<?php } 
 ?>

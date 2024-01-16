@@ -89,6 +89,10 @@ p{
     word-break:break-all; 
 }
 
+a{
+    word-break:break-all; 
+}
+
 
 .dropdown-menu a {
     color: black;
