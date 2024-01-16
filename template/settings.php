@@ -40,11 +40,11 @@ if ($show_form=true){
 <form action="settings.php" method="POST" id="passwordchange" autocomplete="off" class="mt-5">
 <legend>Vuoi cambiare la tua password?</legend>
     <div class="mb-3">
-            <label for="password" class="form-label">La tua vecchia password:</label>
+            <label for="oldPassword" class="form-label">La tua vecchia password:</label>
             <input type="password" name="oldPassword" id="oldPassword" class="form-control" placeholder="La tua vecchia password" required>
         </div>
         <div class="mb-3">
-            <label for="password" class="form-label">La tua nuova password:</label>
+            <label for="newPassword" class="form-label">La tua nuova password:</label>
             <input type="password" name="newPassword" id="newPassword" class="form-control" placeholder="La tua nuova password" required>
         </div>
         <button type="submit" class="btn btn-primary">Login</button>
