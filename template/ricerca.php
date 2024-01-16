@@ -1,7 +1,7 @@
 <form id="searchForm" class="mt-4">
     <legend>Cerca utenti o musica</legend>
 <div class="mb-3">
-            <label for="text" class="form-label"></label>
+            <label for="searchInput" class="form-label"></label>
             <input type="text" autocomplete="off" class="form-control" name="searchInput" id="searchInput" placeholder="Inserisci la tua ricerca">
         </div>
    
