@@ -46,7 +46,7 @@
         </button>
 
         <span class="hide-on-mobile"><button type="button" class="btn btn-primary" id="loopButton" onclick="enableLoop();">
-            <i class="bi bi-arrow-repeat"></i>Enable Loop
+            <i class="bi bi-arrow-repeat"></i> Enable Loop
         </button></span>
 
         <div class="dropup-center dropup" style="display:inline-block">
