@@ -107,7 +107,7 @@ if (!is_null($info["ID_Album"])){
 ?>
 
 <div class="mb-3">
-<button type="button" class="btn btn-primary" onclick="play(false)">Riproduci</button>
+<button type="button" class="btn btn-dark" onclick="play(false)">Riproduci</button>
 <script>
 let audio = document.getElementById("song");
 audio.ondurationchange = duration;
@@ -115,18 +115,18 @@ audio.oncanplaythrough = duration;
 </script>
 
 
-<button type="button" class="btn btn-primary" onclick="play(true)">Aggiungi in coda</button>
+<button type="button" class="btn btn-dark" onclick="play(true)">Aggiungi in coda</button>
 </div>
 
 <div class="mb-3">
 <?php
 if (isset($_SESSION["ID"])){
     if ($dbh -> isSongLiked($idutente, $idcanzone)){
-        echo "<button class=\"btn btn-primary\" id=\"like\" type=\"button\" onclick=\"songUnlike();\">Rimuovi da Piaciuti </button>";
+        echo "<button class=\"btn btn-dark\" id=\"like\" type=\"button\" onclick=\"songUnlike();\">Rimuovi da Piaciuti </button>";
     }else{
-        echo "<button class=\"btn btn-primary\" id=\"like\" type=\"button\" onclick=\"songLike();\">Aggiungi a Piaciuti </button>";    
+        echo "<button class=\"btn btn-dark\" id=\"like\" type=\"button\" onclick=\"songLike();\">Aggiungi a Piaciuti </button>";    
     }
-        echo "<button class=\"btn btn-primary\" id=\"share\" type=\"button\"><a href=\"upload.php?songid=".$idcanzone."\">Condividi</a></button>";
+        echo "<button class=\"btn btn-dark\" id=\"share\" type=\"button\"><a href=\"upload.php?songid=".$idcanzone."\">Condividi</a></button>";
 }
 ?>
 </div>

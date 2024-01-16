@@ -41,7 +41,7 @@
             <i class="bi bi-skip-forward"></i> 
         </button>
 
-        <span class="hide-on-mobile"><button type="button" class="btn btn-primary" id="loopButton" onclick="enableLoop();">
+        <span class="hide-on-mobile"><button type="button" class="btn btn-dark" id="loopButton" onclick="enableLoop();">
             <i class="bi bi-arrow-repeat"></i> Enable Loop
         </button></span>
 

@@ -99,7 +99,7 @@ if ($show_form) {
             <input type="checkbox" class="form-check-input" id="albuminfo" name="albuminfo">
             <label for="albuminfo" class="form-check-label">Copiare le informazioni dell'album?</label>
         </div>
-        <button type="submit" class="btn btn-primary">Invia</button>
+        <button type="submit" class="btn btn-dark">Invia</button>
     </form>
 
 <?php } ?>

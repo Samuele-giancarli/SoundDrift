@@ -47,7 +47,7 @@ if ($show_form=true){
             <label for="newPassword" class="form-label">La tua nuova password:</label>
             <input type="password" name="newPassword" id="newPassword" class="form-control" placeholder="La tua nuova password" required>
         </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-dark">Login</button>
 </form>
 <?php
 

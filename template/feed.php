@@ -1,7 +1,7 @@
 <?php 
 if (isset($_SESSION["ID"]) && $templateParams["feedData"] == null){
     echo '<div class="d-flex justify-content-center align-items-center";">';
-    echo '<a class="btn btn-primary" href="ricerca.php?id='.$_SESSION["ID"].'">Comincia subito a seguire qualcuno!</a>';
+    echo '<a class="btn btn-dark" href="ricerca.php?id='.$_SESSION["ID"].'">Comincia subito a seguire qualcuno!</a>';
     echo '</div>';
 }
 

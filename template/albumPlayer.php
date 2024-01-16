@@ -58,7 +58,7 @@ $rows= $dbh -> getSongsFromAlbum($idalbum);
 ?>
 <?php
 if (count($rows)!=0){
-echo "<div class=\"mb-3\"> <button class=\"btn btn-primary\" type=\"button\" onclick=\"";
+echo "<div class=\"mb-3\"> <button class=\"btn btn-dark\" type=\"button\" onclick=\"";
 foreach ($rows as $song){
     echo "window.parent.playNow({";
     echo "'title': '".jsescape($song["Titolo"])."',";
@@ -75,11 +75,11 @@ echo "\">Aggiungi tutto in coda</button></div>";
 
 if (isset($_SESSION["ID"])&&$info["Finalizzato"]==1){
     if ($dbh -> isAlbumLiked($idutente, $idalbum)){
-        echo "<button class=\"btn btn-primary\" id=\"like\" type=\"button\" onclick=\"albumUnlike();\">Rimuovi da Libreria</button>";
+        echo "<button class=\"btn btn-dark\" id=\"like\" type=\"button\" onclick=\"albumUnlike();\">Rimuovi da Libreria</button>";
     }else{
-        echo "<button class=\"btn btn-primary\" id=\"like\" type=\"button\" onclick=\"albumLike();\">Aggiungi a Libreria</button>";    
+        echo "<button class=\"btn btn-dark\" id=\"like\" type=\"button\" onclick=\"albumLike();\">Aggiungi a Libreria</button>";    
     }
-    echo "<button class=\"btn btn-primary\"  type=\"button\"><a href=\"upload.php?albumid=".$idalbum."\">Condividi</a></button>";
+    echo "<button class=\"btn btn-dark\"  type=\"button\"><a href=\"upload.php?albumid=".$idalbum."\">Condividi</a></button>";
 }
 ?>
 <p class="mt-4">Brani:</p>

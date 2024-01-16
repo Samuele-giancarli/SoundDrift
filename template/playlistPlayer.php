@@ -59,7 +59,7 @@ $rows= $dbh -> getSongsFromPlaylist($idplaylist);
 <div class="mb-3">
 <?php
 if (count($rows)!=0){
-echo "<button class=\"btn btn-primary\" type=\"button\" onclick=\"";
+echo "<button class=\"btn btn-dark\" type=\"button\" onclick=\"";
 foreach ($rows as $song){
     echo "window.parent.playNow({";
     echo "'title': '".jsescape($song["Titolo"])."',";
@@ -77,12 +77,12 @@ echo "\">Aggiungi tutto in coda</button>";
 <?php
 if (isset($_SESSION["ID"])){
 if ($dbh -> isPlaylistLiked($idutente, $idplaylist)){
-    echo "<button class=\"btn btn-primary\" id=\"like\" type=\"button\" onclick=\"playlistUnlike();\">Togli da Libreria</button>";
+    echo "<button class=\"btn btn-dark\" id=\"like\" type=\"button\" onclick=\"playlistUnlike();\">Togli da Libreria</button>";
 }else{
-    echo "<button class=\"btn btn-primary\" id=\"like\" type=\"button\" onclick=\"playlistLike();\">Aggiungi a Libreria</button>";    
+    echo "<button class=\"btn btn-dark\" id=\"like\" type=\"button\" onclick=\"playlistLike();\">Aggiungi a Libreria</button>";    
 }
 if ($_SESSION["ID"]==$info["ID_Utente"]){
-    echo "<button class=\"btn btn-primary\" id=\"playlist\" type=\"button\"><a href=\"addToPlaylist.php?id=".$idplaylist."\">Aggiungi canzoni</a></button>";
+    echo "<button class=\"btn btn-dark\" id=\"playlist\" type=\"button\"><a href=\"addToPlaylist.php?id=".$idplaylist."\">Aggiungi canzoni</a></button>";
 }
 }
 ?>

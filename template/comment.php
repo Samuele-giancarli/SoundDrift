@@ -9,7 +9,7 @@ renderPost($postInfo,$dbh,$_SESSION["ID"]);
     <label for="commentText">Scrivi un commento:</label>
     <textarea id="commentText" class="form-control" rows="2" name="commentText" placeholder="Il tuo commento"></textarea>
 </div>
-<button class="btn btn-primary" onclick="addComment()">Invia Commento</button>
+<button class="btn btn-dark" onclick="addComment()">Invia Commento</button>
 
 <div id="commentsContainer">
     <?php

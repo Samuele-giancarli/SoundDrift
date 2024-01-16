@@ -42,7 +42,7 @@ if(isset($_POST["unfollow"])){
                     </form>
                 <?php else: ?>
                     <form id="FollowingUser" method="POST" class="ms-4">
-                        <input type="submit" class="btn btn-primary btn-sm" value="Segui" name="seguire">
+                        <input type="submit" class="btn btn-dark btn-sm" value="Segui" name="seguire">
                     </form>
                 <?php endif ?>
             <?php endif ?>    

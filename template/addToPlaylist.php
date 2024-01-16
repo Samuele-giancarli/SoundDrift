@@ -25,7 +25,7 @@ $playlistInfo=$dbh->getPlaylistInfo($idplaylist);
         <input type="text" name="query" class="form-control" placeholder="Nome del brano" required>
 </div>
     <input type="hidden" name="id" value=<?php echo "\"".$idplaylist."\""; ?>>
-    <button type="submit" class="btn btn-primary">Cerca</button>
+    <button type="submit" class="btn btn-dark">Cerca</button>
 </form>
 
 <?php

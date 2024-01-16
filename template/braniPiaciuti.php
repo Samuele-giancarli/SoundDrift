@@ -52,7 +52,7 @@ foreach ($rows as $song){
 
 <?php
 if (count($rows)!=0){
-echo "<div class=\"mb-3\"><button class=\"btn btn-primary\" type=\"button\" onclick=\"";
+echo "<div class=\"mb-3\"><button class=\"btn btn-dark\" type=\"button\" onclick=\"";
 foreach ($rows as $song){
     echo "window.parent.playNow({";
     echo "'title': '".jsescape($song["Titolo"])."',";

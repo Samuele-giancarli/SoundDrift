@@ -42,7 +42,7 @@ if($show_form):
             <label for="password" class="form-label">Password:</label>
             <input type="password" name="password" id="password" class="form-control" placeholder="La tua password" required>
         </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-dark">Login</button>
     </form>
 
     <?php if (!is_null($err_mess)): ?>

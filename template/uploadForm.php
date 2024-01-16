@@ -64,7 +64,7 @@ function jsescape($s) {
             }
         }
         ?>
-             <button type="submit" class="btn btn-primary">Pubblica</button>
+             <button type="submit" class="btn btn-dark">Pubblica</button>
     </form>
 <?php
 

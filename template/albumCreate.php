@@ -60,7 +60,7 @@ if (!isset($_SESSION["ID"])) {
             <label for="immagine" class="form-label">Immagine:</label>
             <input type="file" name="immagine" id="immagine" class="form-control" accept="image/jpeg,image/png,image/webp,image/avif">
         </div>
-        <button type="submit" class="btn btn-primary">Invia</button>
+        <button type="submit" class="btn btn-dark">Invia</button>
     </form>
 <?php endif; ?>
 

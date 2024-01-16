@@ -71,7 +71,7 @@ if($show_form) {
                 <input type="password" class="form-control" name="password2" id="password2"
                     placeholder="Ripeti password" required>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Registrati</button>
+            <button type="submit" class="btn btn-dark btn-block">Registrati</button>
         </form>
         <p class="mt-3 text-center">Sei già registrato? <a class="link-primary" href="login.php">Accedi</a></p>
 
