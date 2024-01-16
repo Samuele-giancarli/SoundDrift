@@ -50,11 +50,11 @@ if (!isset($_SESSION["ID"])) {
     <legend>Crea un album</legend>
         <div class="mb-3">
             <label for="titolo" class="form-label">Titolo dell'album:</label>
-            <input type="text" name="titolo" class="form-control" placeholder="Titolo dell'album" required>
+            <input type="text" name="titolo" id="titolo" class="form-control" placeholder="Titolo dell'album" required>
         </div>
         <div class="mb-3">
             <label for="genere" class="form-label">Genere dell'album:</label>
-            <input type="text" name="genere" class="form-control" placeholder="Genere dell'album" required>
+            <input type="text" name="genere" id="genere" class="form-control" placeholder="Genere dell'album" required>
         </div>
         <div class="mb-3">
             <label for="immagine" class="form-label">Immagine:</label>
