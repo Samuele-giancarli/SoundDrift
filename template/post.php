@@ -9,6 +9,7 @@
         let likes = document.getElementById("likenumber" + postId);
         button.style.backgroundColor = "#ff0000";
         button.style.borderColor = "#ff0000";
+
         button.innerHTML = '<i class="bi bi-heart-fill"></i>';
         
         button.dataset.isOn = "true";
@@ -22,8 +23,7 @@
         let button = document.getElementById("likebutton" + postId);
         let likes = document.getElementById("likenumber" + postId);
 
-        button.style.backgroundColor = "#0d6efd";
-        button.style.borderColor = "#0d6efd";
+        button.style = "btn-dark; margin-right: 5px;"
 
         button.dataset.isOn = "false";
         button.innerHTML = '<i class="bi bi-heart"></i>';
@@ -149,19 +149,26 @@
 
                 <div class="d-flex justify-content-between align-items-center">
                
-                    <div class="btn-group">
+                    <div class="btn-group" style="display: flex; align-items: center;">
                         <?php
                         if (isset($_SESSION["ID"])){
                         ?>
-                        <button type="button" class="btn btn-primary" onclick="updateLikeVisual(<?php echo $postId; ?>, false, <?php echo $visualizerId?>)" id="likebutton<?php echo $postId; ?>" data-isOn="false"><i class="bi bi-heart"></i></button>
-                        <a class="btn btn-info" style="color: white" href="comment.php?id=<?php echo $postId ?>"> Commenti </a>
-                        <?php
+                            <button type="button" style="margin-right: 5px;" class="btn btn-dark rounded" onclick="updateLikeVisual(<?php echo $postId; ?>, false, <?php echo $visualizerId?>)" id="likebutton<?php echo $postId; ?>" data-isOn="false">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                            <a class="btn btn-dark rounded" style="margin-right: 5px;" href="comment.php?id=<?php echo $postId ?>">
+                                <i class="bi bi-chat-left-dots"></i>
+                            </a>
+                            <?php
                         }
                         ?>
-                        <?php echo (!is_null($songInfo) ? '<a class="btn btn-info" style="color: white;" href="songPlayer.php?id='.$songInfo["ID"].'">Vai al brano ('.htmlentities($songInfo["Titolo"]).')</a>' : ''); ?>
-                        <?php echo (!is_null($albumInfo) ? '<a class="btn btn-info" style="color: white;" href="albumPlayer.php?id='.$albumInfo["ID"].'">Vai all\'album ('.htmlentities($albumInfo["Titolo"]).')</a>' : ''); ?>
+                        <?php /* echo (!is_null($songInfo) ? '<a class="btn btn-info" style="color: white;" href="songPlayer.php?id='.$songInfo["ID"].'">Vai al brano ('.htmlentities($songInfo["Titolo"]).')</a>' : ''); */?>
+                        <?php /* echo (!is_null($albumInfo) ? '<a class="btn btn-info" style="color: white;" href="albumPlayer.php?id='.$albumInfo["ID"].'">Vai all\'album ('.htmlentities($albumInfo["Titolo"]).')</a>' : ''); */?>
                         
-                        <small class="text-muted" id="likenumber<?php echo $postId; ?>"><?php echo $likeNumber; ?> likes </small>
+                        <?php echo (!is_null($songInfo) ? '<a class="btn btn-dark rounded" style="color: white;" href="songPlayer.php?id='.$songInfo["ID"].'">Vai al brano </a>' : '');?>
+                        <?php echo (!is_null($albumInfo) ? '<a class="btn btn-dark rounded" style="color: white;" href="albumPlayer.php?id='.$albumInfo["ID"].'">Vai all\'album </a>' : '');?>
+
+                        <small class="text-muted" style="margin-left: 5px;" id="likenumber<?php echo $postId; ?>"><?php echo $likeNumber; ?> likes </small>
                     </div>
                     <div> <small class="text-muted" id="postdate" style="align:right"><?php echo $postInfo["Data"];?></small></div>
 
