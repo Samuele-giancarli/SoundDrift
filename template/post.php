@@ -3,6 +3,19 @@
 
 ?>
 
+<style>
+    /*
+    .btn:active, .btn.active {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    .btn:focus {
+        outline: none;
+        box-shadow: none;
+    }*/
+</style>
+
 <script>
     function likeOn(postId, init){
         let button = document.getElementById("likebutton" + postId);
