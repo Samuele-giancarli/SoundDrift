@@ -52,7 +52,11 @@ if(isset($_POST["unfollow"])){
             <h2 class="mb-3"><?php echo $templateParams["utente"]["Username"]; ?></h2>
             
             <div id="profile-stats">
-                <p>Seguaci: <?php echo is_null($templateParams["num_seguaci"]["num_followers"]) ? 0 : $templateParams["num_seguaci"]["num_followers"]; ?> | Seguiti: <?php echo is_null($templateParams["num_seguiti"]["num_following"]) ? 0 : $templateParams["num_seguiti"]["num_following"]; ?> | Tracce: <?php echo $dbh->getSongCountByUser($templateParams["utente"]["ID"]); ?></p>
+                <?php
+                $followers=$dbh->getFollowerOfUser($userID);
+                $followings=$dbh->getFollowingOfUser($userID);
+                ?>
+                <p>Seguaci: <?php echo is_null($followers["num_followers"]) ? 0 : $followers["num_followers"]; ?> | Seguiti: <?php echo is_null($followings["num_following"]) ? 0 : $followings["num_following"]; ?> | Tracce: <?php echo $dbh->getSongCountByUser($templateParams["utente"]["ID"]); ?></p>
             </div>
         </div>
     </div>
