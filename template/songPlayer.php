@@ -85,6 +85,8 @@ if (!is_null($info["ID_Immagine"])){
 <?php
 }
 ?>
+
+<div class="mb-3"id="durata"></div>
 <div><audio id="song">
 <source
 <?php
