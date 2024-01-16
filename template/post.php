@@ -72,6 +72,7 @@
         $likeNumber = $dbh->countLikes($postId);
         $imagePath="download.php?id=".$image;
         $text = $postInfo["Testo"];
+        
         //fino a qui sono tutte informazzioni sul post e il poster
 
         $isAlbum = $dbh->isPostAlbum($postId);
@@ -84,7 +85,8 @@
         $isLiked = $dbh->isLikedBy($postId,$visualizerId);
 
         if (!is_null($postInfo["ID_Canzone"])){
-        $songInfo= $dbh->getSongInfo($postInfo["ID_Canzone"]);
+            $songInfo= $dbh->getSongInfo($postInfo["ID_Canzone"]);
+            $text = $songInfo["Titolo"];
         }
 
         if (!is_null($postInfo["ID_Album"])){
@@ -147,23 +149,22 @@
                         /*ID - ID_Utente - Data - Titolo - Genere - Finalizzato - ID_Immagine*/
                         ?>
 
-                        <div style="max-height: 200px; overflow-y: auto; overflow-x: hidden;">
-                        <?php foreach ($dbh -> getSongsFromAlbum($idalbum) as $song) {?>                     
-                                <div class="song row">
-                                        <!-- Song Name (Takes 9 columns) -->
-                                    <div class="col-9">
-                                        <h4><?php echo $song["Titolo"]; ?></h4>
-                                        <!-- Add more song details as needed -->
-                                    </div>
+                    <div style="max-height: 200px; overflow-y: auto; overflow-x: hidden;">
+                        <?php foreach ($dbh->getSongsFromAlbum($idalbum) as $song) {
+                            $image = $song["ID_Immagine"];
+                            $imagePath = "download.php?id=" . $image;
+                        ?>
+                            <div style="display: flex; align-items: center;">
+                                <!-- Image -->
+                                <img src="<?php echo $imagePath; ?>" class="img-thumbnail" style="width: 100px; height: 100px; margin-right: 10px;" />
 
-                                    <!-- Play Button (Takes 3 columns) -->
-                                    <div class="col-3 text-end">
-                                    </div>
-                                </div>
+                                <!-- Song Name -->
+                                <p style="margin: 0;"><?php echo $song["Titolo"]; ?></p>
+                            </div>
 
-                                <br>
-                            <?php } ?>
-                        </div>
+                            <br>
+                        <?php } ?>
+                    </div>
 
               <?php } ?>
                 <!-- questo qua sotto sono i pulsanti del post generico-->
