@@ -66,7 +66,28 @@ if(isset($_POST["unfollow"])){
         </div>
     </div>
 
-    <div class="row justify-content-center mt-4">
+    <div class="text-center mt-3 mb-3 d-md-none" id="filterInProfile">
+        <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">
+                Filtra Post
+            </button>
+            <ul class="dropdown-menu">
+                <li class="nav-item col-12 col-md-3 mb-2 text-center">
+                    <a href="allPostProfile.php?id=<?php echo $templateParams['utente']['ID']; ?>" class="dropdown-item" style="text-decoration:none">Post</a>
+                </li>
+                <li class="nav-item col-12 col-md-3 mb-2 text-center">
+                    <a href="songPostProfile.php?id=<?php echo $templateParams['utente']['ID'];?>" class="dropdown-item" style="text-decoration:none">Canzoni</a>
+                </li>
+                <li class="nav-item col-12 col-md-3 mb-2 text-center">
+                    <a href="albumPostProfile.php?id=<?php echo $templateParams['utente']['ID'];?>" class="dropdown-item" style="text-decoration:none">Album</a>
+                </li>
+                <li class="nav-item col-12 col-md-3 mb-2 text-center">
+                    <a href="playlistPostProfile.php?id=<?php echo $templateParams['utente']['ID'];?>" class="dropdown-item" style="text-decoration:none">Playlist</a>
+                </li>
+                </ul>
+    </div>
+
+    <div class="row justify-content-center mt-4 hide-on-mobile">
+        
         <div class="col-md-10 col-11">
             <div class="row">
                 <ul class="nav nav-pills flex-column flex-md-row">

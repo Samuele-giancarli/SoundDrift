@@ -105,20 +105,26 @@ a{
 }
 
 .dropdown-menu a:focus {
-    outline: none; /* Rimuovi l'outline di default del focus */
-    box-shadow: none; /* Rimuovi la box-shadow di default del focus */
-    background-color: #007bff; /* Aggiungi un colore di sfondo al focus */
-    color: #fff; /* Cambia il colore del testo durante il focus */
+    outline: none; 
+    box-shadow: none; 
+    background-color: #007bff; 
+    color: #fff; 
 }
 
 @media screen and (max-width: 768px) {
+    .header-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
     #logo{
         display: none;
     }
 
     #home {
         display: inline-block;
-        
     }
 
     .hide-on-mobile {

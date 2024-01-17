@@ -12,7 +12,7 @@
     </head>
 
     <body class="bg-light">
-        <header class="bg-black fixed-top d-flex justify-content-between align-items-center">
+        <header class="bg-black fixed-top d-flex justify-content-between align-items-center header-content">
 
             <a href="home.php" id="logo">
                     <img src="images/App_images/logo3.jpg" width="70" style="display:inline-block">
