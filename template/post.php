@@ -72,6 +72,9 @@
         $likeNumber = $dbh->countLikes($postId);
         $imagePath="download.php?id=".$image;
         $text = $postInfo["Testo"];
+
+        $userImage = $dbh->getUserInfo($userid)["ID_Immagine"];
+        $userImagePath="download.php?id=".$userImage;
         
         //fino a qui sono tutte informazzioni sul post e il poster
 
@@ -102,6 +105,10 @@
             <div class="card-body">
 
                 <h5 class="card-title">
+                    <?php
+                        if ($userImage!= null){ ?>
+                            <img src="<?php echo $userImagePath; ?>" id="profile-pic" class="img-thumbnail" style="width: 50px; height: 50px;" />
+                        <?php } ?>
                     <?php
                         if (!is_null($songInfo)){
                             ?> <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha condiviso un brano <?php
