@@ -6,6 +6,7 @@ function jsescape($s) {
 if (!isset($_GET["id"])){
     die();
 }
+
 $idcanzone=$_GET["id"];
 $info=$dbh->getSongInfo($idcanzone);
 $userInfo=$dbh->getUserInfo($info["ID_Utente"]);
@@ -121,7 +122,7 @@ audio.oncanplaythrough = duration;
 <div class="mb-3">
 <?php
 if (isset($_SESSION["ID"])){
-    if ($dbh -> isSongLiked($idutente, $idcanzone)){
+    if ($dbh -> isSongLiked($_SESSION["ID"], $idcanzone)){
         echo "<button class=\"btn btn-dark\" id=\"like\" type=\"button\" onclick=\"songUnlike();\">Rimuovi da Piaciuti </button>";
     }else{
         echo "<button class=\"btn btn-dark\" id=\"like\" type=\"button\" onclick=\"songLike();\">Aggiungi a Piaciuti </button>";    
