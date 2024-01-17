@@ -21,7 +21,7 @@
                    <?php echo htmlentities($testo); ?>
                 </p>
             </div>
-             <div> <small class="text-muted" id="postdate" style="align:right"><?php echo $data;?></small></div>
+             <div style="text-align:right"> <small class="text-muted" id="postdate"><?php echo $data;?></small></div>
         </div>
     </div>
 </div>

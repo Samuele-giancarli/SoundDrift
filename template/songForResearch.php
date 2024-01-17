@@ -29,7 +29,7 @@
                     <a href="profile.php?id=<?php echo $authorid ?>" style="color: black"><?php echo $authorname ?></a>
                 </h5>
             </div>
-            <div> <small class="text-muted" id="songdate" style="align:right"><?php echo $date;?></small></div>
+            <div> <small class="text-muted" id="songdate" style="font-weight: bold;"><?php echo $date;?></small></div>
         </div>
     </div>
 </div>
