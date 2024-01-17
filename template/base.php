@@ -83,7 +83,7 @@
         <?php
             if(isset($_SESSION["ID"])):
         ?>
-        <footer id="second-footer" class="bg-black text-center">
+        <footer id="second-footer" class="bg-black text-center z-3">
             <div class="container">
                 <a href="ricerca.php" class="btn btn-dark " style="text-decoration:none">
                         <i class="bi bi-search"></i> <span class="hide-on-mobile">Cerca</span>
