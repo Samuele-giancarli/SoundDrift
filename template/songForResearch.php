@@ -16,7 +16,7 @@
         <div class="card rounded-3 text-center">
             <div class="card-body">
                 <h5 class="card-title">
-                    <a href="songPlayer.php?id=<?php echo $songid ?>" style="color: black"><?php echo $songtitle." (Song)"?></a>
+                    <a href="songPlayer.php?id=<?php echo $songid ?>" style="color: black"><?php echo $songtitle." (Brano)"?></a>
                 </h5>
 
                 <p class="card-text" style="text-align:center;">
