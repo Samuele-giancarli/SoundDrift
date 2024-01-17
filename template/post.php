@@ -107,7 +107,7 @@
                 <h5 class="card-title">
                     <?php
                         if ($userImage!= null){ ?>
-                            <img src="<?php echo $userImagePath; ?>" id="profile-pic" class="img-thumbnail" style="width: 50px; height: 50px;" />
+                            <img src="<?php echo $userImagePath; ?>" id="profile-pic" class="rounded-circle" style="width: 50px; height: 50px;" />
                         <?php } ?>
                     <?php
                         if (!is_null($songInfo)){
