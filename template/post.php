@@ -90,17 +90,10 @@
         }
 
         if (!is_null($postInfo["ID_Album"])){
-        $albumInfo=$dbh->getAlbumInfo($postInfo["ID_Album"]);
+            $albumInfo=$dbh->getAlbumInfo($postInfo["ID_Album"]);
+            $text = $albumInfo["Titolo"];
+            $idalbum = $albumInfo["ID"];
         }
-
-        $istext = false;
-        if($isAlbum && $isSong) {
-            die();
-        } elseif(!$isAlbum && !$isSong) {
-            $istext=true;
-        }
-    
-
 ?>
 
 <div class="row justify-content-center text-center">
@@ -115,50 +108,39 @@
                         } else if (!is_null($albumInfo)){
                             ?> <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha condiviso un album<?php
                         } else {
-                            ?> <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha aggiunto un post <?php
+                            ?> <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha condiviso un post <?php
                         }
                     ?>
                 </h5>
 
-                <?php 
-                    if(is_null($albumInfo)) {
-                        ?>
-                        <?php if ($image != null) { ?>
-                            <img src="<?php echo $imagePath; ?>" id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" />
-                        <?php }
-                            $alignment = null;
-                            if (strlen($text) < 150) {
-                                $alignment = "text-center";
-                            } else {
-                                $alignment = "text-left";
-                            }
-                        ?>
-                        <p class="card-text <?php echo $alignment; ?>" style="text-align:left;">
-                            <br>
-                            <?php echo htmlentities($text); ?>
-                            <br>
-                        </p>
-                        <?php
-                    } else { 
-                        
-                        $albumInfo;
-                        $idalbum = $albumInfo["ID"];
-                        $AlbumGen = $albumInfo["Genere"];
-                        $imagePath;
-                        $albumTit = $albumInfo["Titolo"];
-                        /*ID - ID_Utente - Data - Titolo - Genere - Finalizzato - ID_Immagine*/
-                        ?>
+                <?php if ($image != null) { ?>
+                    <img src="<?php echo $imagePath; ?>" id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" />
+                <?php } ?>
 
+                <?php
+                    $alignment = null;
+                    if (strlen($text) < 150) {
+                        $alignment = "text-center";
+                    } else {
+                        $alignment = "text-left";
+                    }
+                ?>
+                <p class="card-text <?php echo $alignment; ?>" style="text-align:left; <?php if ($isSong || $isAlbum) echo "font-weight: bold;";?> ">
+                    <br>
+                    <?php echo htmlentities($text); ?>
+                    <br>
+                </p>
+
+                <?php 
+                    if(!is_null($albumInfo)) {?>
                     <div style="max-height: 200px; overflow-y: auto; overflow-x: hidden;">
                         <?php foreach ($dbh->getSongsFromAlbum($idalbum) as $song) {
                             $image = $song["ID_Immagine"];
                             $imagePath = "download.php?id=" . $image;
                         ?>
                             <div style="display: flex; align-items: center;">
-                                <!-- Image -->
                                 <img src="<?php echo $imagePath; ?>" class="img-thumbnail" style="width: 100px; height: 100px; margin-right: 10px;" />
 
-                                <!-- Song Name -->
                                 <p style="margin: 0;"><?php echo $song["Titolo"]; ?></p>
                             </div>
 
@@ -184,8 +166,6 @@
                             <?php
                         }
                         ?>
-                        <?php /* echo (!is_null($songInfo) ? '<a class="btn btn-info" style="color: white;" href="songPlayer.php?id='.$songInfo["ID"].'">Vai al brano ('.htmlentities($songInfo["Titolo"]).')</a>' : ''); */?>
-                        <?php /* echo (!is_null($albumInfo) ? '<a class="btn btn-info" style="color: white;" href="albumPlayer.php?id='.$albumInfo["ID"].'">Vai all\'album ('.htmlentities($albumInfo["Titolo"]).')</a>' : ''); */?>
                         
                         <?php echo (!is_null($songInfo) ? '<a class="btn btn-dark rounded" style="color: white;" href="songPlayer.php?id='.$songInfo["ID"].'">Vai al brano </a>' : '');?>
                         <?php echo (!is_null($albumInfo) ? '<a class="btn btn-dark rounded" style="color: white;" href="albumPlayer.php?id='.$albumInfo["ID"].'">Vai all\'album </a>' : '');?>
