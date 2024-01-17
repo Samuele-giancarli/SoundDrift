@@ -34,7 +34,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="songUpload.php"><i class="bi bi-plus-square"></i> Carica Canzone</a></li>
                             <li><a class="dropdown-item" href="albumCreate.php"><i class="bi bi-disc-fill"></i> Crea Album</a></li>
-                            <li><a class="dropdown-item" href="playlist.php"><i class="bi bi-music-note-list"></i> Crea Playlist</a></li>
+                            <li><a class="dropdown-item" href="playlist.php"><i class="bi bi-cassette"></i> Crea Playlist</a></li>
                         </ul>
                         <a href="profile.php?id=<?php echo $_SESSION["ID"] ?>" class="btn btn-dark" style="text-decoration:none">
                             <i class="bi bi-person" style="font-size: 20px"></i>
