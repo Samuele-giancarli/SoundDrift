@@ -72,6 +72,7 @@
         $likeNumber = $dbh->countLikes($postId);
         $imagePath="download.php?id=".$image;
         $text = $postInfo["Testo"];
+        $title=null; 
 
         $userImage = $dbh->getUserInfo($userid)["ID_Immagine"];
         $userImagePath="download.php?id=".$userImage;
@@ -89,12 +90,12 @@
 
         if (!is_null($postInfo["ID_Canzone"])){
             $songInfo= $dbh->getSongInfo($postInfo["ID_Canzone"]);
-            $text = $songInfo["Titolo"];
+            $title = $songInfo["Titolo"];
         }
 
         if (!is_null($postInfo["ID_Album"])){
             $albumInfo=$dbh->getAlbumInfo($postInfo["ID_Album"]);
-            $text = $albumInfo["Titolo"];
+            $title = $albumInfo["Titolo"];
             $idalbum = $albumInfo["ID"];
         }
 ?>
@@ -132,8 +133,12 @@
                         $alignment = "text-left";
                     }
                 ?>
-                <p class="card-text <?php echo $alignment; ?>" style="text-align:left; <?php if ($isSong || $isAlbum) echo "font-weight: bold;";?> ">
+                <p class="card-text <?php echo $alignment; ?>" style="text-align:left">
+                <?php if ($isSong || $isAlbum){?>
                     <br>
+                    <?php echo "<strong>".htmlentities($title)."</strong>"; ?>
+                    <br>
+                <?php } ?>
                     <?php echo htmlentities($text); ?>
                     <br>
                 </p>
