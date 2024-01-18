@@ -25,7 +25,7 @@ foreach ($rows as $song){
     $userInfo = $dbh->getUserInfo($song["ID_Utente"]);
     echo "<li class=\"list-group-item\"><a class=\"link-primary\" href=\"songPlayer.php?id=".$song["ID"]."\">".htmlentities($song["Titolo"])."</a> -  <a style=\"color: black;\" href=\"profile.php?id=".$userInfo["ID"]."\">".htmlentities($userInfo["Username"])."</a>";
     for ($i=0; $i<2; $i++) {
-        echo " <button type=\"button\"class=\"btn btn-secondary btn-sm\" onclick=\"";
+        echo " <button type=\"button\" class=\"btn btn-secondary btn-sm\" onclick=\"";
         echo "window.parent.playNow({";
         echo "'title': '".jsescape($song["Titolo"])."',";
         echo "'author': '".jsescape($userInfo["Username"])."',";
