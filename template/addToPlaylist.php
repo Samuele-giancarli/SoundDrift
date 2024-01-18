@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head> <title> SoundDrift - AddToPlaylist </title></head>
+
 <?php
 
 function jsescape($s) {
@@ -19,6 +23,7 @@ $playlistInfo=$dbh->getPlaylistInfo($idplaylist);
 ?>
 
 <form method="GET" action="addToPlaylist.php" class="mt-4">
+    <fieldset>
 <legend><?php echo "Aggiungi canzoni a: "."<a class=\"link-primary\" href=\"playlistPlayer.php?id=".$idplaylist."\">".htmlentities($playlistInfo['Titolo'])."</a>";?></legend>
     <div class="mb-3">
         <label for="query" class="form-label">Cerca canzoni:</label>
@@ -26,6 +31,7 @@ $playlistInfo=$dbh->getPlaylistInfo($idplaylist);
 </div>
     <input type="hidden" name="id" value=<?php echo "\"".$idplaylist."\""; ?>>
     <button type="submit" class="btn btn-dark">Cerca</button>
+</fieldset>
 </form>
 
 <?php
@@ -56,3 +62,4 @@ if (!is_null($search)){
 }
 ?>
 
+</html>

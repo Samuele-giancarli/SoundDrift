@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head> <title> SoundDrift - AlbumCreate </title></head>
+
 <?php
 $show_form = true;
 $err_mess = null;
@@ -47,6 +51,7 @@ if (!isset($_SESSION["ID"])) {
 
 <?php if ($show_form) : ?>
     <form method="POST" action="albumCreate.php" enctype="multipart/form-data" class="mt-4">
+        <fieldset>
     <legend>Crea un album</legend>
         <div class="mb-3">
             <label for="titolo" class="form-label">Titolo dell'album:</label>
@@ -61,8 +66,10 @@ if (!isset($_SESSION["ID"])) {
             <input type="file" name="immagine" id="immagine" class="form-control" accept="image/jpeg,image/png,image/webp,image/avif">
         </div>
         <button type="submit" class="btn btn-dark">Invia</button>
+</fieldset>
     </form>
 <?php endif; ?>
+
 
 <?php if (!is_null($err_mess)) { ?>
     <div class="alert alert-danger mt-4">
@@ -117,3 +124,4 @@ if (!isset($_SESSION["ID"])) {
         </ul>
     </div>
 <?php endif; ?>
+</html>

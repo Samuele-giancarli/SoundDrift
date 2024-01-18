@@ -63,7 +63,7 @@
                 <?php
                 } else {
                 ?>
-                    <a id="loginfromOut" href="login.php" class="btn btn-dark">Login
+                    <a id="loginfromOut" href="login.php" class="btn btn-dark">
                         <em class="bi bi-box-arrow-in-right" style="font-size: 20px"></em>
                     </a>
                 <?php
