@@ -73,6 +73,7 @@ if($show_form) {
             </div>
             <button type="submit" class="btn btn-dark btn-block">Registrati</button>
         </form>
+</div>
         <p class="mt-3 text-center">Sei già registrato? <a class="link-primary" href="login.php">Accedi</a></p>
 
 <?php
