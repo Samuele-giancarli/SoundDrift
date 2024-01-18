@@ -1,5 +1,5 @@
 
-<p style="font-size:25px">Questi sono gli album che hai salvato:</p>
+<p class="titolo">Questi sono gli album che hai salvato:</p>
 
 <?php
 

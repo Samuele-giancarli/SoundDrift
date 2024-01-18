@@ -87,6 +87,10 @@ p{
     word-break:break-all; 
 }
 
+p.titolo {
+    font-size: 24px;
+}
+
 a{
     word-break:break-all; 
 }
