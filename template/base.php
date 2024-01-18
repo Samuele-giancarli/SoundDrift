@@ -14,7 +14,7 @@
     <body class="bg-light">
         <header class="bg-black fixed-top d-flex justify-content-between align-items-center header-content">
 
-            <a href="home.php" id="logo">
+            <a href="home.php" id="logo" title="logo">
                     <img src="images/App_images/logo3.jpg" alt="logo" width="70" style="display:inline-block">
                     <h1 class="text-white" style="display:inline-block; font-size:27px" >SoundDrift</h1>
             </a>
@@ -25,45 +25,45 @@
                 if(isset($_SESSION["ID"])) {
             ?>
                     <div class="btn-group" id="upperButtons">
-                        <a id="home" href="home.php" class="btn btn-dark " style="text-decoration:none">
+                        <a id="home" href="home.php" class="btn btn-dark " style="text-decoration:none" title="Home">
                             <em class="bi bi-house" style="font-size: 20px"></em>
                         </a>
                         <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                             Carica
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="songUpload.php"><em class="bi bi-plus-square"></em> Carica Canzone</a></li>
-                            <li><a class="dropdown-item" href="albumCreate.php"><em class="bi bi-disc-fill"></em> Crea Album</a></li>
-                            <li><a class="dropdown-item" href="playlist.php"><em class="bi bi-cassette"></em> Crea Playlist</a></li>
+                            <li><a class="dropdown-item" href="songUpload.php" title="Song Upload"><em class="bi bi-plus-square"></em> Carica Canzone</a></li>
+                            <li><a class="dropdown-item" href="albumCreate.php" title="Album Create"><em class="bi bi-disc-fill"></em> Crea Album</a></li>
+                            <li><a class="dropdown-item" href="playlist.php" title="playlist"><em class="bi bi-cassette"></em> Crea Playlist</a></li>
                         </ul>
-                        <a href="profile.php?id=<?php echo $_SESSION["ID"] ?>" class="btn btn-dark" style="text-decoration:none">
+                        <a href="profile.php?id=<?php echo $_SESSION["ID"] ?>" class="btn btn-dark" style="text-decoration:none" title="Profile">
                             <em class="bi bi-person" style="font-size: 20px"></em>
                         </a>
 
                         <?php
                         if ($dbh->newNotifications($_SESSION["ID"])){
                             ?>
-                            <a href="notifications.php?id=<?php echo $_SESSION["ID"] ?>" class="btn btn-danger" style="text-decoration:none">
+                            <a href="notifications.php?id=<?php echo $_SESSION["ID"] ?>" class="btn btn-danger" style="text-decoration:none" title="Notifiche">
                             <em class="bi bi-bell" style="font-size: 20px"></em>
                         </a>
                         <?php
                         }else{
                             ?>
-                        <a href="notifications.php?id=<?php echo $_SESSION["ID"] ?>" class="btn btn-dark" style="text-decoration:none">
+                        <a href="notifications.php?id=<?php echo $_SESSION["ID"] ?>" class="btn btn-dark" style="text-decoration:none" title="Notifiche">
                             <em class="bi bi-bell" style="font-size: 20px"></em>
                         </a>
                         <?php
                         }
                         
                         ?>
-                        <a href="logout.php" class="btn btn-dark" style="text-decoration:none">
+                        <a href="logout.php" class="btn btn-dark" style="text-decoration:none" title="Logout">
                             <em class="bi bi-box-arrow-left" style="font-size: 20px"></em>
                         </a>
                     </div>
                 <?php
                 } else {
                 ?>
-                    <a id="loginfromOut" href="login.php" class="btn btn-dark">
+                    <a id="loginfromOut" href="login.php" class="btn btn-dark" title="loginfromOut">
                         <em class="bi bi-box-arrow-in-right" style="font-size: 20px"></em>
                     </a>
                 <?php
@@ -89,10 +89,10 @@
                         <em class="bi bi-search"></em> <span class="hide-on-mobile">Cerca</span>
                 </a>
                 <a href="libreria.php" class="btn btn-dark" style="text-decoration:none">
-                        <em class="bi bi-collection"></em> Libreria</span>
+                        <em class="bi bi-collection"></em> Libreria
                 </a>
                 <a href="upload.php" class="btn btn-dark" style="text-decoration:none">
-                        <em class="bi bi-file-post"></em> Post</span>
+                        <em class="bi bi-file-post"></em> Post  
                 </a>
                 <a href="settings.php" class="btn btn-dark" style="text-decoration:none">
                         <em class="bi bi-gear"></em> <span class="hide-on-mobile">Impostazioni</span>
