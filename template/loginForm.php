@@ -57,10 +57,7 @@ if($show_form):
         <div class="alert alert-danger mt-3" role="alert">
             <?php echo $err_mess; ?>
         </div>
-    <?php endif; ?>
-    <a href="register.php" class="mt-3 d-block">Non sei ancora registrato?</a>
-<?php endif; ?>
-<?php
+    <?php
 
 if ($err_utente) { ?>
     <div class="alert alert-danger mt-4">
