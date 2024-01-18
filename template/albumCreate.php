@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="it">
-    <head> <title> SoundDrift - AlbumCreate </title></head>
 
 <?php
 $show_form = true;
@@ -124,4 +121,3 @@ if (!isset($_SESSION["ID"])) {
         </ul>
     </div>
 <?php endif; ?>
-</html>
