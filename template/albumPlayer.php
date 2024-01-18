@@ -42,7 +42,7 @@ function albumUnlikeDone() {
 }
 </script>
 
-<legend><?php echo $info["Titolo"]; ?></legend>
+<p class="titolo"><?php echo $info["Titolo"]; ?></p>
 <div class="mb-3">Titolo: <?php echo $info["Titolo"]; ?></div>
 <div class="mb-3">Autore: <?php echo "<a class=\"link-primary\"  href=\"profile.php?id=".$userInfo["ID"]."\">".htmlentities($userInfo["Username"])."</a>"; ?></div>
 <div class="mb-3">Genere: <?php echo $info["Genere"]; ?></div>

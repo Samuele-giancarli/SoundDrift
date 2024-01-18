@@ -38,6 +38,7 @@ if(strlen($Tnewpw) < 3){
 if ($show_form=true){
 ?>
 <form action="settings.php" method="POST" id="passwordchange" autocomplete="off" class="mt-5">
+    <fieldset>
 <legend>Vuoi cambiare la tua password?</legend>
     <div class="mb-3">
             <label for="oldPassword" class="form-label">La tua vecchia password:</label>
@@ -48,6 +49,7 @@ if ($show_form=true){
             <input type="password" name="newPassword" id="newPassword" class="form-control" placeholder="La tua nuova password" required>
         </div>
         <button type="submit" class="btn btn-dark">Login</button>
+</fieldset>
 </form>
 <?php
 

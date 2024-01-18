@@ -33,6 +33,7 @@ if(isset($_SESSION["ID"])) {
 if($show_form):
 ?>
  <form method="POST" action="login.php" class="mt-5">
+    <fieldset>
         <legend>Login</legend>
         <div class="mb-3">
             <label for="email" class="form-label">Email:</label>
@@ -43,6 +44,7 @@ if($show_form):
             <input type="password" name="password" id="password" class="form-control" placeholder="La tua password" required>
         </div>
         <button type="submit" class="btn btn-dark">Login</button>
+</fieldset>
     </form>
 
     <?php if (!is_null($err_mess)): ?>

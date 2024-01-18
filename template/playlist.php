@@ -44,6 +44,7 @@ if(!isset($_SESSION["ID"])) {
 if ($show_form) {
 ?>
 <form method="POST" action="playlist.php" enctype="multipart/form-data" class="mt-4">
+    <fieldset>
     <legend>Crea una playlist</legend>
         <div class="mb-3">
             <label for="titolo" class="form-label">Nome della playlist:</label>
@@ -53,6 +54,7 @@ if ($show_form) {
             <input type="file" name="immagine" id="immagine" class="form-control" accept="image/jpeg,image/png,image/webp,image/avif">
         </div>
         <button type="submit" class="btn btn-dark">Invia</button>
+</fieldset>
 </form>
 <?php
 

@@ -32,6 +32,7 @@ function jsescape($s) {
 ?>
 
     <form action="upload.php" method="post" enctype="multipart/form-data" class="mt-4">
+        <fieldset>
     <legend>Pubblica un nuovo post</legend>
         <div class="form-outline">
             <label for="testo" class="form-label">Scrivi qui: </label>
@@ -65,6 +66,7 @@ function jsescape($s) {
         }
         ?>
              <button type="submit" class="btn btn-dark">Pubblica</button>
+    </fieldset>
     </form>
 <?php
 

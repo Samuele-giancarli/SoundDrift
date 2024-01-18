@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="it">
-    <head> <title> SoundDrift - AddToPlaylist </title></head>
 
 <?php
 
@@ -49,7 +46,7 @@ if (!is_null($search)){
         echo "<input type=\"hidden\" name=\"idsong\" value=\"".$song["ID"]."\">";
         echo "<input type=\"hidden\" name=\"idplaylist\" value=\"".$idplaylist."\">";
         echo "<input type=\"hidden\" name=\"queryused\" value='".jsescape($search)."'>";
-        echo "<a class=\"link-primary\" href=\"songPlayer.php?id=".$song["ID"]."\" style=\"color:black; text-decoration:none\">".$song["Titolo"]."</a> - ".$authorInfo["Username"]." ";
+        echo "<a class=\"link-primary\" href=\"songPlayer.php?id=".$song["ID"]."\">".$song["Titolo"]."</a> - ".$authorInfo["Username"]." ";
         echo "<button type=\"submit\" class=\"btn btn-secondary\">Aggiungi</button>";
           //sposta il bottone "aggiungi" a dx
         ?>
@@ -62,4 +59,3 @@ if (!is_null($search)){
 }
 ?>
 
-</html>

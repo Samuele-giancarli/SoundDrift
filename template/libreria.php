@@ -4,7 +4,7 @@ if (!isset($_SESSION["ID"])){
 }
 $idutente=$_SESSION["ID"];
 ?>
-<legend>Questa è la tua libreria:</legend>
+<p class="titolo">Questa è la tua libreria:</p>
 
 <div class="mb-3">
 <a href="braniPiaciuti.php" class="btn btn-dark" style="text-decoration:none">
