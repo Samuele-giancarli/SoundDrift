@@ -159,15 +159,15 @@
                             <button type="button" style="margin-right: 5px;" class="btn btn-dark rounded" onclick="updateLikeVisual(<?php echo $postId; ?>, false, <?php echo $visualizerId?>)" id="likebutton<?php echo $postId; ?>" data-isOn="false">
                                 <em class="bi bi-heart"></em>
                             </button>
-                            <a class="btn btn-dark rounded" style="margin-right: 5px;" href="comment.php?id=<?php echo $postId ?>">
+                            <a title="let a comment button" class="btn btn-dark rounded" style="margin-right: 5px;" href="comment.php?id=<?php echo $postId ?>">
                                 <em class="bi bi-chat-left-dots"></em>
                             </a>
                             <?php
                         }
                         ?>
                         
-                        <?php echo (!is_null($songInfo) ? '<a class="btn btn-dark rounded" style="color: white;" href="songPlayer.php?id='.$songInfo["ID"].'"><em class="bi bi-music-note-beamed"></em> brano </a>' : '');?>
-                        <?php echo (!is_null($albumInfo) ? '<a class="btn btn-dark rounded" style="color: white;" href="albumPlayer.php?id='.$albumInfo["ID"].'"><em class="bi bi-music-note-list"></em> album </a>' : '');?>
+                        <?php echo (!is_null($songInfo) ? '<a title="go to the song button" class="btn btn-dark rounded" style="color: white;" href="songPlayer.php?id='.$songInfo["ID"].'"><em class="bi bi-music-note-beamed"></em> brano </a>' : '');?>
+                        <?php echo (!is_null($albumInfo) ? '<a title="go to the album button" class="btn btn-dark rounded" style="color: white;" href="albumPlayer.php?id='.$albumInfo["ID"].'"><em class="bi bi-music-note-list"></em> album </a>' : '');?>
 
                         <small class="text-muted" style="margin-left: 5px; font-weight: bold;" id="likenumber<?php echo $postId; ?>"><?php echo $likeNumber; ?> likes </small>
                     </div>
