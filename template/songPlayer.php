@@ -134,8 +134,8 @@ if (isset($_SESSION["ID"])){
 
 <form id="playlist" method="GET" action="songAssoc.php" enctype="multipart/form-data" class="mt-4" >
 <div class="mb-3">
-<label for="playlistS" class="form-label"> Aggiungi a playlist: </label>
-<select class="form-control" id="playlistS" name="playlist" form="playlist">
+<label for="playlists" class="form-label"> Aggiungi a playlist: </label>
+<select class="form-control" id="playlists" name="playlist" form="playlist">
 
     <?php
     $stmt = $dbh->db->prepare("SELECT * FROM playlist WHERE ID_Utente=?");
@@ -148,9 +148,10 @@ if (isset($_SESSION["ID"])){
             continue;
         }
         echo "<option value=".$row["ID"].">".htmlentities($row["Titolo"])."</option>";
+        $dbh->addSongToPlaylist($idcanzone, $row["ID"]);
     }
     ?>
-    </select>
+    </select>  
 </div>
     <input type="hidden" name="songid" value=<?php echo "'".$idcanzone."'"; ?>>
     <button type="submit" class="btn btn-secondary">Aggiungi</button>
