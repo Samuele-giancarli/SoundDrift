@@ -24,19 +24,20 @@ $playlistInfo=$dbh->getPlaylistInfo($idplaylist);
 <legend><?php echo "Aggiungi canzoni a: "."<a class=\"link-primary\" href=\"playlistPlayer.php?id=".$idplaylist."\">".htmlentities($playlistInfo['Titolo'])."</a>";?></legend>
     <div class="mb-3">
         <label for="query" class="form-label">Cerca canzoni:</label>
-        <input type="text" name="query" class="form-control" placeholder="Nome del brano" required>
+        <input type="text" id="query" name="query" class="form-control" placeholder="Nome del brano" required>
 </div>
     <input type="hidden" name="id" value=<?php echo "\"".$idplaylist."\""; ?>>
     <button type="submit" class="btn btn-dark">Cerca</button>
 </fieldset>
 </form>
 
+
+<ul class="list-group">
 <?php
 if (!is_null($search)){
     $rows=$dbh->searchSongsbyTitleWithFilter($search, $idplaylist);
     foreach ($rows as $song){
         ?>    
-        <ul class="list-group">
         <?php
         $authorInfo=$dbh->getUserInfo($song["ID_Utente"]);
         ?>
