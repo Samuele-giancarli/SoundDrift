@@ -25,7 +25,7 @@
                 if(isset($_SESSION["ID"])) {
             ?>
                     <div class="btn-group" id="upperButtons">
-                        <a id="home" href="home.php" class="btn btn-dark " style="text-decoration:none" title="Home">
+                        <a id="home" title="home" href="home.php" class="btn btn-dark " style="text-decoration:none">
                             <em class="bi bi-house" style="font-size: 20px"></em>
                         </a>
                         <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -36,27 +36,27 @@
                             <li><a class="dropdown-item" href="albumCreate.php" title="Album Create"><em class="bi bi-disc-fill"></em> Crea Album</a></li>
                             <li><a class="dropdown-item" href="playlist.php" title="playlist"><em class="bi bi-cassette"></em> Crea Playlist</a></li>
                         </ul>
-                        <a href="profile.php?id=<?php echo $_SESSION["ID"] ?>" class="btn btn-dark" style="text-decoration:none" title="Profile">
+                        <a title="profilo" href="profile.php?id=<?php echo $_SESSION["ID"] ?>" class="btn btn-dark" style="text-decoration:none">
                             <em class="bi bi-person" style="font-size: 20px"></em>
                         </a>
 
                         <?php
                         if ($dbh->newNotifications($_SESSION["ID"])){
                             ?>
-                            <a href="notifications.php?id=<?php echo $_SESSION["ID"] ?>" class="btn btn-danger" style="text-decoration:none" title="Notifiche">
+                            <a title="notificheNuove" href="notifications.php?id=<?php echo $_SESSION["ID"] ?>" class="btn btn-danger" style="text-decoration:none">
                             <em class="bi bi-bell" style="font-size: 20px"></em>
                         </a>
                         <?php
                         }else{
                             ?>
-                        <a href="notifications.php?id=<?php echo $_SESSION["ID"] ?>" class="btn btn-dark" style="text-decoration:none" title="Notifiche">
+                        <a title="notifiche" href="notifications.php?id=<?php echo $_SESSION["ID"] ?>" class="btn btn-dark" style="text-decoration:none">
                             <em class="bi bi-bell" style="font-size: 20px"></em>
                         </a>
                         <?php
                         }
                         
                         ?>
-                        <a href="logout.php" class="btn btn-dark" style="text-decoration:none" title="Logout">
+                        <a title="logout" href="logout.php" class="btn btn-dark" style="text-decoration:none">
                             <em class="bi bi-box-arrow-left" style="font-size: 20px"></em>
                         </a>
                     </div>
@@ -92,7 +92,7 @@
                         <em class="bi bi-collection"></em> Libreria
                 </a>
                 <a href="upload.php" class="btn btn-dark" style="text-decoration:none">
-                        <em class="bi bi-file-post"></em> Post  
+                        <em class="bi bi-file-post"></em> Post
                 </a>
                 <a href="settings.php" class="btn btn-dark" style="text-decoration:none">
                         <em class="bi bi-gear"></em> <span class="hide-on-mobile">Impostazioni</span>
