@@ -74,9 +74,6 @@ footer a:hover{
     color:white
 }
 
-#second-footer a:hover{
-    color:aquamarine
-}
 
 #home {
     display: none;
@@ -88,6 +85,10 @@ legend{
 
 p{
     word-break:break-all; 
+}
+
+p.titolo {
+    font-size: 24px;
 }
 
 a{
