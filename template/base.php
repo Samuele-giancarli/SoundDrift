@@ -63,7 +63,7 @@
                 <?php
                 } else {
                 ?>
-                    <a id="loginfromOut" href="login.php" class="btn btn-dark">Login
+                    <a id="loginfromOut" href="login.php" class="btn btn-dark">
                         <em class="bi bi-box-arrow-in-right" style="font-size: 20px"></em>
                     </a>
                 <?php
@@ -91,14 +91,11 @@
                 <a href="libreria.php" class="btn btn-dark" style="text-decoration:none">
                         <em class="bi bi-collection"></em> Libreria</span>
                 </a>
-                </a>
                 <a href="upload.php" class="btn btn-dark" style="text-decoration:none">
                         <em class="bi bi-file-post"></em> Post</span>
                 </a>
-                </a>
                 <a href="settings.php" class="btn btn-dark" style="text-decoration:none">
                         <em class="bi bi-gear"></em> <span class="hide-on-mobile">Impostazioni</span>
-                </a>
                 </a>
             </div>
         </footer>
