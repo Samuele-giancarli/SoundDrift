@@ -1,7 +1,3 @@
-<!DOCTYPE html>
-<html lang="it">
-    <head> <title> SoundDrift - AlbumForResearch </title></head>
-
 
 <?php
 
@@ -19,9 +15,9 @@
     <div class="col-md-6 text-center"> 
         <div class="card rounded-3 text-center">
             <div class="card-body">
-                <h5 class="card-title">
+                <p class="h5 card-title">
                     <a href="albumPlayer.php?id=<?php echo $albumid ?>" style="color: black"><?php echo $albumtitle." (Album)" ?></a>
-                </h5>
+                     </p>
 
                 <p class="card-text" style="text-align:center;">
                     <?php if ($image != null) { ?>
@@ -29,9 +25,9 @@
                     <?php } ?>
                     <br>
                 </p>
-                <h5 class="card-title">
+                <p class="h5 card-title">
                     <a href="profile.php?id=<?php echo $authorid ?>" style="color: black"><?php echo $authorname ?></a>
-                </h5>
+                </p>
             </div>
             <div> <small class="text-muted" id="albumdate" style="font-weight: bold;"><?php echo $data;?></small></div>
         </div>
@@ -40,4 +36,3 @@
 <?php
     }
 ?>
-</html>
