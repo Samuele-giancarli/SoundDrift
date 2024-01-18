@@ -43,7 +43,7 @@ function playlistUnlikeDone() {
 }
 </script>
 
-<legend><?php echo $info["Titolo"]." (Playlist)"; ?></legend>
+<p class="titolo"><?php echo $info["Titolo"]." (Playlist)"; ?></p>
 <div class="mb-3">Titolo: <?php echo $info["Titolo"]; ?></div>
 <div class="mb-3">Autore: <?php echo "<a class=\"link-primary\"  href=\"profile.php?id=".$userInfo["ID"]."\">".htmlentities($userInfo["Username"])."</a>"; ?></div>
 
@@ -82,7 +82,7 @@ if ($dbh -> isPlaylistLiked($idutente, $idplaylist)){
     echo "<button class=\"btn btn-dark\" id=\"like\" type=\"button\" onclick=\"playlistLike();\">Aggiungi a Libreria</button>";    
 }
 if ($_SESSION["ID"]==$info["ID_Utente"]){
-    echo "<button class=\"btn btn-dark\" id=\"playlist\" type=\"button\"><a href=\"addToPlaylist.php?id=".$idplaylist."\">Aggiungi canzoni</a></button>";
+    echo "<a class=\"btn btn-dark\" id=\"playlist\" href=\"addToPlaylist.php?id=".$idplaylist."\">Aggiungi canzoni</a>";
 }
 }
 ?>
