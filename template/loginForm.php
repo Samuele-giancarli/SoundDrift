@@ -36,7 +36,7 @@ if(isset($_SESSION["ID"])) {
     $show_form = true;
 }
 
-if($show_form):
+if($show_form){
 ?>
  <form method="POST" action="login.php" class="mt-5">
     <fieldset>
@@ -59,6 +59,7 @@ if($show_form):
         </div>
         <?php
     }
+
 if ($err_utente) { ?>
     <div class="alert alert-danger mt-4">
         <?php echo "utente non trovato"; ?>
@@ -68,6 +69,6 @@ if ($err_utente) { ?>
     <?php echo "password errata"; ?>
     </div>
 <?php } 
-
+}
 ?>
 <p class="mt-3 text-center">Non sei ancora registrato? <a class="link-primary" href="register.php">Registrati</a></p>
