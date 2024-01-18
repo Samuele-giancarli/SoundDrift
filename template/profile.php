@@ -49,7 +49,7 @@ if(isset($_POST["unfollow"])){
         </div>   
 
         <div id="profile-info" class="mx-auto text-center ml-3">
-            <h2 class="mb-3"><?php echo $templateParams["utente"]["Username"]; ?></h2>
+            <p class="h2 mb-3"><?php echo $templateParams["utente"]["Username"]; ?></p>
             
             <div id="profile-stats">
                 <?php
