@@ -95,7 +95,7 @@
                 <h5 class="card-title">
                     <?php
                         if ($userImage!= null){ ?>
-                            <img src="<?php echo $userImagePath; ?>" class="rounded-circle" style="width: 50px; height: 50px;" alt="Profile pic">
+                            <img src="<?php echo $userImagePath; ?>" class="rounded-circle" style="width: 50px; height: 50px;" alt="Profile picture">
                         <?php } ?>
                     <?php
                         if (!is_null($songInfo)){
@@ -109,7 +109,7 @@
                 </h5>
 
                 <?php if ($image != null) { ?>
-                    <img src="<?php echo $imagePath; ?>" class="img-thumbnail" style="width: 150px; height: 150px;" />
+                    <img src="<?php echo $imagePath; ?>" class="img-thumbnail" style="width: 150px; height: 150px;" alt="Post picture">
                 <?php } ?>
 
                 <?php
@@ -138,7 +138,7 @@
                             $imagePath = "download.php?id=" . $image;
                         ?>
                             <div style="display: flex; align-items: center;">
-                                <img src="<?php echo $imagePath; ?>" class="img-thumbnail" style="width: 100px; height: 100px; margin-right: 10px;" />
+                                <img src="<?php echo $imagePath; ?>" class="img-thumbnail" style="width: 100px; height: 100px; margin-right: 10px;" alt="Song picture">
 
                                 <p style="margin: 0;"><?php echo $song["Titolo"]; ?></p>
                             </div>
@@ -171,7 +171,7 @@
 
                         <small class="text-muted" style="margin-left: 5px; font-weight: bold;" id="likenumber<?php echo $postId; ?>"><?php echo $likeNumber; ?> likes </small>
                     </div>
-                    <span class="hide-on-mobile"><div> <small class="text-muted" style="align:right; font-weight: bold;"><?php echo $postInfo["Data"];?></small></div></span>
+                    <span class="hide-on-mobile"><div> <small class="text-muted" style="text-align:right; font-weight: bold;"><?php echo $postInfo["Data"];?></small></div></span>
 
                     <?php if($isLiked){echo "<script>likeOn($postId, true);</script>";}?>
 
