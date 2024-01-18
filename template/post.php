@@ -10,7 +10,7 @@
         button.style.backgroundColor = "#ff0000";
         button.style.borderColor = "#ff0000";
 
-        button.innerHTML = '<i class="bi bi-heart-fill"></i>';
+        button.innerHTML = '<em class="bi bi-heart-fill"></em>';
         
         button.dataset.isOn = "true";
         let n = parseInt(likes.innerText.split(" ")[0]) + 1;
@@ -26,7 +26,7 @@
         button.style = "btn-dark; margin-right: 5px;"
 
         button.dataset.isOn = "false";
-        button.innerHTML = '<i class="bi bi-heart"></i>';
+        button.innerHTML = '<em class="bi bi-heart"></em>';
         let n = parseInt(likes.innerText.split(" ")[0]) - 1;
         if(!init)
             likes.innerText = n + " likes";
@@ -157,17 +157,17 @@
                         if (isset($_SESSION["ID"])){
                         ?>
                             <button type="button" style="margin-right: 5px;" class="btn btn-dark rounded" onclick="updateLikeVisual(<?php echo $postId; ?>, false, <?php echo $visualizerId?>)" id="likebutton<?php echo $postId; ?>" data-isOn="false">
-                                <i class="bi bi-heart"></i>
+                                <em class="bi bi-heart"></em>
                             </button>
                             <a class="btn btn-dark rounded" style="margin-right: 5px;" href="comment.php?id=<?php echo $postId ?>">
-                                <i class="bi bi-chat-left-dots"></i>
+                                <em class="bi bi-chat-left-dots"></em>
                             </a>
                             <?php
                         }
                         ?>
                         
-                        <?php echo (!is_null($songInfo) ? '<a class="btn btn-dark rounded" style="color: white;" href="songPlayer.php?id='.$songInfo["ID"].'"><i class="bi bi-music-note-beamed"></i> brano </a>' : '');?>
-                        <?php echo (!is_null($albumInfo) ? '<a class="btn btn-dark rounded" style="color: white;" href="albumPlayer.php?id='.$albumInfo["ID"].'"><i class="bi bi-music-note-list"></i> album </a>' : '');?>
+                        <?php echo (!is_null($songInfo) ? '<a class="btn btn-dark rounded" style="color: white;" href="songPlayer.php?id='.$songInfo["ID"].'"><em class="bi bi-music-note-beamed"></em> brano </a>' : '');?>
+                        <?php echo (!is_null($albumInfo) ? '<a class="btn btn-dark rounded" style="color: white;" href="albumPlayer.php?id='.$albumInfo["ID"].'"><em class="bi bi-music-note-list"></em> album </a>' : '');?>
 
                         <small class="text-muted" style="margin-left: 5px; font-weight: bold;" id="likenumber<?php echo $postId; ?>"><?php echo $likeNumber; ?> likes </small>
                     </div>
