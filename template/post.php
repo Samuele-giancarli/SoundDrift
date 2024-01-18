@@ -171,7 +171,7 @@
 
                         <small class="text-muted" style="margin-left: 5px; font-weight: bold;" id="likenumber<?php echo $postId; ?>"><?php echo $likeNumber; ?> likes </small>
                     </div>
-                    <span class="hide-on-mobile"><div> <small class="text-muted" style="text-align:right; font-weight: bold;"><?php echo $postInfo["Data"];?></small></div></span>
+                    <span class="hide-on-mobile"> <small class="text-muted" style="text-align:right; font-weight: bold;"><?php echo $postInfo["Data"];?></small></span>
 
                     <?php if($isLiked){echo "<script>likeOn($postId, true);</script>";}?>
 
