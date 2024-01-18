@@ -91,14 +91,11 @@
                 <a href="libreria.php" class="btn btn-dark" style="text-decoration:none">
                         <em class="bi bi-collection"></em> Libreria</span>
                 </a>
-                </a>
                 <a href="upload.php" class="btn btn-dark" style="text-decoration:none">
                         <em class="bi bi-file-post"></em> Post</span>
                 </a>
-                </a>
                 <a href="settings.php" class="btn btn-dark" style="text-decoration:none">
                         <em class="bi bi-gear"></em> <span class="hide-on-mobile">Impostazioni</span>
-                </a>
                 </a>
             </div>
         </footer>
