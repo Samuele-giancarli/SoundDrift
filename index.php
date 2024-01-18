@@ -47,8 +47,8 @@
             <em class="bi bi-arrow-repeat"></em> Enable Loop
         </button></span>
 
-        <div class="dropup-center dropup hide-on-mobile" style="display:inline-block">
-        <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Prossimo in coda</button>
+        <div class="dropup-center dropup hide-on-mobile" style="display:inline-block" aria-expanded="false">
+        <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">Prossimo in coda</button>
         <ul class="dropdown-menu">
         <li> <a href="#" id="next" style="text-align:center" title="Next Page"></a></li>
         </ul>
