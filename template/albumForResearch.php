@@ -21,7 +21,7 @@
 
                 <p class="card-text" style="text-align:center;">
                     <?php if ($image != null) { ?>
-                        <img alt="coverAlbum" src="<?php echo $imagePath; ?>" id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;">
+                        <img alt="coverAlbum" src="<?php echo $imagePath; ?>" class="img-thumbnail" style="width: 150px; height: 150px;">
                     <?php } ?>
                     <br>
                 </p>
@@ -29,7 +29,7 @@
                     <a href="profile.php?id=<?php echo $authorid ?>" style="color: black"><?php echo $authorname ?></a>
                 </p>
             </div>
-            <div> <small class="text-muted" id="albumdate" style="font-weight: bold;"><?php echo $data;?></small></div>
+            <div> <small class="text-muted" style="font-weight: bold;"><?php echo $data;?></small></div>
         </div>
     </div>
 </div>
