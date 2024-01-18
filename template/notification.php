@@ -24,7 +24,7 @@ $dbh->setNotificationsRead($_SESSION["ID"]);
                                 }?>
                                 </p>
                             </div>
-                            <div> <small class="text-muted" id="notificadate" style="text-align:right"><?php echo $date;?></small></div>
+                            <div> <small class="text-muted" style="text-align:right"><?php echo $date;?></small></div>
                         </div>
                     </div>
                 </div>
