@@ -29,7 +29,7 @@ if(isset($_POST["unfollow"])){
         $imageID = (!is_null($profileImageID)) ? "download.php?id=" . $profileImageID : "images/default.jpg";
         ?>
         <div class="bg-image ripple">
-            <img <?php echo "src=\"".$imageID."\""; ?>  id="profile-pic" class="img-thumbnail rounded-circle" style="width: 100px; height: 100px; object-fit: cover;" />
+            <img <?php echo "src=\"".$imageID."\""; ?>  id="profile-picture" class="img-thumbnail rounded-circle" style="width: 100px; height: 100px; object-fit: cover;" alt="Profile picture">
             <?php if(isset($_SESSION["ID"])): ?>
                 <?php if($templateParams["utente"]["ID"] === $_SESSION["ID"]): ?>
                     <form id="profilePictureUpload" method="POST" enctype="multipart/form-data" class="ml-3">
