@@ -16,7 +16,7 @@
 
             <a href="home.php" id="logo" title="logo">
                     <img src="images/App_images/logo3.jpg" alt="logo" width="70" style="display:inline-block">
-                    <p class="h1 text-white" style="display:inline-block; font-size:27px" >SoundDrift</p>
+                    <span class="h1 text-white" style="display:inline-block; font-size:27px" >SoundDrift</span>
             </a>
 
             <div>
