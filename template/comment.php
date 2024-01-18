@@ -5,7 +5,7 @@ $postInfo=$dbh->getPostInfo($postId);
 renderPost($postInfo,$dbh,$_SESSION["ID"]);
 ?>
 
-<div class="row justify-content-center form-outline" id="commentForm" class="mt-4" rows="3" >
+<div class="row justify-content-center form-outline mt-4" id="commentForm">
     <label for="commentText">Scrivi un commento:</label>
     <textarea id="commentText" class="form-control" rows="2" name="commentText" placeholder="Il tuo commento"></textarea>
 </div>

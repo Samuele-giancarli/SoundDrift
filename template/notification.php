@@ -11,11 +11,6 @@ $dbh->setNotificationsRead($_SESSION["ID"]);
         $userInfo=$dbh->getUserInfo($id_mandante);
         $username=$userInfo["Username"];
 
-        /*?> <p> <?php echo $id ?> </p> <?php ;
-        ?> <p> <?php echo $testo ?> </p> <?php ;
-        ?> <p> <?php echo $id_mandante ?> </p> <?php ;
-        ?> <p> <?php echo $id_post ?> </p> <?php ;*/
-
         ?>
 
             <div class="container mt-3">
@@ -29,7 +24,7 @@ $dbh->setNotificationsRead($_SESSION["ID"]);
                                 }?>
                                 </p>
                             </div>
-                            <div> <small class="text-muted" id="notificadate" style="align:right"><?php echo $date;?></small></div>
+                            <div> <small class="text-muted" id="notificadate" style="text-align:right"><?php echo $date;?></small></div>
                         </div>
                     </div>
                 </div>

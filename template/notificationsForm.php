@@ -1,5 +1,7 @@
 
-<legend>Le tue notifiche:</legend>
+<fieldset>
+    <legend>Le tue notifiche:</legend>
+</fieldset>
 <?php 
 
     if(!is_null($_SESSION["ID"])){
