@@ -74,7 +74,7 @@ function songUnlikeDone() {
 }
 </script>
 
-<legend><?php echo $info["Titolo"]; ?></legend>
+<p class="titolo"><?php echo $info["Titolo"]; ?></p>
 <div class="mb-3">Titolo: <?php echo $info["Titolo"]; ?></div>
 <div class="mb-3">Autore: <?php echo "<a class=\"link-primary\" href=\"profile.php?id=".$userInfo["ID"]."\">".htmlentities($userInfo["Username"])."</a>"; ?></div>
 <div class="mb-3">Genere: <?php echo $info["Genere"]; ?></div>
@@ -82,20 +82,20 @@ function songUnlikeDone() {
 <?php 
 if (!is_null($info["ID_Immagine"])){
 ?>
-<div class="mb-3"><img <?php echo "src=\"download.php?id=".$info["ID_Immagine"]."\""; ?>  id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" /></div>
+<div class="mb-3"><img alt="songCover" <?php echo "src=\"download.php?id=".$info["ID_Immagine"]."\""; ?>  id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;"></div>
 <?php
 }
 ?>
 
-<div class="mb-3"id="durata"></div>
+<div class="mb-3" id="durata"></div>
 <div><audio id="song">
+
 <source
 <?php
 echo "src=\"download.php?id=".$audioInfo["ID"]."\" ";
-echo "type=\"".$audioInfo["MimeType"]."\"";
+echo "type=\"".$audioInfo["MimeType"]."\">";
 ?>
 >
-</source>
 </audio></div>
 
 <?php 
@@ -127,7 +127,7 @@ if (isset($_SESSION["ID"])){
     }else{
         echo "<button class=\"btn btn-dark\" id=\"like\" type=\"button\" onclick=\"songLike();\">Aggiungi a Piaciuti </button>";    
     }
-        echo "<button class=\"btn btn-dark\" id=\"share\" type=\"button\"><a href=\"upload.php?songid=".$idcanzone."\">Condividi</a></button>";
+        echo "<a class=\"btn btn-dark\" id=\"share\" href=\"upload.php?songid=".$idcanzone."\">Condividi</a>";
 }
 ?>
 </div>
