@@ -140,6 +140,9 @@
                             <div style="display: flex; align-items: center;">
                                 <?php if ($image != null) { ?>
                                     <img src="<?php echo $imagePath; ?>" class="img-thumbnail" style="width: 100px; height: 100px; margin-right: 10px;" alt="Song picture">
+                                <?php } else {?>
+                                    src=\"images/App_images/default-cover.png\"
+                                    <img src="images/App_images/default-cover.png" class="img-thumbnail" style="width: 100px; height: 100px; margin-right: 10px;" alt="Song picture">
                                 <?php } ?>
 
                                 <p style="margin: 0;"><?php echo $song["Titolo"]; ?></p>
