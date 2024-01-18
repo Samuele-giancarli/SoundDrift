@@ -33,7 +33,7 @@ if(isset($_SESSION["ID"])) {
             if($stmt->execute()) {
                 $success="<a href=\"login.php\" style=\"color:black\">Registrazione effettuata con successo, ora puoi fare il login</a>";
             } else {
-                $err_mess="Errore sconosciuto";
+                $err_mess="Registrazione non riuscita";
                 $show_form=true;
             }
         } catch(mysqli_sql_exception $e) {
