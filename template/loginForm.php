@@ -53,12 +53,12 @@ if($show_form):
 </fieldset>
     </form>
 
-    <?php if (!is_null($err_mess)): ?>
+    <?php if (!is_null($err_mess)){ ?>
         <div class="alert alert-danger mt-3" role="alert">
             <?php echo $err_mess; ?>
         </div>
-    <?php
-
+        <?php
+    }
 if ($err_utente) { ?>
     <div class="alert alert-danger mt-4">
         <?php echo "utente non trovato"; ?>
