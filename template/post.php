@@ -3,19 +3,6 @@
 
 ?>
 
-<style>
-    /*
-    .btn:active, .btn.active {
-        outline: none !important;
-        box-shadow: none !important;
-    }
-
-    .btn:focus {
-        outline: none;
-        box-shadow: none;
-    }*/
-</style>
-
 <script>
     function likeOn(postId, init){
         let button = document.getElementById("likebutton" + postId);
@@ -108,7 +95,7 @@
                 <h5 class="card-title">
                     <?php
                         if ($userImage!= null){ ?>
-                            <img src="<?php echo $userImagePath; ?>" id="profile-pic" class="rounded-circle" style="width: 50px; height: 50px;" />
+                            <img src="<?php echo $userImagePath; ?>" id="profile-pic" class="rounded-circle" style="width: 50px; height: 50px;" alt="Profile pic">
                         <?php } ?>
                     <?php
                         if (!is_null($songInfo)){
