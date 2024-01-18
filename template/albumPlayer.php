@@ -50,7 +50,7 @@ function albumUnlikeDone() {
 <?php 
 if (!is_null($info["ID_Immagine"])){
 ?>
-<div class="mb-3"><img <?php echo "src=\"download.php?id=".$info["ID_Immagine"]."\""; ?>  id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" /></div>
+<div class="mb-3"><img alt="albumCover" <?php echo "src=\"download.php?id=".$info["ID_Immagine"]."\""; ?> class="img-thumbnail" style="width: 150px; height: 150px;"></div>
 <?php
 }
 
@@ -79,7 +79,7 @@ if (isset($_SESSION["ID"])&&$info["Finalizzato"]==1){
     }else{
         echo "<button class=\"btn btn-dark\" id=\"like\" type=\"button\" onclick=\"albumLike();\">Aggiungi a Libreria</button>";    
     }
-    echo "<button class=\"btn btn-dark\"  type=\"button\"><a href=\"upload.php?albumid=".$idalbum."\">Condividi</a></button>";
+    echo "<a class=\"btn btn-dark\" href=\"upload.php?albumid=".$idalbum."\">Condividi</a>";
 }
 ?>
 <p class="mt-4">Brani:</p>
