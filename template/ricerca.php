@@ -4,7 +4,7 @@
     </fieldset>
 <div class="mb-3">
             <label for="searchInput" class="form-label" style="display:none">Cerca:</label>
-            <input type="text" autocomplete="off" class="form-control" name="searchInput" id="searchInput" placeholder="Inserisci la tua ricerca">
+            <input title="cerca nel sito" type="text" autocomplete="off" class="form-control" name="searchInput" id="searchInput" placeholder="Inserisci la tua ricerca">
         </div>
    
 

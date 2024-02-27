@@ -34,15 +34,15 @@ if(isset($_POST["unfollow"])){
                 <?php if($templateParams["utente"]["ID"] === $_SESSION["ID"]): ?>
                     <form id="profilePictureUpload" method="POST" enctype="multipart/form-data" class="ml-3">
                         <label class="btn btn-dark btn-sm" for="formFile">Update Image</label>
-                        <input class="d-none" type="file" id="formFile" name="profile-picture" accept="image/jpeg,image/png,image/webp,image/avif" onchange="this.form.submit()">
+                        <input title="cambia immagine profilo" class="d-none" type="file" id="formFile" name="profile-picture" accept="image/jpeg,image/png,image/webp,image/avif" onchange="this.form.submit()">
                     </form>
                 <?php elseif($dbh->isUserFollowed($_SESSION["ID"], $templateParams["utente"]["ID"])): ?>
                     <form id="UnfollowingUser" method="POST" class="ms-3">
-                        <input type="submit" class="btn btn-secondary btn-sm" value="Segui già" name="unfollow">
+                        <input title="non seguire più" type="submit" class="btn btn-secondary btn-sm" value="Segui già" name="unfollow">
                     </form>
                 <?php else: ?>
                     <form id="FollowingUser" method="POST" class="ms-4">
-                        <input type="submit" class="btn btn-dark btn-sm" value="Segui" name="seguire">
+                        <input title="segui" type="submit" class="btn btn-dark btn-sm" value="Segui" name="seguire">
                     </form>
                 <?php endif ?>
             <?php endif ?>    
@@ -58,30 +58,30 @@ if(isset($_POST["unfollow"])){
                 ?>
                 <p class="d-none d-md-block">Seguaci: <?php echo is_null($followers["num_followers"]) ? 0 : $followers["num_followers"]; ?> | Seguiti: <?php echo is_null($followings["num_following"]) ? 0 : $followings["num_following"]; ?> | Tracce: <?php echo $dbh->getSongCountByUser($templateParams["utente"]["ID"]); ?></p>
                 <div class="d-md-none">
-                    <p>Seguaci: <?php echo is_null($followers["num_followers"]) ? 0 : $followers["num_followers"]; ?></p>
-                    <p>Seguiti: <?php echo is_null($followings["num_following"]) ? 0 : $followings["num_following"]; ?></p>
-                    <p>Tracce: <?php echo $dbh->getSongCountByUser($templateParams["utente"]["ID"]); ?></p>
+                    <p title="seguaci">Seguaci: <?php echo is_null($followers["num_followers"]) ? 0 : $followers["num_followers"]; ?></p>
+                    <p title="seguiti" >Seguiti: <?php echo is_null($followings["num_following"]) ? 0 : $followings["num_following"]; ?></p>
+                    <p title="numero di tracce">Tracce: <?php echo $dbh->getSongCountByUser($templateParams["utente"]["ID"]); ?></p>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="text-center mt-3 mb-3 d-md-none" id="filterInProfile">
-        <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">
+        <button title="filtra" type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">
                 Filtra Post
             </button>
             <ul class="dropdown-menu">
                 <li class="nav-item col-12 col-md-3 mb-2 text-center">
-                    <a href="allPostProfile.php?id=<?php echo $templateParams['utente']['ID']; ?>" class="dropdown-item" style="text-decoration:none">Post</a>
+                    <a title="tutti i post" href="allPostProfile.php?id=<?php echo $templateParams['utente']['ID']; ?>" class="dropdown-item" style="text-decoration:none">Post</a>
                 </li>
                 <li class="nav-item col-12 col-md-3 mb-2 text-center">
-                    <a href="songPostProfile.php?id=<?php echo $templateParams['utente']['ID'];?>" class="dropdown-item" style="text-decoration:none">Canzoni</a>
+                    <a title="canzoni" href="songPostProfile.php?id=<?php echo $templateParams['utente']['ID'];?>" class="dropdown-item" style="text-decoration:none">Canzoni</a>
                 </li>
                 <li class="nav-item col-12 col-md-3 mb-2 text-center">
-                    <a href="albumPostProfile.php?id=<?php echo $templateParams['utente']['ID'];?>" class="dropdown-item" style="text-decoration:none">Album</a>
+                    <a title="album" href="albumPostProfile.php?id=<?php echo $templateParams['utente']['ID'];?>" class="dropdown-item" style="text-decoration:none">Album</a>
                 </li>
                 <li class="nav-item col-12 col-md-3 mb-2 text-center">
-                    <a href="playlistPostProfile.php?id=<?php echo $templateParams['utente']['ID'];?>" class="dropdown-item" style="text-decoration:none">Playlist</a>
+                    <a title="playlist" href="playlistPostProfile.php?id=<?php echo $templateParams['utente']['ID'];?>" class="dropdown-item" style="text-decoration:none">Playlist</a>
                 </li>
                 </ul>
     </div>
@@ -92,16 +92,16 @@ if(isset($_POST["unfollow"])){
             <div class="row">
                 <ul class="nav nav-pills flex-column flex-md-row">
                     <li class="nav-item col-12 col-md-3 mb-2 text-center">
-                        <a href="allPostProfile.php?id=<?php echo $templateParams['utente']['ID']; ?>" class="btn btn-dark btn-block" style="text-decoration:none">Post</a>
+                        <a title="tutti" href="allPostProfile.php?id=<?php echo $templateParams['utente']['ID']; ?>" class="btn btn-dark btn-block" style="text-decoration:none">Post</a>
                     </li>
                     <li class="nav-item col-12 col-md-3 mb-2 text-center">
-                        <a href="songPostProfile.php?id=<?php echo $templateParams['utente']['ID'];?>" class="btn btn-dark btn-block" style="text-decoration:none">Canzoni</a>
+                        <a title="canzoni" href="songPostProfile.php?id=<?php echo $templateParams['utente']['ID'];?>" class="btn btn-dark btn-block" style="text-decoration:none">Canzoni</a>
                     </li>
                     <li class="nav-item col-12 col-md-3 mb-2 text-center">
-                        <a href="albumPostProfile.php?id=<?php echo $templateParams['utente']['ID'];?>" class="btn btn-dark btn-block" style="text-decoration:none">Album</a>
+                        <a title="album" href="albumPostProfile.php?id=<?php echo $templateParams['utente']['ID'];?>" class="btn btn-dark btn-block" style="text-decoration:none">Album</a>
                     </li>
                     <li class="nav-item col-12 col-md-3 mb-2 text-center">
-                        <a href="playlistPostProfile.php?id=<?php echo $templateParams['utente']['ID'];?>" class="btn btn-dark btn-block" style="text-decoration:none">Playlist</a>
+                        <a title="playlist" href="playlistPostProfile.php?id=<?php echo $templateParams['utente']['ID'];?>" class="btn btn-dark btn-block" style="text-decoration:none">Playlist</a>
                     </li>
                 </ul>
             </div>

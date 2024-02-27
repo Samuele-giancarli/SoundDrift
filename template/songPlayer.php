@@ -75,9 +75,9 @@ function songUnlikeDone() {
 </script>
 
 <p class="titolo"><?php echo $info["Titolo"]; ?></p>
-<div class="mb-3">Titolo: <?php echo $info["Titolo"]; ?></div>
-<div class="mb-3">Autore: <?php echo "<a class=\"link-primary\" href=\"profile.php?id=".$userInfo["ID"]."\">".htmlentities($userInfo["Username"])."</a>"; ?></div>
-<div class="mb-3">Genere: <?php echo $info["Genere"]; ?></div>
+<div title="titolo" class="mb-3">Titolo: <?php echo $info["Titolo"]; ?></div>
+<div title="autore" class="mb-3">Autore: <?php echo "<a class=\"link-primary\" href=\"profile.php?id=".$userInfo["ID"]."\">".htmlentities($userInfo["Username"])."</a>"; ?></div>
+<div title="genere" class="mb-3">Genere: <?php echo $info["Genere"]; ?></div>
 
 <?php 
 if (!is_null($info["ID_Immagine"])){
@@ -102,13 +102,13 @@ echo "type=\"".$audioInfo["MimeType"]."\">";
 if (!is_null($info["ID_Album"])){
     $albumInfo=$dbh->getAlbumInfo($info["ID_Album"]);
 ?>
-<div class="mb-3">Album di appartenenza: <?php echo "<a class=\"link-primary\" href=\"albumPlayer.php?id=".$albumInfo["ID"]."\">".htmlentities($albumInfo["Titolo"])."</a>"; ?></div>
+<div title="album di cui fa parte" class="mb-3">Album di appartenenza: <?php echo "<a class=\"link-primary\" href=\"albumPlayer.php?id=".$albumInfo["ID"]."\">".htmlentities($albumInfo["Titolo"])."</a>"; ?></div>
 <?php
 }
 ?>
 
 <div class="mb-3">
-<button type="button" class="btn btn-dark" onclick="play(false)">Riproduci</button>
+<button title="riproduci" type="button" class="btn btn-dark" onclick="play(false)">Riproduci</button>
 <script>
 let audio = document.getElementById("song");
 audio.ondurationchange = duration;
@@ -116,18 +116,18 @@ audio.oncanplaythrough = duration;
 </script>
 
 
-<button type="button" class="btn btn-dark" onclick="play(true)">Aggiungi in coda</button>
+<button title="aggiungi in coda" type="button" class="btn btn-dark" onclick="play(true)">Aggiungi in coda</button>
 </div>
 
 <div class="mb-3">
 <?php
 if (isset($_SESSION["ID"])){
     if ($dbh -> isSongLiked($_SESSION["ID"], $idcanzone)){
-        echo "<button class=\"btn btn-dark\" id=\"like\" type=\"button\" onclick=\"songUnlike();\">Rimuovi da Piaciuti </button>";
+        echo "<button title=\"non mi piace più\" class=\"btn btn-dark\" id=\"like\" type=\"button\" onclick=\"songUnlike();\">Rimuovi da Piaciuti </button>";
     }else{
-        echo "<button class=\"btn btn-dark\" id=\"like\" type=\"button\" onclick=\"songLike();\">Aggiungi a Piaciuti </button>";    
+        echo "<button title=\"mi piace\" class=\"btn btn-dark\" id=\"like\" type=\"button\" onclick=\"songLike();\">Aggiungi a Piaciuti </button>";    
     }
-        echo "<a class=\"btn btn-dark\" id=\"share\" href=\"upload.php?songid=".$idcanzone."\">Condividi</a>";
+        echo "<a title=\"condividi\" class=\"btn btn-dark\" id=\"share\" href=\"upload.php?songid=".$idcanzone."\">Condividi</a>";
 }
 ?>
 </div>
@@ -154,7 +154,7 @@ if (isset($_SESSION["ID"])){
     </select>  
 </div>
     <input type="hidden" name="songid" value=<?php echo "'".$idcanzone."'"; ?>>
-    <button type="submit" class="btn btn-secondary">Aggiungi</button>
+    <button title="aggiungi" type="submit" class="btn btn-secondary">Aggiungi</button>
 </form>
 
 

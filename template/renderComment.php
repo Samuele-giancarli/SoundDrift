@@ -15,13 +15,13 @@
         <div class="card rounded-3 text-left">
             <div class="card-body">
                 <h5 class="card-title">
-                <a href="profile.php?id=<?php echo $id_mandante; ?>" style="color: black; text-decoration:none"><?php echo $authorname; ?></a>
+                <a title="autore" href="profile.php?id=<?php echo $id_mandante; ?>" style="color: black; text-decoration:none"><?php echo $authorname; ?></a>
                 </h5>
                 <p class="card-title">
                    <?php echo htmlentities($testo); ?>
                 </p>
             </div>
-             <div style="text-align:right"> <small class="text-muted"><?php echo $data;?></small></div>
+             <div style="text-align:right"> <small title="data" class="text-muted"><?php echo $data;?></small></div>
         </div>
     </div>
 </div>

@@ -36,12 +36,12 @@ function jsescape($s) {
     <legend>Pubblica un nuovo post</legend>
         <div class="form-outline">
             <label for="testo" class="form-label">Scrivi qui: </label>
-            <textarea name="testo" class="form-control" id="testo" placeholder="Qualcosa da raccontare?" rows="3" required></textarea>
+            <textarea title="testo del post" name="testo" class="form-control" id="testo" placeholder="Qualcosa da raccontare?" rows="3" required></textarea>
         </div>
 
         <div class="mb-3">
             <label for="immagine" class="form-label">Immagine:</label>
-            <input type="file" class="form-control" name="immagine" id="immagine" accept="image/jpeg,image/png,image/webp,image/avif">
+            <input title="immagine" type="file" class="form-control" name="immagine" id="immagine" accept="image/jpeg,image/png,image/webp,image/avif">
         </div>
 
         <?php
@@ -65,7 +65,7 @@ function jsescape($s) {
             }
         }
         ?>
-             <button type="submit" class="btn btn-dark">Pubblica</button>
+             <button title="invia" type="submit" class="btn btn-dark">Pubblica</button>
     </fieldset>
     </form>
 <?php

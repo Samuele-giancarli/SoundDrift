@@ -66,19 +66,19 @@ if ($show_form) {
     <legend>Carica una canzone</legend>
         <div class="mb-3">
             <label for="titolo" class="form-label">Titolo della canzone:</label>
-            <input type="text" class="form-control" name="titolo" id="titolo" placeholder="Titolo della canzone" required>
+            <input title="titolo" type="text" class="form-control" name="titolo" id="titolo" placeholder="Titolo della canzone" required>
         </div>
         <div class="mb-3">
             <label for="genere" class="form-label">Genere della canzone:</label>
-            <input type="text" class="form-control" name="genere" id="genere" placeholder="Genere della canzone">
+            <input title="genere" type="text" class="form-control" name="genere" id="genere" placeholder="Genere della canzone">
         </div>
         <div class="mb-3">
             <label for="immagine" class="form-label">Immagine:</label>
-            <input type="file" class="form-control" name="immagine" id="immagine" accept="image/jpeg,image/png,image/webp,image/avif">
+            <input title="copertina" type="file" class="form-control" name="immagine" id="immagine" accept="image/jpeg,image/png,image/webp,image/avif">
         </div>
         <div class="mb-3">
             <label for="audio" class="form-label">File audio:</label>
-            <input type="file" class="form-control" name="audio" id="audio" accept="audio/mpeg,audio/flac" required>
+            <input title="file audio" type="file" class="form-control" name="audio" id="audio" accept="audio/mpeg,audio/flac" required>
         </div>
         <div class="mb-3">
             <label for="album" class="form-label">Album di appartenenza:</label>
@@ -100,7 +100,7 @@ if ($show_form) {
             <input type="checkbox" class="form-check-input" id="albuminfo" name="albuminfo">
             <label for="albuminfo" class="form-check-label">Copiare le informazioni dell'album?</label>
         </div>
-        <button type="submit" class="btn btn-dark">Invia</button>
+        <button title="invia" type="submit" class="btn btn-dark">Invia</button>
             </fieldset>
     </form>
 
@@ -116,7 +116,7 @@ if ($show_form) {
     </div>
 <?php }  ?>
 
-<p class="mt-4">Tutte le canzoni:</p>
+<p title="tutti i tuoi brani"class="mt-4">Tutte le canzoni:</p>
 <ul class="list-group">
     <?php
     $stmt = $dbh->db->prepare("SELECT * FROM canzone WHERE ID_Utente=?");
