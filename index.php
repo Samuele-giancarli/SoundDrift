@@ -19,18 +19,18 @@
 <footer class="bg-opacity-10 bg-secondary text-center">
 <span class="hide-on-mobile">
   <label for="volume" style="display: none;">Volume:</label>
-  <input type="range" min="0" max="1" value="1" step="0.01" id="volume" onchange="volumeUpdate();" oninput="volumeUpdate();">
+  <input type="range" title="volume" min="0" max="1" value="1" step="0.01" id="volume" onchange="volumeUpdate();" oninput="volumeUpdate();">
 </span>
-        <button type="button" class="btn btn-dark" id="playButton">
+        <button type="button" title="play pause" class="btn btn-dark" id="playButton">
             <em class="bi bi-play"></em> <span class="hide-on-mobile">Play</span>
         </button>
     
-        <button type="button" class="btn btn-dark" onclick="prevSong();">
+        <button type="button" title="canzone precedente" class="btn btn-dark" onclick="prevSong();">
             <em class="bi bi-skip-backward"></em>
         </button>
 
         <div class="dropup-center dropup" style="display:inline-block">
-        <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <button type="button" title="stai ascoltando" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                             Stai ascoltando
         </button>
         <ul class="dropdown-menu">
@@ -39,16 +39,16 @@
                             
         </ul>
 </div>
-        <button type="button"  class="btn btn-dark" onclick="nextSong();">
+        <button type="button" title="canzone successiva" class="btn btn-dark" onclick="nextSong();">
             <em class="bi bi-skip-forward"></em> 
         </button>
 
-        <span class="hide-on-mobile"><button type="button" class="btn btn-dark" id="loopButton" onclick="enableLoop();">
+        <span class="hide-on-mobile"><button type="button" title="metti in loop" class="btn btn-dark" id="loopButton" onclick="enableLoop();">
             <em class="bi bi-arrow-repeat"></em> Enable Loop
         </button></span>
 
         <div class="dropup-center dropup hide-on-mobile" style="display:inline-block" aria-expanded="false">
-        <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">Prossimo in coda</button>
+        <button type="button" title="prossima in coda" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">Prossimo in coda</button>
         <ul class="dropdown-menu">
         <li> <a href="#" id="next" style="text-align:center" title="Next Page"></a></li>
         </ul>

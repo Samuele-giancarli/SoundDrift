@@ -43,14 +43,14 @@ function albumUnlikeDone() {
 </script>
 
 <p class="titolo"><?php echo $info["Titolo"]; ?></p>
-<div class="mb-3">Titolo: <?php echo $info["Titolo"]; ?></div>
-<div class="mb-3">Autore: <?php echo "<a class=\"link-primary\"  href=\"profile.php?id=".$userInfo["ID"]."\">".htmlentities($userInfo["Username"])."</a>"; ?></div>
-<div class="mb-3">Genere: <?php echo $info["Genere"]; ?></div>
+<div title="titolo" class="mb-3">Titolo: <?php echo $info["Titolo"]; ?></div>
+<div title="autore" class="mb-3">Autore: <?php echo "<a class=\"link-primary\"  href=\"profile.php?id=".$userInfo["ID"]."\">".htmlentities($userInfo["Username"])."</a>"; ?></div>
+<div title="genere" class="mb-3">Genere: <?php echo $info["Genere"]; ?></div>
 
 <?php 
 if (!is_null($info["ID_Immagine"])){
 ?>
-<div class="mb-3"><img alt="albumCover" <?php echo "src=\"download.php?id=".$info["ID_Immagine"]."\""; ?> class="img-thumbnail" style="width: 150px; height: 150px;"></div>
+<div title="copertina" class="mb-3"><img alt="albumCover" <?php echo "src=\"download.php?id=".$info["ID_Immagine"]."\""; ?> class="img-thumbnail" style="width: 150px; height: 150px;"></div>
 <?php
 }
 
@@ -58,7 +58,7 @@ $rows= $dbh -> getSongsFromAlbum($idalbum);
 ?>
 <?php
 if (count($rows)!=0){
-echo "<div class=\"mb-3\"> <button class=\"btn btn-dark\" type=\"button\" onclick=\"";
+echo "<div class=\"mb-3\"> <button title=\"metti tutto in coda\" class=\"btn btn-dark\" type=\"button\" onclick=\"";
 foreach ($rows as $song){
     echo "window.parent.playNow({";
     echo "'title': '".jsescape($song["Titolo"])."',";
@@ -75,14 +75,14 @@ echo "\">Aggiungi tutto in coda</button></div>";
 
 if (isset($_SESSION["ID"])&&$info["Finalizzato"]==1){
     if ($dbh -> isAlbumLiked($idutente, $idalbum)){
-        echo "<button class=\"btn btn-dark\" id=\"like\" type=\"button\" onclick=\"albumUnlike();\">Rimuovi da Libreria</button>";
+        echo "<button title=\"mi piace\" class=\"btn btn-dark\" id=\"like\" type=\"button\" onclick=\"albumUnlike();\">Rimuovi da Libreria</button>";
     }else{
-        echo "<button class=\"btn btn-dark\" id=\"like\" type=\"button\" onclick=\"albumLike();\">Aggiungi a Libreria</button>";    
+        echo "<button title=\"non mi piace più\" class=\"btn btn-dark\" id=\"like\" type=\"button\" onclick=\"albumLike();\">Aggiungi a Libreria</button>";    
     }
-    echo "<a class=\"btn btn-dark\" href=\"upload.php?albumid=".$idalbum."\">Condividi</a>";
+    echo "<a title=\"condividi in un post\" class=\"btn btn-dark\" href=\"upload.php?albumid=".$idalbum."\">Condividi</a>";
 }
 ?>
-<p class="mt-4">Brani:</p>
+<p title="brani dell'album" class="mt-4">Brani:</p>
 
 <ol class="list-group list-group-numbered">
 <?php

@@ -1,5 +1,5 @@
 
-<p class="titolo">Le tue notifiche:</p>
+<p title="notifiche" class="titolo">Le tue notifiche:</p>
 <?php 
 
     if(!is_null($_SESSION["ID"])){

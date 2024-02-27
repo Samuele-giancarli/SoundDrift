@@ -52,17 +52,17 @@ if (!isset($_SESSION["ID"])) {
     <legend>Crea un album</legend>
         <div class="mb-3">
             <label for="titolo" class="form-label">Titolo dell'album:</label>
-            <input type="text" name="titolo" id="titolo" class="form-control" placeholder="Titolo dell'album" required>
+            <input type="text" title="titolo dell'album" name="titolo" id="titolo" class="form-control" placeholder="Titolo dell'album" required>
         </div>
         <div class="mb-3">
             <label for="genere" class="form-label">Genere dell'album:</label>
-            <input type="text" name="genere" id="genere" class="form-control" placeholder="Genere dell'album" required>
+            <input type="text" title="genere dell'album" name="genere" id="genere" class="form-control" placeholder="Genere dell'album" required>
         </div>
         <div class="mb-3">
             <label for="immagine" class="form-label">Immagine:</label>
-            <input type="file" name="immagine" id="immagine" class="form-control" accept="image/jpeg,image/png,image/webp,image/avif">
+            <input type="file" title="copertina dell'album" name="immagine" id="immagine" class="form-control" accept="image/jpeg,image/png,image/webp,image/avif">
         </div>
-        <button type="submit" class="btn btn-dark">Invia</button>
+        <button type="submit" title="invia" class="btn btn-dark">Invia</button>
 </fieldset>
     </form>
 <?php endif; ?>
@@ -93,7 +93,7 @@ if (!isset($_SESSION["ID"])) {
             ?>
                 <li class="list-group-item">
                 <?php echo "<a class=\"link-info\" href=\"albumPlayer.php?id=" . $row["ID"] . "\">" . htmlentities($row["Titolo"]) . "</a>";?>
-                <button id="finalizza" class="btn btn-secondary btn-sm" onclick="location.href='finalise.php?id=<?php echo $row['ID']; ?>'">Finalizza</button>
+                <button id="finalizza" title="rendi pubblico" class="btn btn-secondary btn-sm" onclick="location.href='finalise.php?id=<?php echo $row['ID']; ?>'">Finalizza</button>
                 </li>
 
             <?php endwhile; 

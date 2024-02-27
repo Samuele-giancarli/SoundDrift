@@ -16,7 +16,7 @@
         <div class="card rounded-3 text-center">
             <div class="card-body">
                 <p class="h5 card-title">
-                    <a href="albumPlayer.php?id=<?php echo $albumid ?>" style="color: black"><?php echo $albumtitle." (Album)" ?></a>
+                    <a title="nome dell'album" href="albumPlayer.php?id=<?php echo $albumid ?>" style="color: black"><?php echo $albumtitle." (Album)" ?></a>
                      </p>
 
                 <p class="card-text" style="text-align:center;">
@@ -26,10 +26,10 @@
                     <br>
                 </p>
                 <p class="h5 card-title">
-                    <a href="profile.php?id=<?php echo $authorid ?>" style="color: black"><?php echo $authorname ?></a>
+                    <a title="autore" href="profile.php?id=<?php echo $authorid ?>" style="color: black"><?php echo $authorname ?></a>
                 </p>
             </div>
-            <div> <small class="text-muted" style="font-weight: bold;"><?php echo $data;?></small></div>
+            <div> <small title="data" class="text-muted" style="font-weight: bold;"><?php echo $data;?></small></div>
         </div>
     </div>
 </div>

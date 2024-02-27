@@ -14,7 +14,7 @@
     <body class="bg-light">
         <header class="bg-black fixed-top d-flex justify-content-between align-items-center header-content">
 
-            <a href="home.php" id="logo" title="logo">
+            <a href="home.php" id="logo" title="logo" alt="sounddrift logo">
                     <span class="h1 text-white" style="display:inline-block; font-size:27px" >SoundDrift</span>
             </a>
 
@@ -62,7 +62,7 @@
                 <?php
                 } else {
                 ?>
-                    <a id="loginfromOut" href="login.php" class="btn btn-dark" title="loginfromOut">
+                    <a id="loginfromOut" href="login.php" class="btn btn-dark" title="login">
                         <em class="bi bi-box-arrow-in-right" style="font-size: 20px"></em>
                     </a>
                 <?php
@@ -84,16 +84,16 @@
         ?>
         <footer id="second-footer" class="bg-black text-center z-3">
             <div class="container">
-                <a href="ricerca.php" class="btn btn-dark " style="text-decoration:none">
+                <a href="ricerca.php" title="ricerca" class="btn btn-dark " style="text-decoration:none">
                         <em class="bi bi-search"></em> <span class="hide-on-mobile">Cerca</span>
                 </a>
-                <a href="libreria.php" class="btn btn-dark" style="text-decoration:none">
+                <a href="libreria.php" title="libreria" class="btn btn-dark" style="text-decoration:none">
                         <em class="bi bi-collection"></em> Libreria
                 </a>
-                <a href="upload.php" class="btn btn-dark" style="text-decoration:none">
+                <a href="upload.php" title="post" class="btn btn-dark" style="text-decoration:none">
                         <em class="bi bi-file-post"></em> Post
                 </a>
-                <a href="settings.php" class="btn btn-dark" style="text-decoration:none">
+                <a href="settings.php" title="impostazioni" class="btn btn-dark" style="text-decoration:none">
                         <em class="bi bi-gear"></em> <span class="hide-on-mobile">Impostazioni</span>
                 </a>
             </div>

@@ -11,7 +11,7 @@ renderPost($postInfo,$dbh,$_SESSION["ID"]);
 </div>
 <button class="btn btn-dark" onclick="addComment()">Invia Commento</button>
 
-<div id="commentsContainer">
+<div title="commenti" id="commentsContainer">
     <?php
     // Mostra i commenti esistenti
  // Sostituire con l'ID del post corrente

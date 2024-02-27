@@ -27,8 +27,8 @@ if(!isset($_SESSION["ID"])) {
             $idPlaylist = $dbh->addPlaylist($titolo, $idutente, $idimmagine);
         if (!is_null($idPlaylist)) { 
                 $dbh ->likePlaylist($idutente, $idPlaylist);
-                $success="<a href=\"libreria.php\" style=\"color:black\">La playlist ".htmlentities($titolo)." è stata creata: vai alla libreria</a><br>";
-                $success=$success."<a href=\"playlist.php\" style=\"color:black\">Oppure crea una nuova playlist.</a>";
+                $success="<a title=\"vai alla libreria\£ href=\"libreria.php\" style=\"color:black\">La playlist ".htmlentities($titolo)." è stata creata: vai alla libreria</a><br>";
+                $success=$success."<a title=\"crea altra playlist\" href=\"playlist.php\" style=\"color:black\">Oppure crea una nuova playlist.</a>";
                 $show_form=false;
             } else {
                 $err_mess="Errore sconosciuto";
@@ -48,13 +48,13 @@ if ($show_form) {
     <legend>Crea una playlist</legend>
         <div class="mb-3">
             <label for="titolo" class="form-label">Nome della playlist:</label>
-            <input type="text" id="titolo" name="titolo" class="form-control" placeholder="Nome della playlist" required>
+            <input title="titolo" type="text" id="titolo" name="titolo" class="form-control" placeholder="Nome della playlist" required>
 </div>
         <div class="mb-3">
             <label for="immagine" class="form-label">Immagine:</label>
-            <input type="file" name="immagine" id="immagine" class="form-control" accept="image/jpeg,image/png,image/webp,image/avif">
+            <input title="copertina" type="file" name="immagine" id="immagine" class="form-control" accept="image/jpeg,image/png,image/webp,image/avif">
         </div>
-        <button type="submit" class="btn btn-dark">Invia</button>
+        <button title="invia" type="submit" class="btn btn-dark">Invia</button>
     </fieldset>
 </form>
 <?php
@@ -73,7 +73,7 @@ if (!is_null($err_mess)) { ?>
 
 if ($show_form){
     ?>
-    <p class="mt-4">Tutte le playlist:</p>
+    <p title="tutte le playlist" class="mt-4">Tutte le playlist:</p>
     <ul class="list-group">
 <?php
 $stmt = $dbh->db->prepare("SELECT * FROM playlist WHERE ID_Utente=?");

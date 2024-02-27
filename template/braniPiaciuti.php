@@ -12,7 +12,7 @@ $userInfo= $dbh->getUserInfo($idutente);
 $imageID="default.png";
 
 ?>
-<p class="titolo">Questi sono i brani che ti piacciono:</p>
+<p title="brani piaciuti" class="titolo">Questi sono i brani che ti piacciono:</p>
 
 <?php
 $rows= $dbh -> getLikedSongs($idutente);

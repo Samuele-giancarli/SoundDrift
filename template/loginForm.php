@@ -43,13 +43,13 @@ if($show_form){
         <legend>Login</legend>
         <div class="mb-3">
             <label for="email" class="form-label">Email:</label>
-            <input type="email" name="email" id="email" class="form-control" placeholder="La tua e-mail" required>
+            <input title="email" type="email" name="email" id="email" class="form-control" placeholder="La tua e-mail" required>
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Password:</label>
-            <input type="password" name="password" id="password" class="form-control" placeholder="La tua password" required>
+            <input title="password" type="password" name="password" id="password" class="form-control" placeholder="La tua password" required>
         </div>
-        <button type="submit" class="btn btn-dark">Login</button>
+        <button title="invia" type="submit" class="btn btn-dark">Login</button>
 </fieldset>
     </form>
 
@@ -71,4 +71,4 @@ if ($err_utente) { ?>
 <?php } 
 }
 ?>
-<p class="mt-3 text-center">Non sei ancora registrato? <a class="link-primary" href="register.php">Registrati</a></p>
+<p class="mt-3 text-center">Non sei ancora registrato? <a title="registrati" class="link-primary" href="register.php">Registrati</a></p>
