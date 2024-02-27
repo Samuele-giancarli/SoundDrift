@@ -15,7 +15,7 @@
         <div class="card rounded-3 text-center">
             <div class="card-body">
                 <p class="h5 card-title">
-                    <a href="playlistPlayer.php?id=<?php echo $playlistid ?>" style="color: black"><?php echo $playlisttitle." (Playlist)" ?></a>
+                    <a title="playlist" href="playlistPlayer.php?id=<?php echo $playlistid ?>" style="color: black"><?php echo $playlisttitle." (Playlist)" ?></a>
     </p>
 
                 <p class="card-text" style="text-align:center;">
@@ -25,7 +25,7 @@
                     <br>
                 </p>
                 <p class="h5 card-title">
-                    <a href="profile.php?id=<?php echo $authorid ?>" style="color: black"><?php echo $authorname ?></a>
+                    <a title="autore" href="profile.php?id=<?php echo $authorid ?>" style="color: black"><?php echo $authorname ?></a>
                     </p>
             </div>
         </div>

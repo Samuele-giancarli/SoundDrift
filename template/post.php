@@ -99,11 +99,11 @@
                         <?php } ?>
                     <?php
                         if (!is_null($songInfo)){
-                            ?> <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha condiviso un brano <?php
+                            ?> <a title="autore" href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha condiviso un brano <?php
                         } else if (!is_null($albumInfo)){
-                            ?> <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha condiviso un album<?php
+                            ?> <a title="autore" href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha condiviso un album<?php
                         } else {
-                            ?> <a href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha condiviso un post <?php
+                            ?> <a title="autore" href="profile.php?id=<?php echo $userid ?>" style="color: black"><?php echo $username ?></a> ha condiviso un post <?php
                         }
                     ?>
                 </h5>
@@ -160,10 +160,10 @@
                         <?php
                         if (isset($_SESSION["ID"])){
                         ?>
-                            <button type="button" style="margin-right: 5px;" class="btn btn-dark rounded" onclick="updateLikeVisual(<?php echo $postId; ?>, false, <?php echo $visualizerId?>)" id="likebutton<?php echo $postId; ?>" data-isOn="false">
+                            <button title="mi piace" type="button" style="margin-right: 5px;" class="btn btn-dark rounded" onclick="updateLikeVisual(<?php echo $postId; ?>, false, <?php echo $visualizerId?>)" id="likebutton<?php echo $postId; ?>" data-isOn="false">
                                 <em class="bi bi-heart"></em>
                             </button>
-                            <a title="let a comment button" class="btn btn-dark rounded" style="margin-right: 5px;" href="comment.php?id=<?php echo $postId ?>">
+                            <a title="commenta" class="btn btn-dark rounded" style="margin-right: 5px;" href="comment.php?id=<?php echo $postId ?>">
                                 <em class="bi bi-chat-left-dots"></em>
                             </a>
                             <?php
@@ -173,9 +173,9 @@
                         <?php echo (!is_null($songInfo) ? '<a title="go to the song button" class="btn btn-dark rounded" style="color: white;" href="songPlayer.php?id='.$songInfo["ID"].'"><em class="bi bi-music-note-beamed"></em> brano </a>' : '');?>
                         <?php echo (!is_null($albumInfo) ? '<a title="go to the album button" class="btn btn-dark rounded" style="color: white;" href="albumPlayer.php?id='.$albumInfo["ID"].'"><em class="bi bi-music-note-list"></em> album </a>' : '');?>
 
-                        <small class="text-muted" style="margin-left: 5px; font-weight: bold;" id="likenumber<?php echo $postId; ?>"><?php echo $likeNumber; ?> likes </small>
+                        <small title="likes" class="text-muted" style="margin-left: 5px; font-weight: bold;" id="likenumber<?php echo $postId; ?>"><?php echo $likeNumber; ?> likes </small>
                     </div>
-                    <span class="hide-on-mobile"> <small class="text-muted" style="text-align:right; font-weight: bold;"><?php echo $postInfo["Data"];?></small></span>
+                    <span class="hide-on-mobile"> <small title="data" class="text-muted" style="text-align:right; font-weight: bold;"><?php echo $postInfo["Data"];?></small></span>
 
                     <?php if($isLiked){echo "<script>likeOn($postId, true);</script>";}?>
 

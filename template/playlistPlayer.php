@@ -44,13 +44,13 @@ function playlistUnlikeDone() {
 </script>
 
 <p class="titolo"><?php echo $info["Titolo"]." (Playlist)"; ?></p>
-<div class="mb-3">Titolo: <?php echo $info["Titolo"]; ?></div>
-<div class="mb-3">Autore: <?php echo "<a class=\"link-primary\"  href=\"profile.php?id=".$userInfo["ID"]."\">".htmlentities($userInfo["Username"])."</a>"; ?></div>
+<div title="titolo" class="mb-3">Titolo: <?php echo $info["Titolo"]; ?></div>
+<div class="mb-3">Autore: <?php echo "<a title=\"autore\" class=\"link-primary\"  href=\"profile.php?id=".$userInfo["ID"]."\">".htmlentities($userInfo["Username"])."</a>"; ?></div>
 
 <?php 
 if (!is_null($info["ID_Immagine"])){
 ?>
-<div>Copertina: <img <?php echo "src=\"download.php?id=".$info["ID_Immagine"]."\""; ?>  id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" /></div>
+<div>Copertina: <img title="copertina playlist" <?php echo "src=\"download.php?id=".$info["ID_Immagine"]."\""; ?>  id="profile-pic" class="img-thumbnail" style="width: 150px; height: 150px;" /></div>
 <?php
 }
 
@@ -59,7 +59,7 @@ $rows= $dbh -> getSongsFromPlaylist($idplaylist);
 <div class="mb-3">
 <?php
 if (count($rows)!=0){
-echo "<button class=\"btn btn-dark\" type=\"button\" onclick=\"";
+echo "<button title=\"aggiungi tutto in coda\" class=\"btn btn-dark\" type=\"button\" onclick=\"";
 foreach ($rows as $song){
     echo "window.parent.playNow({";
     echo "'title': '".jsescape($song["Titolo"])."',";
@@ -77,17 +77,17 @@ echo "\">Aggiungi tutto in coda</button>";
 <?php
 if (isset($_SESSION["ID"])){
 if ($dbh -> isPlaylistLiked($idutente, $idplaylist)){
-    echo "<button class=\"btn btn-dark\" id=\"like\" type=\"button\" onclick=\"playlistUnlike();\">Togli da Libreria</button>";
+    echo "<button title=\"mi piace\" class=\"btn btn-dark\" id=\"like\" type=\"button\" onclick=\"playlistUnlike();\">Togli da Libreria</button>";
 }else{
-    echo "<button class=\"btn btn-dark\" id=\"like\" type=\"button\" onclick=\"playlistLike();\">Aggiungi a Libreria</button>";    
+    echo "<button title=\"non mi piace più\" class=\"btn btn-dark\" id=\"like\" type=\"button\" onclick=\"playlistLike();\">Aggiungi a Libreria</button>";    
 }
 if ($_SESSION["ID"]==$info["ID_Utente"]){
-    echo "<a class=\"btn btn-dark\" id=\"playlist\" href=\"addToPlaylist.php?id=".$idplaylist."\">Aggiungi canzoni</a>";
+    echo "<a title=\"aggiungi canzoni a playlist\" class=\"btn btn-dark\" id=\"playlist\" href=\"addToPlaylist.php?id=".$idplaylist."\">Aggiungi canzoni</a>";
 }
 }
 ?>
 </div>
-<p class="mt-4">Brani:</p>
+<p title="brani della playlist" class="mt-4">Brani:</p>
 
 <ol class="list-group list-group-numbered">
 <?php

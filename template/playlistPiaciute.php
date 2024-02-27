@@ -1,4 +1,4 @@
-<p class="titolo">Queste sono le playlist che hai salvato:</p>
+<p title="playlist salvate" class="titolo">Queste sono le playlist che hai salvato:</p>
 
 <ol class="list-group">
 <?php
