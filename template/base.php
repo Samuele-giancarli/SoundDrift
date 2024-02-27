@@ -15,7 +15,6 @@
         <header class="bg-black fixed-top d-flex justify-content-between align-items-center header-content">
 
             <a href="home.php" id="logo" title="logo">
-                    <img src="images/App_images/logo3.jpg" alt="logo" width="70" style="display:inline-block">
                     <span class="h1 text-white" style="display:inline-block; font-size:27px" >SoundDrift</span>
             </a>
 
