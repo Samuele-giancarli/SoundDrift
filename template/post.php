@@ -170,8 +170,8 @@
                         }
                         ?>
                         
-                        <?php echo (!is_null($songInfo) ? '<a title="go to the song button" class="btn btn-dark rounded" style="color: white;" href="songPlayer.php?id='.$songInfo["ID"].'"><em class="bi bi-music-note-beamed"></em> brano </a>' : '');?>
-                        <?php echo (!is_null($albumInfo) ? '<a title="go to the album button" class="btn btn-dark rounded" style="color: white;" href="albumPlayer.php?id='.$albumInfo["ID"].'"><em class="bi bi-music-note-list"></em> album </a>' : '');?>
+                        <?php echo (!is_null($songInfo) ? '<a title="vai al brano" class="btn btn-dark rounded" style="color: white;" href="songPlayer.php?id='.$songInfo["ID"].'"><em class="bi bi-music-note-beamed"></em> brano </a>' : '');?>
+                        <?php echo (!is_null($albumInfo) ? '<a title="vai ad album" class="btn btn-dark rounded" style="color: white;" href="albumPlayer.php?id='.$albumInfo["ID"].'"><em class="bi bi-music-note-list"></em> album </a>' : '');?>
 
                         <small title="likes" class="text-muted" style="margin-left: 5px; font-weight: bold;" id="likenumber<?php echo $postId; ?>"><?php echo $likeNumber; ?> likes </small>
                     </div>
